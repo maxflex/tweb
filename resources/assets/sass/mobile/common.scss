@@ -715,11 +715,14 @@ input {
 
 .vertical-slider {
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
 }
 
 .price-wrapper {
     margin-left: -1.2em;
-    margin-top: -.8em;
     width: calc(100% + 2.4em);
     & .price-list {
         overflow: hidden;
