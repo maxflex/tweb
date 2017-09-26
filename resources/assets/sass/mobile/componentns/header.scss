@@ -1,5 +1,5 @@
 .header {
-  background: #0c4e69;
+  background: $main-color-light;
   padding: 1.429em 1.357em 1.429em 1.357em;
   position: relative;
   display: flex;
@@ -8,11 +8,12 @@
 
   &-logo {
     display: block;
-    background: url('../img/svg/logo_yellow_mobile.svg') no-repeat;
-    width: 9em;
+    background: url('../img/icons/logo.png') no-repeat;
+    width: 12em;
     height: 3.5em;
     overflow: hidden;
     text-indent: -3000px;
+    background-size: 100%;
   }
 
   &-controls {

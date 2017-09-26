@@ -694,3 +694,67 @@ input {
     height: 100%;
     z-index: 99;
 }
+
+.main-gallery-wrapper {
+    display: flex;
+    & .gallery-item {
+        & img {
+            width: 200px;
+        }
+        margin-right: 8px;
+        & b {
+            display: block;
+            margin: 3px 0 15px;
+        }
+    }
+}
+
+.info-section {
+    margin-bottom: 1.250em;
+}
+
+.vertical-slider {
+    overflow-y: scroll;
+}
+
+.price-wrapper {
+    margin-left: -1.2em;
+    & .price-list {
+        overflow: hidden;
+        & ul {
+          list-style-type: none;
+          padding-left: 15px;
+        //   margin-bottom: 15px;
+            & > li {
+                & .price-line {
+                    padding: 8px 8px;
+                    border-bottom: 1px solid #b41a12;
+                    &.active {
+                        background-color: #f6f0e3;
+                    }
+                }
+                & .price-line-title {
+                    pointer-events: none;
+                    color: #a40000;
+                }
+            }
+        }
+        & > ul {
+            padding: 0;
+        }
+        & .fa {
+            font-size: 24px;
+            top: -3px;
+            position: relative;
+            color: #a40000;
+            &.fa-caret-down {
+                top: -1px;
+            }
+        }
+        & .price-item-last {
+            & .price-line {
+                border-bottom: none;
+            }
+        }
+    }
+}
