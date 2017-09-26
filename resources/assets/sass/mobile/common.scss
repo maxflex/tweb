@@ -717,7 +717,12 @@ input {
     overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {display:none;}
+    &::-webkit-scrollbar {
+        display:none;
+        -ms-overflow-style:none;
+          overflow:-moz-scrollbars-none;// but it seems to not work...
+        width:0px;
+    }
 }
 
 .price-wrapper {

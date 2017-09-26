@@ -6398,7 +6398,10 @@ input {
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch; }
   .vertical-slider::-webkit-scrollbar {
-    display: none; }
+    display: none;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    width: 0px; }
 
 .price-wrapper {
   margin-left: -1.2em;
