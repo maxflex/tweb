@@ -1,0 +1,42 @@
+/* color */
+$main-color: #843429;
+$main-color-light: #f3e9d4;
+$main-color-extra-light: #f6f0e3;
+
+$main-link-color: #960000;
+$text-grey: #818181;
+$text-grey-light: #acacac;
+$text-red: #a30000;
+$color-green: #35a45b;
+$color-gold: #c8ca00;
+
+$table-gray: #767676;
+
+$menu-blue: #3a6699;
+
+$placeholder-gray: #757575;
+
+$menu: #f3e9d4;
+$menu-color: #843429;
+
+/* font size */
+$main-font-size: 14px;
+$font-size-h1: 28;
+$font-size-h2: 20;
+$font-size-h3: 16;
+
+/* size */
+$border-radius-element-form: 4;
+$height-element-form: 40;
+$footer-height: 336px;
+$border-radius-main: 6;
+$border-radius: 4px;
+
+$line-height-main: 21;
+
+$form-input-width: 320px;
+
+$screen-width: 960px;   // свойства responsive теряются при $screen-width + ($screen-padding * 2)
+$screen-padding: 20px;  // отступ слева и справа по $screen-padding при максимальном сжатии по ширине
+
+$img-path: '../img/';

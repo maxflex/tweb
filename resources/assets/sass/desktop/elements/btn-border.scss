@@ -1,0 +1,6 @@
+.btn-border {
+  @extend .btn;
+  background: transparent;
+  border: 1px solid $main-color;
+  color: $main-color;
+}
