@@ -6397,9 +6397,7 @@ input {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
   .vertical-slider::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-    /* make scrollbar transparent */ }
+    display: none; }
 
 .price-wrapper {
   margin-left: -1.2em;

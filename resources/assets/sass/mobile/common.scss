@@ -716,10 +716,7 @@ input {
 .vertical-slider {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-        width: 0px;
-        background: transparent; /* make scrollbar transparent */
-    }
+    &::-webkit-scrollbar {display:none;}
 }
 
 .price-wrapper {
