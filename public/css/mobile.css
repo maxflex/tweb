@@ -863,10 +863,10 @@
 .fa-angle-right:before {
   content: "\f105"; }
 
-.fa-angle-up:before {
+.fa-angle-up:before, .price-wrapper .price-list .fa-caret-up:before {
   content: "\f106"; }
 
-.fa-angle-down:before {
+.fa-angle-down:before, .price-wrapper .price-list .fa-caret-down:before {
   content: "\f107"; }
 
 .fa-desktop:before {
@@ -5822,7 +5822,8 @@ html, body {
 body {
   font-family: "helveticaneuecyrregular";
   font-size: 16px;
-  -webkit-overflow-scrolling: touch !important; }
+  -webkit-overflow-scrolling: touch !important;
+  line-height: 20px; }
   body.modal-open {
     overflow: hidden !important;
     position: fixed;
@@ -5902,7 +5903,7 @@ a {
 
 .list-main {
   margin: 0;
-  padding: 0 0 1.250em 0;
+  padding: 0;
   list-style: none; }
   .list-main li {
     padding: 0 0 0.588em 0; }
@@ -6247,7 +6248,6 @@ input {
   margin-bottom: 10px; }
 
 .student-review-name {
-  color: #3a6699;
   font-family: "helveticaneuecyrmedium"; }
 
 .student-review-date {
@@ -6391,37 +6391,78 @@ input {
       margin: 3px 0 15px; }
 
 .info-section {
-  margin-bottom: 1.250em; }
+  margin-bottom: 2.5em; }
 
 .vertical-slider {
   overflow-y: scroll; }
 
 .price-wrapper {
-  margin-left: -1.2em; }
+  margin-left: -1.2em;
+  margin-top: -.8em;
+  width: calc(100% + 2.4em); }
   .price-wrapper .price-list {
     overflow: hidden; }
     .price-wrapper .price-list ul {
       list-style-type: none;
-      padding-left: 15px; }
+      padding-left: 0; }
       .price-wrapper .price-list ul > li .price-line {
-        padding: 8px 8px;
-        border-bottom: 1px solid #b41a12; }
+        padding: .8em 1.2em;
+        border-bottom: 1px solid #dcdcdc; }
         .price-wrapper .price-list ul > li .price-line.active {
-          background-color: #f6f0e3; }
+          background-color: #3b3b3b; }
+          .price-wrapper .price-list ul > li .price-line.active .price-line-title {
+            color: white; }
+          .price-wrapper .price-list ul > li .price-line.active .fa, .price-wrapper .price-list ul > li .price-line.active .check-mark {
+            color: white !important; }
       .price-wrapper .price-list ul > li .price-line-title {
-        pointer-events: none;
-        color: #a40000; }
+        pointer-events: none; }
+      .price-wrapper .price-list ul > li .price-item-info .price-item-price {
+        font-size: 16px;
+        font-family: "helveticaneuecyrmedium"; }
+        .price-wrapper .price-list ul > li .price-item-info .price-item-price:before {
+          content: "- ";
+          font-size: 14px;
+          font-family: "helveticaneuecyrregular"; }
+      .price-wrapper .price-list ul > li .price-section .price-line-title {
+        font-family: "helveticaneuecyrmedium"; }
     .price-wrapper .price-list > ul {
-      padding: 0; }
+      padding: 0;
+      margin: 0; }
     .price-wrapper .price-list .fa, .price-wrapper .price-list .check-mark {
       font-size: 24px;
-      top: -3px;
-      position: relative;
-      color: #a40000; }
+      top: -4px;
+      position: relative; }
       .price-wrapper .price-list .fa.fa-caret-down, .price-wrapper .price-list .fa-caret-down.check-mark {
-        top: -1px; }
+        top: -2px; }
     .price-wrapper .price-list .price-item-last .price-line {
       border-bottom: none; }
+
+.main-page-masters {
+  display: -webkit-box;
+  display: flex; }
+  .main-page-masters img {
+    border-radius: 50%;
+    width: 140px; }
+  .main-page-masters > div {
+    margin-right: 30px; }
+  .main-page-masters .master-name {
+    line-height: 20px;
+    margin-bottom: 10px; }
+
+.equipment-wrapper .equipment-item {
+  margin-bottom: 30px; }
+  .equipment-wrapper .equipment-item img {
+    width: 65%; }
+  .equipment-wrapper .equipment-item b {
+    display: block;
+    margin: 10px 0 20px; }
+
+.map-wrapper b {
+  display: block;
+  margin: 10px 0 20px; }
+
+.map-wrapper center {
+  margin-top: 20px; }
 
 /* Components */
 .header {
@@ -6986,6 +7027,30 @@ input {
   border: 1px solid #acacac;
   position: relative;
   text-transform: none; }
+
+.btn, .btn-border, .btn-border-gray {
+  display: inline-block;
+  vertical-align: middle;
+  background: #f6f0e3;
+  color: black;
+  font-size: 14px;
+  text-decoration: none;
+  font-family: 'helveticaneuecyrregular';
+  padding: 8px 18px;
+  border-radius: 16px;
+  border: 0;
+  position: relative; }
+  .btn:disabled, .btn-border:disabled, .btn-border-gray:disabled {
+    background: #818181; }
+
+.btn-border, .btn-border-gray {
+  background: transparent;
+  border: 1px solid #843429;
+  color: #843429; }
+
+.btn-border-gray {
+  border: 1px solid #8a8a8a;
+  color: #8a8a8a; }
 
 .input-text,
 .textarea,

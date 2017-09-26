@@ -1,0 +1,12 @@
+.btn-border {
+    @extend .btn;
+    background: transparent;
+    border: 1px solid $main-color;
+    color: $main-color;
+}
+
+.btn-border-gray {
+    @extend .btn-border;
+    border: 1px solid $gray-mobile;
+    color: $gray-mobile;
+}

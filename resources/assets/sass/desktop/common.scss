@@ -922,6 +922,9 @@ p.last {
                     background-color: #f6f0e3;
                 }
             }
+            & .price-item-info {
+                @extend .pull-right;
+            }
             & .price-line-title {
                 pointer-events: none;
                 color: #a40000;

@@ -56,7 +56,7 @@ angular
             requestFullScreen.bind(iframe)() if (requestFullScreen)
 
         initGmap = ->
-            map = new google.maps.Map(document.getElementById("map"), {
+            $scope.map = new google.maps.Map(document.getElementById("map"), {
                 scrollwheel: false,
                 disableDefaultUI: true,
                 clickableLabels: false,
@@ -65,7 +65,11 @@ angular
                 zoomControlOptions: {position: google.maps.ControlPosition.LEFT_BOTTOM},
                 scaleControl: true
             })
-            marker = newMarker(new google.maps.LatLng(55.7173112, 37.5929021), map)
-            map.setCenter(marker.getPosition())
-            map.setZoom(14)
-            google.maps.event.trigger(map, 'resize')
+            marker = newMarker(new google.maps.LatLng(55.7173112, 37.5929021), $scope.map)
+            $scope.map.setCenter(marker.getPosition())
+            $scope.map.setZoom(14)
+            if (isMobile)
+                window.onOpenModal = ->
+                    google.maps.event.trigger($scope.map, 'resize')
+                    $scope.map.setCenter(marker.getPosition())
+                    $scope.map.setZoom(14)

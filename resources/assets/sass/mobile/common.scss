@@ -7,6 +7,7 @@ body {
   font-family: $font-regular;
   font-size: 16px;
   -webkit-overflow-scrolling: touch !important;
+  line-height: 20px;
   &.modal-open {
         overflow: hidden !important;
         position: fixed;
@@ -104,7 +105,7 @@ a {
 
 .list-main {
   margin: 0;
-  padding: 0 0 1.250em 0;
+  padding: 0;
   list-style: none;
 
   li {
@@ -519,7 +520,6 @@ input {
 }
 
 .student-review-name {
-    color: #3a6699;
     font-family: $font-medium;
 }
 
@@ -710,7 +710,7 @@ input {
 }
 
 .info-section {
-    margin-bottom: 1.250em;
+    margin-bottom: 2.5em;
 }
 
 .vertical-slider {
@@ -719,36 +719,60 @@ input {
 
 .price-wrapper {
     margin-left: -1.2em;
+    margin-top: -.8em;
+    width: calc(100% + 2.4em);
     & .price-list {
         overflow: hidden;
         & ul {
           list-style-type: none;
-          padding-left: 15px;
+          padding-left: 0;
         //   margin-bottom: 15px;
             & > li {
                 & .price-line {
-                    padding: 8px 8px;
-                    border-bottom: 1px solid #b41a12;
+                    padding: .8em 1.2em;
+                    border-bottom: 1px solid #dcdcdc;
                     &.active {
-                        background-color: #f6f0e3;
+                        background-color: #3b3b3b;
+                        // border-color: white;
+                        & .price-line-title {
+                            color: white;
+                        }
+                        & .fa {
+                            color: white !important;
+                        }
                     }
                 }
                 & .price-line-title {
                     pointer-events: none;
-                    color: #a40000;
+                }
+                & .price-item-info {
+                    & .price-item-price {
+                        font-size: 16px;
+                        font-family: $font-medium;
+                        &:before {
+                            content: "- ";
+                            font-size: 14px;
+                            font-family: $font-regular;
+                        }
+                    }
+                }
+                & .price-section {
+                    & .price-line-title {
+                        font-family: $font-medium;
+                    }
                 }
             }
         }
         & > ul {
             padding: 0;
+            margin: 0;
         }
         & .fa {
             font-size: 24px;
-            top: -3px;
+            top: -4px;
             position: relative;
-            color: #a40000;
             &.fa-caret-down {
-                top: -1px;
+                top: -2px;
             }
         }
         & .price-item-last {
@@ -756,5 +780,49 @@ input {
                 border-bottom: none;
             }
         }
+        .fa-caret-down {
+            @extend .fa-angle-down;
+        }
+        .fa-caret-up {
+            @extend .fa-angle-up;
+        }
+    }
+}
+
+.main-page-masters {
+    display: flex;
+    & img {
+        border-radius: 50%;
+        width: 140px;
+    }
+    & > div {
+        margin-right: 30px;
+    }
+    & .master-name {
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+.equipment-wrapper {
+    & .equipment-item {
+        & img {
+            width: 65%;
+        }
+        & b {
+            display: block;
+            margin: 10px 0 20px;
+        }
+        margin-bottom: 30px;
+    }
+}
+
+.map-wrapper {
+    & b {
+        display: block;
+        margin: 10px 0 20px;
+    }
+    & center {
+        margin-top: 20px;
     }
 }
