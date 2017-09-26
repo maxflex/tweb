@@ -714,7 +714,8 @@ input {
 }
 
 .vertical-slider {
-    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {display:none;}
 }
