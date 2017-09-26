@@ -6383,7 +6383,7 @@ input {
   display: -webkit-box;
   display: flex; }
   .main-gallery-wrapper .gallery-item {
-    margin-right: 8px; }
+    margin-right: 12px; }
     .main-gallery-wrapper .gallery-item img {
       width: 300px; }
     .main-gallery-wrapper .gallery-item b {
@@ -6394,7 +6394,8 @@ input {
   margin-bottom: 2.5em; }
 
 .vertical-slider {
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
   .vertical-slider::-webkit-scrollbar {
     width: 0px;
     background: transparent;

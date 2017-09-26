@@ -701,7 +701,7 @@ input {
         & img {
             width: 300px;
         }
-        margin-right: 8px;
+        margin-right: 12px;
         & b {
             display: block;
             margin: 3px 0 15px;
@@ -715,10 +715,11 @@ input {
 
 .vertical-slider {
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
-}
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+    }
 }
 
 .price-wrapper {
