@@ -923,6 +923,7 @@ p.last {
                 }
             }
             & .price-line-title {
+                pointer-events: none;
                 color: #a40000;
             }
         }

@@ -3428,6 +3428,7 @@ a[href^="https://www.google.com/maps"] {
       .price-list ul > li .price-line.active {
         background-color: #f6f0e3; }
     .price-list ul > li .price-line-title {
+      pointer-events: none;
       color: #a40000; }
   .price-list > ul {
     padding: 0; }
