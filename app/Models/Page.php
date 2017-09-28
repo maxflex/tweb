@@ -39,6 +39,11 @@ class Page extends Model
        'sort'       => 'string',
    ];
 
+    public function items()
+    {
+        return $this->hasMany(PageItem::class);
+    }
+
     public function getSubjectsAttribute($value)
     {
         if ($value) {
@@ -62,6 +67,7 @@ class Page extends Model
         }
         return json_encode($data, JSON_FORCE_OBJECT);
     }
+
 
     public function getHtmlAttribute($value)
     {
