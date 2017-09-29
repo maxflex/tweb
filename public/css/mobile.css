@@ -6484,8 +6484,8 @@ input {
   justify-content: space-between; }
   .header-logo {
     display: block;
-    background: url("../img/icons/logo.png") no-repeat;
-    width: 12em;
+    background: url("../img/svg/logo.svg") no-repeat;
+    width: 10.7em;
     height: 3.5em;
     overflow: hidden;
     text-indent: -3000px;
