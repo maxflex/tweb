@@ -15,11 +15,20 @@ class Gallery extends Model
         'before_and_after' => 'boolean',
     ];
 
-    protected $appends = ['url'];
+    protected $appends = ['url', 'total_price'];
 
     public function getDateAttribute($value)
     {
         return dateFormat($value, true);
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        $sum = 0;
+        foreach(range(1, 6) as $i) {
+            $sum += intval($this->attributes['price_' . $i]);
+        }
+        return $sum;
     }
 
     public function getUrlAttribute()
