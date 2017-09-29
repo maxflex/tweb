@@ -41,7 +41,7 @@ class Page extends Model
 
     public function items()
     {
-        return $this->hasMany(PageItem::class);
+        return $this->hasMany(PageItem::class)->orderBy('position');
     }
 
     public function getSubjectsAttribute($value)
