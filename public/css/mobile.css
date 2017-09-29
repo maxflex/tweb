@@ -6396,8 +6396,9 @@ input {
 .vertical-slider {
   overflow-x: scroll;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch; }
-  .vertical-slider::-webkit-scrollbar {
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch .vertical-slider; }
+  .vertical-slider ::-webkit-scrollbar {
     display: none;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;

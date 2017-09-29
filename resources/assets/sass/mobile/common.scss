@@ -716,7 +716,8 @@ input {
 .vertical-slider {
     overflow-x: scroll;
     overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch
     &::-webkit-scrollbar {
         display:none;
         -ms-overflow-style:none;
