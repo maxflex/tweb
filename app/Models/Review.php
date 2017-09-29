@@ -12,7 +12,7 @@ use DB;
 class Review extends Model
 {
     protected $appends = ['date_string'];
-    
+
     public function master()
     {
         return $this->belongsTo(Master::class);
@@ -20,7 +20,7 @@ class Review extends Model
 
     public function getDateStringAttribute()
     {
-        $date = $this->attributes['created_at'];
+        $date = $this->attributes['date'];
         return date('j ', strtotime($date)) . Months::SHORT[date('n', strtotime($date))] . date(' Y', strtotime($date));
     }
 
