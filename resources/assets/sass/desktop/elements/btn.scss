@@ -13,4 +13,7 @@
   &:disabled {
       background: $text-grey;
   }
+  & span {
+      line-height: inherit !important;
+  }
 }
