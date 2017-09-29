@@ -3398,6 +3398,7 @@ a[href^="https://www.google.com/maps"] {
       float: left;
       text-align: left; }
     .main-page-masters > div h3 {
+      padding-top: 21px;
       text-align: left; }
 
 .equipment-wrapper {
