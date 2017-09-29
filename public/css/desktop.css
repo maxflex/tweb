@@ -3093,7 +3093,6 @@ a[href^="https://www.google.com/maps"] {
   display: none;
   position: absolute;
   background-color: #843429;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
   z-index: 3;
   left: 0;
   color: white;
