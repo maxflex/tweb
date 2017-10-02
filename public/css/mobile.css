@@ -5834,7 +5834,8 @@ mark {
   padding: 25px;
   padding-top: 0;
   box-sizing: border-box;
-  line-height: 20px; }
+  line-height: 20px;
+  overflow: hidden; }
   .gallery-master-info .master-photo img {
     height: 90px;
     width: 90px;

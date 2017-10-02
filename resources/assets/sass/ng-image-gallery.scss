@@ -687,6 +687,7 @@ $gallery-common-indent: 60px;
     padding-top: 0;
     box-sizing: border-box;
     line-height: 20px;
+    overflow: hidden;
     & .master-photo {
         & img {
             height: 90px;
