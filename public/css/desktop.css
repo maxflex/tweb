@@ -4621,7 +4621,7 @@ ol, ul {
   opacity: 1; }
 
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-backdrop {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #383838;
   position: absolute;
   top: 0;
   right: 0;
@@ -4736,7 +4736,7 @@ ol, ul {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  padding: 60px;
+  padding: 15px;
   box-sizing: border-box; }
 
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-content .galleria .galleria-images {
@@ -4752,7 +4752,7 @@ ol, ul {
   right: 0;
   top: 0;
   bottom: 0;
-  margin: auto;
+  margin: 0;
   max-width: 100%;
   max-height: 100%;
   backface-visibility: hidden;
@@ -4941,7 +4941,6 @@ ol, ul {
   animation-duration: 0.3s; }
 
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-content .galleria .galleria-bubbles {
-  margin-top: -40px;
   -webkit-box-flex: 0;
   flex: 0 0 50px;
   text-align: center;
@@ -4987,11 +4986,15 @@ ol, ul {
   width: 12px;
   height: 12px;
   margin: 2px 4px;
+  width: 165px !important;
+  height: 83px !important;
+  opacity: .3;
   -webkit-transition: border 0.3s ease-in-out;
   transition: border 0.3s ease-in-out; }
 
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-content .galleria .galleria-bubbles span.img-bubble.active {
-  border: none !important; }
+  border: none !important;
+  opacity: 1; }
 
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-loader {
   position: absolute;
@@ -5145,5 +5148,69 @@ ol, ul {
       display: inline-block;
       padding: 0.65rem 0.6rem;
       margin: 0.2rem 0.4rem; }
+
+.gallery-photo-master-info {
+  height: 75%;
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  position: relative; }
+
+.gallery-master-info {
+  width: 500px;
+  color: white;
+  padding: 25px;
+  padding-top: 0;
+  box-sizing: border-box;
+  line-height: 20px; }
+  .gallery-master-info .master-photo img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%; }
+  .gallery-master-info > div {
+    margin-bottom: 30px; }
+
+.gallery-components > div span:last-of-type {
+  float: right; }
+
+.gallery-components > div.gallery-component-sum {
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  margin-top: 12px;
+  padding-top: 10px; }
+  .gallery-components > div.gallery-component-sum span:last-of-type {
+    font-family: "helveticaneuecyrbold"; }
+
+.gallery-flow-control {
+  font-family: "helveticaneuecyrmedium";
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 30px;
+  color: white; }
+  .gallery-flow-control > span {
+    top: -6px;
+    position: relative; }
+
+.gallery-bottom-controls {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%; }
+
+.gallery-flow-control-arrow {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  line-height: 67px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer; }
+  .gallery-flow-control-arrow img {
+    height: 32px;
+    opacity: .7; }
+  .gallery-flow-control-arrow:first-of-type {
+    margin-right: 50px; }
+  .gallery-flow-control-arrow:last-of-type {
+    margin-left: 50px; }
 
 /*# sourceMappingURL=desktop.css.map */

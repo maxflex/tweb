@@ -40,6 +40,11 @@ angular
             # StreamService.run('load_more_tutors', null, {page: $scope.page})
             searchGallery()
 
+
+        $scope.openPhoto = (index) ->
+            # StreamService.run('photogallery', "open_#{photo_id}")
+            $scope.galleryCtrl.open(index)
+
         searchGallery = ->
             $scope.searching_gallery = true
             $http.get('/api/gallery?page=' + $scope.gallery_page).then (response) ->

@@ -15376,7 +15376,7 @@ var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);});};j=function(){c.
   angular.module("App", ['ngResource', 'angular-ladda', 'angularFileUpload', 'angular-toArrayFilter', 'thatisuday.ng-image-gallery', 'ngSanitize']).config([
     'ngImageGalleryOptsProvider', function(ngImageGalleryOptsProvider) {
       return ngImageGalleryOptsProvider.setOpts({
-        bubbles: false,
+        imgBubbles: true,
         bubbleSize: 100
       });
     }
@@ -15854,6 +15854,9 @@ var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);});};j=function(){c.
     $scope.nextGalleryPage = function() {
       $scope.gallery_page++;
       return searchGallery();
+    };
+    $scope.openPhoto = function(index) {
+      return $scope.galleryCtrl.open(index);
     };
     searchGallery = function() {
       $scope.searching_gallery = true;
@@ -16761,6 +16764,71 @@ var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);});};j=function(){c.
 }).call(this);
 
 (function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Tutor', function($resource) {
+    return $resource(apiPath('tutors'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('tutors', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
+
+}).call(this);
+
+(function() {
   angular.module('App').service('PhoneService', function() {
     var isFull;
     this.checkForm = function(element) {
@@ -16930,71 +16998,6 @@ var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);});};j=function(){c.
     };
     return this;
   });
-
-}).call(this);
-
-(function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Tutor', function($resource) {
-    return $resource(apiPath('tutors'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('tutors', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
-      }
-    });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
-  });
-
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
-
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
-      }
-    };
-  };
-
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
-      }
-    };
-  };
 
 }).call(this);
 
@@ -17578,127 +17581,11 @@ addMarker = function(map, latLng) {
                piracy			: 	'=?',		// true|false
                imgAnim 		: 	'@?',		// {name}
                errorPlaceHolder: 	'@?',		// {name}
-
                onOpen 			: 	'&?',		// function
                onClose 		: 	'&?',		// function,
                onDelete		: 	'&?'
            },
-           template : 	'<div class="ng-image-gallery ' + (isMobile ? 'mobile-gallery' : '') + ' img-move-dir-{{_imgMoveDirection}}" ng-class="{inline:inline}" ng-hide="images.length == 0">'+
-
-                           // Thumbnails container
-                           //  Hide for inline gallery
-                           '<div ng-if="thumbnails && !inline" class="ng-image-gallery-thumbnails">' +
-                               '<div class="thumb" ng-repeat="image in images track by image.url" ng-click="methods.open($index);" show-image-async="{{image.thumbUrl || image.url}}" async-kind="thumb" ng-style="{\'width\' : thumbSize+\'px\', \'height\' : thumbSize+\'px\'}">'+
-                                   '<div class="loader"></div>'+
-                               '</div>' +
-                           '</div>' +
-
-                           // Modal container
-                           // (inline container for inline modal)
-                           '<div class="ng-image-gallery-modal" ng-if="opened" ng-cloak>' +
-
-                               // Gallery backdrop container
-                               // (hide for inline gallery)
-                               '<div class="ng-image-gallery-backdrop" ng-if="!inline"></div>'+
-
-                               // Gallery contents container
-                               // (hide when image is loading)
-                               '<div class="ng-image-gallery-content">'+
-
-                                   // actions icons container
-                                   '<div class="actions-icons-container">'+
-                                       // Delete image icon
-                                       '<div class="delete-img" ng-repeat="image in images track by image.id" ng-if="_activeImg == image && image.deletable" title="Delete this image..." ng-click="_deleteImg(image)"></div>'+
-                                   '</div>'+
-
-                                   // control icons container
-                                   '<div class="control-icons-container">'+
-                                       // External link icon
-                                       '<a class="ext-url" ng-repeat="image in images track by image.id" ng-if="_activeImg == image && image.extUrl" href="{{image.extUrl}}" target="_blank" title="Open image in new tab..."></a>'+
-
-                                       // Close Icon (hidden in inline gallery)
-                                       '<div class="close" ng-click="methods.close();" ng-if="!inline"></div>'+
-                                   '</div>'+
-
-                                   // Prev-Next Icons
-                                   // Add `bubbles-on` class when bubbles are enabled (for offset)
-
-                                    (
-                                        isMobile
-                                        ? ''
-                                        : '<div class="prev-wrapper" ng-click="methods.prev();">' +
-                                          '<div class="prev" ng-class="{\'bubbles-on\':bubbles}" ng-hide="images.length == 1"></div>'+
-                                          '</div>'
-                                    ) +
-
-                                    (
-                                        isMobile
-                                        ? ''
-                                        : '<div class="next-wrapper" ng-click="methods.next();">' +
-                                          '<div class="next" ng-class="{\'bubbles-on\':bubbles}" ng-hide="images.length == 1"></div>' +
-                                          '</div>'
-                                    ) +
-
-                                   '<div ng-repeat="image in images track by image.id" ng-if="_activeImg == image">'+
-                                       (
-                                           isMobile
-                                           ? '<div class="title">' +
-                                               '<span ng-click="methods.prev();" ng-hide="images.length == 1"><i></i></span>' +
-                                                  '<span ng-bind-html="(_activeImageIndex + 1) + \' из \' + (images.length) | ngImageGalleryTrust"></span>' +
-                                               '<span ng-click="methods.next();" ng-hide="images.length == 1"><i></i></span>' +
-                                             '</div>'
-                                           : '<div class="title" ng-bind-html="\'Фото \' + ($index + 1) + \' из \' + (images.length) | ngImageGalleryTrust"></div>'
-                                       ) +
-
-                                       '<div class="desc" ng-if="image.desc" ng-bind-html="image.desc | ngImageGalleryTrust"></div>'+
-                                   '</div>'+
-
-                                   // Galleria container
-                                   '<div class="galleria">'+
-
-                                       // Images container
-                                       // @custom
-                                       '<div ng-show="!imgLoading" class="galleria-images img-anim-{{imgAnim}} img-move-dir-{{_imgMoveDirection}}">'+
-                                           '<img ng-click="methods.next()" class="galleria-image" ng-show="!imgLoading" ng-right-click ng-repeat="image in images track by image.id" ng-if="_activeImg == image" ng-src="{{image.url}}" ondragstart="return false;" ng-attr-alt="{{image.alt || undefined}}"/>'+
-                                       '</div>'+
-
-                                       // Bubble navigation container
-                                       '<div class="galleria-bubbles-wrapper" ng-if="bubbles && !imgBubbles" ng-hide="images.length == 1" ng-style="{\'height\' : bubbleSize+\'px\'}" bubble-auto-fit>'+
-                                           '<div class="galleria-bubbles" bubble-auto-scroll ng-style="{\'margin-left\': _bubblesContainerMarginLeft}">'+
-                                               '<span class="galleria-bubble" ng-click="_setActiveImg(image);" ng-repeat="image in images track by image.id" ng-class="{active : (_activeImg == image)}" ng-style="{\'width\' : bubbleSize+\'px\', \'height\' : bubbleSize+\'px\', margin: _bubbleMargin}"></span>'+
-                                           '</div>'+
-                                       '</div>'+
-
-                                       // Image bubble navigation container
-                                       '<div class="galleria-bubbles-wrapper" ng-if="bubbles && imgBubbles" ng-hide="images.length == 1" ng-style="{\'height\' : bubbleSize+\'px\'}" bubble-auto-fit>'+
-                                           '<div class="galleria-bubbles" bubble-auto-scroll ng-style="{\'margin-left\': _bubblesContainerMarginLeft}">'+
-                                               '<span class="galleria-bubble img-bubble" ng-click="_setActiveImg(image);" ng-repeat="image in images track by image.id" ng-class="{active : (_activeImg == image)}" show-image-async="{{image.bubbleUrl || image.thumbUrl || image.url}}" async-kind="bubble" ng-style="{\'width\' : bubbleSize+\'px\', \'height\' : bubbleSize+\'px\', \'border-width\' : bubbleSize/10+\'px\', margin: _bubbleMargin}"></span>'+
-                                           '</div>'+
-                                       '</div>'+
-
-                                   '</div>'+
-
-                               '</div>'+
-
-                               // Loading animation overlay container
-                               // (show when image is loading)
-                               '<div class="ng-image-gallery-loader" ng-show="imgLoading">'+
-                                   '<div class="spinner">'+
-                                       '<div class="rect1"></div>'+
-                                       '<div class="rect2"></div>'+
-                                       '<div class="rect3"></div>'+
-                                       '<div class="rect4"></div>'+
-                                       '<div class="rect5"></div>'+
-                                   '</div>'+
-                               '</div>'+
-
-                               // (show when image cannot be loaded)
-                               '<div class="ng-image-gallery-errorplaceholder" ng-show="imgError">'+
-                                   '<div class="ng-image-gallery-error-placeholder" ng-bind-html="errorPlaceHolder | ngImageGalleryTrust"></div>'+
-                               '</div>'+
-                           '</div>'+
-                       '</div>',
-
+           templateUrl : '/directives/image-gallery',
            link : {
                pre : function(scope, elem, attr){
 

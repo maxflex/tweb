@@ -24,7 +24,7 @@ class GalleryController extends Controller
         }
 
         // attachment-refactored
-        $gallery = Gallery::skip($skip)->take($take)->orderBy('id', 'desc')->get();
+        $gallery = Gallery::with('master')->skip($skip)->take($take)->get();
 
         $has_more_gallery = $gallery->count() ? Gallery::where('id', '<', $gallery->last()->id)->exists() : false;
 

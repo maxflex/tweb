@@ -3,7 +3,7 @@ angular.module("App", ['ngResource', 'angular-ladda', 'angularFileUpload', 'angu
         'ngImageGalleryOptsProvider',
         (ngImageGalleryOptsProvider) ->
             ngImageGalleryOptsProvider.setOpts
-                bubbles         :   false
+                imgBubbles         :   true
                 bubbleSize      :   100
     ]
     .config [

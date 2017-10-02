@@ -17,6 +17,11 @@ class Gallery extends Model
 
     protected $appends = ['url', 'total_price'];
 
+    public function master()
+    {
+        return $this->belongsTo(Master::class);
+    }
+
     public function getDateAttribute($value)
     {
         return dateFormat($value, true);
