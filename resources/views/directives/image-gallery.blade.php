@@ -93,7 +93,7 @@
 
                         <div class="galleria-bubbles-wrapper" ng-if="bubbles && !imgBubbles" ng-hide="images.length == 1" ng-style="{'height' : bubbleSize+'px'}" bubble-auto-fit>
                             <div class="galleria-bubbles" bubble-auto-scroll ng-style="{'margin-left': _bubblesContainerMarginLeft}">
-                                <span class="galleria-bubble" ng-click="_setActiveImg(image);" ng-repeat="image in images track by image.id" ng-class="{active : (_activeImg == image)}" ng-style="{'width' : bubbleSize+'px', 'height' : bubbleSize+'px', margin: _bubbleMargin}"></span>
+                                <span class="galleria-bubble img-bubble" ng-click="_setActiveImg(image);" ng-repeat="image in images track by image.id" ng-class="{active : (_activeImg == image)}" show-image-async="@{{image.bubbleUrl || image.thumbUrl || image.url}}" async-kind="bubble" ng-style="{'width' : bubbleSize+'px', 'height' : bubbleSize+'px', 'border-width' : bubbleSize/10+'px', margin: _bubbleMargin}"></span>
                             </div>
                         </div>
 
