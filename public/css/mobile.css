@@ -5867,11 +5867,11 @@ mark {
 
 .gallery-flow-control-arrow {
   background-color: rgba(0, 0, 0, 0.3);
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   display: inline-block;
   border-radius: 50%;
-  line-height: 67px;
+  line-height: 78px;
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer; }
   .gallery-flow-control-arrow img {
