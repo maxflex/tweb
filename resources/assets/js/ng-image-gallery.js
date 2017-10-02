@@ -130,15 +130,18 @@
 
                var indexCalc = function(){
                    var relativeIndexToBubbleWrapper = scope._bubblesInView - (scope._bubblesInView - scope._activeImageIndex);
-
+                //    console.log("In view: " + scope._bubblesInView, "Image index: " + scope._activeImageIndex, "Relative index: " + relativeIndexToBubbleWrapper)
                    $timeout(function(){
-                       if(relativeIndexToBubbleWrapper > scope._bubblesInView - 2){
-                           var outBubbles = ((scope._activeImageIndex+1) - scope._bubblesInView) + 1;
-
+                    //    console.log((relativeIndexToBubbleWrapper+1), Math.round(scope._bubblesInView/2))
+                       if((relativeIndexToBubbleWrapper+1) >= Math.round(scope._bubblesInView/2)){
+                           var outBubbles = ((scope._activeImageIndex+1) - scope._bubblesInView) + 2;
+                        //    console.log('out bubbles: ' + outBubbles)
                            if(scope._activeImageIndex != (scope.images.length - 1)){
+                            //    console.log(1, outBubbles, '-' + (scope._finalBubbleSpace * outBubbles) + 'px')
                                scope._bubblesContainerMarginLeft = '-' + (scope._finalBubbleSpace * outBubbles) + 'px';
                            }
                            else{
+                            //    console.log(2, outBubbles, '-' + (scope._finalBubbleSpace * (outBubbles - 1)) + 'px')
                                scope._bubblesContainerMarginLeft = '-' + (scope._finalBubbleSpace * (outBubbles - 1)) + 'px';
                            }
                        }

@@ -5620,7 +5620,7 @@ mark {
   -webkit-box-direction: normal;
   flex-direction: row;
   -webkit-box-pack: center;
-  justify-content: center;
+  justify-content: left;
   -webkit-box-align: baseline;
   align-items: baseline;
   align-content: center;
