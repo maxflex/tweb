@@ -15863,6 +15863,12 @@ var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);});};j=function(){c.
       return $http.get('/api/gallery?page=' + $scope.gallery_page).then(function(response) {
         $scope.searching_gallery = false;
         $scope.gallery = $scope.gallery.concat(response.data.gallery);
+        response.data.gallery.forEach(function(photo) {
+          var new_photo;
+          new_photo = _.clone(photo);
+          new_photo.id = Math.round(Math.random(1, 999999) * 100000);
+          return $scope.gallery.push(new_photo);
+        });
         return $scope.has_more_gallery = response.data.has_more_gallery;
       });
     };
@@ -16647,6 +16653,123 @@ var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);});};j=function(){c.
 }).call(this);
 
 (function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
+  });
+
+}).call(this);
+
+(function() {
   var apiPath, countable, updatable;
 
   angular.module('App').factory('Tutor', function($resource) {
@@ -16880,123 +17003,6 @@ var n=m.attr("style");g.push(n);m.attr("style",n?n+";"+d:d);});};j=function(){c.
       return Stream.save(params).$promise;
     };
     return this;
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
   });
 
 }).call(this);
@@ -17526,25 +17532,43 @@ addMarker = function(map, latLng) {
            link: function (scope, element, attributes){
 
                var indexCalc = function(){
+                   var jump_width = 175
                    var relativeIndexToBubbleWrapper = scope._bubblesInView - (scope._bubblesInView - scope._activeImageIndex);
-                //    console.log("In view: " + scope._bubblesInView, "Image index: " + scope._activeImageIndex, "Relative index: " + relativeIndexToBubbleWrapper)
+                   var middle_bubble_index = Math.round(scope._bubblesInView / 2)
+                   var bubbles_left = scope.images.length - (scope._activeImageIndex + 1) // сколько bubble осталось после активного bubble
+                //    console.log('bubbles left', bubbles_left)
+                   console.log("Image index: " + scope._activeImageIndex, "Prev image index: " + scope._prevActiveImageIndex)
+                   var moved_by = scope._activeImageIndex - scope._prevActiveImageIndex;
                    $timeout(function(){
-                    //    console.log((relativeIndexToBubbleWrapper+1), Math.round(scope._bubblesInView/2))
-                       if((relativeIndexToBubbleWrapper+1) >= Math.round(scope._bubblesInView/2)){
-                           var outBubbles = ((scope._activeImageIndex+1) - scope._bubblesInView) + 2;
-                        //    console.log('out bubbles: ' + outBubbles)
-                           if(scope._activeImageIndex != (scope.images.length - 1)){
-                            //    console.log(1, outBubbles, '-' + (scope._finalBubbleSpace * outBubbles) + 'px')
-                               scope._bubblesContainerMarginLeft = '-' + (scope._finalBubbleSpace * outBubbles) + 'px';
+                       // если переключаем изображения мышкой (больше чем на 1)
+                    //    moved_by_abs = Math.abs(moved_by);
+                    //    console.log('MOVED BY ', moved_by)
+                    //    if (Math.abs(moved_by) > 1) {
+                    //        scope._imgMoveDirection = moved_by > 0 ? 'forward' : 'backward';
+                    //        if (scope._imgMoveDirection == 'forward') {
+                    //            scope._bubblesContainerMarginLeft -= (Math.abs(moved_by) * jump_width);
+                    //        } else if (bubbles_left > Math.floor(scope._bubblesInView / 2)) {
+                    //            scope._bubblesContainerMarginLeft += (Math.abs(moved_by) * jump_width);
+                    //        }
+                    //    } else {
+                           if((relativeIndexToBubbleWrapper + 1) > middle_bubble_index){
+                               if (bubbles_left >= Math.floor(scope._bubblesInView / 2)) {
+                                   if (scope._imgMoveDirection == 'forward') {
+                                       scope._bubblesContainerMarginLeft -= jump_width;
+                                   } else if (bubbles_left > Math.floor(scope._bubblesInView / 2)) {
+                                       scope._bubblesContainerMarginLeft += jump_width;
+                                   }
+                               }
+                               // перемещение с первой картинки на последнюю
+                               if (scope._imgMoveDirection == 'backward' && scope._activeImageIndex == (scope.images.length - 1)) {
+                                   scope._bubblesContainerMarginLeft = - (jump_width * (scope.images.length - scope._bubblesInView))
+                               }
+                               console.log('jump', scope._imgMoveDirection, scope._activeImageIndex)
                            }
-                           else{
-                            //    console.log(2, outBubbles, '-' + (scope._finalBubbleSpace * (outBubbles - 1)) + 'px')
-                               scope._bubblesContainerMarginLeft = '-' + (scope._finalBubbleSpace * (outBubbles - 1)) + 'px';
+                           else {
+                               scope._bubblesContainerMarginLeft = 0;
                            }
-                       }
-                       else{
-                           scope._bubblesContainerMarginLeft = '0px';
-                       }
+                    //    }
                    });
                }
 
@@ -17655,13 +17679,21 @@ addMarker = function(map, latLng) {
                            scope._imgMoveDirection = 'backward';
                        }
 
+                        // if (scope._activeImageIndex > scope._prevActiveImageIndex) {
+                        //     scope._imgMoveDirection = 'forward';
+                        // } else {
+                        //     scope._imgMoveDirection = 'backward';
+                        // }
+
                        // Load image
                        scope._loadImg(imgObj).then(function(imgObj){
                            scope._activeImg = imgObj;
+                           scope._prevActiveImageIndex = scope._activeImageIndex
                            scope._activeImageIndex = scope.images.indexOf(imgObj);
                            scope.imgError = false;
                        }, function(){
                            scope._activeImg = null;
+                           scope._prevActiveImageIndex = scope._activeImageIndex
                            scope._activeImageIndex = scope.images.indexOf(imgObj);
                            scope.imgError = true;
                        })

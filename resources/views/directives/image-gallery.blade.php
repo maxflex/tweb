@@ -31,6 +31,11 @@
                         <div ng-show="!imgLoading" class="galleria-images img-anim-@{{imgAnim}} img-move-dir-@{{_imgMoveDirection}}">
                             <img ng-click="methods.next()" class="galleria-image" ng-show="!imgLoading" ng-right-click ng-repeat="image in images track by image.id" ng-if="_activeImg == image" ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
                         </div>
+                        <div class="gallery-flow-control gallery-close">
+                            <div ng-click="methods.close()" ng-hide="images.length == 1" class="gallery-flow-control-arrow">
+                                <img src="/img/svg/cross.svg" />
+                            </div>
+                        </div>
                         <div class="gallery-master-info" ng-repeat="image in images track by image.id" ng-if="_activeImg == image">
                             <div>
                                 <b>@{{ image.name }}</b>
@@ -91,9 +96,9 @@
                             </div>
                         </div>
 
-                        <div class="galleria-bubbles-wrapper" ng-if="bubbles && !imgBubbles" ng-hide="images.length == 1" ng-style="{'height' : bubbleSize+'px'}" bubble-auto-fit>
-                            <div class="galleria-bubbles" bubble-auto-scroll ng-style="{'margin-left': _bubblesContainerMarginLeft}">
-                                <span class="galleria-bubble img-bubble" ng-click="_setActiveImg(image);" ng-repeat="image in images track by image.id" ng-class="{active : (_activeImg == image)}" show-image-async="@{{image.bubbleUrl || image.thumbUrl || image.url}}" async-kind="bubble" ng-style="{'width' : bubbleSize+'px', 'height' : bubbleSize+'px', 'border-width' : bubbleSize/10+'px', margin: _bubbleMargin}"></span>
+                        <div class="galleria-bubbles-wrapper" ng-if="bubbles && !imgBubbles" ng-hide="images.length == 1" bubble-auto-fit>
+                            <div class="galleria-bubbles" bubble-auto-scroll ng-style="{'margin-left': _bubblesContainerMarginLeft + 'px'}">
+                                <span class="galleria-bubble img-bubble" ng-click="_setActiveImg(image);" ng-repeat="image in images track by image.id" ng-class="{active : (_activeImg == image)}" show-image-async="@{{image.bubbleUrl || image.thumbUrl || image.url}}" async-kind="bubble"></span>
                             </div>
                         </div>
 

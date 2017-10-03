@@ -50,6 +50,10 @@ angular
             $http.get('/api/gallery?page=' + $scope.gallery_page).then (response) ->
                 $scope.searching_gallery = false
                 $scope.gallery = $scope.gallery.concat(response.data.gallery)
+                response.data.gallery.forEach (photo) ->
+                    new_photo = _.clone(photo)
+                    new_photo.id = Math.round(Math.random(1, 999999) * 100000)
+                    $scope.gallery.push(new_photo)
                 $scope.has_more_gallery = response.data.has_more_gallery
                 # if $scope.mobile then $timeout -> bindToggle()
 
