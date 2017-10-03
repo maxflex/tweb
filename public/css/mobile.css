@@ -5884,7 +5884,10 @@ mark {
   position: absolute;
   right: 0; }
   .gallery-close > div {
-    margin: 0 !important; }
+    margin: 0 !important;
+    line-height: 72px !important; }
+  .gallery-close img {
+    height: 26px !important; }
 
 html, body {
   height: 100%;

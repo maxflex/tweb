@@ -781,5 +781,9 @@ $gallery-common-indent: 60px;
     right: 0;
     & > div {
         margin: 0 !important;
+        line-height: 72px !important;
+    }
+    & img {
+        height: 26px !important;
     }
 }

@@ -130,42 +130,20 @@
 
                var indexCalc = function(){
                    var jump_width = 175
-                   var relativeIndexToBubbleWrapper = scope._bubblesInView - (scope._bubblesInView - scope._activeImageIndex);
-                   var middle_bubble_index = Math.round(scope._bubblesInView / 2)
-                   var bubbles_left = scope.images.length - (scope._activeImageIndex + 1) // сколько bubble осталось после активного bubble
-                //    console.log('bubbles left', bubbles_left)
-                   console.log("Image index: " + scope._activeImageIndex, "Prev image index: " + scope._prevActiveImageIndex)
-                   var moved_by = scope._activeImageIndex - scope._prevActiveImageIndex;
+                   var coeff = scope._activeImageIndex - (Math.round(scope._bubblesInView / 2) - 1)
+                   var max_coeff = scope.images.length - scope._bubblesInView
+                   if (coeff > max_coeff) {
+                       coeff = max_coeff
+                   }
+                   var margin = coeff * jump_width
+                   if (margin < 0) {
+                       margin = 0
+                   }
+                //    var bubbles_left = scope.images.length - (scope._activeImageIndex + 1) // сколько bubble осталось после активного bubble
+                //    console.log("Image index: " + scope._activeImageIndex, "Prev image index: " + scope._prevActiveImageIndex, scope._imgMoveDirection)
                    $timeout(function(){
-                       // если переключаем изображения мышкой (больше чем на 1)
-                    //    moved_by_abs = Math.abs(moved_by);
-                    //    console.log('MOVED BY ', moved_by)
-                    //    if (Math.abs(moved_by) > 1) {
-                    //        scope._imgMoveDirection = moved_by > 0 ? 'forward' : 'backward';
-                    //        if (scope._imgMoveDirection == 'forward') {
-                    //            scope._bubblesContainerMarginLeft -= (Math.abs(moved_by) * jump_width);
-                    //        } else if (bubbles_left > Math.floor(scope._bubblesInView / 2)) {
-                    //            scope._bubblesContainerMarginLeft += (Math.abs(moved_by) * jump_width);
-                    //        }
-                    //    } else {
-                           if((relativeIndexToBubbleWrapper + 1) > middle_bubble_index){
-                               if (bubbles_left >= Math.floor(scope._bubblesInView / 2)) {
-                                   if (scope._imgMoveDirection == 'forward') {
-                                       scope._bubblesContainerMarginLeft -= jump_width;
-                                   } else if (bubbles_left > Math.floor(scope._bubblesInView / 2)) {
-                                       scope._bubblesContainerMarginLeft += jump_width;
-                                   }
-                               }
-                               // перемещение с первой картинки на последнюю
-                               if (scope._imgMoveDirection == 'backward' && scope._activeImageIndex == (scope.images.length - 1)) {
-                                   scope._bubblesContainerMarginLeft = - (jump_width * (scope.images.length - scope._bubblesInView))
-                               }
-                               console.log('jump', scope._imgMoveDirection, scope._activeImageIndex)
-                           }
-                           else {
-                               scope._bubblesContainerMarginLeft = 0;
-                           }
-                    //    }
+                       scope._bubblesContainerMarginLeft = -margin
+                       console.log(margin, coeff, max_coeff)
                    });
                }
 
@@ -270,17 +248,17 @@
                            )
 
                        ){
-                           scope._imgMoveDirection = 'forward';
+                           if (scope._activeImageIndex > scope._prevActiveImageIndex) {
+                               scope._imgMoveDirection = 'forward';
+                           } else {
+                               scope._imgMoveDirection = 'backward';
+                           }
+                        //    scope._imgMoveDirection = 'forward';
                        }
                        else{
                            scope._imgMoveDirection = 'backward';
                        }
 
-                        // if (scope._activeImageIndex > scope._prevActiveImageIndex) {
-                        //     scope._imgMoveDirection = 'forward';
-                        // } else {
-                        //     scope._imgMoveDirection = 'backward';
-                        // }
 
                        // Load image
                        scope._loadImg(imgObj).then(function(imgObj){
