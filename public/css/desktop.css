@@ -4116,7 +4116,7 @@ a[href^="https://www.google.com/maps"] {
   font-size: 14px;
   text-decoration: none;
   font-family: 'helveticaneuecyrregular';
-  padding: 6px 18px 8px;
+  padding: 3px 18px 6px;
   border-radius: 16px;
   border: 0;
   position: relative; }
@@ -5172,7 +5172,7 @@ ol, ul {
   position: relative; }
 
 .gallery-master-info {
-  width: 500px;
+  min-width: 380px;
   color: white;
   padding: 25px;
   padding-top: 0;
