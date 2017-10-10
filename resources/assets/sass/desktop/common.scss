@@ -880,9 +880,40 @@ p.last {
 .main-page-masters {
     display: flex;
     justify-content: space-between;
+    &.masters-count-1 {
+        justify-content: flex-start;
+        & > div {
+            &:last-child {
+                flex: 1 !important;
+                width: auto !important;
+                & .master-desc {
+                    margin: 25px 0;
+                    display: block;
+                    float: none !important;
+                }
+                & b {
+                    margin: 0;
+                }
+            }
+        }
+    }
+    &.masters-count-2 {
+        width: 82%;
+    }
+    & .more-masters {
+        width: 249px !important;
+        // flex: auto !important;
+        // flex: 1.2 !important;
+        & .btn-border {
+            margin-top: 26px;
+        }
+    }
     & > div {
-        text-align: center;
-        width: 28%;
+        // flex: 1;
+        width: 207px;
+        &:not(:last-child) {
+            margin-right: 30px;
+        }
         & .master-photo {
             width: 100%;
             border-radius: 50%;
@@ -1010,19 +1041,22 @@ p.last {
 
 
 .map-wrapper {
-    display: flex;
+    width: 100vw;
+    margin-left: calc((100vw - 960px) / 2 * -1);
     margin-top: 20px;
-    & b {
-        display: block;
-        margin-bottom: 20px;
-    }
-    & div {
-        &:first-child {
-            width: 400px;
-        }
-        &:last-child {
-            flex: 1;
-            float: right;
+    position: relative;
+    & .map-overlay {
+        position: absolute;
+        top: 0;
+        background: white;
+        width: 300px;
+        padding: 15px 25px;
+        top: 18%;
+        left: 23%;
+        box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.36);
+        & b {
+            display: block;
+            margin-bottom: 15px;
         }
     }
 }

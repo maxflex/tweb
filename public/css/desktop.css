@@ -2584,22 +2584,19 @@ th {
 **/
 @font-face {
   font-family: 'helveticaneuecyrbold';
-  src: url("../fonts/helveticaneuecyr-bold-webfont.eot");
-  src: url("../fonts/helveticaneuecyr-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-bold-webfont.woff2") format("woff2"), url("../fonts/helveticaneuecyr-bold-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-bold-webfont.svg#helveticaneuecyrbold") format("svg");
+  src: url("../fonts/Gill Sans Nova Semibold.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'helveticaneuecyrlight';
-  src: url("../fonts/helveticaneuecyr-light-webfont.eot");
-  src: url("../fonts/helveticaneuecyr-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-light-webfont.woff2") format("woff2"), url("../fonts/helveticaneuecyr-light-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-light-webfont.svg#helveticaneuecyrlight") format("svg");
+  src: url("../fonts/Gill Sans Nova Light.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'helveticaneuecyrmedium';
-  src: url("../fonts/helveticaneuecyr-medium-webfont.eot");
-  src: url("../fonts/helveticaneuecyr-medium-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-medium-webfont.woff2") format("woff2"), url("../fonts/helveticaneuecyr-medium-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-medium-webfont.svg#helveticaneuecyrmedium") format("svg");
+  src: url("../fonts/Gill Sans Nova Medium.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2631,7 +2628,7 @@ th {
 
 @font-face {
   font-family: 'helveticaneuecyrregular';
-  src: url("../fonts/HelveticaNeueRegular.eot") format("eot"), url("../fonts/HelveticaNeueRegular.ttf") format("ttf"), url("../fonts/HelveticaNeueRegular.woff") format("woff");
+  src: url("../fonts/Gill Sans Nova Book.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -3400,9 +3397,29 @@ a[href^="https://www.google.com/maps"] {
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between; }
+  .main-page-masters.masters-count-1 {
+    -webkit-box-pack: start;
+    justify-content: flex-start; }
+    .main-page-masters.masters-count-1 > div:last-child {
+      -webkit-box-flex: 1 !important;
+      flex: 1 !important;
+      width: auto !important; }
+      .main-page-masters.masters-count-1 > div:last-child .master-desc {
+        margin: 25px 0;
+        display: block;
+        float: none !important; }
+      .main-page-masters.masters-count-1 > div:last-child b, .main-page-masters.masters-count-1 > div:last-child .address-more li > div:first-of-type, .address-more .main-page-masters.masters-count-1 > div:last-child li > div:first-of-type {
+        margin: 0; }
+  .main-page-masters.masters-count-2 {
+    width: 82%; }
+  .main-page-masters .more-masters {
+    width: 249px !important; }
+    .main-page-masters .more-masters .btn-border {
+      margin-top: 26px; }
   .main-page-masters > div {
-    text-align: center;
-    width: 28%; }
+    width: 207px; }
+    .main-page-masters > div:not(:last-child) {
+      margin-right: 30px; }
     .main-page-masters > div .master-photo {
       width: 100%;
       border-radius: 50%; }
@@ -3489,18 +3506,22 @@ a[href^="https://www.google.com/maps"] {
       width: 100%; }
 
 .map-wrapper {
-  display: -webkit-box;
-  display: flex;
-  margin-top: 20px; }
-  .map-wrapper b, .map-wrapper .address-more li > div:first-of-type, .address-more .map-wrapper li > div:first-of-type {
-    display: block;
-    margin-bottom: 20px; }
-  .map-wrapper div:first-child {
-    width: 400px; }
-  .map-wrapper div:last-child {
-    -webkit-box-flex: 1;
-    flex: 1;
-    float: right; }
+  width: 100vw;
+  margin-left: calc((100vw - 960px) / 2 * -1);
+  margin-top: 20px;
+  position: relative; }
+  .map-wrapper .map-overlay {
+    position: absolute;
+    top: 0;
+    background: white;
+    width: 300px;
+    padding: 15px 25px;
+    top: 18%;
+    left: 23%;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.36); }
+    .map-wrapper .map-overlay b, .map-wrapper .map-overlay .address-more li > div:first-of-type, .address-more .map-wrapper .map-overlay li > div:first-of-type {
+      display: block;
+      margin-bottom: 15px; }
 
 .main-page-bottom-text {
   margin-top: 50px;
@@ -3621,8 +3642,8 @@ a[href^="https://www.google.com/maps"] {
           color: white; }
       .header-menu-item a {
         display: block;
-        height: 30px;
-        padding: 14px 0 0 0;
+        height: 33px;
+        padding: 11px 0 0 0;
         text-decoration: none;
         color: #843429;
         font-family: "helveticaneuecyrmedium"; }
@@ -4088,7 +4109,7 @@ a[href^="https://www.google.com/maps"] {
   font-size: 14px;
   text-decoration: none;
   font-family: 'helveticaneuecyrregular';
-  padding: 8px 18px;
+  padding: 6px 18px 8px;
   border-radius: 16px;
   border: 0;
   position: relative; }
@@ -4180,7 +4201,7 @@ span.customSelect {
       line-height: 36px; }
 
 #map {
-  width: 500px;
+  width: 100%;
   height: 500px; }
 
 body {
@@ -5158,7 +5179,11 @@ ol, ul {
   .gallery-master-info > div {
     margin-bottom: 30px; }
     .gallery-master-info > div:first-of-type {
-      margin-top: 70px; }
+      width: 90%; }
+
+.gallery-components > div span:first-of-type {
+  width: 235px;
+  display: inline-block; }
 
 .gallery-components > div span:last-of-type {
   float: right; }
@@ -5219,5 +5244,9 @@ ol, ul {
     line-height: 72px !important; }
   .gallery-close img {
     height: 26px !important; }
+
+.gallery-days-to-complete span {
+  float: none !important;
+  width: auto !important; }
 
 /*# sourceMappingURL=desktop.css.map */

@@ -701,7 +701,8 @@ $gallery-common-indent: 60px;
     & > div {
         margin-bottom: 30px;
         &:first-of-type {
-            margin-top: 70px;
+            // margin-top: 70px;
+            width: 90%;
         }
     }
 }
@@ -709,6 +710,10 @@ $gallery-common-indent: 60px;
 .gallery-components {
     & > div {
         & span {
+            &:first-of-type {
+                width: 235px;
+                display: inline-block;
+            }
             &:last-of-type {
                 float: right;
             }
@@ -785,5 +790,12 @@ $gallery-common-indent: 60px;
     }
     & img {
         height: 26px !important;
+    }
+}
+
+.gallery-days-to-complete {
+    & span {
+        float: none !important;
+        width: auto !important;
     }
 }

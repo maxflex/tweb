@@ -50,10 +50,10 @@ angular
             $http.get('/api/gallery?page=' + $scope.gallery_page).then (response) ->
                 $scope.searching_gallery = false
                 $scope.gallery = $scope.gallery.concat(response.data.gallery)
-                response.data.gallery.forEach (photo) ->
-                    new_photo = _.clone(photo)
-                    new_photo.id = Math.round(Math.random(1, 999999) * 100000)
-                    $scope.gallery.push(new_photo)
+                # response.data.gallery.forEach (photo) ->
+                #     new_photo = _.clone(photo)
+                #     new_photo.id = Math.round(Math.random(1, 999999) * 100000)
+                #     $scope.gallery.push(new_photo)
                 $scope.has_more_gallery = response.data.has_more_gallery
                 # if $scope.mobile then $timeout -> bindToggle()
 
@@ -70,15 +70,37 @@ angular
                 disableDefaultUI: true,
                 clickableLabels: false,
                 clickableIcons: false,
-                zoomControl: true,
+                zoomControl: false,
                 zoomControlOptions: {position: google.maps.ControlPosition.LEFT_BOTTOM},
-                scaleControl: true
+                scaleControl: false
             })
-            marker = newMarker(new google.maps.LatLng(55.7173112, 37.5929021), $scope.map)
-            $scope.map.setCenter(marker.getPosition())
-            $scope.map.setZoom(14)
+
+            $scope.bounds = new (google.maps.LatLngBounds)
+
+            markers = [
+                newMarker(new google.maps.LatLng(55.7173112, 37.5929021), $scope.map),
+                newMarker(new google.maps.LatLng(55.781081,  37.5141053), $scope.map),
+            ]
+
+            markers.forEach (marker) ->
+                marker_location = new google.maps.LatLng(marker.lat, marker.lng)
+                # closest_metro = marker.metros[0]
+                $scope.bounds.extend(marker_location)
+
+            $scope.map.fitBounds $scope.bounds
+            $scope.map.panToBounds $scope.bounds
+            $scope.map.panBy(-200, 0)
+
+            # $scope.map.setCenter(marker.getPosition())
+            # $timeout ->
+            #     $scope.map.setZoom(12)
+            # , 300
+
             if (isMobile)
                 window.onOpenModal = ->
                     google.maps.event.trigger($scope.map, 'resize')
-                    $scope.map.setCenter(marker.getPosition())
-                    $scope.map.setZoom(14)
+                    $scope.map.fitBounds $scope.bounds
+                    $scope.map.panToBounds $scope.bounds
+                    # $timeout ->
+                    #     $scope.map.setZoom(12)
+                    # , 300
