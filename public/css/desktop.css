@@ -3424,7 +3424,7 @@ a[href^="https://www.google.com/maps"] {
       width: 100%;
       border-radius: 50%; }
     .main-page-masters > div b, .main-page-masters > div .address-more li > div:first-of-type, .address-more .main-page-masters > div li > div:first-of-type {
-      margin: 10px 0;
+      margin: 10px 0 20px;
       display: block; }
     .main-page-masters > div span {
       float: left;
