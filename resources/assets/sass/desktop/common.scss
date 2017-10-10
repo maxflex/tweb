@@ -877,6 +877,12 @@ p.last {
 }
 
 
+.full-page-masters {
+    background-color: #e8e8e8;
+    padding: 50px 0;
+    margin-top: 50px;
+}
+
 .main-page-masters {
     display: flex;
     justify-content: space-between;
@@ -1041,8 +1047,6 @@ p.last {
 
 
 .map-wrapper {
-    width: 100vw;
-    margin-left: calc((100vw - 960px) / 2 * -1);
     margin-top: 20px;
     position: relative;
     & .map-overlay {
@@ -1069,4 +1073,9 @@ p.last {
 .text-gray-small {
     color: $text-grey;
     font-size: 12px;
+}
+
+.full-width-wrapper {
+    width: 100vw;
+    margin-left: calc((100vw - 960px) / 2 * -1);
 }
