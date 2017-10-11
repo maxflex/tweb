@@ -5846,7 +5846,7 @@ mark {
   width: 35px;
   display: inline-block;
   border-radius: 50%;
-  line-height: 44px;
+  line-height: 45px;
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   -webkit-transition: background-color 0.15s ease-in-out;
@@ -5874,7 +5874,7 @@ mark {
     margin: 0 !important;
     line-height: 40px !important; }
   .gallery-close img {
-    height: 17px !important; }
+    height: 18px !important; }
 
 .gallery-days-to-complete span {
   float: none !important;
