@@ -187,7 +187,9 @@
                onClose 		: 	'&?',		// function,
                onDelete		: 	'&?'
            },
-           templateUrl : '/directives/image-gallery',
+           templateUrl: function(elem, attrs) {
+               return isMobile ? '/directives/image-gallery-mobile' : '/directives/image-gallery';
+           },
            link : {
                pre : function(scope, elem, attr){
 

@@ -70,7 +70,7 @@ angular
                 disableDefaultUI: true,
                 clickableLabels: false,
                 clickableIcons: false,
-                zoomControl: false,
+                zoomControl: true,
                 zoomControlOptions: {position: google.maps.ControlPosition.LEFT_BOTTOM},
                 scaleControl: false
             })
