@@ -71,7 +71,7 @@ angular
                 clickableLabels: false,
                 clickableIcons: false,
                 zoomControl: true,
-                zoomControlOptions: {position: google.maps.ControlPosition.LEFT_BOTTOM},
+                zoomControlOptions: {position: google.maps.ControlPosition.RIGHT_CENTER},
                 scaleControl: false
             })
 

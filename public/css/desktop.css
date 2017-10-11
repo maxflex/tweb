@@ -3415,8 +3415,6 @@ a[href^="https://www.google.com/maps"] {
         float: none !important; }
       .main-page-masters.masters-count-1 > div:last-child b, .main-page-masters.masters-count-1 > div:last-child .address-more li > div:first-of-type, .address-more .main-page-masters.masters-count-1 > div:last-child li > div:first-of-type {
         margin: 0; }
-  .main-page-masters.masters-count-2 {
-    width: 82%; }
   .main-page-masters .more-masters {
     width: 249px !important; }
     .main-page-masters .more-masters .btn-border {
