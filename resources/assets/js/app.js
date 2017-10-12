@@ -526,7 +526,11 @@
       });
       $scope.map.fitBounds($scope.bounds);
       $scope.map.panToBounds($scope.bounds);
-      $scope.map.panBy(-200, 0);
+      if (isMobile) {
+
+      } else {
+        $scope.map.panBy(-200, 0);
+      }
       if (isMobile) {
         return window.onOpenModal = function() {
           google.maps.event.trigger($scope.map, 'resize');

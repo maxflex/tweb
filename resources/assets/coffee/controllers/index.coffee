@@ -89,18 +89,14 @@ angular
 
             $scope.map.fitBounds $scope.bounds
             $scope.map.panToBounds $scope.bounds
-            $scope.map.panBy(-200, 0)
 
-            # $scope.map.setCenter(marker.getPosition())
-            # $timeout ->
-            #     $scope.map.setZoom(12)
-            # , 300
+            if isMobile
+
+            else
+                $scope.map.panBy(-200, 0)
 
             if (isMobile)
                 window.onOpenModal = ->
                     google.maps.event.trigger($scope.map, 'resize')
                     $scope.map.fitBounds $scope.bounds
                     $scope.map.panToBounds $scope.bounds
-                    # $timeout ->
-                    #     $scope.map.setZoom(12)
-                    # , 300
