@@ -6459,16 +6459,19 @@ input {
   margin-bottom: 2.5em; }
 
 .vertical-slider {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch; }
-  .vertical-slider::-webkit-scrollbar {
-    display: none; }
-  .vertical-slider::-webkit-scrollbar-track {
-    display: none; }
-  .vertical-slider::-webkit-scrollbar-thumb {
-    display: none; }
+  font-size: 14px;
+  -webkit-overflow-scrolling: touch;
+  width: calc(100% + 2.4em);
+  overflow: hidden;
+  margin-left: -1.2em; }
+  .vertical-slider > * {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding-bottom: 15px; }
+    .vertical-slider > * > *:last-child {
+      padding-right: 1.2em; }
+    .vertical-slider > * > *:first-child {
+      padding-left: 1.2em; }
 
 .price-wrapper {
   margin-left: -1.2em;

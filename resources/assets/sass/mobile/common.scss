@@ -714,18 +714,24 @@ input {
 }
 
 .vertical-slider {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
+    font-size: 14px;
     -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-        display:none;
-    }
-    &::-webkit-scrollbar-track {
-        display:none;
-    }
-    &::-webkit-scrollbar-thumb {
-        display:none;
+    width: calc(100% + 2.4em);
+    overflow: hidden;
+    margin-left: -1.2em;
+    // &::-webkit-scrollbar {
+    //     display:none;
+    // }
+    & > * {
+        overflow-y: hidden;
+        overflow-x: scroll;
+        padding-bottom: 15px;
+        & > *:last-child {
+            padding-right: 1.2em;
+        }
+        & > *:first-child {
+            padding-left: 1.2em;
+        }
     }
 }
 
