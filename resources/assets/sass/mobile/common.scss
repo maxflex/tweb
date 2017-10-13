@@ -179,7 +179,7 @@ a {
         display: inline-block;
         width: 24px;
         height: 24px;
-        background: url('../img/svg/cross.svg') no-repeat;
+        background: url('../img/svg/cross-black.svg') no-repeat;
         background-size: cover;
       }
     }
@@ -720,9 +720,12 @@ input {
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
         display:none;
-        -ms-overflow-style:none;
-          overflow:-moz-scrollbars-none;// but it seems to not work...
-        width:0px;
+    }
+    &::-webkit-scrollbar-track {
+        display:none;
+    }
+    &::-webkit-scrollbar-thumb {
+        display:none;
     }
 }
 

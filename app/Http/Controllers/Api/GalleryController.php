@@ -16,18 +16,28 @@ class GalleryController extends Controller
 
     public function index(Request $request)
     {
-        $take = $request->page == 0 ? self::FIRST_PAGE : self::PER_PAGE;
-        $skip = self::FIRST_PAGE + (self::PER_PAGE * ($request->page - 1));
-
-        if ($skip < 0) {
-            $skip = 0;
-        }
-
         // attachment-refactored
-        $gallery = Gallery::with('master')->skip($skip)->take($take)->get();
+        $gallery = Gallery::with('master')->get();
 
         $has_more_gallery = $gallery->count() ? Gallery::where('id', '<', $gallery->last()->id)->exists() : false;
 
         return compact('gallery', 'has_more_gallery');
     }
+
+    // public function index(Request $request)
+    // {
+    //     $take = $request->page == 0 ? self::FIRST_PAGE : self::PER_PAGE;
+    //     $skip = self::FIRST_PAGE + (self::PER_PAGE * ($request->page - 1));
+    //
+    //     if ($skip < 0) {
+    //         $skip = 0;
+    //     }
+    //
+    //     // attachment-refactored
+    //     $gallery = Gallery::with('master')->skip($skip)->take($take)->get();
+    //
+    //     $has_more_gallery = $gallery->count() ? Gallery::where('id', '<', $gallery->last()->id)->exists() : false;
+    //
+    //     return compact('gallery', 'has_more_gallery');
+    // }
 }

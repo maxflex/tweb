@@ -123,7 +123,11 @@
                         $replacement = isTestSubdomain() ? 'true' : 'false';
                         break;
                     case 'masters':
-                        $replacement = Master::with('photos')->whereIn('id', explode(',', $args[0]))->take(3)->get();
+                        if ($args[0] == 'all') {
+                            $replacement = Master::with('photos')->get();
+                        } else {
+                            $replacement = Master::with('photos')->whereIn('id', explode(',', $args[0]))->take(3)->get();
+                        }
                         break;
                     case 'equipment':
                         $replacement = Equipment::with('photos')->whereIn('id', explode(',', $args[0]))->get();

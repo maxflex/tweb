@@ -9,6 +9,7 @@ angular
             $scope.reviews = []
             searchReviews()
 
+            $scope.gallery_obj = {} #
             $scope.has_more_gallery = true
             $scope.gallery_page = 0
             $scope.gallery = []
@@ -35,6 +36,13 @@ angular
                 # if $scope.mobile then $timeout -> bindToggle()
 
         # GALLERY
+
+        $scope.showMoreGallery = ->
+            $scope.gallery_obj.page = if not $scope.gallery_obj.page then 1 else ($scope.gallery_obj.page + 1)
+            from = ($scope.gallery_obj.page - 1) * 6
+            to = from + 6
+            $scope.gallery_obj.displayed = $scope.gallery.slice(0, to)
+            
         $scope.nextGalleryPage = ->
             $scope.gallery_page++
             # StreamService.run('load_more_tutors', null, {page: $scope.page})
@@ -55,6 +63,7 @@ angular
                 #     new_photo.id = Math.round(Math.random(1, 999999) * 100000)
                 #     $scope.gallery.push(new_photo)
                 $scope.has_more_gallery = response.data.has_more_gallery
+                $scope.showMoreGallery()
                 # if $scope.mobile then $timeout -> bindToggle()
 
         $scope.playVideo = ->
