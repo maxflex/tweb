@@ -717,7 +717,7 @@ input {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
         display:none;
         -ms-overflow-style:none;
@@ -838,4 +838,17 @@ input {
 .full-width {
     margin-left: -1.2em;
     width: calc(100% + 2.4em) !important;
+}
+
+@keyframes imagePopup {
+    to {
+        top: 0%;
+    }
+}
+
+.image-popup-animation {
+    @extend .animated;
+    position: absolute;
+    animation-duration: 1s;
+    animation-name: imagePopup;
 }

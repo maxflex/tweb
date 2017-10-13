@@ -17807,7 +17807,7 @@ addMarker = function(map, latLng) {
                    scope.methods.close = function(){
                        scope.$parent.StreamService.run('photogallery', 'close')
                        scope.opened = false; // Model closed
-
+                       $('.ng-image-gallery-modal').remove()
                        // set overflow hidden to body
                        angular.element(document.body).removeClass('body-overflow-hidden');
 

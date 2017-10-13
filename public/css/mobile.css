@@ -2211,21 +2211,21 @@
  *
  * Copyright (c) 2016 Daniel Eden
  */
-.animated, .modal {
+.animated, .modal, .image-popup-animation {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both; }
 
-.animated.infinite, .infinite.modal {
+.animated.infinite, .infinite.modal, .infinite.image-popup-animation {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite; }
 
-.animated.hinge, .hinge.modal {
+.animated.hinge, .hinge.modal, .hinge.image-popup-animation {
   -webkit-animation-duration: 2s;
   animation-duration: 2s; }
 
-.animated.bounceIn, .bounceIn.modal, .animated.bounceOut, .bounceOut.modal, .animated.flipOutX, .flipOutX.modal, .animated.flipOutY, .flipOutY.modal {
+.animated.bounceIn, .bounceIn.modal, .bounceIn.image-popup-animation, .animated.bounceOut, .bounceOut.modal, .bounceOut.image-popup-animation, .animated.flipOutX, .flipOutX.modal, .flipOutX.image-popup-animation, .animated.flipOutY, .flipOutY.modal, .flipOutY.image-popup-animation {
   -webkit-animation-duration: .75s;
   animation-duration: .75s; }
 
@@ -3443,7 +3443,7 @@
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in; } }
 
-.animated.flip, .flip.modal {
+.animated.flip, .flip.modal, .flip.image-popup-animation {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
   -webkit-animation-name: flip;
@@ -5400,6 +5400,7 @@ mark {
   top: 0;
   bottom: 0;
   overflow: hidden;
+  overflow-y: scroll;
   height: 100%;
   width: 100%;
   padding: 15px;
@@ -5803,7 +5804,8 @@ mark {
   position: relative;
   color: white; }
   .gallery-photo-master-info .master-photo {
-    margin-top: 40px; }
+    margin-top: 40px;
+    margin-bottom: 10px; }
     .gallery-photo-master-info .master-photo img {
       height: 90px;
       width: 90px;
@@ -5858,8 +5860,6 @@ mark {
     margin-right: 30px; }
   .gallery-flow-control-arrow:last-of-type {
     margin-left: 30px; }
-  .gallery-flow-control-arrow:hover {
-    background-color: rgba(0, 0, 0, 0.6); }
 
 .galleria-bubbles {
   -webkit-transition: margin 0.3s ease-in-out;
@@ -6462,8 +6462,8 @@ input {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch .vertical-slider; }
-  .vertical-slider ::-webkit-scrollbar {
+  -webkit-overflow-scrolling: touch; }
+  .vertical-slider::-webkit-scrollbar {
     display: none;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
@@ -6539,6 +6539,21 @@ input {
 .full-width {
   margin-left: -1.2em;
   width: calc(100% + 2.4em) !important; }
+
+@-webkit-keyframes imagePopup {
+  to {
+    top: 0%; } }
+
+@keyframes imagePopup {
+  to {
+    top: 0%; } }
+
+.image-popup-animation {
+  position: absolute;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: imagePopup;
+  animation-name: imagePopup; }
 
 /* Components */
 .header {
