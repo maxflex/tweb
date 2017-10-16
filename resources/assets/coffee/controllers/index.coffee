@@ -81,6 +81,7 @@ angular
                     msrc: g.url
                     w: 2200
                     h: 1100
+                    title: g.name
 
             pswpElement = document.querySelectorAll('.pswp')[0]
 

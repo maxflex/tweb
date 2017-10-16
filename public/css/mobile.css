@@ -4657,7 +4657,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #383838;
   opacity: 0;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -4785,7 +4785,7 @@
 
 */
 /*
-	
+
 	1. Buttons
 
  */
@@ -5027,7 +5027,9 @@ a.pswp__share--download:hover {
 .pswp__counter {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 65%;
+  width: 100%;
+  text-align: center;
   height: 44px;
   font-size: 13px;
   line-height: 44px;
@@ -5036,7 +5038,7 @@ a.pswp__share--download:hover {
   padding: 0 10px; }
 
 /*
-	
+
 	4. Caption
 
  */
@@ -5121,8 +5123,8 @@ a.pswp__share--download:hover {
   margin: 0; }
 
 .pswp--css_animation .pswp__preloader__cut {
-  /* 
-			The idea of animating inner circle is based on Polymer ("material") loading indicator 
+  /*
+			The idea of animating inner circle is based on Polymer ("material") loading indicator
 			 by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html
 		*/
   position: relative;
@@ -5191,7 +5193,7 @@ a.pswp__share--download:hover {
     transform: rotate(0); } }
 
 /*
-	
+
 	6. Additional styles
 
  */
@@ -5226,7 +5228,7 @@ a.pswp__share--download:hover {
 
 .pswp__top-bar,
 .pswp__caption {
-  background-color: rgba(0, 0, 0, 0.5); }
+  /*background-color: rgba(0, 0, 0, 0.5); */ }
 
 /* pswp__ui--fit class is added when main image "fits" between top bar and bottom bar (caption) */
 .pswp__ui--fit .pswp__top-bar,
