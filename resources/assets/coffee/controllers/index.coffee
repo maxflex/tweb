@@ -42,7 +42,7 @@ angular
             from = ($scope.gallery_obj.page - 1) * 6
             to = from + 6
             $scope.gallery_obj.displayed = $scope.gallery.slice(0, to)
-            
+
         $scope.nextGalleryPage = ->
             $scope.gallery_page++
             # StreamService.run('load_more_tutors', null, {page: $scope.page})
@@ -72,6 +72,30 @@ angular
             iframe = document.getElementById('youtube-video')
             requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
             requestFullScreen.bind(iframe)() if (requestFullScreen)
+
+        $scope.openPhotoSwipe = (index) ->
+            $scope.items = []
+            $scope.gallery.forEach (g) ->
+                $scope.items.push
+                    src: g.url
+                    msrc: g.url
+                    w: 2200
+                    h: 1100
+
+            pswpElement = document.querySelectorAll('.pswp')[0]
+
+            options =
+                getThumbBoundsFn: (index) ->
+                    thumbnail = document.getElementById("p-#{index}")
+                    pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+                    rect = thumbnail.getBoundingClientRect()
+                    return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+                history: false
+                focus: false
+                index: parseInt(index)
+
+            $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options)
+            $scope.PhotoSwipe.init()
 
         initGmap = ->
             $scope.map = new google.maps.Map(document.getElementById("map"), {
