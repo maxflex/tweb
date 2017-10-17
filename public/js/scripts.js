@@ -15841,13 +15841,11 @@ var _isOpen,
 				}
 			}
 
-
 			_applyZoomTransform(_currZoomElementStyle, _panOffset.x, _panOffset.y, _currZoomLevel);
 		}
 	},
 	_applyZoomPanToItem = function(item) {
 		if(item.container) {
-
 			_applyZoomTransform(item.container.style,
 								item.initialPosition.x,
 								item.initialPosition.y,
@@ -16353,6 +16351,8 @@ var publicMethods = {
 
 	// Close the gallery, then destroy it
 	close: function() {
+		$('.main-gallery-wrapper').scrollLeft(_currentItemIndex * ($(window).width() * 0.82 + 12))
+
 		if(!_isOpen) {
 			return;
 		}
@@ -16473,6 +16473,7 @@ var publicMethods = {
 		_currPanBounds = self.currItem.bounds;
 		_startZoomLevel = _currZoomLevel = self.currItem.initialZoomLevel;
 
+		// pan-checked
 		_panOffset.x = _currPanBounds.center.x;
 		_panOffset.y = _currPanBounds.center.y;
 
@@ -16646,6 +16647,7 @@ var publicMethods = {
 
 		if(_currPanBounds) {
 			_panOffset.x = _currPanBounds.center.x;
+			// pan-checked
 			_panOffset.y = _currPanBounds.center.y;
 			_applyCurrentZoomPan( true );
 		}
@@ -16688,10 +16690,12 @@ var publicMethods = {
 			if(now === 1) {
 				_currZoomLevel = destZoomLevel;
 				_panOffset.x = destPanOffset.x;
+				// pan-checked
 				_panOffset.y = destPanOffset.y;
 			} else {
 				_currZoomLevel = (destZoomLevel - initialZoomLevel) * now + initialZoomLevel;
 				_panOffset.x = (destPanOffset.x - initialPanOffset.x) * now + initialPanOffset.x;
+				// pan-checked
 				_panOffset.y = (destPanOffset.y - initialPanOffset.y) * now + initialPanOffset.y;
 			}
 
@@ -17254,6 +17258,7 @@ var _gestureStartTime,
 			_equalizePoints(_currCenterPoint, _centerPoint);
 
 			_panOffset.x = _calculatePanOffset('x', zoomLevel);
+			// pan-checked
 			_panOffset.y = _calculatePanOffset('y', zoomLevel);
 
 			_isZoomingIn = zoomLevel > _currZoomLevel;
@@ -17472,7 +17477,7 @@ var _gestureStartTime,
 					initialBgOpacity = _bgOpacity;
 
 				_animateProp('verticalDrag', 0, 1, 300, framework.easing.cubic.out, function(now) {
-
+					// pan-checked
 					_panOffset.y = (self.currItem.initialPosition.y - initalPanY) * now + initalPanY;
 
 					_applyBgOpacity(  (1 - initialBgOpacity) * now + initialBgOpacity );
@@ -17627,6 +17632,7 @@ var _gestureStartTime,
 						// round pan position
 						_panOffset.x = Math.round(_panOffset.x);
 						_panOffset.y = Math.round(_panOffset.y);
+
 						_applyCurrentZoomPan();
 
 						_stopAnimation('zoomPan');
@@ -17965,6 +17971,7 @@ var _showOrHideTimeout,
 			if(!out) {
 				_currZoomLevel = thumbBounds.w / item.w;
 				_panOffset.x = thumbBounds.x;
+				// pan-checked initial Y
 				_panOffset.y = thumbBounds.y - _initalWindowScrollY;
 
 				self[fadeEverything ? 'template' : 'bg'].style.opacity = 0.001;
@@ -18026,10 +18033,12 @@ var _showOrHideTimeout,
 							if(now === 1) {
 								_currZoomLevel = destZoomLevel;
 								_panOffset.x = thumbBounds.x;
+								// pan-checked  last state
 								_panOffset.y = thumbBounds.y  - _currentWindowScrollY;
 							} else {
 								_currZoomLevel = (destZoomLevel - initialZoomLevel) * now + initialZoomLevel;
 								_panOffset.x = (thumbBounds.x - initialPanOffset.x) * now + initialPanOffset.x;
+								// pan-checked
 								_panOffset.y = (thumbBounds.y - _currentWindowScrollY - initialPanOffset.y) * now + initialPanOffset.y;
 							}
 
@@ -18098,7 +18107,9 @@ var _getItemAt,
 
 		// position of element when it's centered
 		bounds.center.x = Math.round((_tempPanAreaSize.x - realPanElementW) / 2);
-		bounds.center.y = Math.round((_tempPanAreaSize.y - realPanElementH) / 2) + item.vGap.top;
+		// @custom
+		// bounds.center.y = Math.round((_tempPanAreaSize.y - realPanElementH) / 2) + item.vGap.top - 200;
+		bounds.center.y = 62
 
 		// maximum pan position
 		bounds.max.x = (realPanElementW > _tempPanAreaSize.x) ?
@@ -18196,6 +18207,29 @@ var _getItemAt,
 			_setImageSize(item, img, (item === self.currItem && _renderMaxResolution) );
 
 			baseDiv.appendChild(img);
+
+			// @custom
+			var customEl = framework.createEl('gallery-customs')
+
+			var componentsEl = framework.createEl('gallery-components');
+			if (item.components.length) {
+				item.components.forEach(function(component) {
+					$(componentsEl).append("<div><span>" + component.name + "</span> – <span>" + component.price + " руб.</span></div>")
+				})
+			}
+			$(componentsEl).append("<div class='gallery-component-sum'><span>Итого: </span><span>" + item.total_price + " руб.</span></div>")
+			$(componentsEl).append("<div><span>Срок выполнения: </span><span>" + item.days_to_complete + " дня</span></div>")
+			$(customEl).append(componentsEl);
+
+			if (item.master) {
+				var masterEl = framework.createEl('gallery-master-photo');
+				$(masterEl).append("<img src='" + item.master.photo_url + "'>")
+				$(masterEl).append("<div>Мастер-исполнитель</div>")
+				$(masterEl).append("<div>" + item.master.first_name + " " + item.master.last_name + " " + item.master.middle_name +"</div>")
+				$(customEl).append(masterEl);
+			}
+
+			baseDiv.appendChild(customEl);
 
 			if(keepPlaceholder) {
 				setTimeout(function() {
@@ -19739,20 +19773,24 @@ var PhotoSwipeUI_Default =
 			}
 			framework.removeClass(_controls, 'pswp__ui--over-close');
 			framework.addClass( _controls, 'pswp__ui--hidden');
+			$('.pswp').addClass('pswp--hidden');
 			ui.setIdle(false);
 		});
 
 
 		if(!_options.showAnimationDuration) {
 			framework.removeClass( _controls, 'pswp__ui--hidden');
+			$('.pswp').removeClass('pswp--hidden');
 		}
 		_listen('initialZoomIn', function() {
 			if(_options.showAnimationDuration) {
 				framework.removeClass( _controls, 'pswp__ui--hidden');
+				$('.pswp').removeClass('pswp--hidden');
 			}
 		});
 		_listen('initialZoomOut', function() {
 			framework.addClass( _controls, 'pswp__ui--hidden');
+			$('.pswp').addClass('pswp--hidden');
 		});
 
 		_listen('parseVerticalMargin', _applyNavBarGaps);
@@ -19879,6 +19917,7 @@ var PhotoSwipeUI_Default =
 
 	ui.hideControls = function() {
 		framework.addClass(_controls,'pswp__ui--hidden');
+		$('.pswp').addClass('pswp--hidden');
 		_controlsVisible = false;
 	};
 
@@ -19888,6 +19927,7 @@ var PhotoSwipeUI_Default =
 			ui.update();
 		}
 		framework.removeClass(_controls,'pswp__ui--hidden');
+		$('.pswp').removeClass('pswp--hidden');
 	};
 
 	ui.supportsFullscreen = function() {
@@ -20491,7 +20531,11 @@ return PhotoSwipeUI_Default;
           msrc: g.url,
           w: 2200,
           h: 1100,
-          title: g.name
+          title: g.name,
+          master: g.master,
+          components: g.components,
+          total_price: g.total_price,
+          days_to_complete: g.days_to_complete
         });
       });
       pswpElement = document.querySelectorAll('.pswp')[0];
@@ -20509,10 +20553,15 @@ return PhotoSwipeUI_Default;
         },
         history: false,
         focus: false,
-        index: parseInt(index)
+        index: parseInt(index),
+        tapToToggleControls: false,
+        arrowEl: true
       };
       $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options);
       return $scope.PhotoSwipe.init();
+    };
+    $scope.testy = function() {
+      return console.log('testy');
     };
     return initGmap = function() {
       var markers;

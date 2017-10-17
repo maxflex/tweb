@@ -4718,6 +4718,7 @@
   -webkit-backface-visibility: hidden; }
 
 .pswp__item {
+  color: white;
   position: absolute;
   left: 0;
   right: 0;
@@ -4771,6 +4772,39 @@
   color: #CCC;
   text-decoration: underline; }
 
+.gallery-customs {
+  padding: 15px;
+  margin-top: 280px; }
+
+.pswp--hidden .gallery-customs {
+  opacity: 0.001; }
+
+.gallery-components > div.gallery-component-sum {
+  margin-top: 15px; }
+
+.gallery-master-photo {
+  margin-top: 25px; }
+
+.gallery-master-photo img {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%; }
+
+.gallery-flow-control-arrow {
+  pointer-events: none; }
+
+.pswp__button--arrow--left, .pswp__button--arrow--right {
+  padding-top: 3px !important; }
+
+.pswp__button--arrow--left > div, .pswp__button--arrow--right > div {
+  margin: 0 !important; }
+
+.pswp__button--arrow--right {
+  right: calc(50% - 80px) !important; }
+
+.pswp__button--arrow--left {
+  left: calc(50% - 80px) !important; }
+
 /*! PhotoSwipe Default UI CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*
 
@@ -4803,7 +4837,7 @@
   padding: 0;
   margin: 0;
   float: right;
-  opacity: 0.75;
+  /*opacity: 0.75;*/
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
   box-shadow: none; }
@@ -4826,7 +4860,7 @@
 .pswp__button,
 .pswp__button--arrow--left:before,
 .pswp__button--arrow--right:before {
-  background: url(default-skin.png) 0 0 no-repeat;
+  /*background: url(default-skin.png) 0 0 no-repeat;*/
   background-size: 264px 88px;
   width: 44px;
   height: 44px; }
@@ -4836,7 +4870,7 @@
   .pswp--svg .pswp__button,
   .pswp--svg .pswp__button--arrow--left:before,
   .pswp--svg .pswp__button--arrow--right:before {
-    background-image: url(default-skin.svg); }
+    /*background-image: url(default-skin.svg); */ }
   .pswp--svg .pswp__button--arrow--left,
   .pswp--svg .pswp__button--arrow--right {
     background: none; } }
@@ -4869,7 +4903,7 @@
 /* no arrows on touch screens */
 .pswp--touch .pswp__button--arrow--left,
 .pswp--touch .pswp__button--arrow--right {
-  visibility: hidden; }
+  /*visibility: hidden; */ }
 
 /*
 	Arrow buttons hit area
@@ -4878,10 +4912,10 @@
 .pswp__button--arrow--left,
 .pswp__button--arrow--right {
   background: none;
-  top: 50%;
-  margin-top: -50px;
-  width: 70px;
-  height: 100px;
+  top: 39%;
+  /*margin-top: -50px;*/
+  width: 36px;
+  height: 36px;
   position: absolute; }
 
 .pswp__button--arrow--left {
@@ -4892,12 +4926,12 @@
 
 .pswp__button--arrow--left:before,
 .pswp__button--arrow--right:before {
-  content: '';
+  /*content: '';
   top: 35px;
   background-color: rgba(0, 0, 0, 0.3);
   height: 30px;
   width: 32px;
-  position: absolute; }
+  position: absolute; */ }
 
 .pswp__button--arrow--left:before {
   left: 6px;
@@ -5027,14 +5061,15 @@ a.pswp__share--download:hover {
 .pswp__counter {
   position: absolute;
   left: 0;
-  top: 65%;
+  top: 39%;
   width: 100%;
   text-align: center;
   height: 44px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 44px;
-  color: #FFF;
-  opacity: 0.75;
+  color: white;
+  /*opacity: 0.75;*/
+  font-family: "helveticaneuecyrmedium";
   padding: 0 10px; }
 
 /*
@@ -5043,10 +5078,11 @@ a.pswp__share--download:hover {
 
  */
 .pswp__caption {
-  position: absolute;
+  /*position: absolute;*/
   left: 0;
   bottom: 0;
-  width: 100%;
+  /*width: 100%;*/
+  display: inline-block;
   min-height: 44px; }
 
 .pswp__caption small {
@@ -5057,10 +5093,11 @@ a.pswp__share--download:hover {
   text-align: left;
   max-width: 420px;
   margin: 0 auto;
-  font-size: 13px;
-  padding: 10px;
-  line-height: 20px;
-  color: #CCC; }
+  font-size: 14px;
+  /*padding: 10px;*/
+  /*line-height: 20px;*/
+  font-family: 'helveticaneuecyrbold';
+  color: white; }
 
 .pswp__caption--empty {
   display: none; }
@@ -5209,6 +5246,8 @@ a.pswp__share--download:hover {
   position: absolute;
   left: 0;
   top: 0;
+  padding: 15px;
+  padding-top: 21px;
   height: 44px;
   width: 100%; }
 
@@ -5249,6 +5288,7 @@ a.pswp__share--download:hover {
 */
 .pswp__ui--hidden .pswp__top-bar,
 .pswp__ui--hidden .pswp__caption,
+.pswp__ui--hidden .pswp__counter,
 .pswp__ui--hidden .pswp__button--arrow--left,
 .pswp__ui--hidden .pswp__button--arrow--right {
   /* Force paint & create composition layer for controls. */
@@ -7125,7 +7165,7 @@ input {
   .main-gallery-wrapper .gallery-item {
     margin-right: 12px; }
     .main-gallery-wrapper .gallery-item img {
-      width: 300px; }
+      width: 82vw; }
     .main-gallery-wrapper .gallery-item b {
       display: block;
       margin: 3px 0 15px; }
@@ -7193,7 +7233,7 @@ input {
   display: flex; }
   .main-page-masters img {
     border-radius: 50%;
-    width: 140px; }
+    width: 33vw; }
   .main-page-masters > div {
     margin-right: 30px; }
   .main-page-masters .master-name {

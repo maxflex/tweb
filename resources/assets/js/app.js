@@ -522,7 +522,11 @@
           msrc: g.url,
           w: 2200,
           h: 1100,
-          title: g.name
+          title: g.name,
+          master: g.master,
+          components: g.components,
+          total_price: g.total_price,
+          days_to_complete: g.days_to_complete
         });
       });
       pswpElement = document.querySelectorAll('.pswp')[0];
@@ -540,10 +544,15 @@
         },
         history: false,
         focus: false,
-        index: parseInt(index)
+        index: parseInt(index),
+        tapToToggleControls: false,
+        arrowEl: true
       };
       $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options);
       return $scope.PhotoSwipe.init();
+    };
+    $scope.testy = function() {
+      return console.log('testy');
     };
     return initGmap = function() {
       var markers;

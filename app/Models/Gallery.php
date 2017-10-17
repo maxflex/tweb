@@ -15,7 +15,7 @@ class Gallery extends Model
         'before_and_after' => 'boolean',
     ];
 
-    protected $appends = ['url', 'total_price'];
+    protected $appends = ['url', 'total_price', 'components'];
 
     public function master()
     {
@@ -39,5 +39,19 @@ class Gallery extends Model
     public function getUrlAttribute()
     {
         return config('app.crm-url') . 'img/gallery/' . $this->id . '.jpg';
+    }
+
+    public function getComponentsAttribute()
+    {
+        $components = [];
+        foreach(range(1, 6) as $component_index) {
+            if ($this->{"component_" . $component_index}) {
+                $components[] = [
+                    'name' => $this->{"component_" . $component_index},
+                    'price' => $this->{"price_" . $component_index},
+                ];
+            }
+        }
+        return $components;
     }
 }
