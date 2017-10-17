@@ -176,3 +176,12 @@ function streamLink(url, action, type, additional) {
 function openChat() {
     $('#intergramRoot > div > div').first().click()
 }
+
+function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function pluralize(number, titles) {
+    cases = [2, 0, 1, 1, 1, 2];
+    return number + ' ' + titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+}

@@ -18209,16 +18209,22 @@ var _getItemAt,
 			baseDiv.appendChild(img);
 
 			// @custom
+			// console.log(img.style.height)
+
+			$('.gallery-counter-and-arrows').css({top: parseInt(img.style.height) + 80 + 'px'})
+			$('.gallery-customs').css({'margin-top': parseInt(img.style.height) + 58 + 'px'})
+			// $('.gallery-customs').css({'margin-top', parseInt(img.style.height) + 120 + 'px'})
+
 			var customEl = framework.createEl('gallery-customs')
 
 			var componentsEl = framework.createEl('gallery-components');
 			if (item.components.length) {
 				item.components.forEach(function(component) {
-					$(componentsEl).append("<div><span>" + component.name + "</span> – <span>" + component.price + " руб.</span></div>")
+					$(componentsEl).append("<div><span>" + component.name + "</span> – <span>" + numberWithSpaces(component.price) + " руб.</span></div>")
 				})
 			}
-			$(componentsEl).append("<div class='gallery-component-sum'><span>Итого: </span><span>" + item.total_price + " руб.</span></div>")
-			$(componentsEl).append("<div><span>Срок выполнения: </span><span>" + item.days_to_complete + " дня</span></div>")
+			$(componentsEl).append("<div class='gallery-component-sum'><span>Итого: </span><span>" + numberWithSpaces(item.total_price) + " руб.</span></div>")
+			$(componentsEl).append("<div><span>Срок выполнения: </span><span>" + pluralize(item.days_to_complete, ['день', 'дня', 'дней']) + "</span></div>")
 			$(customEl).append(componentsEl);
 
 			if (item.master) {
@@ -21878,6 +21884,15 @@ function streamLink(url, action, type, additional) {
 
 function openChat() {
     $('#intergramRoot > div > div').first().click()
+}
+
+function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function pluralize(number, titles) {
+    cases = [2, 0, 1, 1, 1, 2];
+    return number + ' ' + titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
 
 /*
