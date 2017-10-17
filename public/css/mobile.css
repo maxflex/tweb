@@ -4774,7 +4774,9 @@
 
 .gallery-customs {
   padding: 15px;
-  margin-top: 280px; }
+  margin-top: 265px;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s; }
 
 .pswp--hidden .gallery-customs {
   opacity: 0.001; }
@@ -4912,10 +4914,9 @@
 .pswp__button--arrow--left,
 .pswp__button--arrow--right {
   background: none;
-  top: 39%;
+  top: 45%;
   /*margin-top: -50px;*/
   width: 36px;
-  height: 36px;
   position: absolute; }
 
 .pswp__button--arrow--left {
@@ -5061,7 +5062,7 @@ a.pswp__share--download:hover {
 .pswp__counter {
   position: absolute;
   left: 0;
-  top: 39%;
+  top: 45%;
   width: 100%;
   text-align: center;
   height: 44px;
