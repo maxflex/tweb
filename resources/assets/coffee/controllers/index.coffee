@@ -99,7 +99,9 @@ angular
                 focus: false
                 index: parseInt(index)
                 tapToToggleControls: false
+                captionEl: false
                 arrowEl: true
+                animateTransitions: true
 
             $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options)
             $scope.PhotoSwipe.init()

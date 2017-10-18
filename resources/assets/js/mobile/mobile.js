@@ -1,6 +1,9 @@
 var isMobile = true
 var isIphone4 = window.screen && (window.screen.height == (960 / 2));
 
+// добавили JS стили (для мобильной галереи)
+var css_injected = false;
+
 $(document).ready(function() {
     if (isIphone4) {
         $('body').addClass('iphone4');

@@ -1,6 +1,9 @@
 var isMobile = true
 var isIphone4 = window.screen && (window.screen.height == (960 / 2));
 
+// добавили JS стили (для мобильной галереи)
+var css_injected = false;
+
 $(document).ready(function() {
     if (isIphone4) {
         $('body').addClass('iphone4');
@@ -59,4 +62,5 @@ function bindToggle() {
     $('.price-list .price-list-item-title').click(togglePrice)
     $('.catalog-list .catalog-list-item-title').click(toggleCatalog)
 }
+
 //# sourceMappingURL=scripts.js.map

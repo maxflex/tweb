@@ -4778,7 +4778,7 @@
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s; }
 
-.pswp--hidden .gallery-customs {
+.pswp--hidden .gallery-customs, .pswp--hidden .gallery-top-bar {
   opacity: 0.001; }
 
 .gallery-components > div.gallery-component-sum {
@@ -4806,6 +4806,24 @@
 
 .pswp__button--arrow--left {
   left: calc(50% - 80px) !important; }
+
+.gallery-top-bar {
+  padding: 15px;
+  font-family: 'helveticaneuecyrbold';
+  color: white;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  position: relative;
+  top: -64px; }
+
+.gallery-top-bar .gallery-close {
+  position: relative !important; }
 
 /*! PhotoSwipe Default UI CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*

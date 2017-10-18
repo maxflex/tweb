@@ -15697,6 +15697,7 @@ var _options = {
 	focus: true,
 	escKey: true,
 	arrowKeys: true,
+	animateTransitions: false,
 	mainScrollEndFriction: 0.35,
 	panEndFriction: 0.35,
 	isClickableElement: function(el) {
@@ -16426,31 +16427,68 @@ var publicMethods = {
 	},
 
 
-	goTo: function(index) {
 
-		index = _getLoopedId(index);
+		goTo: function(index) {
 
-		var diff = index - _currentItemIndex;
-		_indexDiff = diff;
+			if ( _options.animateTransitions ) {
+				_finishSwipeMainScrollGesture('swipe', (80*index), {
+					lastFlickDist: {
+						x : 80,
+						y: 0
+					},
+					lastFlickOffset: {
+						x : (80*index),
+						y: 0
+					},
+					lastFlickSpeed: {
+						x : (2*index),
+						y: 0
+					}
+				});
 
-		_currentItemIndex = index;
-		self.currItem = _getItemAt( _currentItemIndex );
-		_currPositionIndex -= diff;
+			} else {
 
-		_moveMainScroll(_slideSize.x * _currPositionIndex);
+				index = _getLoopedId(index);
 
+				var diff = index - _currentItemIndex;
+				_indexDiff = diff;
 
-		_stopAllAnimations();
-		_mainScrollAnimating = false;
+				_currentItemIndex = index;
+				self.currItem = _getItemAt( _currentItemIndex );
+				_currPositionIndex -= diff;
 
-		self.updateCurrItem();
-	},
-	next: function() {
-		self.goTo( _currentItemIndex + 1);
-	},
-	prev: function() {
-		self.goTo( _currentItemIndex - 1);
-	},
+				_moveMainScroll(_slideSize.x * _currPositionIndex);
+
+				_stopAllAnimations();
+				_mainScrollAnimating = false;
+
+				self.updateCurrItem();
+
+			}
+
+		},
+		next: function() {
+			if ( _options.animateTransitions ) {
+				$('.pswp').css({'pointer-events': 'none'})
+				setTimeout(function() {
+					$('.pswp').css({'pointer-events': 'auto'})
+				}, 350)
+				self.goTo( -1 );
+			} else {
+				self.goTo( _currentItemIndex + 1);
+			}
+		},
+		prev: function() {
+			if ( _options.animateTransitions ) {
+				$('.pswp').css({'pointer-events': 'none'})
+				setTimeout(function() {
+					$('.pswp').css({'pointer-events': 'auto'})
+				}, 350)
+				self.goTo( 1 );
+			} else {
+				self.goTo( _currentItemIndex - 1);
+			}
+		},
 
 	// update current zoom/pan objects
 	updateCurrZoomItem: function(emulateSetContent) {
@@ -17493,7 +17531,8 @@ var _gestureStartTime,
 
 		// main scroll
 		if(  (_mainScrollShifted || _mainScrollAnimating) && numPoints === 0) {
-			var itemChanged = _finishSwipeMainScrollGesture(gestureType, _releaseAnimData);
+			var totalShiftDist = _currPoint.x - _startPoint.x;
+			var itemChanged = _finishSwipeMainScrollGesture(gestureType, totalShiftDist, _releaseAnimData);
 			if(itemChanged) {
 				return;
 			}
@@ -17671,7 +17710,7 @@ var _gestureStartTime,
 	},
 
 
-	_finishSwipeMainScrollGesture = function(gestureType, _releaseAnimData) {
+	_finishSwipeMainScrollGesture = function(gestureType, totalShiftDist, _releaseAnimData) {
 		var itemChanged;
 		if(!_mainScrollAnimating) {
 			_currZoomedItemIndex = _currentItemIndex;
@@ -17682,8 +17721,7 @@ var _gestureStartTime,
 		var itemsDiff;
 
 		if(gestureType === 'swipe') {
-			var totalShiftDist = _currPoint.x - _startPoint.x,
-				isFastLastFlick = _releaseAnimData.lastFlickDist.x < 10;
+			var isFastLastFlick = _releaseAnimData.lastFlickDist.x < 10;
 
 			// if container is shifted for more than MIN_SWIPE_DISTANCE,
 			// and last flick gesture was in right direction
@@ -18210,10 +18248,15 @@ var _getItemAt,
 
 			// @custom
 			// console.log(img.style.height)
-
-			$('.gallery-counter-and-arrows').css({top: parseInt(img.style.height) + 80 + 'px'})
-			$('.gallery-customs').css({'margin-top': parseInt(img.style.height) + 58 + 'px'})
+			if (! css_injected) {
+				addStyleString('.gallery-counter-and-arrows {top: ' + (parseInt(img.style.height) + 80) + 'px}')
+				addStyleString('.gallery-customs {margin-top: ' + (parseInt(img.style.height) - 7) + 'px}')
+			}
 			// $('.gallery-customs').css({'margin-top', parseInt(img.style.height) + 120 + 'px'})
+
+			var topEl = framework.createEl('gallery-top-bar')
+			$(topEl).append("<span>" + item.title + "</span><div class='gallery-flow-control gallery-close'><div class='gallery-flow-control-arrow'><img src='/img/svg/cross.svg'></div></div>")
+			$(baseDiv).append(topEl)
 
 			var customEl = framework.createEl('gallery-customs')
 
@@ -20561,7 +20604,9 @@ return PhotoSwipeUI_Default;
         focus: false,
         index: parseInt(index),
         tapToToggleControls: false,
-        arrowEl: true
+        captionEl: false,
+        arrowEl: true,
+        animateTransitions: true
       };
       $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options);
       return $scope.PhotoSwipe.init();
@@ -21893,6 +21938,12 @@ function numberWithSpaces(x) {
 function pluralize(number, titles) {
     cases = [2, 0, 1, 1, 1, 2];
     return number + ' ' + titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+}
+
+function addStyleString(str) {
+    var node = document.createElement('style');
+    node.innerHTML = str;
+    document.body.appendChild(node);
 }
 
 /*
