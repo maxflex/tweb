@@ -103,9 +103,13 @@ angular
                 arrowEl: true
                 animateTransitions: true
                 closeOnVerticalDrag: false
+                closeOnScroll: false
+                # modal:false
 
             $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options)
             $scope.PhotoSwipe.init()
+            $scope.PhotoSwipe.listen 'preventDragEvent', (e, isDown, preventObj) ->
+                preventObj.prevent = false
 
         initGmap = ->
             $scope.map = new google.maps.Map(document.getElementById("map"), {

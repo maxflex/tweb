@@ -4604,7 +4604,8 @@
   left: 0;
   top: 0;
   overflow: hidden;
-  touch-action: none;
+  /*-ms-touch-action: none;
+  touch-action: none;*/
   z-index: 1500;
   -webkit-text-size-adjust: 100%;
   /* create separate layer, to avoid paint on window.onscroll in webkit/blink */
@@ -4675,7 +4676,8 @@
 
 .pswp__container,
 .pswp__zoom-wrap {
-  touch-action: none;
+  /*-ms-touch-action: none;
+  touch-action: none;*/
   position: absolute;
   left: 0;
   right: 0;
