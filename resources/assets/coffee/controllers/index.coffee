@@ -102,12 +102,10 @@ angular
                 captionEl: false
                 arrowEl: true
                 animateTransitions: true
+                closeOnVerticalDrag: false
 
             $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options)
             $scope.PhotoSwipe.init()
-
-        $scope.testy = ->
-            console.log('testy')
 
         initGmap = ->
             $scope.map = new google.maps.Map(document.getElementById("map"), {
