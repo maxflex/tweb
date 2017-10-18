@@ -4828,6 +4828,11 @@
 .gallery-top-bar .gallery-close {
   position: relative !important; }
 
+.pswp__button {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; }
+
 /*! PhotoSwipe Default UI CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*
 

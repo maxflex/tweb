@@ -109,7 +109,12 @@ angular
             $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options)
             $scope.PhotoSwipe.init()
             $scope.PhotoSwipe.listen 'preventDragEvent', (e, isDown, preventObj) ->
-                preventObj.prevent = false
+                e = $(e.target)
+                # console.log(e)
+                if e.hasClass('.pswp__button')
+                    preventObj.prevent = true
+                else
+                    preventObj.prevent = false
 
         initGmap = ->
             $scope.map = new google.maps.Map(document.getElementById("map"), {
