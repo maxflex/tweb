@@ -16469,10 +16469,10 @@ var publicMethods = {
 		},
 		next: function() {
 			if ( _options.animateTransitions ) {
-				$('.pswp').css({'pointer-events': 'none'})
-				setTimeout(function() {
-					$('.pswp').css({'pointer-events': 'auto'})
-				}, 350)
+				// $('.pswp').css({'pointer-events': 'none'})
+				// setTimeout(function() {
+				// 	$('.pswp').css({'pointer-events': 'auto'})
+				// }, 350)
 				self.goTo( -1 );
 			} else {
 				self.goTo( _currentItemIndex + 1);
@@ -16480,10 +16480,10 @@ var publicMethods = {
 		},
 		prev: function() {
 			if ( _options.animateTransitions ) {
-				$('.pswp').css({'pointer-events': 'none'})
-				setTimeout(function() {
-					$('.pswp').css({'pointer-events': 'auto'})
-				}, 350)
+				// $('.pswp').css({'pointer-events': 'none'})
+				// setTimeout(function() {
+				// 	$('.pswp').css({'pointer-events': 'auto'})
+				// }, 350)
 				self.goTo( 1 );
 			} else {
 				self.goTo( _currentItemIndex - 1);
