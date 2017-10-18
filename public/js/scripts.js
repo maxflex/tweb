@@ -19751,14 +19751,14 @@ var PhotoSwipeUI_Default =
 		_listen('beforeChange', ui.update);
 
 		// toggle zoom on double-tap
-		_listen('doubleTap', function(point) {
-			var initialZoomLevel = pswp.currItem.initialZoomLevel;
-			if(pswp.getZoomLevel() !== initialZoomLevel) {
-				pswp.zoomTo(initialZoomLevel, point, 333);
-			} else {
-				pswp.zoomTo(_options.getDoubleTapZoom(false, pswp.currItem), point, 333);
-			}
-		});
+		// _listen('doubleTap', function(point) {
+		// 	var initialZoomLevel = pswp.currItem.initialZoomLevel;
+		// 	if(pswp.getZoomLevel() !== initialZoomLevel) {
+		// 		pswp.zoomTo(initialZoomLevel, point, 333);
+		// 	} else {
+		// 		pswp.zoomTo(_options.getDoubleTapZoom(false, pswp.currItem), point, 333);
+		// 	}
+		// });
 
 		// Allow text selection in caption
 		_listen('preventDragEvent', function(e, isDown, preventObj) {
