@@ -4833,7 +4833,8 @@
   outline: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: transparent;
-  pointer-events: all; }
+  pointer-events: all;
+  touch-action: none; }
 
 /*! PhotoSwipe Default UI CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*
