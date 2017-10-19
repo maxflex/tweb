@@ -4676,8 +4676,7 @@
 
 .pswp__container,
 .pswp__zoom-wrap {
-  /*-ms-touch-action: none;
-  touch-action: none;*/
+  touch-action: none;
   position: absolute;
   left: 0;
   right: 0;
