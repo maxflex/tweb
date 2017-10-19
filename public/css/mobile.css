@@ -4597,6 +4597,7 @@
 */
 /* pswp = photoswipe */
 .pswp {
+  pointer-events: none;
   display: none;
   position: absolute;
   width: 100%;
@@ -4831,7 +4832,8 @@
 .pswp__button {
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: all; }
 
 /*! PhotoSwipe Default UI CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*
