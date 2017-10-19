@@ -16857,6 +16857,10 @@ var _gestureStartTime,
 
 	_preventObj = {},
 	_preventDefaultEventBehaviour = function(e, isDown) {
+		if ($(e.target).hasClass('pswp__button')) {
+			return true
+		}
+		// console.log(e, isDown)
 	    // _preventObj.prevent = !_closestElement(e.target, _options.isClickableElement);
 		//
 		// _shout('preventDragEvent', e, isDown, _preventObj);

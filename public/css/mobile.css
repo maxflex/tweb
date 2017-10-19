@@ -4833,8 +4833,9 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: transparent;
   pointer-events: all;
-  touch-action: none;
-  /*pointer-events: none !important;*/ }
+  touch-action: none; }
+  .pswp__button > div {
+    pointer-events: none !important; }
 
 /*! PhotoSwipe Default UI CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*
