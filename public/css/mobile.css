@@ -7230,14 +7230,14 @@ input {
     .price-wrapper .price-list ul {
       list-style-type: none;
       padding-left: 0;
-      border-bottom: 1px solid rgba(164, 0, 0, 0.9); }
+      border-bottom: 1px solid rgba(164, 0, 0, 0.5); }
       .price-wrapper .price-list ul > li .price-item-root > .price-section {
         font-weight: bold;
         background-color: #f3e9d4; }
       .price-wrapper .price-list ul > li .price-line {
-        padding: .6em 1.2em; }
+        padding: .7em 1.2em; }
         .price-wrapper .price-list ul > li .price-line.price-section {
-          border-bottom: 1px solid rgba(164, 0, 0, 0.9); }
+          border-bottom: 1px solid rgba(164, 0, 0, 0.5); }
         .price-wrapper .price-list ul > li .price-line img {
           height: 8px;
           margin-left: 4px;

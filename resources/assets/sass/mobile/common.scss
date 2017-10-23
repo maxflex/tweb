@@ -743,7 +743,7 @@ input {
         & ul {
           list-style-type: none;
           padding-left: 0;
-          border-bottom: 1px solid rgba(#a40000, .9);
+          border-bottom: 1px solid rgba(#a40000, .5);
         //   margin-bottom: 15px;
             & > li {
                 // &:last-child {
@@ -756,9 +756,9 @@ input {
                     background-color: #f3e9d4;
                 }
                 & .price-line {
-                    padding: .6em 1.2em;
+                    padding: .7em 1.2em;
                     &.price-section {
-                        border-bottom: 1px solid rgba(#a40000, .9);
+                        border-bottom: 1px solid rgba(#a40000, .5);
                     }
                     & img {
                         height: 8px;
