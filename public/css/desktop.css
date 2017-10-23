@@ -3472,7 +3472,8 @@ a[href^="https://www.google.com/maps"] {
         -webkit-transition: -webkit-transform .2s;
         transition: -webkit-transform .2s;
         transition: transform .2s;
-        transition: transform .2s, -webkit-transform .2s; }
+        transition: transform .2s, -webkit-transform .2s;
+        pointer-events: none; }
       .price-list ul > li .price-line.active img {
         -webkit-transform: rotate(-180deg);
         /* Chrome and other webkit browsers */

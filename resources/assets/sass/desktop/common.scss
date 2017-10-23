@@ -988,6 +988,7 @@ p.last {
                     height: 8px;
                     margin-left: 4px;
                     transition: transform .2s;
+                    pointer-events: none;
                 }
                 &.active {
                     & img {
