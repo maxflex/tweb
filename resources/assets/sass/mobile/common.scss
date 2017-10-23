@@ -747,6 +747,7 @@ input {
             & > li {
                 & .price-item-root > .price-section {
                     font-weight: bold;
+                    background-color: #f4e9df;
                 }
                 & .price-line {
                     padding: .5em 1.2em;
@@ -779,7 +780,6 @@ input {
                     }
                 }
                 & .price-section {
-                    background-color: #f4e9df;
                     & .price-line-title {
                         color: #a40000;
                     }
