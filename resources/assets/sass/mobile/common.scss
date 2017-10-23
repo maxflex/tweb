@@ -754,11 +754,13 @@ input {
                 & .price-item-root > .price-section {
                     font-weight: bold;
                     background-color: rgba(#f3e9d4, .5);
+                    font-size: 17px;
                 }
                 & .price-line {
                     padding: 1em 1.2em;
                     &.price-section {
                         border-bottom: 1px solid rgba(#a40000, .25);
+                        font-weight: bold;
                     }
                     & img {
                         height: 8px;
