@@ -3484,9 +3484,9 @@ a[href^="https://www.google.com/maps"] {
         /* W3C compliant browsers */ }
     .price-list ul > li .price-item-info .price-item-price {
       font-weight: bold; }
-      .price-list ul > li .price-item-info .price-item-price:before {
-        content: ' – ';
-        font-weight: normal; }
+    .price-list ul > li .price-item-info:before {
+      content: ' – ';
+      font-weight: normal; }
     .price-list ul > li .price-line-title {
       pointer-events: none; }
     .price-list ul > li .price-section .price-line-title {

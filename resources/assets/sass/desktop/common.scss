@@ -1003,10 +1003,10 @@ p.last {
             & .price-item-info {
                 & .price-item-price {
                     font-weight: bold;
-                    &:before {
-                        content: ' – ';
-                        font-weight: normal;
-                    }
+                }
+                &:before {
+                    content: ' – ';
+                    font-weight: normal;
                 }
             }
             & .price-line-title {
