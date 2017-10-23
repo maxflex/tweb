@@ -743,17 +743,22 @@ input {
         & ul {
           list-style-type: none;
           padding-left: 0;
-          border-bottom: 1px solid #dcdcdc;
+          border-bottom: 1px solid rgba(#a40000, .9);
         //   margin-bottom: 15px;
             & > li {
+                // &:last-child {
+                //     & ul:last-child {
+                //         border-bottom: none !important;
+                //     }
+                //  }
                 & .price-item-root > .price-section {
                     font-weight: bold;
                     background-color: #f3e9d4;
                 }
                 & .price-line {
-                    padding: .5em 1.2em;
+                    padding: .6em 1.2em;
                     &.price-section {
-                        border-bottom: 1px solid #dcdcdc;
+                        border-bottom: 1px solid rgba(#a40000, .9);
                     }
                     & img {
                         height: 8px;
