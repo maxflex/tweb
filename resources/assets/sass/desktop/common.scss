@@ -976,19 +976,45 @@ p.last {
       padding-left: 15px;
     //   margin-bottom: 15px;
         & > li {
+            & .price-item-root > .price-section {
+                font-weight: bold;
+                font-size: 16px;
+            }
             & .price-line {
-                padding: 8px 8px;
-                border-bottom: 1px solid #b41a12;
+                padding: 4px 0px;
+                // border-bottom: 1px solid #b41a12;
+                color: black;
+                & img {
+                    height: 8px;
+                    margin-left: 4px;
+                    transition: transform .2s;
+                }
                 &.active {
-                    background-color: #f6f0e3;
+                    & img {
+                        -webkit-transform: rotate(-180deg);     /* Chrome and other webkit browsers */
+                          -moz-transform: rotate(-180deg);        /* FF */
+                          -o-transform: rotate(-180deg);          /* Opera */
+                          -ms-transform: rotate(-180deg);         /* IE9 */
+                          transform: rotate(-180deg);             /* W3C compliant browsers */
+                    }
                 }
             }
             & .price-item-info {
-                @extend .pull-right;
+                & .price-item-price {
+                    font-weight: bold;
+                    &:before {
+                        content: ' – ';
+                        font-weight: normal;
+                    }
+                }
             }
             & .price-line-title {
                 pointer-events: none;
-                color: #a40000;
+            }
+            & .price-section {
+                & .price-line-title {
+                    color: #a40000;
+                }
             }
         }
     }

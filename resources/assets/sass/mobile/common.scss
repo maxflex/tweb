@@ -745,17 +745,25 @@ input {
           padding-left: 0;
         //   margin-bottom: 15px;
             & > li {
+                & .price-item-root > .price-section {
+                    font-weight: bold;
+                }
                 & .price-line {
-                    padding: .8em 1.2em;
+                    padding: .5em 1.2em;
                     border-bottom: 1px solid #dcdcdc;
+                    & img {
+                        height: 8px;
+                        margin-left: 4px;
+                        transition: transform .2s;
+                        pointer-events: none;
+                    }
                     &.active {
-                        background-color: #3b3b3b;
-                        // border-color: white;
-                        & .price-line-title {
-                            color: white;
-                        }
-                        & .fa {
-                            color: white !important;
+                        & img {
+                            -webkit-transform: rotate(-180deg);     /* Chrome and other webkit browsers */
+                              -moz-transform: rotate(-180deg);        /* FF */
+                              -o-transform: rotate(-180deg);          /* Opera */
+                              -ms-transform: rotate(-180deg);         /* IE9 */
+                              transform: rotate(-180deg);             /* W3C compliant browsers */
                         }
                     }
                 }
@@ -763,19 +771,17 @@ input {
                     pointer-events: none;
                 }
                 & .price-item-info {
+                    display: block;
                     & .price-item-price {
                         font-size: 16px;
                         font-family: Arial;
-                        &:before {
-                            content: "- ";
-                            font-size: 14px;
-                            font-family: Arial;
-                        }
+                        font-weight: bold;
                     }
                 }
                 & .price-section {
+                    background-color: #f4e9df;
                     & .price-line-title {
-                        font-family: Arial;
+                        color: #a40000;
                     }
                 }
             }
@@ -791,17 +797,6 @@ input {
             &.fa-caret-down {
                 top: -2px;
             }
-        }
-        & .price-item-last {
-            & .price-line {
-                border-bottom: none;
-            }
-        }
-        .fa-caret-down {
-            @extend .fa-angle-down;
-        }
-        .fa-caret-up {
-            @extend .fa-angle-up;
         }
     }
 }

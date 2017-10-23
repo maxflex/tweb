@@ -863,10 +863,10 @@
 .fa-angle-right:before {
   content: "\f105"; }
 
-.fa-angle-up:before, .price-wrapper .price-list .fa-caret-up:before {
+.fa-angle-up:before {
   content: "\f106"; }
 
-.fa-angle-down:before, .price-wrapper .price-list .fa-caret-down:before {
+.fa-angle-down:before {
   content: "\f107"; }
 
 .fa-desktop:before {
@@ -4674,6 +4674,9 @@
   overflow-x: hidden;
   overflow-y: scroll; }
 
+.pswp__scroll-wrap .not-scrollable {
+  overflow: hidden !important; }
+
 .pswp__container,
 .pswp__zoom-wrap {
   /*-ms-touch-action: none;
@@ -7227,26 +7230,39 @@ input {
     .price-wrapper .price-list ul {
       list-style-type: none;
       padding-left: 0; }
+      .price-wrapper .price-list ul > li .price-item-root > .price-section {
+        font-weight: bold; }
       .price-wrapper .price-list ul > li .price-line {
-        padding: .8em 1.2em;
+        padding: .5em 1.2em;
         border-bottom: 1px solid #dcdcdc; }
-        .price-wrapper .price-list ul > li .price-line.active {
-          background-color: #3b3b3b; }
-          .price-wrapper .price-list ul > li .price-line.active .price-line-title {
-            color: white; }
-          .price-wrapper .price-list ul > li .price-line.active .fa, .price-wrapper .price-list ul > li .price-line.active .check-mark {
-            color: white !important; }
+        .price-wrapper .price-list ul > li .price-line img {
+          height: 8px;
+          margin-left: 4px;
+          -webkit-transition: -webkit-transform .2s;
+          transition: -webkit-transform .2s;
+          transition: transform .2s;
+          transition: transform .2s, -webkit-transform .2s;
+          pointer-events: none; }
+        .price-wrapper .price-list ul > li .price-line.active img {
+          -webkit-transform: rotate(-180deg);
+          /* Chrome and other webkit browsers */
+          /* FF */
+          /* Opera */
+          /* IE9 */
+          transform: rotate(-180deg);
+          /* W3C compliant browsers */ }
       .price-wrapper .price-list ul > li .price-line-title {
         pointer-events: none; }
-      .price-wrapper .price-list ul > li .price-item-info .price-item-price {
-        font-size: 16px;
-        font-family: Arial; }
-        .price-wrapper .price-list ul > li .price-item-info .price-item-price:before {
-          content: "- ";
-          font-size: 14px;
-          font-family: Arial; }
-      .price-wrapper .price-list ul > li .price-section .price-line-title {
-        font-family: Arial; }
+      .price-wrapper .price-list ul > li .price-item-info {
+        display: block; }
+        .price-wrapper .price-list ul > li .price-item-info .price-item-price {
+          font-size: 16px;
+          font-family: Arial;
+          font-weight: bold; }
+      .price-wrapper .price-list ul > li .price-section {
+        background-color: #f4e9df; }
+        .price-wrapper .price-list ul > li .price-section .price-line-title {
+          color: #a40000; }
     .price-wrapper .price-list > ul {
       padding: 0;
       margin: 0; }
@@ -7256,8 +7272,6 @@ input {
       position: relative; }
       .price-wrapper .price-list .fa.fa-caret-down, .price-wrapper .price-list .fa-caret-down.check-mark {
         top: -2px; }
-    .price-wrapper .price-list .price-item-last .price-line {
-      border-bottom: none; }
 
 .main-page-masters {
   display: -webkit-box;

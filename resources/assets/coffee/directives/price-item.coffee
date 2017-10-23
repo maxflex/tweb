@@ -12,5 +12,4 @@ angular.module 'App'
             $scope.toggle = (item, event) ->
                 if item.items && item.items.length
                     $(event.target).toggleClass('active')
-                    $(event.target).children('.fa').first().toggleClass('fa-caret-up').toggleClass('fa-caret-down')
                     $(event.target).parent().children('ul').slideToggle(250)
