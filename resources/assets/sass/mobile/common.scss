@@ -743,6 +743,7 @@ input {
         & ul {
           list-style-type: none;
           padding-left: 0;
+          border-bottom: 1px solid #dcdcdc;
         //   margin-bottom: 15px;
             & > li {
                 & .price-item-root > .price-section {
@@ -751,7 +752,9 @@ input {
                 }
                 & .price-line {
                     padding: .5em 1.2em;
-                    border-bottom: 1px solid #dcdcdc;
+                    &.price-section {
+                        border-bottom: 1px solid #dcdcdc;
+                    }
                     & img {
                         height: 8px;
                         margin-left: 4px;
@@ -759,6 +762,7 @@ input {
                         pointer-events: none;
                     }
                     &.active {
+                        border-bottom: none;
                         & img {
                             -webkit-transform: rotate(-180deg);     /* Chrome and other webkit browsers */
                               -moz-transform: rotate(-180deg);        /* FF */
