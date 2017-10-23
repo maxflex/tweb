@@ -760,6 +760,9 @@ input {
                         margin-left: 4px;
                         transition: transform .2s;
                         pointer-events: none;
+                        float: right;
+                        top: 8px;
+                        position: relative;
                     }
                     &.active {
                         border-bottom: none;

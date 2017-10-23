@@ -7245,7 +7245,10 @@ input {
           transition: -webkit-transform .2s;
           transition: transform .2s;
           transition: transform .2s, -webkit-transform .2s;
-          pointer-events: none; }
+          pointer-events: none;
+          float: right;
+          top: 8px;
+          position: relative; }
         .price-wrapper .price-list ul > li .price-line.active {
           border-bottom: none; }
           .price-wrapper .price-list ul > li .price-line.active img {
