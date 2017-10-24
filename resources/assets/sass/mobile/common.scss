@@ -738,6 +738,7 @@ input {
 .price-wrapper {
     margin-left: -1.2em;
     width: calc(100% + 2.4em);
+    border-top: 1px solid rgba(164, 0, 0, 0.25);
     & .price-list {
         overflow: hidden;
         & ul {
@@ -811,6 +812,11 @@ input {
             &.fa-caret-down {
                 top: -2px;
             }
+        }
+    }
+    & .price-item-root {
+        & > ul {
+            border-bottom: none !important;
         }
     }
 }

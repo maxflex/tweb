@@ -7224,7 +7224,8 @@ input {
 
 .price-wrapper {
   margin-left: -1.2em;
-  width: calc(100% + 2.4em); }
+  width: calc(100% + 2.4em);
+  border-top: 1px solid rgba(164, 0, 0, 0.25); }
   .price-wrapper .price-list {
     overflow: hidden; }
     .price-wrapper .price-list ul {
@@ -7280,6 +7281,8 @@ input {
       position: relative; }
       .price-wrapper .price-list .fa.fa-caret-down, .price-wrapper .price-list .fa-caret-down.check-mark {
         top: -2px; }
+  .price-wrapper .price-item-root > ul {
+    border-bottom: none !important; }
 
 .main-page-masters {
   display: -webkit-box;
