@@ -6,10 +6,10 @@
     <span ng-show="!item.is_section && item.model.price" class="price-item-info">
         от <span class="price-item-price">@{{ item.model.price | number }}</span> руб.<span ng-show="item.model.unit">/@{{ findById(Units, item.model.unit).title }}</span>
     </span>
-    <img ng-if="item.is_section && (item.items && item.items.length)" src="/img/svg/pricelist-arrow.svg">
-    <div ng-show="item.is_section && item.model.extra_column" class="price-section-desc">
+    <span ng-show="item.is_section && item.model.extra_column" class="price-section-desc">
         @{{ item.model.extra_column }}
-    </div>
+    </span>
+    <img ng-if="item.is_section && (item.items && item.items.length)" src="/img/svg/pricelist-arrow.svg">
 </div>
 <ul class="hidden">
     <li ng-repeat="item in item.items" class='price-item-@{{ $parent.$id }}'>
