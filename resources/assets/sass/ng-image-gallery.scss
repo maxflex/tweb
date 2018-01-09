@@ -709,13 +709,16 @@ $gallery-common-indent: 60px;
 
 .gallery-components {
     & > div {
+        display: flex;
+        align-items: flex-end;
         & span {
             &:first-of-type {
                 width: 235px;
                 display: inline-block;
             }
             &:last-of-type {
-                float: right;
+                text-align: right;
+                flex: 1;
             }
         }
         &.gallery-component-sum {

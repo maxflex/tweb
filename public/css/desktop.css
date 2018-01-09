@@ -5213,19 +5213,24 @@ ol, ul {
     .gallery-master-info > div:first-of-type {
       width: 90%; }
 
-.gallery-components > div span:first-of-type {
-  width: 235px;
-  display: inline-block; }
-
-.gallery-components > div span:last-of-type {
-  float: right; }
-
-.gallery-components > div.gallery-component-sum {
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
-  margin-top: 12px;
-  padding-top: 10px; }
-  .gallery-components > div.gallery-component-sum span:last-of-type {
-    font-family: "helveticaneuecyrbold"; }
+.gallery-components > div {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+  align-items: flex-end; }
+  .gallery-components > div span:first-of-type {
+    width: 235px;
+    display: inline-block; }
+  .gallery-components > div span:last-of-type {
+    text-align: right;
+    -webkit-box-flex: 1;
+    flex: 1; }
+  .gallery-components > div.gallery-component-sum {
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    margin-top: 12px;
+    padding-top: 10px; }
+    .gallery-components > div.gallery-component-sum span:last-of-type {
+      font-family: "helveticaneuecyrbold"; }
 
 .gallery-flow-control {
   font-family: "helveticaneuecyrmedium";
