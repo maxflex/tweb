@@ -6,12 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PriceSection extends Model
 {
-    protected $fillable = [
-        'name',
-        'price_section_id',
-        'position'
-    ];
-
     // protected $with = ['sections', 'positions'];
 
     // protected $appends = ['item'];

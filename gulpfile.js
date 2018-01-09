@@ -39,9 +39,8 @@ elixir(mix => {
         .browserSync({
             port: 8105,
             open: 'external',
-            host: 'tweb.app',
-            proxy: 'https://tweb.app:8104',
-            https: true,
+            host: 'tweb.localhost',
+            proxy: 'http://tweb.localhost:8104',
             ghostMode: false
         })
         .sass('desktop/desktop.scss')
