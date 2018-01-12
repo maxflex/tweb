@@ -446,11 +446,12 @@
 }).call(this);
 
 (function() {
-  angular.module('App').controller('Index', function($scope, $timeout, $http) {
+  angular.module('App').controller('Index', function($scope, $timeout, $http, PriceSection) {
     var initGmap, searchGallery, searchReviews;
     bindArguments($scope, arguments);
     $timeout(function() {
       var iframe, requestFullScreen;
+      $scope.prices = PriceSection.query();
       $scope.has_more_reviews = true;
       $scope.reviews_page = 0;
       $scope.reviews = [];

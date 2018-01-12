@@ -7,7 +7,6 @@
     use App\Models\Page;
     use App\Models\Master;
     use App\Models\Equipment;
-    use App\Models\PriceSection;
     use DB;
     use Cache;
 
@@ -137,15 +136,6 @@
                         } else {
                             $replacement = $query->whereIn('id', $ids)->get();
                         }
-                        break;
-                    case 'prices':
-                        // return PriceSection::whereNull('price_section_id')->paginate(30);
-                        $items = [];
-                        $top_level_price_sections = PriceSection::whereNull('price_section_id')->orderBy('position')->get();
-                        foreach($top_level_price_sections as $section) {
-                            $items[] = $section->item;
-                        }
-                        $replacement = json_encode($items);
                         break;
                     case 'filesize':
                         $replacement = getSize($args[0], 0);

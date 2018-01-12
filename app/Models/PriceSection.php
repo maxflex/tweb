@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class PriceSection extends Model
 {
     // protected $with = ['sections', 'positions'];
-
     // protected $appends = ['item'];
 
     public function positions()

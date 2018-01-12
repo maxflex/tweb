@@ -1,9 +1,10 @@
 angular
     .module 'App'
-    .controller 'Index', ($scope, $timeout, $http) ->
+    .controller 'Index', ($scope, $timeout, $http, PriceSection) ->
         bindArguments($scope, arguments)
 
         $timeout ->
+            $scope.prices = PriceSection.query()
             $scope.has_more_reviews = true
             $scope.reviews_page = 0
             $scope.reviews = []
