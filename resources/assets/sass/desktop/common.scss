@@ -903,9 +903,11 @@ p.last {
             }
         }
     }
-    // &.masters-count-2 {
-    //     width: 82%;
-    // }
+    &.masters-count-2 {
+        & > div {
+            flex: 1;
+        }
+    }
     & .more-masters {
         width: 249px !important;
         // flex: auto !important;
@@ -921,7 +923,7 @@ p.last {
             margin-right: 30px;
         }
         & .master-photo {
-            width: 100%;
+            width: 207px;
             border-radius: 50%;
         }
         & b {
