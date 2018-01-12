@@ -52,6 +52,12 @@ angular.module("App", ['ngResource', 'angular-ladda', 'angularFileUpload', 'angu
             i += step
           input
 
+         $rootScope.withTailingDot = (text) ->
+            text = text.trim()
+            char = text[text.length - 1]
+            text = text + '.' if ['!', '.'].indexOf(char) is -1
+            text
+
           # skip_values – какие значения в enum пропускать
           # allowed_user_ids – пользователи, которым разрешено выбирать значения
           # recursion – функция была запущена рекурсивно (внизу)

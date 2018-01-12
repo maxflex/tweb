@@ -6,6 +6,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::resource('prices', 'PricesController', ['only' => 'index']);
     Route::get('reviews/block', 'ReviewsController@block');
     Route::resource('reviews', 'ReviewsController');
+    Route::resource('videos', 'VideosController', ['only' => 'index']);
     Route::resource('gallery', 'GalleryController');
     Route::resource('stats', 'StatsController', ['only' => 'index']);
     // Route::post('cv/uploadPhoto', 'CvController@uploadPhoto');

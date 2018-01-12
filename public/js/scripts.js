@@ -20165,6 +20165,15 @@ return PhotoSwipeUI_Default;
       }
       return input;
     };
+    $rootScope.withTailingDot = function(text) {
+      var char;
+      text = text.trim();
+      char = text[text.length - 1];
+      if (['!', '.'].indexOf(char) === -1) {
+        text = text + '.';
+      }
+      return text;
+    };
     $rootScope.toggleEnum = function(ngModel, status, ngEnum, skip_values, allowed_user_ids, recursion) {
       var ref, ref1, ref2, status_id, statuses;
       if (skip_values == null) {
@@ -20535,11 +20544,15 @@ return PhotoSwipeUI_Default;
 
 (function() {
   angular.module('App').controller('Index', function($scope, $timeout, $http, PriceSection) {
-    var initGmap, searchGallery, searchReviews;
+    var bindFullscreenRequest, initGmap, searchGallery, searchReviews, searchVideos;
     bindArguments($scope, arguments);
+    $scope.player = {};
     $timeout(function() {
-      var iframe, requestFullScreen;
       $scope.prices = PriceSection.query();
+      $scope.has_more_videos = true;
+      $scope.videos_page = 0;
+      $scope.videos = [];
+      searchVideos();
       $scope.has_more_reviews = true;
       $scope.reviews_page = 0;
       $scope.reviews = [];
@@ -20549,13 +20562,7 @@ return PhotoSwipeUI_Default;
       $scope.gallery_page = 0;
       $scope.gallery = [];
       searchGallery();
-      initGmap();
-      iframe = document.getElementById('youtube-video');
-      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-      $scope.player = new YT.Player('youtube-video', {});
-      return $scope.player.addEventListener('onStateChange', function(state) {
-        return requestFullScreen.bind(iframe)();
-      });
+      return initGmap();
     });
     $scope.nextReviewsPage = function() {
       $scope.reviews_page++;
@@ -20567,6 +20574,36 @@ return PhotoSwipeUI_Default;
         $scope.searching_reviews = false;
         $scope.reviews = $scope.reviews.concat(response.data.reviews);
         return $scope.has_more_reviews = response.data.has_more_reviews;
+      });
+    };
+    $scope.nextVideosPage = function() {
+      $scope.videos_page++;
+      return searchVideos();
+    };
+    searchVideos = function() {
+      $scope.searching_videos = true;
+      return $http.get('/api/videos?page=' + $scope.videos_page).then(function(response) {
+        $scope.searching_videos = false;
+        $scope.videos = $scope.videos.concat(response.data.videos);
+        $scope.has_more_videos = response.data.has_more_videos;
+        return $timeout(function() {
+          return response.data.videos.forEach(function(v) {
+            return bindFullscreenRequest(v);
+          });
+        });
+      });
+    };
+    $scope.youtubeLink = function(video) {
+      return "https://www.youtube.com/embed/" + video.code + "?showinfo=0";
+    };
+    bindFullscreenRequest = function(video) {
+      var iframe, requestFullScreen;
+      console.log("binding for video " + video.id);
+      iframe = document.getElementById("youtube-video-" + video.id);
+      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+      $scope.player[video.id] = new YT.Player("youtube-video-" + video.id, {});
+      return $scope.player[video.id].addEventListener('onStateChange', function(state) {
+        return requestFullScreen.bind(iframe)();
       });
     };
     $scope.showMoreGallery = function() {

@@ -3,8 +3,16 @@ angular
     .controller 'Index', ($scope, $timeout, $http, PriceSection) ->
         bindArguments($scope, arguments)
 
+        $scope.player = {}
+
         $timeout ->
             $scope.prices = PriceSection.query()
+
+            $scope.has_more_videos = true
+            $scope.videos_page = 0
+            $scope.videos = []
+            searchVideos()
+
             $scope.has_more_reviews = true
             $scope.reviews_page = 0
             $scope.reviews = []
@@ -18,11 +26,7 @@ angular
 
             initGmap()
 
-            iframe = document.getElementById('youtube-video')
-            requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
-            $scope.player = new YT.Player 'youtube-video', {}
-            $scope.player.addEventListener 'onStateChange', (state) -> requestFullScreen.bind(iframe)()
-
+        # REVIEWS
         $scope.nextReviewsPage = ->
             $scope.reviews_page++
             # StreamService.run('load_more_tutors', null, {page: $scope.page})
@@ -35,6 +39,31 @@ angular
                 $scope.reviews = $scope.reviews.concat(response.data.reviews)
                 $scope.has_more_reviews = response.data.has_more_reviews
                 # if $scope.mobile then $timeout -> bindToggle()
+
+        # VIDEOS
+        $scope.nextVideosPage = ->
+            $scope.videos_page++
+            # StreamService.run('load_more_tutors', null, {page: $scope.page})
+            searchVideos()
+
+        searchVideos = ->
+            $scope.searching_videos = true
+            $http.get('/api/videos?page=' + $scope.videos_page).then (response) ->
+                $scope.searching_videos = false
+                $scope.videos = $scope.videos.concat(response.data.videos)
+                $scope.has_more_videos = response.data.has_more_videos
+                $timeout -> response.data.videos.forEach (v) -> bindFullscreenRequest(v)
+                # if $scope.mobile then $timeout -> bindToggle()
+
+        $scope.youtubeLink = (video) -> "https://www.youtube.com/embed/#{video.code}?showinfo=0"
+
+        bindFullscreenRequest = (video) ->
+            console.log("binding for video #{video.id}")
+            iframe = document.getElementById("youtube-video-#{video.id}")
+            requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
+            $scope.player[video.id] = new YT.Player "youtube-video-#{video.id}", {}
+            $scope.player[video.id].addEventListener 'onStateChange', (state) ->
+                requestFullScreen.bind(iframe)()
 
         # GALLERY
 
