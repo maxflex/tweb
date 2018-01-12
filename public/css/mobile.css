@@ -7299,10 +7299,15 @@ input {
 .equipment-wrapper .equipment-item {
   margin-bottom: 30px; }
   .equipment-wrapper .equipment-item img {
-    width: 65%; }
+    width: 100%; }
   .equipment-wrapper .equipment-item b {
+    font-weight: bold;
+    font-size: 20px;
     display: block;
-    margin: 10px 0 20px; }
+    margin: 10px 0 30px; }
+  .equipment-wrapper .equipment-item button {
+    display: block;
+    margin: 30px auto 0; }
 
 .map-wrapper b {
   display: block;
