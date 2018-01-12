@@ -942,29 +942,45 @@ p.last {
 .equipment-wrapper {
     margin-top: 30px;
     & .equipment-item {
-        width: 100%;
-        display: inline-block;
-        & b {
-            font-size: 18px;
-            display: block;
-            margin-bottom: 15px;
-        }
-        & img {
-            width: 250px;
-        }
-        &:nth-child(odd) {
-            & img {
-                float: left;
-                margin-right: 40px;
-            }
-        }
-        &:nth-child(even) {
-            & img {
-                float: right;
-                margin-left: 40px;
-            }
-        }
+        display: flex;
         margin-bottom: 30px;
+        & > div {
+            width: 50%;
+            &:first-child {
+                text-align: center;
+                & img {
+                    width: 80%;
+                }
+                margin-right: 20px;
+            }
+            &:last-child {
+                margin-left: 20px;
+                font-family: $font-medium;
+                & b {
+                    font-size: 28px;
+                    display: block;
+                    margin-bottom: 20px;
+                }
+                & button {
+                    margin-top: 20px;
+                }
+            }
+        }
+        &.right {
+            flex-direction: row-reverse;
+        }
+        &.full {
+            flex-direction: column;
+            & > div {
+                width: 100%;
+                &:first-child {
+                    @extend .full-width-wrapper;
+                    & img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -976,6 +992,9 @@ p.last {
       padding-left: 15px;
     //   margin-bottom: 15px;
         & > li {
+            &:last-child .price-position {
+                border-bottom: none !important;
+            }
             & .price-item-root > .price-section {
                 font-weight: bold;
                 font-size: 15px;
@@ -1001,13 +1020,15 @@ p.last {
                 }
             }
             & .price-item-info {
+                float: right;
+                width: 150px;
                 & .price-item-price {
                     font-weight: bold;
                 }
-                &:before {
-                    content: ' – ';
-                    font-weight: normal;
-                }
+                // &:before {
+                //     content: ' – ';
+                //     font-weight: normal;
+                // }
             }
             & .price-line-title {
                 pointer-events: none;
@@ -1016,6 +1037,11 @@ p.last {
                 & .price-line-title {
                     color: #a40000;
                 }
+            }
+            & .price-position {
+                border-bottom: 1px solid rgba($text-grey-light, .4);
+                margin-left: -15px;
+                padding-left: 15px;
             }
         }
     }

@@ -130,7 +130,13 @@
                         }
                         break;
                     case 'equipment':
-                        $replacement = Equipment::with('photos')->whereIn('id', explode(',', $args[0]))->get();
+                        $ids = explode(',', $args[0]);
+                        $query = Equipment::with('photos');
+                        if (count($ids) == 1) {
+                            $replacement = $query->whereId($ids[0])->first();
+                        } else {
+                            $replacement = $query->whereIn('id', $ids)->get();
+                        }
                         break;
                     case 'prices':
                         // return PriceSection::whereNull('price_section_id')->paginate(30);
