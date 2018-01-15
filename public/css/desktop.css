@@ -3451,19 +3451,16 @@ a[href^="https://www.google.com/maps"] {
     .equipment-wrapper .equipment-item > div {
       width: 50%; }
       .equipment-wrapper .equipment-item > div:first-child {
-        text-align: center;
-        margin-right: 20px; }
+        text-align: center; }
         .equipment-wrapper .equipment-item > div:first-child img {
           width: 80%; }
-      .equipment-wrapper .equipment-item > div:last-child {
-        margin-left: 20px;
-        font-family: "helveticaneuecyrmedium"; }
-        .equipment-wrapper .equipment-item > div:last-child b, .equipment-wrapper .equipment-item > div:last-child .address-more li > div:first-of-type, .address-more .equipment-wrapper .equipment-item > div:last-child li > div:first-of-type {
-          font-size: 28px;
-          display: block;
-          margin-bottom: 20px; }
-        .equipment-wrapper .equipment-item > div:last-child button {
-          margin-top: 20px; }
+      .equipment-wrapper .equipment-item > div:last-child b, .equipment-wrapper .equipment-item > div:last-child .address-more li > div:first-of-type, .address-more .equipment-wrapper .equipment-item > div:last-child li > div:first-of-type {
+        font-size: 28px;
+        display: block;
+        margin-bottom: 20px; }
+      .equipment-wrapper .equipment-item > div:last-child button {
+        display: block;
+        margin-top: 20px; }
     .equipment-wrapper .equipment-item.right {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: reverse;

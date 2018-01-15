@@ -953,17 +953,18 @@ p.last {
                 & img {
                     width: 80%;
                 }
-                margin-right: 20px;
+                // margin-right: 20px;
             }
             &:last-child {
-                margin-left: 20px;
-                font-family: $font-medium;
+                // margin-left: 20px;
+                // font-family: $font-medium;
                 & b {
                     font-size: 28px;
                     display: block;
                     margin-bottom: 20px;
                 }
                 & button {
+                    display: block;
                     margin-top: 20px;
                 }
             }
