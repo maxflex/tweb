@@ -63,11 +63,19 @@ angular
                 format = if v.duration >= 60 then 'm:ss' else 'ss'
                 moment.utc(v.duration * 1000).format(format)
 
+        # остановить воспроизведение всех проигрывателей
+        # except_id – кроме
+        $scope.stopPlaying = (except_id) ->
+            $.each $scope.player, (e, p) ->
+                p.stopVideo() if (p.getPlayerState && p.getPlayerState() == 1 && p.a.id != except_id)
+
         bindFullscreenRequest = (video) ->
             console.log("binding for video #{video.id}")
             iframe = document.getElementById("youtube-video-#{video.id}")
             requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
             player = new YT.Player "youtube-video-#{video.id}",
+                playerVars:
+                    rel: 0
                 events:
                     onReady: (p) ->
                         video.duration = p.target.getDuration()
@@ -75,6 +83,7 @@ angular
             $scope.player[video.id] = player
             $scope.player[video.id].addEventListener 'onStateChange', (state) ->
                 requestFullScreen.bind(iframe)()
+                $scope.stopPlaying(state.target.a.id) if state.data is YT.PlayerState.PLAYING
 
         # GALLERY
 
