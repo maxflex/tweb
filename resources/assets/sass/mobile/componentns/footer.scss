@@ -8,8 +8,9 @@
   padding: $footer-margin 0 1.450em;
   box-sizing: content-box;
   margin-top: $footer-margin;
-  padding-left: 1.2em;
+  // padding-left: 1.2em;
   // margin-top: 0;
+  text-align: center;
   &-message {
     padding: 0 0 0.625em 0;
   }
@@ -46,4 +47,12 @@
 .footer.hidden {
     display: block !important;
     margin-top: 2em;
+}
+
+.footer-icon {
+    & .fa {
+        font-size: 30px;
+        margin-bottom: 6px;
+    }
+    margin-bottom: 30px;
 }

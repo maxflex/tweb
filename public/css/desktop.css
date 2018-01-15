@@ -4529,6 +4529,16 @@ ol, ul {
   clear: both;
   padding-top: 18px; }
 
+.footer-icon {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-bottom: 30px; }
+  .footer-icon .fa, .footer-icon .check-mark {
+    font-size: 30px;
+    margin-right: 12px; }
+
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {
     -webkit-transform: scaleY(0.4); }

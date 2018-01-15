@@ -335,3 +335,13 @@ ol, ul {
     clear: both;
     padding-top: 18px;
 }
+
+.footer-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    & .fa {
+        font-size: 30px;
+        margin-right: 12px;
+    }
+}
