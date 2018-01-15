@@ -3601,6 +3601,9 @@ a[href^="https://www.google.com/maps"] {
   font-size: 12px;
   font-weight: normal; }
 
+.link-small {
+  font-size: 12px; }
+
 /* Components */
 .top-message {
   background: #fef9de;
