@@ -5734,19 +5734,22 @@ th {
 **/
 @font-face {
   font-family: 'helveticaneuecyrbold';
-  src: url("../fonts/Gill Sans Nova Semibold.woff") format("woff");
+  src: url("../fonts/helveticaneuecyr-bold-webfont.eot");
+  src: url("../fonts/helveticaneuecyr-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-bold-webfont.woff2") format("woff2"), url("../fonts/helveticaneuecyr-bold-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-bold-webfont.svg#helveticaneuecyrbold") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'helveticaneuecyrlight';
-  src: url("../fonts/Gill Sans Nova Light.woff") format("woff");
+  src: url("../fonts/helveticaneuecyr-light-webfont.eot");
+  src: url("../fonts/helveticaneuecyr-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-light-webfont.woff2") format("woff2"), url("../fonts/helveticaneuecyr-light-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-light-webfont.svg#helveticaneuecyrlight") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'helveticaneuecyrmedium';
-  src: url("../fonts/Gill Sans Nova Medium.woff") format("woff");
+  src: url("../fonts/helveticaneuecyr-medium-webfont.eot");
+  src: url("../fonts/helveticaneuecyr-medium-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-medium-webfont.woff2") format("woff2"), url("../fonts/helveticaneuecyr-medium-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-medium-webfont.svg#helveticaneuecyrmedium") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -5778,7 +5781,7 @@ th {
 
 @font-face {
   font-family: 'helveticaneuecyrregular';
-  src: url("../fonts/Gill Sans Nova Book.woff") format("woff");
+  src: url("../fonts/HelveticaNeueRegular.eot") format("eot"), url("../fonts/HelveticaNeueRegular.ttf") format("ttf"), url("../fonts/HelveticaNeueRegular.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -5804,7 +5807,7 @@ th {
 .loading-inside-button {
   padding: 0;
   position: absolute;
-  top: 3px;
+  top: 5px;
   bottom: 0;
   left: 0;
   right: 0; }
@@ -6634,7 +6637,7 @@ html, body {
   overflow-x: hidden; }
 
 body {
-  font-family: Arial;
+  font-family: "helveticaneuecyrregular";
   font-size: 16px;
   -webkit-overflow-scrolling: touch !important;
   line-height: 20px; }
@@ -6667,25 +6670,25 @@ h1 {
   padding: 0 0 .9em 0;
   font-size: 1.5em;
   font-weight: normal;
-  font-family: Arial; }
+  font-family: 'helveticaneuecyrmedium'; }
 
 h2 {
   margin: 0;
   padding: 0 0 0.938em 0;
   font-size: 1.2em;
   font-weight: normal;
-  font-family: Arial; }
+  font-family: 'helveticaneuecyrmedium'; }
 
 h3 {
   margin: 0;
   padding: 0 0 1.125em 0;
   font-size: 1em;
   font-weight: normal;
-  font-family: Arial; }
+  font-family: 'helveticaneuecyrbold'; }
 
 b {
   font-weight: normal;
-  font-family: Arial; }
+  font-family: 'helveticaneuecyrbold'; }
 
 p {
   margin: 0;
@@ -6858,7 +6861,7 @@ a {
   -webkit-box-pack: center;
   justify-content: center;
   opacity: .9;
-  font-family: Arial;
+  font-family: "helveticaneuecyrmedium";
   color: black;
   left: 0;
   top: 0; }
@@ -6916,7 +6919,7 @@ a[href^="https://www.google.com/maps"] {
   display: flex;
   -webkit-box-align: start;
   align-items: flex-start;
-  font-family: Arial;
+  font-family: "helveticaneuecyrregular";
   margin-bottom: 11px; }
   .back-arrow img {
     height: 14px;
@@ -6924,7 +6927,7 @@ a[href^="https://www.google.com/maps"] {
 
 .b-like {
   display: block;
-  font-family: Arial; }
+  font-family: "helveticaneuecyrbold"; }
 
 .right-img-price {
   font-size: 1.5em; }
@@ -6957,7 +6960,7 @@ a[href^="https://www.google.com/maps"] {
   .page-not-found-wrapper .page-not-found {
     text-align: center; }
     .page-not-found-wrapper .page-not-found h1 {
-      font-family: Arial; }
+      font-family: "helveticaneuecyrlight"; }
     .page-not-found-wrapper .page-not-found ul {
       list-style: none;
       padding: 0; }
@@ -6975,7 +6978,7 @@ a[href^="https://www.google.com/maps"] {
   margin-top: 1em !important; }
   .stats-table .catalog-list-item-title {
     background: rgba(0, 0, 0, 0.07);
-    font-family: Arial; }
+    font-family: "helveticaneuecyrregular"; }
   .stats-table .catalog-list-item:first-of-type {
     border-top: none; }
   .stats-table .catalog-list-inner-item > div:not(:last-child) {
@@ -6985,7 +6988,7 @@ a[href^="https://www.google.com/maps"] {
   line-height: 1.3em; }
 
 .stats-review-signature {
-  font-family: Arial;
+  font-family: "helveticaneuecyrlight_italic";
   margin-top: .5em; }
 
 .stats-score {
@@ -7061,9 +7064,6 @@ input {
   display: flex;
   margin-bottom: 10px; }
 
-.student-review-name {
-  font-family: Arial; }
-
 .student-review-date {
   color: #818181; }
 
@@ -7091,7 +7091,6 @@ input {
   display: block; }
 
 .button-student-reviews {
-  font-family: Arial;
   margin-bottom: 0.938em;
   margin-top: 1em; }
 
@@ -7128,7 +7127,6 @@ input {
 .tutor-rating {
   background-color: #3a6699;
   color: white;
-  font-family: Arial;
   padding: 2px 4px;
   border-radius: 2px; }
 
@@ -7268,7 +7266,6 @@ input {
         display: block; }
         .price-wrapper .price-list ul > li .price-item-info .price-item-price {
           font-size: 16px;
-          font-family: Arial;
           font-weight: bold; }
       .price-wrapper .price-list ul > li .price-section .price-line-title {
         color: #a40000; }
@@ -7913,7 +7910,7 @@ input {
   font-size: 14px;
   text-decoration: none;
   font-family: 'helveticaneuecyrregular';
-  padding: 3px 18px 6px;
+  padding: 5px 18px 6px;
   border-radius: 24px;
   border: 0;
   position: relative; }

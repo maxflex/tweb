@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-  font-family: Arial;
+  font-family: $font-regular;
   font-size: 16px;
   -webkit-overflow-scrolling: touch !important;
   line-height: 20px;
@@ -45,7 +45,7 @@ h1 {
   padding: 0 0 .9em 0;
   font-size: $font-size-h1 + em;
   font-weight: normal;
-  font-family: Arial;
+  font-family: 'helveticaneuecyrmedium';
 }
 
 h2 {
@@ -53,7 +53,7 @@ h2 {
   padding: 0 0 0.938em 0;
   font-size: $font-size-h2 + em;
   font-weight: normal;
-  font-family: Arial;
+  font-family: 'helveticaneuecyrmedium';
 }
 
 h3 {
@@ -61,12 +61,12 @@ h3 {
   padding: 0 0 1.125em 0;
   font-size: $font-size-h3 + em;
   font-weight: normal;
-  font-family: Arial;
+  font-family: 'helveticaneuecyrbold';
 }
 
 b {
   font-weight: normal;
-  font-family: Arial;
+  font-family: 'helveticaneuecyrbold';
 }
 
 p {
@@ -261,7 +261,7 @@ a {
     align-items: center;
     justify-content: center;
     opacity: .9;
-    font-family: Arial;
+    font-family: $font-medium;
     color: black;
     left: 0;
     top: 0;
@@ -339,13 +339,13 @@ a[href^="https://www.google.com/maps"] {
     }
     display: flex;
     align-items: flex-start;
-    font-family: Arial;
+    font-family: $font-regular;
     margin-bottom: 11px;
 }
 
 .b-like {
     display: block;
-    font-family: Arial;
+    font-family: $font-bold;
 }
 
 .right-img-price {
@@ -380,7 +380,7 @@ a[href^="https://www.google.com/maps"] {
     & .page-not-found {
         text-align: center;
         & h1 {
-            font-family: Arial;
+            font-family: $font-light;
         }
         & ul {
             list-style: none;
@@ -410,7 +410,7 @@ a[href^="https://www.google.com/maps"] {
   & .catalog-list-item {
       &-title {
           background: rgba(0, 0, 0, 0.07);
-          font-family: Arial;
+          font-family: $font-regular;
       }
       &:first-of-type {
           border-top: none;
@@ -430,7 +430,7 @@ a[href^="https://www.google.com/maps"] {
 }
 
 .stats-review-signature {
-    font-family: Arial;
+    font-family: $font-italic;
     margin-top: .5em;
 }
 
@@ -520,7 +520,6 @@ input {
 }
 
 .student-review-name {
-    font-family: Arial;
 }
 
 .student-review-date {
@@ -560,7 +559,6 @@ input {
 }
 
 .button-student-reviews {
-    font-family: Arial;
     margin-bottom: 0.938em;
     margin-top: 1em;
 }
@@ -607,7 +605,6 @@ input {
 .tutor-rating {
     background-color: #3a6699;
     color: white;
-    font-family: Arial;
     padding: 2px 4px;
     border-radius: 2px;
 }
@@ -790,7 +787,6 @@ input {
                     display: block;
                     & .price-item-price {
                         font-size: 16px;
-                        font-family: Arial;
                         font-weight: bold;
                     }
                 }
