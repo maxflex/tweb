@@ -873,6 +873,7 @@ p.last {
 .main-page {
     & h1 {
         padding-top: 40px;
+        margin-bottom: 10px;
     }
 }
 
@@ -909,6 +910,7 @@ p.last {
         }
     }
     & .more-masters {
+        line-height: 21px;
         width: 249px !important;
         // flex: auto !important;
         // flex: 1.2 !important;
@@ -1088,13 +1090,13 @@ p.last {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-top: 50px;
+        // margin-top: 50px;
         & .gallery-item {
             width: 30%;
             & img {
                 width: 100%;
             }
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
     }
 }
@@ -1162,4 +1164,9 @@ p.last {
 
 .link-small {
     font-size: 12px;
+    font-family: $font-regular !important;
+}
+
+.entity-header {
+    margin-top: 8px;
 }

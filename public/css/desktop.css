@@ -3393,7 +3393,8 @@ a[href^="https://www.google.com/maps"] {
       margin-right: 20px; }
 
 .main-page h1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3 {
-  padding-top: 40px; }
+  padding-top: 40px;
+  margin-bottom: 10px; }
 
 .full-page-masters {
   background-color: #e8e8e8;
@@ -3422,6 +3423,7 @@ a[href^="https://www.google.com/maps"] {
     -webkit-box-flex: 1;
     flex: 1; }
   .main-page-masters .more-masters {
+    line-height: 21px;
     width: 249px !important; }
     .main-page-masters .more-masters .btn-border {
       margin-top: 26px; }
@@ -3545,11 +3547,10 @@ a[href^="https://www.google.com/maps"] {
   display: flex;
   flex-wrap: wrap;
   -webkit-box-pack: justify;
-  justify-content: space-between;
-  margin-top: 50px; }
+  justify-content: space-between; }
   .main-gallery-block .main-gallery-wrapper .gallery-item, .video-block .main-gallery-wrapper .gallery-item, .main-gallery-block .video-wrapper .gallery-item, .video-block .video-wrapper .gallery-item {
     width: 30%;
-    margin-bottom: 15px; }
+    margin-bottom: 30px; }
     .main-gallery-block .main-gallery-wrapper .gallery-item img, .video-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img, .video-block .video-wrapper .gallery-item img {
       width: 100%; }
 
@@ -3602,7 +3603,11 @@ a[href^="https://www.google.com/maps"] {
   font-weight: normal; }
 
 .link-small {
-  font-size: 12px; }
+  font-size: 12px;
+  font-family: "helveticaneuecyrregular" !important; }
+
+.entity-header {
+  margin-top: 8px; }
 
 /* Components */
 .top-message {
