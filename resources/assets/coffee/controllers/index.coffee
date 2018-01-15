@@ -60,7 +60,7 @@ angular
         # длительность видео
         $scope.videoDuration = (v) ->
             if v.duration
-                format = if v.duration >= 60 then 'mm:ss' else 'ss'
+                format = if v.duration >= 60 then 'm:ss' else 'ss'
                 moment.utc(v.duration * 1000).format(format)
 
         bindFullscreenRequest = (video) ->

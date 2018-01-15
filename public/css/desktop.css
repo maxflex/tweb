@@ -3508,7 +3508,7 @@ a[href^="https://www.google.com/maps"] {
         /* W3C compliant browsers */ }
     .price-list ul > li .price-item-info {
       float: right;
-      width: 150px; }
+      width: 200px; }
       .price-list ul > li .price-item-info .price-item-price {
         font-weight: bold; }
     .price-list ul > li .price-line-title {
