@@ -3485,7 +3485,7 @@ a[href^="https://www.google.com/maps"] {
   overflow: hidden; }
   .price-list ul {
     list-style-type: none;
-    padding-left: 30px; }
+    padding-left: 45px; }
     .price-list ul > li:last-child .price-position {
       border-bottom: none !important; }
     .price-list ul > li .price-item-root > .price-section {
