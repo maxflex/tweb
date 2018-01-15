@@ -3476,8 +3476,10 @@ a[href^="https://www.google.com/maps"] {
       width: 100%; }
       .equipment-item.full > div:first-child img {
         width: 100%; }
-      .equipment-item.full > div:last-child > div {
-        width: 100%; }
+      .equipment-item.full > div:last-child {
+        margin-top: 20px; }
+        .equipment-item.full > div:last-child > div {
+          width: 100%; }
 
 .price-list {
   overflow: hidden; }

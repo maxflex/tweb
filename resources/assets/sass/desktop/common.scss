@@ -984,6 +984,7 @@ p.last {
                 }
             }
             &:last-child {
+                margin-top: 20px;
                 & > div {
                     width: 100%;
                 }
