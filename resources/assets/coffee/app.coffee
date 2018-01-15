@@ -14,6 +14,8 @@ angular.module("App", ['ngResource', 'angular-ladda', 'angularFileUpload', 'angu
     .config (laddaProvider) ->
         laddaProvider.setOption
             spinnerColor: '#83b060'
+    .filter 'youtubeEmbedUrl', ($sce) ->
+        (videoId) -> $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + videoId + '?enablejsapi=1&showinfo=0')
     .filter 'cut', ->
         (value, wordwise, max, tail = '') ->
             return '' if not value

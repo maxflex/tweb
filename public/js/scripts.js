@@ -20104,6 +20104,10 @@ return PhotoSwipeUI_Default;
     return laddaProvider.setOption({
       spinnerColor: '#83b060'
     });
+  }).filter('youtubeEmbedUrl', function($sce) {
+    return function(videoId) {
+      return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + videoId + '?enablejsapi=1&showinfo=0');
+    };
   }).filter('cut', function() {
     return function(value, wordwise, max, tail) {
       var lastspace;
