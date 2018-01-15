@@ -3485,7 +3485,7 @@ a[href^="https://www.google.com/maps"] {
   overflow: hidden; }
   .price-list ul {
     list-style-type: none;
-    padding-left: 15px; }
+    padding-left: 30px; }
     .price-list ul > li:last-child .price-position {
       border-bottom: none !important; }
     .price-list ul > li .price-item-root > .price-section {
@@ -3512,7 +3512,7 @@ a[href^="https://www.google.com/maps"] {
         /* W3C compliant browsers */ }
     .price-list ul > li .price-item-info {
       float: right;
-      width: 200px; }
+      width: 240px; }
       .price-list ul > li .price-item-info .price-item-price {
         font-weight: bold; }
     .price-list ul > li .price-line-title {

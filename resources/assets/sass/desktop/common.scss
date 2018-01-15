@@ -998,7 +998,7 @@ p.last {
     overflow: hidden;
     & ul {
       list-style-type: none;
-      padding-left: 15px;
+      padding-left: 30px;
     //   margin-bottom: 15px;
         & > li {
             &:last-child .price-position {
@@ -1030,7 +1030,7 @@ p.last {
             }
             & .price-item-info {
                 float: right;
-                width: 200px;
+                width: 240px;
                 & .price-item-price {
                     font-weight: bold;
                 }
