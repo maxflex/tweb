@@ -3442,42 +3442,40 @@ a[href^="https://www.google.com/maps"] {
       padding-top: 21px;
       text-align: left; }
 
-.equipment-wrapper {
-  margin-top: 30px; }
-  .equipment-wrapper .equipment-item {
-    display: -webkit-box;
-    display: flex;
-    margin: 80px 0; }
-    .equipment-wrapper .equipment-item > div {
-      width: 50%; }
-      .equipment-wrapper .equipment-item > div:first-child {
-        text-align: center; }
-        .equipment-wrapper .equipment-item > div:first-child img {
-          width: 80%; }
-      .equipment-wrapper .equipment-item > div:last-child b, .equipment-wrapper .equipment-item > div:last-child .address-more li > div:first-of-type, .address-more .equipment-wrapper .equipment-item > div:last-child li > div:first-of-type {
-        font-size: 28px;
-        display: block;
-        margin-bottom: 20px; }
-      .equipment-wrapper .equipment-item > div:last-child button {
-        display: block;
-        margin-top: 20px; }
-      .equipment-wrapper .equipment-item > div:last-child > div {
-        width: 80%;
-        margin: 0 auto; }
-    .equipment-wrapper .equipment-item.right {
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: reverse;
-      flex-direction: row-reverse; }
-    .equipment-wrapper .equipment-item.full {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      flex-direction: column; }
-      .equipment-wrapper .equipment-item.full > div {
+.equipment-item {
+  display: -webkit-box;
+  display: flex;
+  margin: 80px 0; }
+  .equipment-item > div {
+    width: 50%; }
+    .equipment-item > div:first-child {
+      text-align: center; }
+      .equipment-item > div:first-child img {
+        width: 80%; }
+    .equipment-item > div:last-child b, .equipment-item > div:last-child .address-more li > div:first-of-type, .address-more .equipment-item > div:last-child li > div:first-of-type {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 20px; }
+    .equipment-item > div:last-child button {
+      display: block;
+      margin-top: 20px; }
+    .equipment-item > div:last-child > div {
+      width: 80%;
+      margin: 0 auto; }
+  .equipment-item.right {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    flex-direction: row-reverse; }
+  .equipment-item.full {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column; }
+    .equipment-item.full > div {
+      width: 100%; }
+      .equipment-item.full > div:first-child img {
         width: 100%; }
-        .equipment-wrapper .equipment-item.full > div:first-child img {
-          width: 100%; }
-        .equipment-wrapper .equipment-item.full > div:last-child > div {
-          width: 100%; }
+      .equipment-item.full > div:last-child > div {
+        width: 100%; }
 
 .price-list {
   overflow: hidden; }
@@ -3595,7 +3593,7 @@ a[href^="https://www.google.com/maps"] {
   color: #818181;
   font-size: 12px; }
 
-.full-width-wrapper, .equipment-wrapper .equipment-item.full > div:first-child {
+.full-width-wrapper, .equipment-item.full > div:first-child {
   width: 100vw;
   margin-left: calc((100vw - 960px) / 2 * -1); }
 
