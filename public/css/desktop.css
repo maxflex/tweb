@@ -3447,7 +3447,7 @@ a[href^="https://www.google.com/maps"] {
   .equipment-wrapper .equipment-item {
     display: -webkit-box;
     display: flex;
-    margin-bottom: 30px; }
+    margin: 80px 0; }
     .equipment-wrapper .equipment-item > div {
       width: 50%; }
       .equipment-wrapper .equipment-item > div:first-child {
@@ -3461,6 +3461,9 @@ a[href^="https://www.google.com/maps"] {
       .equipment-wrapper .equipment-item > div:last-child button {
         display: block;
         margin-top: 20px; }
+      .equipment-wrapper .equipment-item > div:last-child > div {
+        width: 80%;
+        margin: 0 auto; }
     .equipment-wrapper .equipment-item.right {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: reverse;
@@ -3472,6 +3475,8 @@ a[href^="https://www.google.com/maps"] {
       .equipment-wrapper .equipment-item.full > div {
         width: 100%; }
         .equipment-wrapper .equipment-item.full > div:first-child img {
+          width: 100%; }
+        .equipment-wrapper .equipment-item.full > div:last-child > div {
           width: 100%; }
 
 .price-list {
