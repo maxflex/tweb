@@ -3531,33 +3531,42 @@ a[href^="https://www.google.com/maps"] {
   .price-list .price-item-last .price-line {
     border-bottom: none; }
 
-.main-gallery-block b, .main-gallery-block .address-more li > div:first-of-type, .address-more .main-gallery-block li > div:first-of-type {
-  font-size: 18px;
-  display: block;
+.main-gallery-block b, .video-block b, .main-gallery-block .address-more li > div:first-of-type, .address-more .main-gallery-block li > div:first-of-type, .video-block .address-more li > div:first-of-type, .address-more .video-block li > div:first-of-type {
   margin: 15px 0; }
-  .main-gallery-block b .fa, .main-gallery-block .address-more li > div:first-of-type .fa, .address-more .main-gallery-block li > div:first-of-type .fa, .main-gallery-block b .check-mark, .main-gallery-block .address-more li > div:first-of-type .check-mark, .address-more .main-gallery-block li > div:first-of-type .check-mark {
+  .main-gallery-block b .fa, .video-block b .fa, .main-gallery-block .address-more li > div:first-of-type .fa, .address-more .main-gallery-block li > div:first-of-type .fa, .video-block .address-more li > div:first-of-type .fa, .address-more .video-block li > div:first-of-type .fa, .main-gallery-block b .check-mark, .video-block b .check-mark, .main-gallery-block .address-more li > div:first-of-type .check-mark, .address-more .main-gallery-block li > div:first-of-type .check-mark, .video-block .address-more li > div:first-of-type .check-mark, .address-more .video-block li > div:first-of-type .check-mark {
     font-size: 14px;
     color: #d24a43;
     margin-right: 5px;
     top: -1px;
     position: relative; }
-  .main-gallery-block b span, .main-gallery-block .address-more li > div:first-of-type span, .address-more .main-gallery-block li > div:first-of-type span {
-    font-family: "helveticaneuecyrregular";
-    font-size: 12px;
-    margin-left: 6px; }
 
-.main-gallery-block .main-gallery-wrapper {
+.main-gallery-block .main-gallery-wrapper, .video-block .main-gallery-wrapper, .main-gallery-block .video-wrapper, .video-block .video-wrapper {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   -webkit-box-pack: justify;
   justify-content: space-between;
   margin-top: 50px; }
-  .main-gallery-block .main-gallery-wrapper .gallery-item {
+  .main-gallery-block .main-gallery-wrapper .gallery-item, .video-block .main-gallery-wrapper .gallery-item, .main-gallery-block .video-wrapper .gallery-item, .video-block .video-wrapper .gallery-item {
     width: 30%;
     margin-bottom: 15px; }
-    .main-gallery-block .main-gallery-wrapper .gallery-item img {
+    .main-gallery-block .main-gallery-wrapper .gallery-item img, .video-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img, .video-block .video-wrapper .gallery-item img {
       width: 100%; }
+
+.video-block {
+  margin-top: 0 !important; }
+
+.video-wrapper {
+  margin-top: 0 !important; }
+
+.video-duratoin {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1px 3px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px; }
 
 .map-wrapper {
   margin-top: 20px;

@@ -1069,8 +1069,8 @@ p.last {
 
 .main-gallery-block {
     & b {
-        font-size: 18px;
-        display: block;
+        // font-size: 18px;
+        // display: block;
         margin: 15px 0;
         & .fa {
             font-size: 14px;
@@ -1078,11 +1078,6 @@ p.last {
             margin-right: 5px;
             top: -1px;
             position: relative;
-        }
-        & span {
-            font-family: $font-regular;
-            font-size: 12px;
-            margin-left: 6px;
         }
     }
     & .main-gallery-wrapper {
@@ -1098,6 +1093,26 @@ p.last {
             margin-bottom: 15px;
         }
     }
+}
+
+.video-block {
+    @extend .main-gallery-block;
+    margin-top: 0 !important;
+}
+
+.video-wrapper {
+    @extend .main-gallery-wrapper;
+    margin-top: 0 !important;
+}
+
+.video-duratoin {
+    background: rgba(black, .8);
+    color: white;
+    padding: 1px 3px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }
 
 

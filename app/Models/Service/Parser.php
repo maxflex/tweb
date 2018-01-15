@@ -6,6 +6,7 @@
     use App\Models\Review;
     use App\Models\Page;
     use App\Models\Master;
+    use App\Models\Video;
     use App\Models\Equipment;
     use DB;
     use Cache;
@@ -185,6 +186,10 @@
                             $ids = explode(',', $args[0]);
                             $replacement = Photo::parse($ids, isset($args[1]));
                         }
+                        break;
+                    case 'video':
+                        $ids = explode(',', $args[0]);
+                        $replacement = Video::whereIn('id', $ids)->get()->toJson();
                         break;
                     case 'photo':
                         $replacement = Photo::find($args[0])->url;

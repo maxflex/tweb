@@ -8,10 +8,12 @@ angular
         $timeout ->
             $scope.prices = PriceSection.query()
 
-            $scope.has_more_videos = true
-            $scope.videos_page = 0
-            $scope.videos = []
-            searchVideos()
+            $scope.displayed_videos = 3
+            $scope.videos.forEach (v) -> bindFullscreenRequest(v)
+            # $scope.has_more_videos = true
+            # $scope.videos_page = 0
+            # $scope.videos = []
+            # searchVideos()
 
             $scope.has_more_reviews = true
             $scope.reviews_page = 0
@@ -55,13 +57,22 @@ angular
                 $timeout -> response.data.videos.forEach (v) -> bindFullscreenRequest(v)
                 # if $scope.mobile then $timeout -> bindToggle()
 
-        $scope.youtubeLink = (video) -> "https://www.youtube.com/embed/#{video.code}?showinfo=0"
+        # длительность видео
+        $scope.videoDuration = (v) ->
+            if v.duration
+                format = if v.duration >= 60 then 'mm:ss' else 'ss'
+                moment.utc(v.duration * 1000).format(format)
 
         bindFullscreenRequest = (video) ->
             console.log("binding for video #{video.id}")
             iframe = document.getElementById("youtube-video-#{video.id}")
             requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
-            $scope.player[video.id] = new YT.Player "youtube-video-#{video.id}", {}
+            player = new YT.Player "youtube-video-#{video.id}",
+                events:
+                    onReady: (p) ->
+                        video.duration = p.target.getDuration()
+                        $timeout -> $scope.$apply()
+            $scope.player[video.id] = player
             $scope.player[video.id].addEventListener 'onStateChange', (state) ->
                 requestFullScreen.bind(iframe)()
 

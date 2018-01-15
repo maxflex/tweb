@@ -20553,10 +20553,10 @@ return PhotoSwipeUI_Default;
     $scope.player = {};
     $timeout(function() {
       $scope.prices = PriceSection.query();
-      $scope.has_more_videos = true;
-      $scope.videos_page = 0;
-      $scope.videos = [];
-      searchVideos();
+      $scope.displayed_videos = 3;
+      $scope.videos.forEach(function(v) {
+        return bindFullscreenRequest(v);
+      });
       $scope.has_more_reviews = true;
       $scope.reviews_page = 0;
       $scope.reviews = [];
@@ -20597,15 +20597,29 @@ return PhotoSwipeUI_Default;
         });
       });
     };
-    $scope.youtubeLink = function(video) {
-      return "https://www.youtube.com/embed/" + video.code + "?showinfo=0";
+    $scope.videoDuration = function(v) {
+      var format;
+      if (v.duration) {
+        format = v.duration >= 60 ? 'mm:ss' : 'ss';
+        return moment.utc(v.duration * 1000).format(format);
+      }
     };
     bindFullscreenRequest = function(video) {
-      var iframe, requestFullScreen;
+      var iframe, player, requestFullScreen;
       console.log("binding for video " + video.id);
       iframe = document.getElementById("youtube-video-" + video.id);
       requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-      $scope.player[video.id] = new YT.Player("youtube-video-" + video.id, {});
+      player = new YT.Player("youtube-video-" + video.id, {
+        events: {
+          onReady: function(p) {
+            video.duration = p.target.getDuration();
+            return $timeout(function() {
+              return $scope.$apply();
+            });
+          }
+        }
+      });
+      $scope.player[video.id] = player;
       return $scope.player[video.id].addEventListener('onStateChange', function(state) {
         return requestFullScreen.bind(iframe)();
       });
