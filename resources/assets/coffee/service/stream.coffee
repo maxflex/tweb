@@ -58,8 +58,8 @@ angular.module 'App'
                 action: action
                 type: type
                 step: this.cookie.step
-                google_id: googleClientId()
-                yandex_id: yaCounter8061652.getClientID()
+                # google_id: googleClientId()
+                # yandex_id: yaCounter8061652.getClientID()
                 mobile: if (typeof isMobile is 'undefined') then '0' else '1'
 
             $.each additional, (key, value) =>

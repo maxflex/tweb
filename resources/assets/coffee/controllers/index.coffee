@@ -5,11 +5,12 @@ angular
 
         $scope.player = {}
 
+        window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v) -> initVideo(v)
+
         $timeout ->
             $scope.prices = PriceSection.query()
 
             $scope.displayed_videos = 3
-            $scope.videos.forEach (v) -> bindFullscreenRequest(v)
             # $scope.has_more_videos = true
             # $scope.videos_page = 0
             # $scope.videos = []
@@ -70,7 +71,7 @@ angular
             $.each $scope.player, (e, p) ->
                 p.stopVideo() if (p.getPlayerState && p.getPlayerState() == 1 && p.a.id != except_id)
 
-        bindFullscreenRequest = (video) ->
+        initVideo = (video) ->
             console.log("binding for video #{video.id}")
             iframe = document.getElementById("youtube-video-#{video.id}")
             requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen

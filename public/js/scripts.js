@@ -20548,15 +20548,17 @@ return PhotoSwipeUI_Default;
 
 (function() {
   angular.module('App').controller('Index', function($scope, $timeout, $http, PriceSection) {
-    var bindFullscreenRequest, initGmap, searchGallery, searchReviews, searchVideos;
+    var initGmap, initVideo, searchGallery, searchReviews, searchVideos;
     bindArguments($scope, arguments);
     $scope.player = {};
+    window.onYouTubeIframeAPIReady = function() {
+      return $scope.videos.forEach(function(v) {
+        return initVideo(v);
+      });
+    };
     $timeout(function() {
       $scope.prices = PriceSection.query();
       $scope.displayed_videos = 3;
-      $scope.videos.forEach(function(v) {
-        return bindFullscreenRequest(v);
-      });
       $scope.has_more_reviews = true;
       $scope.reviews_page = 0;
       $scope.reviews = [];
@@ -20607,7 +20609,7 @@ return PhotoSwipeUI_Default;
         }
       });
     };
-    bindFullscreenRequest = function(video) {
+    initVideo = function(video) {
       var iframe, player, requestFullScreen;
       console.log("binding for video " + video.id);
       iframe = document.getElementById("youtube-video-" + video.id);
@@ -21406,6 +21408,71 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Tutor', function($resource) {
+    return $resource(apiPath('tutors'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('tutors', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
+
+}).call(this);
+
+(function() {
   angular.module('App').directive('academic', function() {
     return {
       restrict: 'E',
@@ -21609,71 +21676,6 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Tutor', function($resource) {
-    return $resource(apiPath('tutors'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('tutors', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
-      }
-    });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
-  });
-
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
-
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
-      }
-    };
-  };
-
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
-      }
-    };
-  };
-
-}).call(this);
-
-(function() {
   angular.module('App').service('PhoneService', function() {
     var isFull;
     this.checkForm = function(element) {
@@ -21823,8 +21825,6 @@ return PhotoSwipeUI_Default;
         action: action,
         type: type,
         step: this.cookie.step,
-        google_id: googleClientId(),
-        yandex_id: yaCounter8061652.getClientID(),
         mobile: typeof isMobile === 'undefined' ? '0' : '1'
       };
       $.each(additional, (function(_this) {
@@ -21852,6 +21852,8 @@ var scope = null
 var player = null
 var isMobile = false
 var modal_inited = false
+
+// window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
 $(document).ready(function() {
     //Custom select
@@ -21977,7 +21979,8 @@ function getArguments(func) {
 }
 
 function googleClientId() {
-    return ga.getAll()[0].get('clientId')
+    return null;
+    //return ga.getAll()[0].get('clientId')
 }
 
 window.notify_options = {

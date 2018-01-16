@@ -3,6 +3,8 @@ var player = null
 var isMobile = false
 var modal_inited = false
 
+// window.onYouTubeIframeAPIReady = function () { console.log('ready') }
+
 $(document).ready(function() {
     //Custom select
     var $cs = $('.custom-select').customSelect();
@@ -127,7 +129,8 @@ function getArguments(func) {
 }
 
 function googleClientId() {
-    return ga.getAll()[0].get('clientId')
+    return null;
+    //return ga.getAll()[0].get('clientId')
 }
 
 window.notify_options = {
