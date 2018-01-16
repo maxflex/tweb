@@ -3488,8 +3488,6 @@ a[href^="https://www.google.com/maps"] {
   .price-list ul {
     list-style-type: none;
     padding-left: 45px; }
-    .price-list ul > li:last-child .price-position {
-      border-bottom: none !important; }
     .price-list ul > li .price-item-root > .price-section {
       font-weight: bold;
       font-size: 15px; }
@@ -3616,6 +3614,9 @@ a[href^="https://www.google.com/maps"] {
 .flex-items {
   display: -webkit-box !important;
   display: flex !important; }
+
+.price-item-section ul > li.price-item-position:last-child .price-position {
+  border-bottom: none !important; }
 
 /* Components */
 .top-message {

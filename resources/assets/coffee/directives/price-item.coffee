@@ -1,7 +1,7 @@
 angular.module 'App'
     .directive 'priceItem', ->
         restrict: 'E'
-        templateUrl: 'directives/price-item'
+        templateUrl: '/directives/price-item'
         scope:
             item:   '='
         controller: ($scope, $timeout, $rootScope, PriceSection, PricePosition, Units) ->

@@ -7903,7 +7903,20 @@ input {
   text-transform: none; }
 
 .btn, .btn-border, .btn-border-gray {
-  color: red; }
+  display: inline-block;
+  vertical-align: middle;
+  color: black;
+  font-size: 12px;
+  text-decoration: none;
+  font-family: "helveticaneuecyrmedium";
+  padding: 5px 12px 6px;
+  border-radius: 24px;
+  border: 0;
+  position: relative; }
+  .btn:disabled, .btn-border:disabled, .btn-border-gray:disabled {
+    background: #818181; }
+  .btn span, .btn-border span, .btn-border-gray span {
+    line-height: inherit !important; }
 
 .btn-border, .btn-border-gray {
   background: transparent;

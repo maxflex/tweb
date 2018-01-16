@@ -1003,9 +1003,9 @@ p.last {
       padding-left: 45px;
     //   margin-bottom: 15px;
         & > li {
-            &:last-child .price-position {
-                border-bottom: none !important;
-            }
+            // &:last-child .price-position {
+            //     border-bottom: none !important;
+            // }
             & .price-item-root > .price-section {
                 font-weight: bold;
                 font-size: 15px;
@@ -1176,4 +1176,8 @@ p.last {
 
 .flex-items {
     display: flex !important;
+}
+
+.price-item-section ul > li.price-item-position:last-child .price-position {
+    border-bottom: none !important;
 }
