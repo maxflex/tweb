@@ -967,13 +967,28 @@ p.last {
                 margin-top: 20px;
             }
             & > div {
-                width: 80%;
-                margin: 0 auto;
+                width: 90%;
             }
         }
     }
     &.right {
         flex-direction: row-reverse;
+        & > div {
+            &:last-child {
+                & > div {
+                    float: left;
+                }
+            }
+        }
+    }
+    &.left {
+        & > div {
+            &:last-child {
+                & > div {
+                    float: right;
+                }
+            }
+        }
     }
     &.full {
         flex-direction: column;

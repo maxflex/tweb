@@ -3464,12 +3464,15 @@ a[href^="https://www.google.com/maps"] {
       display: block;
       margin-top: 20px; }
     .equipment-item > div:last-child > div {
-      width: 80%;
-      margin: 0 auto; }
+      width: 90%; }
   .equipment-item.right {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
     flex-direction: row-reverse; }
+    .equipment-item.right > div:last-child > div {
+      float: left; }
+  .equipment-item.left > div:last-child > div {
+    float: right; }
   .equipment-item.full {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
