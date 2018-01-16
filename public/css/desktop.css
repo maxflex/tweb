@@ -3555,6 +3555,8 @@ a[href^="https://www.google.com/maps"] {
     margin-bottom: 30px; }
     .main-gallery-block .main-gallery-wrapper .gallery-item img, .video-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img, .video-block .video-wrapper .gallery-item img {
       width: 100%; }
+    .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child( > 3), .video-block .main-gallery-wrapper .gallery-item:nth-child( > 3), .main-gallery-block .video-wrapper .gallery-item:nth-child( > 3), .video-block .video-wrapper .gallery-item:nth-child( > 3) {
+      margin-bottom: 0; }
 
 .video-block {
   margin-top: 0 !important; }
@@ -3620,6 +3622,9 @@ a[href^="https://www.google.com/maps"] {
 
 .price-item-section ul > li.price-item-position:last-child .price-position {
   border-bottom: none !important; }
+
+.reviews-wrapper {
+  margin: 75px 0 0; }
 
 /* Components */
 .top-message {

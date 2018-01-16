@@ -1100,6 +1100,9 @@ p.last {
                 width: 100%;
             }
             margin-bottom: 30px;
+            &:nth-child(>3) {
+                margin-bottom: 0;
+            }
         }
     }
 }
@@ -1183,4 +1186,8 @@ p.last {
 
 .price-item-section ul > li.price-item-position:last-child .price-position {
     border-bottom: none !important;
+}
+
+.reviews-wrapper {
+    margin: 75px 0 0;
 }
