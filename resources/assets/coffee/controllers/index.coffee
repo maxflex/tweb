@@ -10,6 +10,7 @@ angular
         $timeout ->
             $scope.prices = PriceSection.query()
 
+            $scope.videos.forEach (v) -> initVideo(v)
             $scope.displayed_videos = 3
             # $scope.has_more_videos = true
             # $scope.videos_page = 0
@@ -72,6 +73,7 @@ angular
                 p.stopVideo() if (p.getPlayerState && p.getPlayerState() == 1 && p.a.id != except_id)
 
         initVideo = (video) ->
+            return if not YT.Player or $scope.player[video.id]
             console.log("binding for video #{video.id}")
             iframe = document.getElementById("youtube-video-#{video.id}")
             requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
