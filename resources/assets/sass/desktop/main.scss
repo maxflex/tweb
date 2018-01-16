@@ -340,8 +340,8 @@ ol, ul {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
-    & .fa {
-        font-size: 30px;
+    & img {
+        height: 38px;
         margin-right: 12px;
     }
 }

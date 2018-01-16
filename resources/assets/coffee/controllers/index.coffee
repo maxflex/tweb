@@ -20,11 +20,12 @@ angular
             $scope.reviews = []
             searchReviews()
 
-            $scope.gallery_obj = {} #
-            $scope.has_more_gallery = true
-            $scope.gallery_page = 0
-            $scope.gallery = []
-            searchGallery()
+            $scope.displayed_gallery = 6
+            # $scope.gallery_obj = {} #
+            # $scope.has_more_gallery = true
+            # $scope.gallery_page = 0
+            # $scope.gallery = []
+            # searchGallery()
 
             initGmap()
 

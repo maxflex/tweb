@@ -7449,8 +7449,8 @@ input {
 
 .footer-icon {
   margin-bottom: 30px; }
-  .footer-icon .fa, .footer-icon .check-mark {
-    font-size: 30px;
+  .footer-icon img {
+    height: 38px;
     margin-bottom: 6px; }
 
 .tutors {

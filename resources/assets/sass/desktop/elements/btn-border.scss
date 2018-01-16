@@ -3,4 +3,8 @@
   background: transparent;
   border: 1px solid $main-color;
   color: $main-color;
+  &.gray {
+      color: $text-grey;
+      border-color: $text-grey-light;
+  }
 }

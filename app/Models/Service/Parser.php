@@ -3,6 +3,7 @@
     use App\Models\Program;
     use App\Models\Variable;
     use App\Models\Photo;
+    use App\Models\Gallery;
     use App\Models\Review;
     use App\Models\Page;
     use App\Models\Master;
@@ -180,12 +181,12 @@
                         $replacement = is_numeric($args[0]) ? Page::getUrl($args[0]) : Page::getSubjectUrl($args[0]);
                         break;
                     case 'gallery':
-                        if ($args[0] == 'all') {
-                            $replacement = Photo::parse(Photo::pluck('id'), isset($args[1]));
-                        } else {
-                            $ids = explode(',', $args[0]);
-                            $replacement = Photo::parse($ids, isset($args[1]));
+                        $ids = explode(',', $args[0]);
+                        $folder_id = $args[1];
+                        if ($folder_id) {
+                            $ids = array_merge($ids, Gallery::where('folder_id', $folder_id)->pluck('id')->all());
                         }
+                        $replacement = Gallery::with('master')->whereIn('id', $ids)->get()->toJson();
                         break;
                     case 'video':
                         $ids = explode(',', $args[0]);

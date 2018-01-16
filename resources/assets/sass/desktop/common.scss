@@ -900,6 +900,8 @@ p.last {
                 }
                 & b {
                     margin: 0;
+                    font-family: $font-medium;
+                    font-size: 20px;
                 }
             }
         }
@@ -1170,4 +1172,8 @@ p.last {
 
 .entity-header {
     margin-top: 8px;
+}
+
+.flex-items {
+    display: flex !important;
 }
