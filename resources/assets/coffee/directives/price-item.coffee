@@ -9,6 +9,8 @@ angular.module 'App'
             $scope.findById = $rootScope.findById
             $scope.controller_scope = scope
 
+            $scope.priceRounded = (price) -> Math.round(price / 10) * 10
+
             $scope.toggle = (item, event) ->
                 if item.items && item.items.length
                     $(event.target).toggleClass('active')

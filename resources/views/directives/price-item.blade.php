@@ -2,7 +2,7 @@
     ng-click="toggle(item, $event)" ng-class="{'pointer': item.items && item.items.length}">
     <span class="price-line-title">@{{ item.model.name }}</span>
     <span ng-show="!item.is_section && item.model.price" class="price-item-info">
-        от <span class="price-item-price">@{{ item.model.price | number }}</span> руб.<span ng-show="item.model.unit">/@{{ findById(Units, item.model.unit).title }}</span>
+        от <span class="price-item-price">@{{ priceRounded(item.model.price) | number }}</span> руб.<span ng-show="item.model.unit">/@{{ findById(Units, item.model.unit).title }}</span>
     </span>
     <span ng-show="item.is_section && item.model.extra_column" class="price-section-desc">
         @{{ item.model.extra_column }}
