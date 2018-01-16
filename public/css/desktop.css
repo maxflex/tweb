@@ -3602,7 +3602,10 @@ a[href^="https://www.google.com/maps"] {
 
 .price-section-desc {
   font-size: 12px;
-  font-weight: normal; }
+  font-weight: normal;
+  opacity: .5;
+  margin: 0 5px;
+  pointer-events: none; }
 
 .link-small {
   font-size: 12px;
@@ -4565,9 +4568,10 @@ ol, ul {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  line-height: 21px; }
   .footer-icon img {
-    height: 38px;
+    height: 30px;
     margin-right: 12px; }
 
 @-webkit-keyframes sk-stretchdelay {

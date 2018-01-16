@@ -1163,6 +1163,9 @@ p.last {
 .price-section-desc {
     font-size: 12px;
     font-weight: normal;
+    opacity: .5;
+    margin: 0 5px;
+    pointer-events: none;
 }
 
 .link-small {
