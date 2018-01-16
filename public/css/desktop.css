@@ -4191,12 +4191,11 @@ a[href^="https://www.google.com/maps"] {
   line-height: 14px;
   display: inline-block;
   vertical-align: middle;
-  background: #f6f0e3;
   color: black;
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
-  font-family: 'helveticaneuecyrregular';
-  padding: 5px 18px 6px;
+  font-family: "helveticaneuecyrmedium";
+  padding: 5px 12px 6px;
   border-radius: 16px;
   border: 0;
   position: relative; }
@@ -4218,8 +4217,10 @@ a[href^="https://www.google.com/maps"] {
   border: 1px solid #ae4037;
   color: white; }
   .btn-fill img {
-    height: 16px;
+    height: 14px;
     margin-right: 5px; }
+  .btn-fill.btn-calc {
+    padding-left: 9px; }
 
 .input-text,
 .textarea {

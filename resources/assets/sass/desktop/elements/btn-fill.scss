@@ -4,7 +4,10 @@
   border: 1px solid $main-color;
   color: white;
   & img {
-      height: 16px;
+      height: 14px;
       margin-right: 5px;
+  }
+  &.btn-calc {
+      padding-left: 9px;
   }
 }
