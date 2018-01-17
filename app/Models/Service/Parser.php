@@ -181,12 +181,7 @@
                         $replacement = is_numeric($args[0]) ? Page::getUrl($args[0]) : Page::getSubjectUrl($args[0]);
                         break;
                     case 'gallery':
-                        $ids = explode(',', $args[0]);
-                        $folder_id = $args[1];
-                        if ($folder_id) {
-                            $ids = array_merge($ids, Gallery::where('folder_id', $folder_id)->pluck('id')->all());
-                        }
-                        $replacement = Gallery::with('master')->whereIn('id', $ids)->get()->toJson();
+                        $replacement = self::_parseGallery($args[0], $args[1]);
                         break;
                     case 'video':
                         $ids = explode(',', $args[0]);
@@ -303,5 +298,42 @@
                     )
                 )
             );
+        }
+
+        private static function _parseGallery($gallery_ids, $folder_ids)
+        {
+            $gallery_ids = array_filter(explode(',', $gallery_ids));
+
+            if ($folder_ids) {
+                $folder_ids = array_filter(explode(',', $folder_ids));
+                $ids_by_folder = [];
+                $max_size = -1;
+                // мерджим фотки из папок по типу
+                // 1 3
+                // 2 4
+                // 5
+                // 6
+                // => 1,3,2,4,5,6
+                foreach($folder_ids as $folder_id) {
+                    $ids_by_folder[$folder_id] = Gallery::where('folder_id', $folder_id)->orderBy('position')->pluck('id')->all();
+                    $size = count($ids_by_folder[$folder_id]);
+                    if ($size > $max_size) {
+                        $max_size = $size;
+                    }
+                }
+
+                $ordered_ids = [];
+                foreach(range(0, $max_size - 1) as $i) {
+                    foreach($folder_ids as $folder_id) {
+                        if (isset($ids_by_folder[$folder_id][$i])) {
+                            $ordered_ids[] = $ids_by_folder[$folder_id][$i];
+                        }
+                    }
+                }
+                $gallery_ids = array_merge($gallery_ids, $ordered_ids);
+            }
+
+            return Gallery::with('master')->whereIn('id', $gallery_ids)
+                ->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'))->get()->toJson();
         }
     }

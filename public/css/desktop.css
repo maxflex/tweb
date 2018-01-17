@@ -3376,7 +3376,7 @@ a[href^="https://www.google.com/maps"] {
 
 .service-list {
   width: 800px;
-  margin: 15px auto 0;
+  margin: 15px auto 30px;
   text-align: left;
   display: -webkit-box;
   display: flex;
@@ -3550,16 +3550,15 @@ a[href^="https://www.google.com/maps"] {
 .main-gallery-block .main-gallery-wrapper, .video-block .main-gallery-wrapper, .main-gallery-block .video-wrapper, .video-block .video-wrapper {
   display: -webkit-box;
   display: flex;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  justify-content: space-between; }
+  flex-wrap: wrap; }
   .main-gallery-block .main-gallery-wrapper .gallery-item, .video-block .main-gallery-wrapper .gallery-item, .main-gallery-block .video-wrapper .gallery-item, .video-block .video-wrapper .gallery-item {
-    width: 30%;
-    margin-bottom: 30px; }
+    width: 30%; }
+    .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child(3n - 1), .video-block .main-gallery-wrapper .gallery-item:nth-child(3n - 1), .main-gallery-block .video-wrapper .gallery-item:nth-child(3n - 1), .video-block .video-wrapper .gallery-item:nth-child(3n - 1) {
+      margin: 0 48px; }
     .main-gallery-block .main-gallery-wrapper .gallery-item img, .video-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img, .video-block .video-wrapper .gallery-item img {
       width: 100%; }
-    .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child( > 3), .video-block .main-gallery-wrapper .gallery-item:nth-child( > 3), .main-gallery-block .video-wrapper .gallery-item:nth-child( > 3), .video-block .video-wrapper .gallery-item:nth-child( > 3) {
-      margin-bottom: 0; }
+    .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child(n + 4), .video-block .main-gallery-wrapper .gallery-item:nth-child(n + 4), .main-gallery-block .video-wrapper .gallery-item:nth-child(n + 4), .video-block .video-wrapper .gallery-item:nth-child(n + 4) {
+      margin-top: 30px; }
 
 .video-block {
   margin-top: 0 !important; }
