@@ -104,7 +104,7 @@
         public static function compileFunctions(&$html, $var)
         {
             $replacement = '';
-            \Log::info($var);
+            // \Log::info($var);
             $args = explode('|', $var);
             if (count($args) > 1) {
                 $function_name = $args[0];
@@ -181,11 +181,11 @@
                         $replacement = is_numeric($args[0]) ? Page::getUrl($args[0]) : Page::getSubjectUrl($args[0]);
                         break;
                     case 'gallery':
-                        $replacement = self::_parseGallery($args[0], $args[1]);
+                        $replacement = self::_parseGallery(...$args);
                         break;
                     case 'video':
                         $ids = explode(',', $args[0]);
-                        $replacement = Video::whereIn('id', $ids)->get()->toJson();
+                        $replacement = Video::whereIn('id', $ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'))->get()->toJson();
                         break;
                     case 'photo':
                         $replacement = Photo::find($args[0])->url;
@@ -300,7 +300,7 @@
             );
         }
 
-        private static function _parseGallery($gallery_ids, $folder_ids)
+        private static function _parseGallery($gallery_ids, $folder_ids, $tags)
         {
             $gallery_ids = array_filter(explode(',', $gallery_ids));
 
@@ -333,7 +333,17 @@
                 $gallery_ids = array_merge($gallery_ids, $ordered_ids);
             }
 
-            return Gallery::with('master')->whereIn('id', $gallery_ids)
-                ->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'))->get()->toJson();
+            $query = Gallery::with('master')->whereIn('id', $gallery_ids)
+                ->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
+
+            if ($tags) {
+                $query->whereRaw("EXISTS(select 1 from tag_entities
+                    where tag_id in ({$tags})
+                        and entity_id = galleries.id
+                        and entity_type = 'App\\\Models\\\Gallery'
+                )");
+            }
+
+            return $query->get()->toJson();
         }
     }

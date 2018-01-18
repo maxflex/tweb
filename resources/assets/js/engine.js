@@ -194,3 +194,23 @@ function addStyleString(str) {
     node.innerHTML = str;
     document.body.appendChild(node);
 }
+
+
+/**
+ * Разворачивает price до N строк
+ */
+// function expandPrice(level) {
+//     base_class  = '.price-list'
+//     li_class    = 'li:visible'
+//     n           = 30
+//
+//     selector = [base_class]
+//     for(i=0; i<level; i++) {
+//         selector[] = li_class
+//     }
+//     selector = selector.join(' ')
+//     length = $(selector).length
+//     while ($([base_class, li_class].join(' ')).length < n) {
+//
+//     }
+// }

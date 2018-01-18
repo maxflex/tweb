@@ -24,22 +24,34 @@ class PriceSection extends Model
      */
      public function getItemAttribute()
      {
+         return $this->getItem();
+     }
+
+     public function getItem($tags = null)
+     {
          $items = [];
 
          foreach($this->sections as $section) {
-             $items[] = [
-                 'model'        => $section,
-                 'is_section'   => true,
-                 'items'        => $section->item['items'],
-                 'position'     => $section->position,
-             ];
+             $item = $section->getItem($tags);
+             if ($item !== null) {
+                 $items[] = [
+                     'model'        => $section,
+                     'is_section'   => true,
+                     'items'        => $item['items'],
+                     'position'     => $section->position,
+                 ];
+             }
          }
-         foreach($this->positions as $position) {
+         foreach($this->getPositions($tags) as $position) {
              $items[] = [
                  'model'        => $position,
                  'is_section'   => false,
                  'position'     => $position->position,
              ];
+         }
+
+         if (! count($items)) {
+             return null;
          }
 
          usort($items, function($a, $b) {
@@ -54,31 +66,23 @@ class PriceSection extends Model
          ];
      }
 
-    /**
-     * Обновить цену у раздела
-     */
-    public static function changePrice($data)
-    {
-        $section = self::find($data->section_id);
-        foreach($section->sections as $child_section) {
-            $clone_data = clone $data;
-            $clone_data->section_id = $child_section->id;
-            self::changePrice($clone_data);
-        }
-        foreach($section->positions as $position) {
-            if ($data->unit == 1) {
-                $coeff = $position->price * ($data->value / 100);
-            } else {
-                $coeff = $data->value;
-            }
-            if ($data->type == 1) {
-                $new_price = $position->price - $coeff;
-            } else {
-                $new_price = $position->price + $coeff;
-            }
-            PricePosition::whereId($position->id)->update([
-                'price' => $new_price
-            ]);
-        }
-    }
+     /**
+      * @param array $tags
+      */
+     public function getPositions($tags = null)
+     {
+         $query = PricePosition::where('price_section_id', $this->id);
+
+         if ($tags) {
+             \Log::info(gettype($tags));
+             $tags = implode(',', $tags);
+             $query->whereRaw("EXISTS(select 1 from tag_entities
+                 where tag_id in ({$tags})
+                     and entity_id = price_positions.id
+                     and entity_type = 'App\\\Models\\\PricePosition'
+             )");
+         }
+
+         return $query->orderBy('position')->get();
+     }
 }

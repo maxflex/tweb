@@ -8,8 +8,6 @@ angular
         window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v) -> initVideo(v)
 
         $timeout ->
-            $scope.prices = PriceSection.query()
-
             $scope.videos.forEach (v) -> initVideo(v)
             $scope.displayed_videos = 3
             # $scope.has_more_videos = true
@@ -31,6 +29,12 @@ angular
 
             initGmap()
 
+        # PRICE
+        $scope.getPrice = (tags) ->
+            params = {}
+            params['tags[]'] = tags.split(',') if tags isnt '{tags}'
+            $scope.prices = PriceSection.query(params);
+
         # REVIEWS
         $scope.nextReviewsPage = ->
             $scope.reviews_page++
@@ -39,7 +43,9 @@ angular
 
         searchReviews = ->
             $scope.searching_reviews = true
-            $http.get('/api/reviews?page=' + $scope.reviews_page).then (response) ->
+            params = {page: $scope.reviews_page}
+            params['tags[]'] = $scope.review_tags.split(',') if $scope.review_tags isnt '{tags}'
+            $http.get('/api/reviews?' + $.param(params)).then (response) ->
                 $scope.searching_reviews = false
                 $scope.reviews = $scope.reviews.concat(response.data.reviews)
                 $scope.has_more_reviews = response.data.has_more_reviews

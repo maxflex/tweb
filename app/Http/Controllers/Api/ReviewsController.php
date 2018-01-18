@@ -26,8 +26,18 @@ class ReviewsController extends Controller
             $skip = 0;
         }
 
-        // attachment-refactored
-        $reviews = Review::with('master')->skip($skip)->take($take)->orderBy('id', 'desc')->get();
+        $query = Review::with('master')->skip($skip)->take($take)->orderBy('id', 'desc');
+
+        if ($request->tags) {
+            $tags = implode(',', $request->tags);
+            $query->whereRaw("EXISTS(select 1 from tag_entities
+                where tag_id in ({$tags})
+                    and entity_id = reviews.id
+                    and entity_type = 'App\\\Models\\\Review'
+            )");
+        }
+
+        $reviews = $query->get();
 
         $has_more_reviews = $reviews->count() ? Review::where('id', '<', $reviews->last()->id)->exists() : false;
 

@@ -10,12 +10,15 @@ use App\Models\PriceSection;
 
 class PricesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $items = [];
         $top_level_price_sections = PriceSection::whereNull('price_section_id')->orderBy('position')->get();
         foreach($top_level_price_sections as $section) {
-            $items[] = $section->item;
+            $item = $section->getItem($request->tags);
+            if ($item !== null) {
+                $items[] = $section->getItem($request->tags);
+            }
         }
         return $items;
     }

@@ -20390,6 +20390,38 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
+  window.Expander = (function() {
+    function Expander() {}
+
+    Expander.prototype.n = 5;
+
+    Expander.prototype.base_class = '.price-list';
+
+    Expander.prototype.li_class = 'li:visible';
+
+    Expander.prototype.expand = function(level) {
+      var i, j, ref, selector;
+      if (level == null) {
+        level = 1;
+      }
+      selector = [this.base_class];
+      for (i = j = 0, ref = level; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+        selector.push(this.li_class);
+      }
+      return selector = selector.join(' ');
+    };
+
+    Expander.prototype.getLength = function() {
+      return $([this.base_class, this.li_class].join(' ')).length;
+    };
+
+    return Expander;
+
+  })();
+
+}).call(this);
+
+(function() {
 
 
 }).call(this);
@@ -20557,7 +20589,6 @@ return PhotoSwipeUI_Default;
       });
     };
     $timeout(function() {
-      $scope.prices = PriceSection.query();
       $scope.videos.forEach(function(v) {
         return initVideo(v);
       });
@@ -20569,13 +20600,28 @@ return PhotoSwipeUI_Default;
       $scope.displayed_gallery = 6;
       return initGmap();
     });
+    $scope.getPrice = function(tags) {
+      var params;
+      params = {};
+      if (tags !== '{tags}') {
+        params['tags[]'] = tags.split(',');
+      }
+      return $scope.prices = PriceSection.query(params);
+    };
     $scope.nextReviewsPage = function() {
       $scope.reviews_page++;
       return searchReviews();
     };
     searchReviews = function() {
+      var params;
       $scope.searching_reviews = true;
-      return $http.get('/api/reviews?page=' + $scope.reviews_page).then(function(response) {
+      params = {
+        page: $scope.reviews_page
+      };
+      if ($scope.review_tags !== '{tags}') {
+        params['tags[]'] = $scope.review_tags.split(',');
+      }
+      return $http.get('/api/reviews?' + $.param(params)).then(function(response) {
         $scope.searching_reviews = false;
         $scope.reviews = $scope.reviews.concat(response.data.reviews);
         return $scope.has_more_reviews = response.data.has_more_reviews;
@@ -21297,123 +21343,6 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
-  });
-
-}).call(this);
-
-(function() {
   angular.module('App').directive('academic', function() {
     return {
       restrict: 'E',
@@ -21616,6 +21545,123 @@ return PhotoSwipeUI_Default;
 
 (function() {
 
+
+}).call(this);
+
+(function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
+  });
 
 }).call(this);
 
@@ -22054,6 +22100,25 @@ function addStyleString(str) {
     document.body.appendChild(node);
 }
 
+
+/**
+ * Разворачивает price до N строк
+ */
+// function expandPrice(level) {
+//     base_class  = '.price-list'
+//     li_class    = 'li:visible'
+//     n           = 30
+//
+//     selector = [base_class]
+//     for(i=0; i<level; i++) {
+//         selector[] = li_class
+//     }
+//     selector = selector.join(' ')
+//     length = $(selector).length
+//     while ($([base_class, li_class].join(' ')).length < n) {
+//
+//     }
+// }
 /*
 Constructor for the tooltip
 @ param options an object containing: marker(required), content(required) and cssClass(a css class, optional)
