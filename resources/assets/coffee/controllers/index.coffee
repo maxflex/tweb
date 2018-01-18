@@ -33,7 +33,10 @@ angular
         $scope.getPrice = (tags) ->
             params = {}
             params['tags[]'] = tags.split(',') if tags isnt '{tags}'
-            $scope.prices = PriceSection.query(params);
+            $scope.prices = PriceSection.query params, (response) ->
+                $timeout ->
+                    PriceExpander.expand()
+                , 1000
 
         # REVIEWS
         $scope.nextReviewsPage = ->

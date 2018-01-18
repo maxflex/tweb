@@ -20390,32 +20390,55 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  window.Expander = (function() {
-    function Expander() {}
+  window.PriceExpander = (function() {
+    function PriceExpander() {}
 
-    Expander.prototype.n = 5;
+    PriceExpander.prototype.n = 5;
 
-    Expander.prototype.base_class = '.price-list';
+    PriceExpander.prototype.base_class = '.price-list';
 
-    Expander.prototype.li_class = 'li:visible';
+    PriceExpander.prototype.li_class = 'li:visible';
 
-    Expander.prototype.expand = function(level) {
-      var i, j, ref, selector;
+    PriceExpander.prototype._expand = function(level) {
+      var expanded, i, j, ref, selector;
       if (level == null) {
         level = 1;
       }
       selector = [this.base_class];
-      for (i = j = 0, ref = level; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+      for (i = j = 0, ref = level - 1; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
         selector.push(this.li_class);
       }
-      return selector = selector.join(' ');
+      selector = selector.join(' ');
+      expanded = false;
+      $(selector).each((function(_this) {
+        return function(i, e) {
+          e = $(e).find('>price-item>.price-section');
+          e.click();
+          if (_this.isExpanded()) {
+            expanded = true;
+          }
+        };
+      })(this));
+      if (!expanded) {
+        return this._expand(level + 1);
+      }
     };
 
-    Expander.prototype.getLength = function() {
+    PriceExpander.prototype.getLength = function() {
       return $([this.base_class, this.li_class].join(' ')).length;
     };
 
-    return Expander;
+    PriceExpander.prototype.isExpanded = function() {
+      return this.getLength() > this.n;
+    };
+
+    PriceExpander.expand = function() {
+      var expander;
+      expander = new PriceExpander;
+      return expander._expand();
+    };
+
+    return PriceExpander;
 
   })();
 
@@ -20606,7 +20629,11 @@ return PhotoSwipeUI_Default;
       if (tags !== '{tags}') {
         params['tags[]'] = tags.split(',');
       }
-      return $scope.prices = PriceSection.query(params);
+      return $scope.prices = PriceSection.query(params, function(response) {
+        return $timeout(function() {
+          return PriceExpander.expand();
+        }, 1000);
+      });
     };
     $scope.nextReviewsPage = function() {
       $scope.reviews_page++;
