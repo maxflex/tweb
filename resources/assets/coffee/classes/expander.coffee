@@ -1,5 +1,5 @@
 class window.PriceExpander
-    n: 5
+    n: 30
     base_class: '.price-list'
     li_class: 'li:visible'
 
@@ -9,12 +9,15 @@ class window.PriceExpander
         selector = selector.join(' ')
         expanded = false
         $(selector).each (i, e) =>
+            return if expanded
+            # console.log("Length: ", @getLength(), @isExpanded(), expanded)
             e = $(e).find('>price-item>.price-section')
             e.click()
             if @isExpanded()
+                # console.log("Length2: ", @getLength(), @isExpanded(), expanded)
                 # если после раскрытия элементов стало больше N,
                 # то кликаем еще раз, чтобы свернуть и стало <= N
-                # e.click()
+                e.click()
                 expanded = true
                 return
         @_expand(level + 1) if not expanded
