@@ -17,10 +17,10 @@ class window.PriceExpander
                 # console.log("Length2: ", @getLength(), @isExpanded(), expanded)
                 # если после раскрытия элементов стало больше N,
                 # то кликаем еще раз, чтобы свернуть и стало <= N
-                e.click()
+                # e.click()
                 expanded = true
                 return
-        @_expand(level + 1) if not expanded
+        @_expand(level + 1) if not expanded && level < 5
 
     getLength: -> $([@base_class, @li_class].join(' ')).length
 

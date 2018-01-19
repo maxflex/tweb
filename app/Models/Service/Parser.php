@@ -25,7 +25,7 @@
         const START_VAR_CALC = '{';
         const END_VAR_CALC   = '}';
 
-        public static function compileVars($html)
+        public static function compileVars($html, $page = null)
         {
             preg_match_all('#\\' . static::interpolate('((?>[^\[\]]+)|(?R))*\\') . '#U', $html, $matches);
             $vars = $matches[0];
@@ -33,7 +33,7 @@
                 $var = trim($var, static::interpolate());
                 // если в переменной есть знак =, то воспроизводить значения
                 if (strpos($var, '=')) {
-                    static::replace($html, $var, static::compileValues($var));
+                    static::replace($html, $var, static::compileValues($var, $page));
                 } else {
                     $variable = Variable::findByName($var)->first();
                     if ($variable) {
@@ -51,6 +51,12 @@
                 if (strpos($var, '{')) {
                     continue;
                 }
+                // @todo: пока в виде исключения теги
+                if ($page && strpos($var, '[page.tags]') > 0) {
+                    $old_var = $var;
+                    $var = self::compilePage($page, trim($var, '[]'));
+                    $html = str_replace($old_var, static::interpolate($var), $html);
+                }
                 $var = trim($var, static::interpolate());
                 static::compileFunctions($html, $var);
             }
@@ -60,7 +66,7 @@
         /**
          * Компилировать значения типа [map|center=95,23|branch=trg|deadline=[deadline]]
          */
-        public static function compileValues($var_string)
+        public static function compileValues($var_string, $page = null)
         {
             // map|a=1|b=2
             // tutor|{subject}|{count}
@@ -243,14 +249,12 @@
          */
         public static function compilePage($page, $html)
         {
-            preg_match_all('#\\' . static::interpolate('page\.[\S]+\\') . '#', $html, $matches);
+            preg_match_all('#\\' . static::interpolate('page\.[\S]+?\\') . '#', $html, $matches);
             $vars = $matches[0];
             foreach ($vars as $var) {
                 $var = trim($var, static::interpolate());
                 $field = explode('.', $var)[1];
-                // if ($page->{$field}) {
-                    static::replace($html, $var, @$page->{$field});
-                // }
+                static::replace($html, $var, @$page->{$field});
             }
             return $html;
         }
@@ -300,7 +304,7 @@
             );
         }
 
-        private static function _parseGallery($gallery_ids, $folder_ids, $tags)
+        private static function _parseGallery($gallery_ids, $tags, $folder_ids)
         {
             $gallery_ids = array_filter(explode(',', $gallery_ids));
 
@@ -343,7 +347,6 @@
                         and entity_type = 'App\\\Models\\\Gallery'
                 )");
             }
-
             return $query->get()->toJson();
         }
     }

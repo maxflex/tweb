@@ -8,10 +8,11 @@ use App\Models\Service\Parser;
 use App\Scopes\PageScope;
 use App\Models\Service\Factory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\HasTags;
 
 class Page extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasTags;
 
     protected $dates = ['deleted_at'];
 
@@ -72,7 +73,7 @@ class Page extends Model
     public function getHtmlAttribute($value)
     {
         $value = isMobile() ? $this->attributes['html_mobile'] : $this->attributes['html'];
-        $value = Parser::compileVars($value);
+        $value = Parser::compileVars($value, $this);
         return Parser::compilePage($this, $value);
     }
 

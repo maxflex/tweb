@@ -13,18 +13,7 @@ trait HasTags
 
     public function getTagsAttribute()
     {
-        return Tag::whereIn('id', $this->tags()->pluck('tag_id'))->get();
-    }
-
-    public function setTagsAttribute($tags)
-    {
-        $this->tags()->delete();
-        foreach($tags as $tag) {
-            DB::table('tag_entities')->insert([
-                'entity_type' => self::class,
-                'entity_id' => $this->id,
-                'tag_id' => $tag['id'],
-            ]);
-        }
+        return implode(',', $this->tags()->pluck('tag_id')->all());
+        // return Tag::whereIn('id', $this->tags()->pluck('tag_id'))->get();
     }
 }

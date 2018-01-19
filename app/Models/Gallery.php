@@ -17,6 +17,11 @@ class Gallery extends Model
 
     protected $appends = ['url', 'total_price', 'components'];
 
+    // public function taggs()
+    // {
+    //     return $this->morphMany(TagEntity::class, 'entity');
+    // }
+
     public function master()
     {
         return $this->belongsTo(Master::class);
