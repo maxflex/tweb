@@ -8,6 +8,7 @@ class window.PriceExpander
         selector.push(@li_class) for i in [0..level-1]
         selector = selector.join(' ')
         expanded = false
+        # todo: если максимально открытый список меньше N
         $(selector).each (i, e) =>
             return if expanded
             # console.log("Length: ", @getLength(), @isExpanded(), expanded)

@@ -29,12 +29,13 @@ class ReviewsController extends Controller
         $query = Review::with('master')->skip($skip)->take($take)->orderBy('id', 'desc');
 
         if ($request->tags) {
-            $tags = implode(',', $request->tags);
-            $query->whereRaw("EXISTS(select 1 from tag_entities
-                where tag_id in ({$tags})
+            foreach($request->tags as $tag_id) {
+                $query->whereRaw("EXISTS(select 1 from tag_entities
+                    where tag_id={$tag_id}
                     and entity_id = reviews.id
                     and entity_type = 'App\\\Models\\\Review'
-            )");
+                )");
+            }
         }
 
         $reviews = $query->get();

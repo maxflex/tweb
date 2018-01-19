@@ -341,11 +341,13 @@
                 ->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
 
             if ($tags) {
-                $query->whereRaw("EXISTS(select 1 from tag_entities
-                    where tag_id in ({$tags})
-                        and entity_id = galleries.id
-                        and entity_type = 'App\\\Models\\\Gallery'
-                )");
+                foreach(explode(',', $tags) as $tag_id) {
+                    $query->whereRaw("EXISTS(select 1 from tag_entities
+                        where tag_id={$tag_id}
+                            and entity_id = galleries.id
+                            and entity_type = 'App\\\Models\\\Gallery'
+                    )");
+                }
             }
             return $query->get()->toJson();
         }

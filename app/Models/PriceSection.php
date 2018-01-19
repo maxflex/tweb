@@ -74,13 +74,13 @@ class PriceSection extends Model
          $query = PricePosition::where('price_section_id', $this->id);
 
          if ($tags) {
-             \Log::info(gettype($tags));
-             $tags = implode(',', $tags);
-             $query->whereRaw("EXISTS(select 1 from tag_entities
-                 where tag_id in ({$tags})
-                     and entity_id = price_positions.id
-                     and entity_type = 'App\\\Models\\\PricePosition'
-             )");
+             foreach($tags as $tag_id) {
+                 $query->whereRaw("EXISTS(select 1 from tag_entities
+                     where tag_id={$tag_id}
+                         and entity_id = price_positions.id
+                         and entity_type = 'App\\\Models\\\PricePosition'
+                 )");
+             }
          }
 
          return $query->orderBy('position')->get();
