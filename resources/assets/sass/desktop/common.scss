@@ -1020,10 +1020,10 @@ p.last {
             }
         }
         & .equipment-overlay {
-            & > div {
-                box-shadow: 0 0 100px 100px #303030;
-                background: #303030;
-            }
+            background: linear-gradient(to right, #303030 30%, transparent 70%);
+        }
+        & .equipment-additional-block {
+            background: #303030;
         }
     }
     &.white {
@@ -1035,24 +1035,48 @@ p.last {
             }
         }
         & .equipment-overlay {
-            & > div {
-                box-shadow: 0 0 100px 100px white;
-                background: white;
-            }
+            background: linear-gradient(to right, white 30%, transparent 70%);
+        }
+        & .equipment-additional-block {
+            background: white;
         }
     }
     &.right {
+        &.white {
+            & .equipment-overlay {
+                background: linear-gradient(to left, white 30%, transparent 70%);
+            }
+        }
+        &.black {
+            & .equipment-overlay {
+                background: linear-gradient(to left, #303030 30%, transparent 70%);
+            }
+        }
         & .equipment-overlay {
             left: auto;
             right: 0;
-            margin-right: calc((100vw - 960px) / 2 * -1);
             & > div {
                 float: right;
             }
         }
         & .equipment-text-block {
             left: auto;
-            right: -200px;
+            right: 0;
+            & > div {
+                padding-left: 10%;
+            }
+            // right: -200px;
+        }
+        & .equipment-additional-block {
+            right: 0;
+            margin-right: calc((100vw - 960px) / 2 * -1);
+        }
+    }
+    &.left {
+        & .equipment-text-block {
+            & > div {
+                padding-right: 10%;
+            }
         }
     }
     margin: 80px 0;
@@ -1061,20 +1085,21 @@ p.last {
         overflow: hidden;
         position: absolute;
         top: 0;
-        height: 100%;
-        width: 45vw;
+        height: calc(100% - 3px);
+        width: 100%;
         left: 0;
-        margin-left: calc((100vw - 960px) / 2 * -1);
-        & > div {
-            height: 100%;
-            width: calc(100% - 200px);
-        }
     }
     & .equipment-image {
         @extend .full-width-wrapper;
         & img {
             width: 100%;
         }
+    }
+    & .equipment-additional-block {
+        @extend .full-width-wrapper;
+        width: calc((100vw - 960px) / 2) !important;
+        height: calc(100% - 3px);
+        position: absolute;
     }
     & .equipment-text-block {
         position: absolute;
@@ -1083,7 +1108,7 @@ p.last {
         z-index: 9;
         height: 100%;
         margin: 0;
-        width: 400px;
+        width: 50%;
         display: flex;
         align-items: center;
         color: white;
@@ -1095,9 +1120,6 @@ p.last {
         & button {
             display: block;
             margin-top: 20px;
-        }
-        & > div {
-            width: 90%;
         }
     }
 }
