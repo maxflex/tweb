@@ -1010,6 +1010,98 @@ p.last {
     }
 }
 
+.equipment-item-full {
+    &.black {
+        & .equipment-text-block {
+            color: white;
+            & button {
+                color: white;
+                border-color: white;
+            }
+        }
+        & .equipment-overlay {
+            & > div {
+                box-shadow: 0 0 100px 100px #303030;
+                background: #303030;
+            }
+        }
+    }
+    &.white {
+        & .equipment-text-block {
+            color: black;
+            & button {
+                color: black;
+                border-color: black;
+            }
+        }
+        & .equipment-overlay {
+            & > div {
+                box-shadow: 0 0 100px 100px white;
+                background: white;
+            }
+        }
+    }
+    &.right {
+        & .equipment-overlay {
+            left: auto;
+            right: 0;
+            margin-right: calc((100vw - 960px) / 2 * -1);
+            & > div {
+                float: right;
+            }
+        }
+        & .equipment-text-block {
+            left: auto;
+            right: -200px;
+        }
+    }
+    margin: 80px 0;
+    position: relative;
+    & .equipment-overlay {
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 45vw;
+        left: 0;
+        margin-left: calc((100vw - 960px) / 2 * -1);
+        & > div {
+            height: 100%;
+            width: calc(100% - 200px);
+        }
+    }
+    & .equipment-image {
+        @extend .full-width-wrapper;
+        & img {
+            width: 100%;
+        }
+    }
+    & .equipment-text-block {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 9;
+        height: 100%;
+        margin: 0;
+        width: 500px;
+        display: flex;
+        align-items: center;
+        color: white;
+        & b {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 20px;
+        }
+        & button {
+            display: block;
+            margin-top: 20px;
+        }
+        & > div {
+            width: 90%;
+        }
+    }
+}
+
 
 .price-list {
     overflow: hidden;

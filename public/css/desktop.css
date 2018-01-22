@@ -3486,6 +3486,70 @@ a[href^="https://www.google.com/maps"] {
         .equipment-item.full > div:last-child > div {
           width: 100%; }
 
+.equipment-item-full {
+  margin: 80px 0;
+  position: relative; }
+  .equipment-item-full.black .equipment-text-block {
+    color: white; }
+    .equipment-item-full.black .equipment-text-block button {
+      color: white;
+      border-color: white; }
+  .equipment-item-full.black .equipment-overlay > div {
+    box-shadow: 0 0 100px 100px #303030;
+    background: #303030; }
+  .equipment-item-full.white .equipment-text-block {
+    color: black; }
+    .equipment-item-full.white .equipment-text-block button {
+      color: black;
+      border-color: black; }
+  .equipment-item-full.white .equipment-overlay > div {
+    box-shadow: 0 0 100px 100px white;
+    background: white; }
+  .equipment-item-full.right .equipment-overlay {
+    left: auto;
+    right: 0;
+    margin-right: calc((100vw - 960px) / 2 * -1); }
+    .equipment-item-full.right .equipment-overlay > div {
+      float: right; }
+  .equipment-item-full.right .equipment-text-block {
+    left: auto;
+    right: -200px; }
+  .equipment-item-full .equipment-overlay {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 45vw;
+    left: 0;
+    margin-left: calc((100vw - 960px) / 2 * -1); }
+    .equipment-item-full .equipment-overlay > div {
+      height: 100%;
+      width: calc(100% - 200px); }
+  .equipment-item-full .equipment-image img {
+    width: 100%; }
+  .equipment-item-full .equipment-text-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    height: 100%;
+    margin: 0;
+    width: 500px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: white; }
+    .equipment-item-full .equipment-text-block b, .equipment-item-full .equipment-text-block .address-more li > div:first-of-type, .address-more .equipment-item-full .equipment-text-block li > div:first-of-type {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 20px; }
+    .equipment-item-full .equipment-text-block button {
+      display: block;
+      margin-top: 20px; }
+    .equipment-item-full .equipment-text-block > div {
+      width: 90%; }
+
 .price-list {
   overflow: hidden; }
   .price-list ul {
@@ -3598,7 +3662,7 @@ a[href^="https://www.google.com/maps"] {
   color: #818181;
   font-size: 12px; }
 
-.full-width-wrapper, .equipment-item.full > div:first-child {
+.full-width-wrapper, .equipment-item.full > div:first-child, .equipment-item-full .equipment-image {
   width: 100vw;
   margin-left: calc((100vw - 960px) / 2 * -1); }
 
