@@ -11,6 +11,7 @@
     use App\Models\Equipment;
     use DB;
     use Cache;
+    use App\Models\Decorators\TagsFilterDecorator;
 
     /**
      * Parser
@@ -340,15 +341,8 @@
             $query = Gallery::with('master')->whereIn('id', $gallery_ids)
                 ->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
 
-            if ($tags) {
-                foreach(explode(',', $tags) as $tag_id) {
-                    $query->whereRaw("EXISTS(select 1 from tag_entities
-                        where tag_id={$tag_id}
-                            and entity_id = galleries.id
-                            and entity_type = 'App\\\Models\\\Gallery'
-                    )");
-                }
-            }
+            $query = (new TagsFilterDecorator($query))->withTags($tags);
+
             return $query->get()->toJson();
         }
     }

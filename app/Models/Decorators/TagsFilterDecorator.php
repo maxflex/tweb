@@ -14,11 +14,20 @@ class TagsFilterDecorator
     public function withTags($tags)
     {
         if ($tags) {
-            $this->builder->whereRaw("EXISTS(select 1 from tag_entities
-                where tag_id in ({$tags})
-                    and entity_id = " . $this->builder->getModel()->getTable() . ".id
-                    and entity_type = '" . get_class($this->builder->getModel()) . "'
-            )");
+            if (is_string($tags)) {
+                $tags = explode(',', $tags);
+            }
+
+            $tags = array_filter($tags);
+            
+            foreach($tags as $tag_id) {
+                $this->builder->whereRaw("EXISTS(select 1 from tag_entities
+                where tag_id={$tag_id}
+                and entity_id = " . $this->builder->getModel()->getTable() . ".id
+                and entity_type = '" . addslashes(get_class($this->builder->getModel())) . "'
+                )");
+            }
         }
+        return $this->builder;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Decorators\TagsFilterDecorator;
 
 class PriceSection extends Model
 {
@@ -72,17 +73,7 @@ class PriceSection extends Model
      public function getPositions($tags = null)
      {
          $query = PricePosition::where('price_section_id', $this->id);
-
-         if ($tags) {
-             foreach($tags as $tag_id) {
-                 $query->whereRaw("EXISTS(select 1 from tag_entities
-                     where tag_id={$tag_id}
-                         and entity_id = price_positions.id
-                         and entity_type = 'App\\\Models\\\PricePosition'
-                 )");
-             }
-         }
-
+         $query = (new TagsFilterDecorator($query))->withTags($tags);
          return $query->orderBy('position')->get();
      }
 }
