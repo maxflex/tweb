@@ -3537,8 +3537,11 @@ a[href^="https://www.google.com/maps"] {
     height: calc(100% - 3px);
     width: 100%;
     left: 0; }
-  .equipment-item-full .equipment-image img {
-    width: 100%; }
+  .equipment-item-full .equipment-image {
+    margin-left: 33% !important;
+    width: calc(100vw - 33% - ((100vw - 960px) / 2)) !important; }
+    .equipment-item-full .equipment-image img {
+      width: 100%; }
   .equipment-item-full .equipment-additional-block {
     width: calc((100vw - 960px) / 2) !important;
     height: calc(100% - 3px);
@@ -3553,8 +3556,9 @@ a[href^="https://www.google.com/maps"] {
     width: 50%;
     display: -webkit-box;
     display: flex;
-    -webkit-box-align: center;
-    align-items: center;
+    -webkit-box-align: start;
+    align-items: flex-start;
+    padding-top: 30px;
     color: white; }
     .equipment-item-full .equipment-text-block b, .equipment-item-full .equipment-text-block .address-more li > div:first-of-type, .address-more .equipment-item-full .equipment-text-block li > div:first-of-type {
       font-size: 28px;

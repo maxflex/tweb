@@ -1091,6 +1091,8 @@ p.last {
     }
     & .equipment-image {
         @extend .full-width-wrapper;
+        margin-left: 33% !important;
+        width: calc(100vw - 33% - ((100vw - 960px) / 2)) !important;
         & img {
             width: 100%;
         }
@@ -1110,7 +1112,8 @@ p.last {
         margin: 0;
         width: 50%;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        padding-top: 30px;
         color: white;
         & b {
             font-size: 28px;
