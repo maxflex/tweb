@@ -3534,7 +3534,7 @@ a[href^="https://www.google.com/maps"] {
     z-index: 9;
     height: 100%;
     margin: 0;
-    width: 500px;
+    width: 400px;
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
