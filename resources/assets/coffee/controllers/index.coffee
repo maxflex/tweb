@@ -8,13 +8,6 @@ angular
         window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v) -> initVideo(v)
 
         $timeout ->
-            $scope.videos.forEach (v) -> initVideo(v)
-            $scope.displayed_videos = 3
-            # $scope.has_more_videos = true
-            # $scope.videos_page = 0
-            # $scope.videos = []
-            # searchVideos()
-
             $scope.has_more_reviews = true
             $scope.reviews_page = 0
             $scope.reviews = []
@@ -28,6 +21,13 @@ angular
             # searchGallery()
 
             initGmap()
+
+            $scope.videos.forEach (v) -> initVideo(v)
+            $scope.displayed_videos = 3
+            # $scope.has_more_videos = true
+            # $scope.videos_page = 0
+            # $scope.videos = []
+            # searchVideos()
 
         # PRICE
         $scope.getPrice = (tags) ->

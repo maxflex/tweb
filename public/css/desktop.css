@@ -3495,8 +3495,8 @@ a[href^="https://www.google.com/maps"] {
       color: white;
       border-color: white; }
   .equipment-item-full.black .equipment-overlay {
-    background: -webkit-linear-gradient(left, #303030 30%, transparent 70%);
-    background: linear-gradient(to right, #303030 30%, transparent 70%); }
+    background: -webkit-linear-gradient(left, #303030 33%, transparent 95%);
+    background: linear-gradient(to right, #303030 33%, transparent 95%); }
   .equipment-item-full.black .equipment-additional-block {
     background: #303030; }
   .equipment-item-full.white .equipment-text-block {
@@ -3505,16 +3505,16 @@ a[href^="https://www.google.com/maps"] {
       color: black;
       border-color: black; }
   .equipment-item-full.white .equipment-overlay {
-    background: -webkit-linear-gradient(left, white 30%, transparent 70%);
-    background: linear-gradient(to right, white 30%, transparent 70%); }
+    background: -webkit-linear-gradient(left, white 33%, transparent 95%);
+    background: linear-gradient(to right, white 33%, transparent 95%); }
   .equipment-item-full.white .equipment-additional-block {
     background: white; }
   .equipment-item-full.right.white .equipment-overlay {
-    background: -webkit-linear-gradient(right, white 30%, transparent 70%);
-    background: linear-gradient(to left, white 30%, transparent 70%); }
+    background: -webkit-linear-gradient(right, white 33%, transparent 95%);
+    background: linear-gradient(to left, white 33%, transparent 95%); }
   .equipment-item-full.right.black .equipment-overlay {
-    background: -webkit-linear-gradient(right, #303030 30%, transparent 70%);
-    background: linear-gradient(to left, #303030 30%, transparent 70%); }
+    background: -webkit-linear-gradient(right, #303030 33%, transparent 95%);
+    background: linear-gradient(to left, #303030 33%, transparent 95%); }
   .equipment-item-full.right .equipment-overlay {
     left: auto;
     right: 0; }

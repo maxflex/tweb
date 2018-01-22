@@ -1020,7 +1020,7 @@ p.last {
             }
         }
         & .equipment-overlay {
-            background: linear-gradient(to right, #303030 30%, transparent 70%);
+            background: linear-gradient(to right, #303030 33%, transparent 95%);
         }
         & .equipment-additional-block {
             background: #303030;
@@ -1035,7 +1035,7 @@ p.last {
             }
         }
         & .equipment-overlay {
-            background: linear-gradient(to right, white 30%, transparent 70%);
+            background: linear-gradient(to right, white 33%, transparent 95%);
         }
         & .equipment-additional-block {
             background: white;
@@ -1044,12 +1044,12 @@ p.last {
     &.right {
         &.white {
             & .equipment-overlay {
-                background: linear-gradient(to left, white 30%, transparent 70%);
+                background: linear-gradient(to left, white 33%, transparent 95%);
             }
         }
         &.black {
             & .equipment-overlay {
-                background: linear-gradient(to left, #303030 30%, transparent 70%);
+                background: linear-gradient(to left, #303030 33%, transparent 95%);
             }
         }
         & .equipment-overlay {
