@@ -740,7 +740,7 @@ input {
         overflow: hidden;
         & ul {
           list-style-type: none;
-          padding-left: 0;
+          padding-left: 20px;
           border-bottom: 1px solid rgba(#a40000, .25);
         //   margin-bottom: 15px;
             & > li {
@@ -751,23 +751,25 @@ input {
                 //  }
                 & .price-item-root > .price-section {
                     font-weight: bold;
-                    background-color: rgba(#f3e9d4, .5);
-                    font-size: 17px;
+                    // background-color: rgba(#f3e9d4, .5);
+                    font-size: 19px;
                 }
                 & .price-line {
                     padding: 1em 1.2em;
                     &.price-section {
                         border-bottom: 1px solid rgba(#a40000, .25);
                         font-weight: bold;
+                        display: block !important;
+                        position: relative;
                     }
                     & img {
                         height: 8px;
                         margin-left: 4px;
                         transition: transform .2s;
                         pointer-events: none;
-                        float: right;
-                        top: 8px;
-                        position: relative;
+                        right: 20px;
+                        top: calc(50% - 3px);
+                        position: absolute;
                     }
                     &.active {
                         border-bottom: none;
@@ -814,6 +816,12 @@ input {
         & > ul {
             border-bottom: none !important;
         }
+    }
+    & .price-section-desc {
+        display: block;
+        font-weight: normal;
+        color: $text-grey;
+        font-size: 14px;
     }
 }
 
