@@ -7231,13 +7231,13 @@ input {
       padding-left: 20px;
       border-bottom: 1px solid rgba(164, 0, 0, 0.25); }
       .price-wrapper .price-list ul > li .price-item-root > .price-section {
-        font-weight: bold;
+        font-family: "helveticaneuecyrmedium";
         font-size: 19px; }
       .price-wrapper .price-list ul > li .price-line {
         padding: 1em 1.2em; }
         .price-wrapper .price-list ul > li .price-line.price-section {
           border-bottom: 1px solid rgba(164, 0, 0, 0.25);
-          font-weight: bold;
+          font-family: "helveticaneuecyrmedium";
           display: block !important;
           position: relative; }
         .price-wrapper .price-list ul > li .price-line img {
@@ -7267,7 +7267,7 @@ input {
         display: block; }
         .price-wrapper .price-list ul > li .price-item-info .price-item-price {
           font-size: 16px;
-          font-weight: bold; }
+          font-family: "helveticaneuecyrmedium"; }
       .price-wrapper .price-list ul > li .price-section .price-line-title {
         color: #a40000; }
     .price-wrapper .price-list > ul {
@@ -7304,7 +7304,7 @@ input {
   .equipment-wrapper .equipment-item img {
     width: 100%; }
   .equipment-wrapper .equipment-item b {
-    font-weight: bold;
+    font-family: "helveticaneuecyrmedium";
     font-size: 20px;
     display: block;
     margin: 10px 0 30px; }
