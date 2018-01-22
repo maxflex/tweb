@@ -1029,10 +1029,10 @@ p.last {
     &.white {
         & .equipment-text-block {
             color: black;
-            & button {
-                color: black;
-                border-color: black;
-            }
+            // & button {
+            //     color: black;
+            //     border-color: black;
+            // }
         }
         & .equipment-overlay {
             background: linear-gradient(to right, white 33%, transparent 95%);
@@ -1070,6 +1070,9 @@ p.last {
         & .equipment-additional-block {
             right: 0;
             margin-right: calc((100vw - 960px) / 2 * -1);
+        }
+        & .equipment-image {
+            margin-left: calc((100vw - 960px) / 2 * -1) !important;
         }
     }
     &.left {

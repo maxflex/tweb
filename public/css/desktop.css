@@ -3501,9 +3501,6 @@ a[href^="https://www.google.com/maps"] {
     background: #303030; }
   .equipment-item-full.white .equipment-text-block {
     color: black; }
-    .equipment-item-full.white .equipment-text-block button {
-      color: black;
-      border-color: black; }
   .equipment-item-full.white .equipment-overlay {
     background: -webkit-linear-gradient(left, white 33%, transparent 95%);
     background: linear-gradient(to right, white 33%, transparent 95%); }
@@ -3528,6 +3525,8 @@ a[href^="https://www.google.com/maps"] {
   .equipment-item-full.right .equipment-additional-block {
     right: 0;
     margin-right: calc((100vw - 960px) / 2 * -1); }
+  .equipment-item-full.right .equipment-image {
+    margin-left: calc((100vw - 960px) / 2 * -1) !important; }
   .equipment-item-full.left .equipment-text-block > div {
     padding-right: 10%; }
   .equipment-item-full .equipment-overlay {
