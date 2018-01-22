@@ -750,7 +750,7 @@ input {
                 //     }
                 //  }
                 & .price-item-root > .price-section {
-                    font-family: $font-medium;
+                    font-family: $font-bold;
                     // background-color: rgba(#f3e9d4, .5);
                     font-size: 19px;
                 }
@@ -758,7 +758,7 @@ input {
                     padding: 1em 1.2em;
                     &.price-section {
                         border-bottom: 1px solid rgba(#a40000, .25);
-                        font-family: $font-medium;
+                        font-family: $font-bold;
                         display: block !important;
                         position: relative;
                     }
@@ -789,7 +789,7 @@ input {
                     display: block;
                     & .price-item-price {
                         font-size: 16px;
-                        font-family: $font-medium;
+                        font-family: $font-bold;
                     }
                 }
                 & .price-section {
@@ -846,7 +846,7 @@ input {
             width: 100%;
         }
         & b {
-            font-family: $font-medium;
+            font-family: $font-bold;
             font-size: 20px;
             display: block;
             margin: 10px 0 30px;
