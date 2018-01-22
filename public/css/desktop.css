@@ -3535,8 +3535,6 @@ a[href^="https://www.google.com/maps"] {
     color: #a40000; }
     .price-list .fa.fa-caret-down, .price-list .fa-caret-down.check-mark {
       top: -1px; }
-  .price-list .price-item-last .price-line {
-    border-bottom: none; }
 
 .main-gallery-block b, .video-block b, .main-gallery-block .address-more li > div:first-of-type, .address-more .main-gallery-block li > div:first-of-type, .video-block .address-more li > div:first-of-type, .address-more .video-block li > div:first-of-type {
   margin: 15px 0; }
