@@ -986,6 +986,10 @@ p.last {
             &:last-child {
                 & > div {
                     float: right;
+                    text-align: right;
+                    & button {
+                        display: inline;
+                    }
                 }
             }
         }
@@ -1050,6 +1054,12 @@ p.last {
         &.black {
             & .equipment-overlay {
                 background: linear-gradient(to left, #303030 33%, transparent 95%);
+            }
+        }
+        & .equipment-text-block {
+            text-align: right;
+            & button {
+                display: inline;
             }
         }
         & .equipment-overlay {

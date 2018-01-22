@@ -3472,7 +3472,10 @@ a[href^="https://www.google.com/maps"] {
     .equipment-item.right > div:last-child > div {
       float: left; }
   .equipment-item.left > div:last-child > div {
-    float: right; }
+    float: right;
+    text-align: right; }
+    .equipment-item.left > div:last-child > div button {
+      display: inline; }
   .equipment-item.full {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -3512,6 +3515,10 @@ a[href^="https://www.google.com/maps"] {
   .equipment-item-full.right.black .equipment-overlay {
     background: -webkit-linear-gradient(right, #303030 33%, transparent 95%);
     background: linear-gradient(to left, #303030 33%, transparent 95%); }
+  .equipment-item-full.right .equipment-text-block {
+    text-align: right; }
+    .equipment-item-full.right .equipment-text-block button {
+      display: inline; }
   .equipment-item-full.right .equipment-overlay {
     left: auto;
     right: 0; }
