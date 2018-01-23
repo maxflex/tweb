@@ -6884,7 +6884,8 @@ a {
 
 #map {
   width: 100%;
-  height: 250px; }
+  height: 250px;
+  margin-top: 45px; }
 
 #modal-map .modal-content {
   padding: 0; }
@@ -7082,9 +7083,6 @@ input {
   flex: 1; }
   .student-review-info > div:not(:last-of-type) {
     margin-bottom: 5px; }
-
-.student-review-text {
-  line-height: 18px; }
 
 .student-review-all {
   margin-bottom: 0.938em;
@@ -7285,7 +7283,8 @@ input {
     display: block;
     font-weight: normal;
     color: #818181;
-    font-size: 14px; }
+    font-size: 14px;
+    font-family: "helveticaneuecyrregular"; }
 
 .main-page-masters {
   display: -webkit-box;
@@ -7301,13 +7300,13 @@ input {
 
 .equipment-wrapper .equipment-item {
   margin-bottom: 30px; }
+  .equipment-wrapper .equipment-item h1 {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center; }
   .equipment-wrapper .equipment-item img {
-    width: 100%; }
-  .equipment-wrapper .equipment-item b {
-    font-family: "helveticaneuecyrbold";
-    font-size: 20px;
-    display: block;
-    margin: 10px 0 30px; }
+    width: 100%;
+    margin-bottom: 10px; }
   .equipment-wrapper .equipment-item button {
     display: block;
     margin: 30px auto 0; }
@@ -7912,7 +7911,7 @@ input {
   display: inline-block;
   vertical-align: middle;
   color: black;
-  font-size: 12px;
+  font-size: 13px;
   text-decoration: none;
   font-family: "helveticaneuecyrmedium";
   padding: 5px 12px 6px;
