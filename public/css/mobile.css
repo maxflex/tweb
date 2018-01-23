@@ -7338,14 +7338,17 @@ input {
   padding-bottom: 25px;
   margin-bottom: 2.5em; }
 
+.service-list h3 {
+  font-family: "helveticaneuecyrmedium"; }
+
 .service-list img {
   width: 100px; }
 
 .service-list > div {
   vertical-align: top;
   text-align: center;
-  width: 40%;
-  padding: 5%;
+  width: 34%;
+  padding: 5% 8%;
   display: inline-block; }
 
 /* Components */

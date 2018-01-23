@@ -887,14 +887,17 @@ input {
 }
 
 .service-list {
+    & h3 {
+        font-family: $font-medium;
+    }
     & img {
         width: 100px;
     }
     & > div {
         vertical-align: top;
         text-align: center;
-        width: 40%;
-        padding: 5%;
+        width: 34%;
+        padding: 5% 8%;
         display: inline-block;
     }
 }
