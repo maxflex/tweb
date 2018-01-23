@@ -840,21 +840,10 @@ input {
 
 .equipment-wrapper {
     & .equipment-item {
-        & h1 {
-            width: 60%;
-            margin: 0 auto;
-            text-align: center;
-        }
         & img {
             width: 100%;
             margin-bottom: 10px;
         }
-        // & b {
-        //     @extend h1;
-        //     display: block;
-        //     padding: 0;
-        //     margin: 10px 0 30px;
-        // }
         & button {
             display: block;
             margin: 30px auto 0;

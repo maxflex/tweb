@@ -7300,10 +7300,6 @@ input {
 
 .equipment-wrapper .equipment-item {
   margin-bottom: 30px; }
-  .equipment-wrapper .equipment-item h1 {
-    width: 60%;
-    margin: 0 auto;
-    text-align: center; }
   .equipment-wrapper .equipment-item img {
     width: 100%;
     margin-bottom: 10px; }
