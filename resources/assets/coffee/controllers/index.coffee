@@ -35,7 +35,7 @@ angular
             params['tags[]'] = tags.split(',') if tags isnt '{tags}'
             $scope.prices = PriceSection.query params, (response) ->
                 $timeout ->
-                    PriceExpander.expand()
+                    PriceExpander.expand(if isMobile then 15 else 30)
                 , 1000
 
         # REVIEWS

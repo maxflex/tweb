@@ -737,7 +737,7 @@ input {
         overflow: hidden;
         & ul {
           list-style-type: none;
-          padding-left: 20px;
+          padding-left: 0;
           border-bottom: 1px solid rgba(#a40000, .25);
         //   margin-bottom: 15px;
             & > li {
@@ -749,7 +749,9 @@ input {
                 & .price-item-root > .price-section {
                     font-family: $font-bold;
                     // background-color: rgba(#f3e9d4, .5);
-                    font-size: 19px;
+                    & .price-line-title {
+                        font-size: 19px;
+                    }
                 }
                 & .price-line {
                     padding: 1em 1.2em;
@@ -758,6 +760,7 @@ input {
                         font-family: $font-bold;
                         display: block !important;
                         position: relative;
+                        display: block;
                     }
                     & img {
                         height: 8px;
@@ -781,8 +784,12 @@ input {
                 }
                 & .price-line-title {
                     pointer-events: none;
+                    position: relative;
+                    display: block;
                 }
                 & .price-item-info {
+                    display: block;
+                    position: relative;
                     display: block;
                     & .price-item-price {
                         font-size: 16px;
@@ -816,6 +823,7 @@ input {
     }
     & .price-section-desc {
         display: block;
+        position: relative;
         font-weight: normal;
         color: $text-grey;
         font-size: 14px;

@@ -7226,18 +7226,20 @@ input {
     overflow: hidden; }
     .price-wrapper .price-list ul {
       list-style-type: none;
-      padding-left: 20px;
+      padding-left: 0;
       border-bottom: 1px solid rgba(164, 0, 0, 0.25); }
       .price-wrapper .price-list ul > li .price-item-root > .price-section {
-        font-family: "helveticaneuecyrbold";
-        font-size: 19px; }
+        font-family: "helveticaneuecyrbold"; }
+        .price-wrapper .price-list ul > li .price-item-root > .price-section .price-line-title {
+          font-size: 19px; }
       .price-wrapper .price-list ul > li .price-line {
         padding: 1em 1.2em; }
         .price-wrapper .price-list ul > li .price-line.price-section {
           border-bottom: 1px solid rgba(164, 0, 0, 0.25);
           font-family: "helveticaneuecyrbold";
           display: block !important;
-          position: relative; }
+          position: relative;
+          display: block; }
         .price-wrapper .price-list ul > li .price-line img {
           height: 8px;
           margin-left: 4px;
@@ -7260,8 +7262,12 @@ input {
             transform: rotate(-180deg);
             /* W3C compliant browsers */ }
       .price-wrapper .price-list ul > li .price-line-title {
-        pointer-events: none; }
+        pointer-events: none;
+        position: relative;
+        display: block; }
       .price-wrapper .price-list ul > li .price-item-info {
+        display: block;
+        position: relative;
         display: block; }
         .price-wrapper .price-list ul > li .price-item-info .price-item-price {
           font-size: 16px;
@@ -7281,6 +7287,7 @@ input {
     border-bottom: none !important; }
   .price-wrapper .price-section-desc {
     display: block;
+    position: relative;
     font-weight: normal;
     color: #818181;
     font-size: 14px;
