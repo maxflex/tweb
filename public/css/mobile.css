@@ -7338,6 +7338,16 @@ input {
   padding-bottom: 25px;
   margin-bottom: 2.5em; }
 
+.service-list img {
+  width: 100px; }
+
+.service-list > div {
+  vertical-align: top;
+  text-align: center;
+  width: 40%;
+  padding: 5%;
+  display: inline-block; }
+
 /* Components */
 .header {
   background: #f3e9d4;
