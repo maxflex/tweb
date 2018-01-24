@@ -840,16 +840,20 @@ price-item > ul > li.price-item-section:first-child {
 }
 
 .main-page-masters {
-    display: flex;
     & img {
         border-radius: 50%;
-        width: 33vw;
+        width: 29vw;
+        margin-right: 20px;
     }
     & > div {
-        margin-right: 30px;
+        display: flex;
+        margin-bottom: 30px;
+        // margin-right: 30px;
     }
     & .master-name {
         line-height: 20px;
+        font-family: $font-medium;
+        font-size: 16px;
         margin-bottom: 10px;
     }
 }
@@ -927,4 +931,8 @@ price-item > ul > li.price-item-section:first-child {
     top: 4px;
     right: 4px;
     font-size: 12px;
+}
+
+h1.padding-top {
+    padding-top: .9em;
 }
