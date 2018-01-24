@@ -7291,7 +7291,10 @@ input {
     font-weight: normal;
     color: #818181;
     font-size: 14px;
-    font-family: "helveticaneuecyrregular"; }
+    font-family: "helveticaneuecyrregular";
+    pointer-events: none; }
+  .price-wrapper .price-section {
+    background: rgba(174, 64, 55, 0.05); }
 
 .main-page-masters {
   display: -webkit-box;

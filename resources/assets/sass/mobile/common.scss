@@ -828,6 +828,10 @@ input {
         color: $text-grey;
         font-size: 14px;
         font-family: $font-regular;
+        pointer-events: none;
+    }
+    & .price-section {
+        background: rgba($main-color, .05);
     }
 }
 

@@ -1,9 +1,9 @@
 angular.module 'App'
     .directive 'priceItem', ->
         restrict: 'E'
-        templateUrl: '/directives/price-item'
-        # templateUrl: (elem, attrs) ->
-        #     if isMobile then '/directives/price-item-mobile' else '/directives/price-item'
+        # templateUrl: '/directives/price-item'
+        templateUrl: (elem, attrs) ->
+            if isMobile then '/directives/price-item-mobile' else '/directives/price-item'
         scope:
             item:   '='
             level: '='
