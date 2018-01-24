@@ -7294,7 +7294,10 @@ input {
     font-family: "helveticaneuecyrregular";
     pointer-events: none; }
   .price-wrapper .price-section {
-    background: rgba(174, 64, 55, 0.05); }
+    background: rgba(174, 64, 55, 0.1); }
+
+price-item > ul > li.price-item-section:first-child {
+  border-top: 1px solid rgba(164, 0, 0, 0.25); }
 
 .main-page-masters {
   display: -webkit-box;

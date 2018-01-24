@@ -831,8 +831,12 @@ input {
         pointer-events: none;
     }
     & .price-section {
-        background: rgba($main-color, .05);
+        background: rgba($main-color, .10);
     }
+}
+
+price-item > ul > li.price-item-section:first-child {
+    border-top: 1px solid rgba(#a40000, .25);
 }
 
 .main-page-masters {
