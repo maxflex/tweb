@@ -16,3 +16,19 @@
         line-height: inherit !important;
     }
 }
+
+.btn-fill {
+  @extend .btn;
+  background: $main-color;
+  border: 1px solid $main-color;
+  color: white;
+  & img {
+      height: 14px;
+      margin-right: 5px;
+      top: 3px;
+      position: relative;
+  }
+  &.btn-calc {
+      padding-left: 9px;
+  }
+}

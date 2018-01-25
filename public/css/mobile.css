@@ -7951,7 +7951,7 @@ h1.padding-top {
   position: relative;
   text-transform: none; }
 
-.btn, .btn-border, .btn-border-gray {
+.btn, .btn-fill, .btn-border, .btn-border-gray {
   display: inline-block;
   vertical-align: middle;
   color: black;
@@ -7962,10 +7962,22 @@ h1.padding-top {
   border-radius: 24px;
   border: 0;
   position: relative; }
-  .btn:disabled, .btn-border:disabled, .btn-border-gray:disabled {
+  .btn:disabled, .btn-fill:disabled, .btn-border:disabled, .btn-border-gray:disabled {
     background: #818181; }
-  .btn span, .btn-border span, .btn-border-gray span {
+  .btn span, .btn-fill span, .btn-border span, .btn-border-gray span {
     line-height: inherit !important; }
+
+.btn-fill {
+  background: #ae4037;
+  border: 1px solid #ae4037;
+  color: white; }
+  .btn-fill img {
+    height: 14px;
+    margin-right: 5px;
+    top: 3px;
+    position: relative; }
+  .btn-fill.btn-calc {
+    padding-left: 9px; }
 
 .btn-border, .btn-border-gray {
   background: transparent;

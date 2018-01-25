@@ -123,6 +123,9 @@
                     case 'factory':
                         $replacement = fact(...$args);
                         break;
+                    case 'version':
+                        $replacement = DB::table('settings')->where('key', 'version')->value('value');
+                        break;
                     case 'tutor':
                         $replacement = Tutor::find($args[0])->toJson();
                         break;

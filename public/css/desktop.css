@@ -4301,6 +4301,10 @@ a[href^="https://www.google.com/maps"] {
   .btn span, .btn-border span, .btn-fill span {
     line-height: inherit !important; }
 
+.btn-small {
+  font-size: 10px;
+  padding: 2px 6px; }
+
 .btn-border {
   background: transparent;
   border: 1px solid #ae4037;
