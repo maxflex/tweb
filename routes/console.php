@@ -13,6 +13,10 @@ use Illuminate\Foundation\Inspiring;
 |
 */
 
+Artisan::command('version:increase', function () {
+    \App\Service\Settings::set('version', uniqid());
+})->describe('Generate version control table');
+
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
