@@ -74,12 +74,16 @@
                         </div>
 
                         <div class="master-photo" ng-if="image.master">
-                            <img ng-src="@{{image.master.photo_url}}" />
                             <div>
-                                Мастер-исполнитель
+                                <img ng-src="@{{image.master.photo_url}}" />
                             </div>
                             <div>
-                                @{{ image.master.first_name }} @{{ image.master.last_name }} @{{ image.master.middle_name }}
+                                <div class="master-name">
+                                    Мастер-исполнитель
+                                </div>
+                                <div>
+                                    @{{ image.master.first_name }} @{{ image.master.last_name }} @{{ image.master.middle_name }}
+                                </div>
                             </div>
                         </div>
                     </div>
