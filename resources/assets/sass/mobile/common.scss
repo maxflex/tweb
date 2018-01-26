@@ -858,8 +858,7 @@ price-item > ul > li.price-item-section:first-child {
     }
 }
 
-.equipment-wrapper {
-    & .equipment-item {
+   .equipment-item {
         & img {
             width: 100%;
             margin-bottom: 10px;
@@ -870,7 +869,6 @@ price-item > ul > li.price-item-section:first-child {
         }
         margin-bottom: 30px;
     }
-}
 
 .map-wrapper {
     & b {

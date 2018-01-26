@@ -7342,12 +7342,12 @@ price-item > ul > li.price-item-section:first-child {
   font-size: 16px;
   margin-bottom: 10px; }
 
-.equipment-wrapper .equipment-item {
+.equipment-item {
   margin-bottom: 30px; }
-  .equipment-wrapper .equipment-item img {
+  .equipment-item img {
     width: 100%;
     margin-bottom: 10px; }
-  .equipment-wrapper .equipment-item button {
+  .equipment-item button {
     display: block;
     margin: 30px auto 0; }
 

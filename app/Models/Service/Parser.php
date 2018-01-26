@@ -32,11 +32,6 @@
             $vars = $matches[0];
             foreach ($vars as $var) {
                 $var = trim($var, static::interpolate());
-                // если мобильная версия, добавлять '-mobile'
-                $var_without_params = explode('|', $var)[0];
-                if (isMobile() && ! preg_match("#-mobile$#", $var_without_params)) {
-                    $var = str_replace($var_without_params, $var_without_params . '-mobile', $var);
-                }
                 // если в переменной есть знак =, то воспроизводить значения
                 if (strpos($var, '=')) {
                     static::replace($html, $var, static::compileValues($var, $page));
@@ -351,5 +346,24 @@
             $query = (new TagsFilterDecorator($query))->withTags($tags);
 
             return $query->get()->toJson();
+        }
+
+        public static function getPostfixed($html, $page, $postfix = '-mobile')
+        {
+            preg_match_all('#\\' . static::interpolate('((?>[^\[\]]+)|(?R))*\\') . '#U', $html, $matches);
+            $vars = $matches[0];
+            foreach ($vars as $var) {
+                $var = trim($var, static::interpolate());
+                // если мобильная версия, добавлять '-mobile'
+                $var_without_params = explode('|', $var)[0];
+                if (! preg_match("#{$postfix}#", $var_without_params)) {
+                    if (Variable::findByName($var_without_params)->exists()) {
+                        $var_mobile = str_replace($var_without_params, $var_without_params . $postfix, $var);
+                        $html = str_replace($var, $var_mobile, $html);
+                        // $var = $var_mobile;
+                    }
+                }
+            }
+            return $html;
         }
     }

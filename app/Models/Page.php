@@ -70,9 +70,10 @@ class Page extends Model
     }
 
 
-    public function getHtmlAttribute($value)
+    public function getHtmlAttribute()
     {
-        $value = isMobile() ? empty(trim($this->attributes['html_mobile'])) ? $this->attributes['html'] : $this->attributes['html_mobile'] : $this->attributes['html'];
+        $value = $this->getHtml();
+        // return "<textarea rows='50' style='width: 100%'>{$value}</textarea>";
         $value = Parser::compileVars($value, $this);
         return Parser::compilePage($this, $value);
     }
@@ -145,5 +146,13 @@ class Page extends Model
     public function isMainSerp()
     {
         return $this->id == 10;
+    }
+
+    private function getHtml()
+    {
+        if (isMobile() && empty(trim($this->attributes['html_mobile']))) {
+            return Parser::getPostfixed($this->attributes['html'], $this);
+        }
+        return isMobile() ? $this->attributes['html_mobile'] : $this->attributes['html'];
     }
 }
