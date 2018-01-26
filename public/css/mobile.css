@@ -7405,6 +7405,9 @@ price-item > ul > li.price-item-section:first-child {
   right: 4px;
   font-size: 12px; }
 
+.btn-small {
+  display: none; }
+
 h1.padding-top {
   padding-top: .9em; }
 
