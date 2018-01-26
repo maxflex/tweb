@@ -32,6 +32,11 @@
             $vars = $matches[0];
             foreach ($vars as $var) {
                 $var = trim($var, static::interpolate());
+                // если мобильная версия, добавлять '-mobile'
+                $var_without_params = explode('|', $var)[0];
+                if (isMobile() && ! preg_match("#-mobile$#", $var_without_params)) {
+                    $var = str_replace($var_without_params, $var_without_params . '-mobile', $var);
+                }
                 // если в переменной есть знак =, то воспроизводить значения
                 if (strpos($var, '=')) {
                     static::replace($html, $var, static::compileValues($var, $page));
@@ -84,7 +89,6 @@
                 foreach($values as $value) {
                     // разбиваем a=1
                     list($var_name, $var_val) = explode('=', $value);
-
                     // если $var_val – это переменная
                     if (@$var_val[0] == self::START_VAR) {
                         // заменяем на значение переменной, если таковая найдена
