@@ -47,7 +47,7 @@ angular
         searchReviews = ->
             $scope.searching_reviews = true
             params = {page: $scope.reviews_page}
-            params['tags[]'] = $scope.review_tags.split(',') if $scope.review_tags isnt '{tags}'
+            params['tags[]'] = $scope.review_tags.split(',') if $scope.review_tags
             $http.get('/api/reviews?' + $.param(params)).then (response) ->
                 $scope.searching_reviews = false
                 $scope.reviews = $scope.reviews.concat(response.data.reviews)

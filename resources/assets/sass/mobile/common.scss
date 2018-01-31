@@ -917,6 +917,10 @@ price-item > ul > li.price-item-section:first-child {
         width: 34%;
         padding: 0 8% 5%;
         display: inline-block;
+        & a {
+            color: black;
+            text-decoration: underline;
+        }
     }
 }
 
@@ -929,10 +933,6 @@ price-item > ul > li.price-item-section:first-child {
     top: 4px;
     right: 4px;
     font-size: 12px;
-}
-
-.btn-small {
-    display: none;
 }
 
 h1.padding-top {

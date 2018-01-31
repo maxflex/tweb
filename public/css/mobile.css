@@ -7394,6 +7394,9 @@ price-item > ul > li.price-item-section:first-child {
   width: 34%;
   padding: 0 8% 5%;
   display: inline-block; }
+  .service-list > div a {
+    color: black;
+    text-decoration: underline; }
 
 .video-duratoin {
   background: rgba(0, 0, 0, 0.7);
@@ -7404,9 +7407,6 @@ price-item > ul > li.price-item-section:first-child {
   top: 4px;
   right: 4px;
   font-size: 12px; }
-
-.btn-small {
-  display: none; }
 
 h1.padding-top {
   padding-top: .9em; }
