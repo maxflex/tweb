@@ -1333,3 +1333,11 @@ p.last {
 .reviews-wrapper {
     margin: 75px 0 0;
 }
+
+.map-block {
+    display: flex;
+    margin: 50px 0 30px;
+    & > div {
+        width: 50%;
+    }
+}

@@ -3714,6 +3714,13 @@ a[href^="https://www.google.com/maps"] {
 .reviews-wrapper {
   margin: 75px 0 0; }
 
+.map-block {
+  display: -webkit-box;
+  display: flex;
+  margin: 50px 0 30px; }
+  .map-block > div {
+    width: 50%; }
+
 /* Components */
 .top-message {
   background: #fef9de;

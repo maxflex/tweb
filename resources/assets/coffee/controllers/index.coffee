@@ -206,10 +206,10 @@ angular
             $scope.map.fitBounds $scope.bounds
             $scope.map.panToBounds $scope.bounds
 
-            if isMobile
-
-            else
-                $scope.map.panBy(-200, 0)
+            # if isMobile
+            #
+            # else
+            #     $scope.map.panBy(-200, 0)
 
             if (isMobile)
                 window.onOpenModal = ->
