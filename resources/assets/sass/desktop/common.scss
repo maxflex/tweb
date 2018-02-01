@@ -893,16 +893,6 @@ p.last {
             &:last-child {
                 flex: 1 !important;
                 width: auto !important;
-                & .master-desc {
-                    margin: 25px 0;
-                    display: block;
-                    float: none !important;
-                }
-                & b {
-                    margin: 0;
-                    font-family: $font-medium;
-                    font-size: 20px;
-                }
             }
         }
     }
@@ -926,10 +916,6 @@ p.last {
         &:not(:last-child) {
             margin-right: 30px;
         }
-        & .master-photo {
-            width: 207px;
-            border-radius: 50%;
-        }
         & b {
             margin: 10px 0 20px;
             display: block;
@@ -943,6 +929,52 @@ p.last {
             text-align: left;
         }
     }
+}
+
+.masters-all {
+    flex-wrap: wrap;
+    & > div {
+        margin: 0 !important;
+        padding-bottom: 50px;
+        &:nth-child(3n - 1) {
+            margin: 0 100px !important;
+        }
+    }
+}
+
+.master-desc {
+    margin: 25px 0;
+    display: block;
+    float: none !important;
+}
+
+.master-name {
+    margin: 0;
+    font-family: $font-medium;
+    font-size: 20px;
+}
+
+.master-photo {
+    width: 207px;
+    border-radius: 50%;
+}
+
+.master-profile {
+    display: flex;
+    & > div:first-child {
+        margin-right: 50px;
+    }
+}
+
+.master-name {
+    font-family: $font-medium;
+    font-size: 20px;
+}
+
+.master-page .full-page-masters {
+    padding-bottom: 0 !important;
+    margin-top: 0;
+    background-color: white;
 }
 
 & .equipment-item {

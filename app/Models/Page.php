@@ -78,6 +78,15 @@ class Page extends Model
         return Parser::compilePage($this, $value);
     }
 
+    public function setHtmlAttribute($value)
+    {
+        if (isMobile()) {
+            $this->attributes['html_mobile'] = $value;
+        } else {
+            $this->attributes['html'] = $value;
+        }
+    }
+
     public function getH1Attribute($value)
     {
         if ($value) {
@@ -148,7 +157,7 @@ class Page extends Model
         return $this->id == 10;
     }
 
-    private function getHtml()
+    public function getHtml()
     {
         if (isMobile() && empty(trim($this->attributes['html_mobile']))) {
             return Parser::getPostfixed($this->attributes['html'], $this);

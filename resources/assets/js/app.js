@@ -449,53 +449,6 @@
 }).call(this);
 
 (function() {
-  angular.module('App').controller('Empty', function($scope, $timeout, $filter, $http, StreamService) {
-    var searchReviews;
-    bindArguments($scope, arguments);
-    $scope.expand_items = {};
-    $scope.expandStream = function(action, type) {
-      type = $filter('cut')(type, false, 20, '...');
-      $scope.expand_items[type] = !$scope.expand_items[type];
-      if ($scope.expand_items[type]) {
-        return StreamService.run(action, type);
-      }
-    };
-    $timeout(function() {
-      return $scope.gallery = {};
-    });
-    $scope.initReviews = function(count, min_score, grade, subject, university) {
-      $scope.search = {
-        page: 1,
-        count: count,
-        min_score: min_score,
-        grade: grade,
-        subject: subject,
-        university: university,
-        ids: []
-      };
-      $scope.reviews = [];
-      $scope.has_more_pages = true;
-      return searchReviews();
-    };
-    $scope.nextReviewsPage = function() {
-      StreamService.run('all_reviews', 'more');
-      $scope.search.page++;
-      return searchReviews();
-    };
-    return searchReviews = function() {
-      $scope.searching_reviews = true;
-      return $http.get('/api/reviews/block?' + $.param($scope.search)).then(function(response) {
-        $scope.searching_reviews = false;
-        $scope.reviews = $scope.reviews.concat(response.data.reviews);
-        $scope.search.ids = _.pluck($scope.reviews, 'id');
-        return $scope.has_more_pages = response.data.has_more_pages;
-      });
-    };
-  });
-
-}).call(this);
-
-(function() {
   angular.module('App').controller('Gallery', function($scope, $timeout, StreamService) {
     bindArguments($scope, arguments);
     angular.element(document).ready(function() {
@@ -512,231 +465,6 @@
       return _.findIndex($scope.all_photos, {
         id: photo_id
       });
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').controller('Index', function($scope, $timeout, $http, PriceSection) {
-    var initGmap, initVideo, searchGallery, searchReviews, searchVideos;
-    bindArguments($scope, arguments);
-    $scope.player = {};
-    window.onYouTubeIframeAPIReady = function() {
-      return $scope.videos.forEach(function(v) {
-        return initVideo(v);
-      });
-    };
-    $timeout(function() {
-      $scope.has_more_reviews = true;
-      $scope.reviews_page = 0;
-      $scope.reviews = [];
-      searchReviews();
-      $scope.displayed_gallery = 6;
-      initGmap();
-      $scope.videos.forEach(function(v) {
-        return initVideo(v);
-      });
-      return $scope.displayed_videos = 3;
-    });
-    $scope.getPrice = function(tags) {
-      var params;
-      params = {};
-      if (tags !== '{tags}') {
-        params['tags[]'] = tags.split(',');
-      }
-      return $scope.prices = PriceSection.query(params, function(response) {
-        return $timeout(function() {
-          return PriceExpander.expand(isMobile ? 15 : 30);
-        }, 1000);
-      });
-    };
-    $scope.nextReviewsPage = function() {
-      $scope.reviews_page++;
-      return searchReviews();
-    };
-    searchReviews = function() {
-      var params;
-      $scope.searching_reviews = true;
-      params = {
-        page: $scope.reviews_page
-      };
-      if ($scope.review_tags) {
-        params['tags[]'] = $scope.review_tags.split(',');
-      }
-      return $http.get('/api/reviews?' + $.param(params)).then(function(response) {
-        $scope.searching_reviews = false;
-        $scope.reviews = $scope.reviews.concat(response.data.reviews);
-        return $scope.has_more_reviews = response.data.has_more_reviews;
-      });
-    };
-    $scope.nextVideosPage = function() {
-      $scope.videos_page++;
-      return searchVideos();
-    };
-    searchVideos = function() {
-      $scope.searching_videos = true;
-      return $http.get('/api/videos?page=' + $scope.videos_page).then(function(response) {
-        $scope.searching_videos = false;
-        $scope.videos = $scope.videos.concat(response.data.videos);
-        $scope.has_more_videos = response.data.has_more_videos;
-        return $timeout(function() {
-          return response.data.videos.forEach(function(v) {
-            return bindFullscreenRequest(v);
-          });
-        });
-      });
-    };
-    $scope.videoDuration = function(v) {
-      var format;
-      if (v.duration) {
-        format = v.duration >= 60 ? 'm:ss' : 'ss';
-        return moment.utc(v.duration * 1000).format(format);
-      }
-    };
-    $scope.stopPlaying = function(except_id) {
-      return $.each($scope.player, function(e, p) {
-        if (p.getPlayerState && p.getPlayerState() === 1 && p.a.id !== except_id) {
-          return p.stopVideo();
-        }
-      });
-    };
-    initVideo = function(video) {
-      var iframe, player, requestFullScreen;
-      if (!YT.Player || $scope.player[video.id]) {
-        return;
-      }
-      console.log("binding for video " + video.id);
-      iframe = document.getElementById("youtube-video-" + video.id);
-      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-      player = new YT.Player("youtube-video-" + video.id, {
-        playerVars: {
-          rel: 0
-        },
-        events: {
-          onReady: function(p) {
-            video.duration = p.target.getDuration();
-            return $timeout(function() {
-              return $scope.$apply();
-            });
-          }
-        }
-      });
-      $scope.player[video.id] = player;
-      return $scope.player[video.id].addEventListener('onStateChange', function(state) {
-        requestFullScreen.bind(iframe)();
-        if (state.data === YT.PlayerState.PLAYING) {
-          return $scope.stopPlaying(state.target.a.id);
-        }
-      });
-    };
-    $scope.showMoreGallery = function() {
-      var from, to;
-      $scope.gallery_obj.page = !$scope.gallery_obj.page ? 1 : $scope.gallery_obj.page + 1;
-      from = ($scope.gallery_obj.page - 1) * 6;
-      to = from + 6;
-      return $scope.gallery_obj.displayed = $scope.gallery.slice(0, to);
-    };
-    $scope.nextGalleryPage = function() {
-      $scope.gallery_page++;
-      return searchGallery();
-    };
-    $scope.openPhoto = function(index) {
-      return $scope.galleryCtrl.open(index);
-    };
-    searchGallery = function() {
-      $scope.searching_gallery = true;
-      return $http.get('/api/gallery?page=' + $scope.gallery_page).then(function(response) {
-        $scope.searching_gallery = false;
-        $scope.gallery = $scope.gallery.concat(response.data.gallery);
-        $scope.has_more_gallery = response.data.has_more_gallery;
-        return $scope.showMoreGallery();
-      });
-    };
-    $scope.playVideo = function() {
-      var iframe, requestFullScreen;
-      $scope.player.loadVideoById('qQS-d4cJr0s');
-      $scope.player.playVideo();
-      iframe = document.getElementById('youtube-video');
-      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-      if (requestFullScreen) {
-        return requestFullScreen.bind(iframe)();
-      }
-    };
-    $scope.openPhotoSwipe = function(index) {
-      var options, pswpElement;
-      $scope.items = [];
-      $scope.gallery.forEach(function(g) {
-        return $scope.items.push({
-          src: g.url,
-          msrc: g.url,
-          w: 2200,
-          h: 1100,
-          title: g.name,
-          master: g.master,
-          components: g.components,
-          total_price: g.total_price,
-          days_to_complete: g.days_to_complete
-        });
-      });
-      pswpElement = document.querySelectorAll('.pswp')[0];
-      options = {
-        getThumbBoundsFn: function(index) {
-          var pageYScroll, rect, thumbnail;
-          thumbnail = document.getElementById("p-" + index);
-          pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
-          rect = thumbnail.getBoundingClientRect();
-          return {
-            x: rect.left,
-            y: rect.top + pageYScroll,
-            w: rect.width
-          };
-        },
-        history: false,
-        focus: false,
-        index: parseInt(index),
-        tapToToggleControls: false,
-        captionEl: false,
-        arrowEl: true,
-        animateTransitions: true,
-        closeOnVerticalDrag: false,
-        closeOnScroll: false
-      };
-      $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options);
-      $scope.PhotoSwipe.init();
-      return $scope.PhotoSwipe.listen('preventDragEvent', function(e, isDown, preventObj) {
-        return preventObj.prevent = true;
-      });
-    };
-    return initGmap = function() {
-      var markers;
-      $scope.map = new google.maps.Map(document.getElementById("map"), {
-        scrollwheel: false,
-        disableDefaultUI: true,
-        clickableLabels: false,
-        clickableIcons: false,
-        zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_CENTER
-        },
-        scaleControl: false
-      });
-      $scope.bounds = new google.maps.LatLngBounds;
-      markers = [newMarker(new google.maps.LatLng(55.7173112, 37.5929021), $scope.map), newMarker(new google.maps.LatLng(55.781081, 37.5141053), $scope.map)];
-      markers.forEach(function(marker) {
-        var marker_location;
-        marker_location = new google.maps.LatLng(marker.lat, marker.lng);
-        return $scope.bounds.extend(marker_location);
-      });
-      $scope.map.fitBounds($scope.bounds);
-      $scope.map.panToBounds($scope.bounds);
-      if (isMobile) {
-        return window.onOpenModal = function() {
-          google.maps.event.trigger($scope.map, 'resize');
-          $scope.map.fitBounds($scope.bounds);
-          return $scope.map.panToBounds($scope.bounds);
-        };
-      }
     };
   });
 
@@ -864,6 +592,263 @@
 }).call(this);
 
 (function() {
+  angular.module('App').controller('main', function($scope, $timeout, $http, PriceService, GalleryService) {
+    var initGmap, initVideo, searchReviews, searchVideos;
+    bindArguments($scope, arguments);
+    $scope.player = {};
+    window.onYouTubeIframeAPIReady = function() {
+      return $scope.videos.forEach(function(v) {
+        return initVideo(v);
+      });
+    };
+    $timeout(function() {
+      $scope.has_more_reviews = true;
+      $scope.reviews_page = 0;
+      $scope.reviews = [];
+      searchReviews();
+      initGmap();
+      $scope.videos.forEach(function(v) {
+        return initVideo(v);
+      });
+      return $scope.displayed_videos = 3;
+    });
+    $scope.nextReviewsPage = function() {
+      $scope.reviews_page++;
+      return searchReviews();
+    };
+    searchReviews = function() {
+      var params;
+      $scope.searching_reviews = true;
+      params = {
+        page: $scope.reviews_page
+      };
+      if ($scope.review_tags) {
+        params['tags[]'] = $scope.review_tags.split(',');
+      }
+      return $http.get('/api/reviews?' + $.param(params)).then(function(response) {
+        $scope.searching_reviews = false;
+        $scope.reviews = $scope.reviews.concat(response.data.reviews);
+        return $scope.has_more_reviews = response.data.has_more_reviews;
+      });
+    };
+    $scope.nextVideosPage = function() {
+      $scope.videos_page++;
+      return searchVideos();
+    };
+    searchVideos = function() {
+      $scope.searching_videos = true;
+      return $http.get('/api/videos?page=' + $scope.videos_page).then(function(response) {
+        $scope.searching_videos = false;
+        $scope.videos = $scope.videos.concat(response.data.videos);
+        $scope.has_more_videos = response.data.has_more_videos;
+        return $timeout(function() {
+          return response.data.videos.forEach(function(v) {
+            return bindFullscreenRequest(v);
+          });
+        });
+      });
+    };
+    $scope.videoDuration = function(v) {
+      var format;
+      if (v.duration) {
+        format = v.duration >= 60 ? 'm:ss' : 'ss';
+        return moment.utc(v.duration * 1000).format(format);
+      }
+    };
+    $scope.stopPlaying = function(except_id) {
+      return $.each($scope.player, function(e, p) {
+        if (p.getPlayerState && p.getPlayerState() === 1 && p.a.id !== except_id) {
+          return p.stopVideo();
+        }
+      });
+    };
+    initVideo = function(video) {
+      var iframe, player, requestFullScreen;
+      if (!YT.Player || $scope.player[video.id]) {
+        return;
+      }
+      console.log("binding for video " + video.id);
+      iframe = document.getElementById("youtube-video-" + video.id);
+      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+      player = new YT.Player("youtube-video-" + video.id, {
+        playerVars: {
+          rel: 0
+        },
+        events: {
+          onReady: function(p) {
+            video.duration = p.target.getDuration();
+            return $timeout(function() {
+              return $scope.$apply();
+            });
+          }
+        }
+      });
+      $scope.player[video.id] = player;
+      return $scope.player[video.id].addEventListener('onStateChange', function(state) {
+        requestFullScreen.bind(iframe)();
+        if (state.data === YT.PlayerState.PLAYING) {
+          return $scope.stopPlaying(state.target.a.id);
+        }
+      });
+    };
+    $scope.playVideo = function() {
+      var iframe, requestFullScreen;
+      $scope.player.loadVideoById('qQS-d4cJr0s');
+      $scope.player.playVideo();
+      iframe = document.getElementById('youtube-video');
+      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+      if (requestFullScreen) {
+        return requestFullScreen.bind(iframe)();
+      }
+    };
+    $scope.openPhotoSwipe = function(index) {
+      var options, pswpElement;
+      $scope.items = [];
+      $scope.gallery.forEach(function(g) {
+        return $scope.items.push({
+          src: g.url,
+          msrc: g.url,
+          w: 2200,
+          h: 1100,
+          title: g.name,
+          master: g.master,
+          components: g.components,
+          total_price: g.total_price,
+          days_to_complete: g.days_to_complete
+        });
+      });
+      pswpElement = document.querySelectorAll('.pswp')[0];
+      options = {
+        getThumbBoundsFn: function(index) {
+          var pageYScroll, rect, thumbnail;
+          thumbnail = document.getElementById("p-" + index);
+          pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+          rect = thumbnail.getBoundingClientRect();
+          return {
+            x: rect.left,
+            y: rect.top + pageYScroll,
+            w: rect.width
+          };
+        },
+        history: false,
+        focus: false,
+        index: parseInt(index),
+        tapToToggleControls: false,
+        captionEl: false,
+        arrowEl: true,
+        animateTransitions: true,
+        closeOnVerticalDrag: false,
+        closeOnScroll: false
+      };
+      $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options);
+      $scope.PhotoSwipe.init();
+      return $scope.PhotoSwipe.listen('preventDragEvent', function(e, isDown, preventObj) {
+        return preventObj.prevent = true;
+      });
+    };
+    return initGmap = function() {
+      var markers;
+      $scope.map = new google.maps.Map(document.getElementById("map"), {
+        scrollwheel: false,
+        disableDefaultUI: true,
+        clickableLabels: false,
+        clickableIcons: false,
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        },
+        scaleControl: false
+      });
+      $scope.bounds = new google.maps.LatLngBounds;
+      markers = [newMarker(new google.maps.LatLng(55.7173112, 37.5929021), $scope.map), newMarker(new google.maps.LatLng(55.781081, 37.5141053), $scope.map)];
+      markers.forEach(function(marker) {
+        var marker_location;
+        marker_location = new google.maps.LatLng(marker.lat, marker.lng);
+        return $scope.bounds.extend(marker_location);
+      });
+      $scope.map.fitBounds($scope.bounds);
+      $scope.map.panToBounds($scope.bounds);
+      if (isMobile) {
+        return window.onOpenModal = function() {
+          google.maps.event.trigger($scope.map, 'resize');
+          $scope.map.fitBounds($scope.bounds);
+          return $scope.map.panToBounds($scope.bounds);
+        };
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').constant('REVIEWS_PER_PAGE', 5).controller('master', function($scope, $timeout, $http, Master, REVIEWS_PER_PAGE, GalleryService) {
+    bindArguments($scope, arguments);
+    $scope.reviews = function(master, index) {
+      if (master.all_reviews === void 0) {
+        master.all_reviews = Master.reviews({
+          id: master.id
+        }, function(response) {
+          return $scope.showMoreReviews(master);
+        });
+      }
+      return $scope.toggleShow(master, 'show_reviews', 'reviews', false);
+    };
+    $scope.showMoreReviews = function(master, index) {
+      var from, to;
+      master.reviews_page = !master.reviews_page ? 1 : master.reviews_page + 1;
+      from = (master.reviews_page - 1) * REVIEWS_PER_PAGE;
+      to = from + REVIEWS_PER_PAGE;
+      return master.displayed_reviews = master.all_reviews.slice(0, to);
+    };
+    $scope.reviewsLeft = function(master) {
+      var reviews_left;
+      if (!master.all_reviews || !master.displayed_reviews) {
+        return;
+      }
+      reviews_left = master.all_reviews.length - master.displayed_reviews.length;
+      if (reviews_left > REVIEWS_PER_PAGE) {
+        return REVIEWS_PER_PAGE;
+      } else {
+        return reviews_left;
+      }
+    };
+    $scope.toggleShow = function(master, prop, iteraction_type, index) {
+      if (index == null) {
+        index = null;
+      }
+      if (master[prop]) {
+        return $timeout(function() {
+          return master[prop] = false;
+        }, $scope.mobile ? 400 : 0);
+      } else {
+        return master[prop] = true;
+      }
+    };
+    return $scope.popup = function(id, master, fn, index) {
+      if (master == null) {
+        master = null;
+      }
+      if (fn == null) {
+        fn = null;
+      }
+      if (index == null) {
+        index = null;
+      }
+      openModal(id);
+      if (master !== null) {
+        $scope.popup_master = master;
+      }
+      if (fn !== null) {
+        return $timeout(function() {
+          return $scope[fn](master, index);
+        });
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
   angular.module('App').controller('Order', function($scope, $timeout, $http, Grades, Subjects, Request, StreamService) {
     var streamString;
     bindArguments($scope, arguments);
@@ -978,10 +963,16 @@
 }).call(this);
 
 (function() {
-  angular.module('App').controller('Programs', function($scope, $timeout) {
-    return $timeout(function() {
-      return $scope.ready = true;
-    }, 300);
+  angular.module('App').controller('other', function($scope, $timeout, $filter, $http, StreamService) {
+    return bindArguments($scope, arguments);
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').controller('price', function($scope, PriceService) {
+    bindArguments($scope, arguments);
+    return PriceService.expand = false;
   });
 
 }).call(this);
@@ -1011,125 +1002,6 @@
         $scope.searching = false;
         $scope.reviews = $scope.reviews.concat(response.data.reviews);
         return $scope.has_more_pages = response.data.has_more_pages;
-      });
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').controller('Stats', function($scope, $timeout, $http, Subjects, Grades, AvgScores, StreamService) {
-    var search;
-    bindArguments($scope, arguments);
-    $timeout(function() {
-      $scope.search = {
-        page: 1,
-        year: '2016'
-      };
-      $scope.data = {};
-      $scope.show_review = null;
-      return $scope.filter();
-    });
-    $scope.changeSubject = function() {
-      StreamService.run('subject_class_stats_set', $scope.search.subject_grade);
-      $scope.search.tutor_id = null;
-      return $scope.filter();
-    };
-    $scope.changeTutor = function() {
-      StreamService.run('tutor_stats_set', $scope.search.tutor_id);
-      return $scope.filter();
-    };
-    $scope.changeYear = function() {
-      StreamService.run('year_stats_set', $scope.search.year);
-      return $scope.filter();
-    };
-    $scope.popup = function(index) {
-      return $scope.show_review = index;
-    };
-    $scope.nextPage = function() {
-      StreamService.run('load_more_results', $scope.search.page * 50);
-      $scope.search.page++;
-      return search();
-    };
-    $scope.filter = function() {
-      $scope.search.page = 1;
-      return search();
-    };
-    $scope.getScoreLabel = function() {
-      var grade, label, profile, ref, subject_id;
-      ref = $scope.search.subject_grade.split('-'), subject_id = ref[0], grade = ref[1], profile = ref[2];
-      label = (parseInt(grade) === 9 ? 'ОГЭ' : 'ЕГЭ') + ' по ' + Subjects.dative[subject_id];
-      if (parseInt(subject_id) === 1 && parseInt(grade) >= 10) {
-        if (parseInt(grade) === 10) {
-          label += ' (база)';
-        } else {
-          label += parseInt(profile) ? ' (профиль)' : ' (база)';
-        }
-      }
-      return label;
-    };
-    $scope.getSubjectsGrades = function() {
-      var options;
-      if ($scope.subject_grades === void 0) {
-        options = [
-          {
-            id: '1-11-1',
-            label: 'ЕГЭ математика (профиль)'
-          }, {
-            id: '1-11-0',
-            label: 'ЕГЭ математика (база)'
-          }
-        ];
-        [11, 10, 9].forEach(function(grade) {
-          return $.each(Subjects.full, function(subject_id, subject_name) {
-            var grade_label, label;
-            if (grade === 11 && parseInt(subject_id) === 1) {
-              return;
-            }
-            subject_name = subject_name.toLowerCase();
-            switch (parseInt(grade)) {
-              case 11:
-                grade_label = 'ЕГЭ';
-                break;
-              case 9:
-                grade_label = 'ОГЭ';
-                break;
-              default:
-                grade_label = grade + " класс";
-            }
-            label = grade_label + " " + subject_name;
-            if (grade === 10 && parseInt(subject_id) === 1) {
-              label += ' (база)';
-            }
-            return options.push({
-              id: subject_id + "-" + grade,
-              label: label
-            });
-          });
-        });
-        $scope.subject_grades = options;
-      }
-      return $scope.subject_grades;
-    };
-    return search = function() {
-      $scope.searching = true;
-      return $http.get('/api/stats?' + $.param($scope.search)).then(function(response) {
-        console.log(response);
-        $scope.searching = false;
-        if ($scope.search.page === 1) {
-          $scope.data = response.data;
-        } else {
-          $scope.data.has_more_pages = response.data.has_more_pages;
-          $scope.data.reviews = $scope.data.reviews.concat(response.data.reviews);
-        }
-        $timeout(function() {
-          return $('.custom-select').trigger('render');
-        });
-        if (isMobile) {
-          return $timeout(function() {
-            return bindToggle();
-          });
-        }
       });
     };
   });
@@ -1621,14 +1493,14 @@
 (function() {
   var apiPath, countable, updatable;
 
-  angular.module('App').factory('Tutor', function($resource) {
-    return $resource(apiPath('tutors'), {
+  angular.module('App').factory('Master', function($resource) {
+    return $resource(apiPath('masters'), {
       id: '@id',
       type: '@type'
     }, {
       search: {
         method: 'POST',
-        url: apiPath('tutors', 'search')
+        url: apiPath('masters', 'search')
       },
       reviews: {
         method: 'GET',
@@ -1684,6 +1556,17 @@
 }).call(this);
 
 (function() {
+  angular.module('App').service('GalleryService', function() {
+    this.displayed = 6;
+    this.open = function(index) {
+      return this.ctrl.open(index);
+    };
+    return this;
+  });
+
+}).call(this);
+
+(function() {
   angular.module('App').service('PhoneService', function() {
     var isFull;
     this.checkForm = function(element) {
@@ -1705,6 +1588,31 @@
         return false;
       }
       return !number.match(/_/);
+    };
+    return this;
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').service('PriceService', function($timeout, PriceSection) {
+    this.items = [];
+    this.expand = true;
+    this.get = function(tags) {
+      var params;
+      params = {};
+      if (tags) {
+        params['tags[]'] = tags.split(',');
+      }
+      return this.items = PriceSection.query(params, (function(_this) {
+        return function(response) {
+          if (_this.expand) {
+            return $timeout(function() {
+              return PriceExpander.expand(isMobile ? 15 : 30);
+            }, 1000);
+          }
+        };
+      })(this));
     };
     return this;
   });

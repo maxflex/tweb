@@ -938,3 +938,7 @@ price-item > ul > li.price-item-section:first-child {
 h1.padding-top {
     padding-top: .9em;
 }
+
+.master-page .full-width .common h1 {
+    display: none;
+}

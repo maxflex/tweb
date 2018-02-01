@@ -263,14 +263,15 @@
         }
 
         /**
-         * Компилировать страницу препода
+         * Компилировать страницу сущности
          */
-        public static function compileTutor($id, &$html)
+        public static function compileMaster($id, &$html)
         {
-            $tutor = Tutor::selectDefault()->whereId($id)->first();
-            static::replace($html, 'subject', $tutor->subjects_string);
-            static::replace($html, 'tutor-name', implode(' ', [$tutor->last_name, $tutor->first_name, $tutor->middle_name]));
-            static::replace($html, 'current_tutor', $tutor->toJson());
+            $master = Master::whereId($id)->first();
+            static::replace($html, 'subject', $master->subjects_string);
+            static::replace($html, 'master-name', implode(' ', [$master->last_name, $master->first_name, $master->middle_name]));
+            static::replace($html, 'current_master', $master->toJson());
+            static::replace($html, 'current_master_gallery_ids', Gallery::where('master_id', $master->id)->pluck('id')->implode(','));
         }
 
         public static function interpolate($text = '', $start = null, $end = null)

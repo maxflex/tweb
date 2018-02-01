@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Page;
 use App\Models\Variable;
-use App\Models\Tutor;
+use App\Models\Master;
 use App\Models\Service\Parser;
 
 class PagesController extends Controller
@@ -31,20 +31,22 @@ class PagesController extends Controller
     }
 
     /**
-     * Tutor profile page
+     * Entity profile page
      */
-    public function tutor($id)
+    public function master($id)
     {
-        if (Tutor::whereId($id)->exists()) {
-            $html = Page::whereUrl(Tutor::URL . '/:id')->first()->html;
-            Parser::compileTutor($id, $html);
+        if (Master::whereId($id)->exists()) {
+            $page = Page::whereUrl(Master::URL . '/:id')->first();
+            $html = $page->getHtml();
+            Parser::compileMaster($id, $html);
+            $page->html = $html;
             $status = 200;
         } else {
-            $html = Page::withoutGlobalScopes()->whereUrl('404')->first()->html;
+            $page = Page::withoutGlobalScopes()->whereUrl('404')->first();
             $status = 404;
         }
         $_SESSION['action'] = 'profile';
-        return response()->view('pages.index', compact('html'), $status);
+        return response()->view('pages.index', ['html' => $page->html], $status);
     }
 
     public function about()

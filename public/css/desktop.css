@@ -3413,14 +3413,6 @@ a[href^="https://www.google.com/maps"] {
       -webkit-box-flex: 1 !important;
       flex: 1 !important;
       width: auto !important; }
-      .main-page-masters.masters-count-1 > div:last-child .master-desc {
-        margin: 25px 0;
-        display: block;
-        float: none !important; }
-      .main-page-masters.masters-count-1 > div:last-child b, .main-page-masters.masters-count-1 > div:last-child .address-more li > div:first-of-type, .address-more .main-page-masters.masters-count-1 > div:last-child li > div:first-of-type {
-        margin: 0;
-        font-family: "helveticaneuecyrmedium";
-        font-size: 20px; }
   .main-page-masters.masters-count-2 > div {
     -webkit-box-flex: 1;
     flex: 1; }
@@ -3433,9 +3425,6 @@ a[href^="https://www.google.com/maps"] {
     width: 207px; }
     .main-page-masters > div:not(:last-child) {
       margin-right: 30px; }
-    .main-page-masters > div .master-photo {
-      width: 207px;
-      border-radius: 50%; }
     .main-page-masters > div b, .main-page-masters > div .address-more li > div:first-of-type, .address-more .main-page-masters > div li > div:first-of-type {
       margin: 10px 0 20px;
       display: block; }
@@ -3445,6 +3434,43 @@ a[href^="https://www.google.com/maps"] {
     .main-page-masters > div h3 {
       padding-top: 21px;
       text-align: left; }
+
+.masters-all {
+  flex-wrap: wrap; }
+  .masters-all > div {
+    margin: 0 !important;
+    padding-bottom: 50px; }
+    .masters-all > div:nth-child(3n - 1) {
+      margin: 0 100px !important; }
+
+.master-desc {
+  margin: 25px 0;
+  display: block;
+  float: none !important; }
+
+.master-name {
+  margin: 0;
+  font-family: "helveticaneuecyrmedium";
+  font-size: 20px; }
+
+.master-photo {
+  width: 207px;
+  border-radius: 50%; }
+
+.master-profile {
+  display: -webkit-box;
+  display: flex; }
+  .master-profile > div:first-child {
+    margin-right: 50px; }
+
+.master-name {
+  font-family: "helveticaneuecyrmedium";
+  font-size: 20px; }
+
+.master-page .full-page-masters {
+  padding-bottom: 0 !important;
+  margin-top: 0;
+  background-color: white; }
 
 .equipment-item {
   display: -webkit-box;

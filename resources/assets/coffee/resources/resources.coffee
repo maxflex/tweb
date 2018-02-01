@@ -1,9 +1,9 @@
 angular.module('App')
-    .factory 'Tutor', ($resource) ->
-        $resource apiPath('tutors'), {id: '@id', type: '@type'},
+    .factory 'Master', ($resource) ->
+        $resource apiPath('masters'), {id: '@id', type: '@type'},
             search:
                 method: 'POST'
-                url: apiPath('tutors', 'search')
+                url: apiPath('masters', 'search')
             reviews:
                 method: 'GET'
                 isArray: true

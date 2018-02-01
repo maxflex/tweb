@@ -7,15 +7,15 @@ use Illuminate\Pagination\Paginator;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Tutor;
+use App\Models\Master;
 use App\Models\Page;
 use DB;
 
-class TutorsController extends Controller
+class MastersController extends Controller
 {
     public function index(Request $request)
     {
-        return Tutor::simplePaginate(10);
+        return Master::simplePaginate(10);
     }
 
     /**
@@ -23,7 +23,7 @@ class TutorsController extends Controller
      */
     public function reviews($id)
     {
-        return Tutor::reviews($id)->get();
+        return Master::reviews($id)->get();
     }
 
     /**
@@ -43,6 +43,6 @@ class TutorsController extends Controller
             return $request->page;
         });
 
-        return Tutor::search($search)->paginate($take);
+        return Master::search($search)->paginate($take);
     }
 }

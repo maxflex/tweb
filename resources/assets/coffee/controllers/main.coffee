@@ -1,6 +1,6 @@
 angular
     .module 'App'
-    .controller 'Index', ($scope, $timeout, $http, PriceSection) ->
+    .controller 'main', ($scope, $timeout, $http, PriceService, GalleryService) ->
         bindArguments($scope, arguments)
 
         $scope.player = {}
@@ -13,13 +13,6 @@ angular
             $scope.reviews = []
             searchReviews()
 
-            $scope.displayed_gallery = 6
-            # $scope.gallery_obj = {} #
-            # $scope.has_more_gallery = true
-            # $scope.gallery_page = 0
-            # $scope.gallery = []
-            # searchGallery()
-
             initGmap()
 
             $scope.videos.forEach (v) -> initVideo(v)
@@ -28,15 +21,6 @@ angular
             # $scope.videos_page = 0
             # $scope.videos = []
             # searchVideos()
-
-        # PRICE
-        $scope.getPrice = (tags) ->
-            params = {}
-            params['tags[]'] = tags.split(',') if tags isnt '{tags}'
-            $scope.prices = PriceSection.query params, (response) ->
-                $timeout ->
-                    PriceExpander.expand(if isMobile then 15 else 30)
-                , 1000
 
         # REVIEWS
         $scope.nextReviewsPage = ->
@@ -97,37 +81,6 @@ angular
             $scope.player[video.id].addEventListener 'onStateChange', (state) ->
                 requestFullScreen.bind(iframe)()
                 $scope.stopPlaying(state.target.a.id) if state.data is YT.PlayerState.PLAYING
-
-        # GALLERY
-
-        $scope.showMoreGallery = ->
-            $scope.gallery_obj.page = if not $scope.gallery_obj.page then 1 else ($scope.gallery_obj.page + 1)
-            from = ($scope.gallery_obj.page - 1) * 6
-            to = from + 6
-            $scope.gallery_obj.displayed = $scope.gallery.slice(0, to)
-
-        $scope.nextGalleryPage = ->
-            $scope.gallery_page++
-            # StreamService.run('load_more_tutors', null, {page: $scope.page})
-            searchGallery()
-
-
-        $scope.openPhoto = (index) ->
-            # StreamService.run('photogallery', "open_#{photo_id}")
-            $scope.galleryCtrl.open(index)
-
-        searchGallery = ->
-            $scope.searching_gallery = true
-            $http.get('/api/gallery?page=' + $scope.gallery_page).then (response) ->
-                $scope.searching_gallery = false
-                $scope.gallery = $scope.gallery.concat(response.data.gallery)
-                # response.data.gallery.forEach (photo) ->
-                #     new_photo = _.clone(photo)
-                #     new_photo.id = Math.round(Math.random(1, 999999) * 100000)
-                #     $scope.gallery.push(new_photo)
-                $scope.has_more_gallery = response.data.has_more_gallery
-                $scope.showMoreGallery()
-                # if $scope.mobile then $timeout -> bindToggle()
 
         $scope.playVideo = ->
             $scope.player.loadVideoById('qQS-d4cJr0s')

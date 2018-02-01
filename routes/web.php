@@ -1,7 +1,7 @@
 <?php
     use App\Models\Variable;
     use App\Models\Programm;
-    use App\Models\Tutor;
+    use App\Models\Master;
 
     URL::forceSchema('https');
 
@@ -26,8 +26,8 @@
         return view("directives.{$directive}");
     });
 
-    # Tutor profile page
-    // Route::get(Tutor::URL . '/{id}', 'PagesController@tutor')->where('id', '[0-9]+');
+    # Entity profile page
+    Route::get(Master::URL . '/{id}', 'PagesController@master')->where('id', '[0-9]+');
 
     Route::get('about', 'PagesController@about');
 

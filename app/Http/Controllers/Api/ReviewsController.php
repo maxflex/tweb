@@ -31,20 +31,15 @@ class ReviewsController extends Controller
 
         $query = (new TagsFilterDecorator($query))->withTags($request->tags);
 
-        // if ($request->tags) {
-        //     foreach($request->tags as $tag_id) {
-        //         $query->whereRaw("EXISTS(select 1 from tag_entities
-        //             where tag_id={$tag_id}
-        //             and entity_id = reviews.id
-        //             and entity_type = 'App\\\Models\\\Review'
-        //         )");
-        //     }
-        // }
-
         $reviews = $query->get();
 
         $has_more_reviews = $reviews->count() ? Review::where('id', '<', $reviews->last()->id)->exists() : false;
 
         return compact('reviews', 'has_more_reviews');
+    }
+
+    public function show($id)
+    {
+        return Review::where('master_id', $id)->orderBy('date', 'desc')->get();
     }
 }
