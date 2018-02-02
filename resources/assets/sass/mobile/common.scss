@@ -982,15 +982,9 @@ $uploaded-photo-preview-width: 32%;
     transition: all .15s linear;
     position: relative;
     margin-bottom: 2%;
-    &:hover {
-        &:before {
-            content: '';
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            background-color: rgba(255,255,255,0.5);
-        }
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .add-photo-box {
