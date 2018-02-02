@@ -13,7 +13,7 @@ angular
                 maxFileSize: 10000000, # 10 MB
                 # начало загрузки
                 start: ->
-                    $scope.is_uploading = true
+                    $scope.order.photos.push(null)
                     $scope.$apply()
                     true
                 # во время загрузки
@@ -21,12 +21,14 @@ angular
                     $scope.uploaded_percentage = Math.round(data.loaded / data.total * 100)
                     $scope.$apply()
                 # всегда по окончании загрузки (неважно, ошибка или успех)
-                always: ->
-                    $scope.is_uploading = false
-                    $scope.$apply()
+                # always: ->
+                #     $scope.is_uploading = false
+                #     $scope.$apply()
                 done: (i, response) =>
-                    $scope.order.photos.push(response.result)
+                    $scope.order.photos[$scope.order.photos.length - 1] = response.result
                     $scope.$apply()
+
+        $scope.photoUploading = -> $scope.order.photos[$scope.order.photos.length - 1] is null
 
         $scope.filterPopup = (popup) ->
             $scope.popups[popup] = true
@@ -37,6 +39,9 @@ angular
 
         $scope.photosAllowed = ->
             $scope.max_photos - $scope.order.photos.length
+
+        $scope.fileChange = (event) ->
+            console.log(event)
 
         $scope.request = ->
             $scope.sending = true

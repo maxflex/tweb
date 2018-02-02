@@ -1410,6 +1410,7 @@ p.last {
 $uploaded-photo-preview-width: 150px;
 
 .uploaded-photo-box {
+    background-color: rgba($text-grey-light, .2);
     width: $uploaded-photo-preview-width;
     height: 100px;
     border-radius: 5px;
@@ -1417,6 +1418,9 @@ $uploaded-photo-preview-width: 150px;
     background-position: center center;
     transition: all .15s linear;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
         // opacity: 0.5;
         & .uploaded-photo-remove {
@@ -1432,20 +1436,20 @@ $uploaded-photo-preview-width: 150px;
     }
 }
 
-.uploaded-photo-hint {
-    // width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: $text-grey-light;
+.is-uploading {
+    &:before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: rgba(255,255,255,0.5);
+    }
 }
 
 .add-photo-box {
     overflow: hidden;
     width: $uploaded-photo-preview-width;
     height: 100px;
-    display: inline-block;
     background-color: rgba($text-grey-light, .2);
     display: flex;
     align-items: center;
@@ -1458,8 +1462,15 @@ $uploaded-photo-preview-width: 150px;
     transition: all .15s linear;
     & span {
         position: relative;
-        top: -3px;
+        top: -4px;
         font-family: $font-bold;
+    }
+    & div {
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
     }
     &:hover {
         background-color: $main-color;

@@ -20948,7 +20948,7 @@ return PhotoSwipeUI_Default;
       return $('#fileupload').fileupload({
         maxFileSize: 10000000,
         start: function() {
-          $scope.is_uploading = true;
+          $scope.order.photos.push(null);
           $scope.$apply();
           return true;
         },
@@ -20956,18 +20956,17 @@ return PhotoSwipeUI_Default;
           $scope.uploaded_percentage = Math.round(data.loaded / data.total * 100);
           return $scope.$apply();
         },
-        always: function() {
-          $scope.is_uploading = false;
-          return $scope.$apply();
-        },
         done: (function(_this) {
           return function(i, response) {
-            $scope.order.photos.push(response.result);
+            $scope.order.photos[$scope.order.photos.length - 1] = response.result;
             return $scope.$apply();
           };
         })(this)
       });
     });
+    $scope.photoUploading = function() {
+      return $scope.order.photos[$scope.order.photos.length - 1] === null;
+    };
     $scope.filterPopup = function(popup) {
       return $scope.popups[popup] = true;
     };
@@ -20977,6 +20976,9 @@ return PhotoSwipeUI_Default;
     };
     $scope.photosAllowed = function() {
       return $scope.max_photos - $scope.order.photos.length;
+    };
+    $scope.fileChange = function(event) {
+      return console.log(event);
     };
     return $scope.request = function() {
       $scope.sending = true;
@@ -21199,123 +21201,6 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
-  });
-
-}).call(this);
-
-(function() {
   angular.module('App').directive('academic', function() {
     return {
       restrict: 'E',
@@ -21533,6 +21418,123 @@ return PhotoSwipeUI_Default;
 
 (function() {
 
+
+}).call(this);
+
+(function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
+  });
 
 }).call(this);
 
@@ -22007,25 +22009,11 @@ function addStyleString(str) {
     document.body.appendChild(node);
 }
 
-
-/**
- * Разворачивает price до N строк
- */
-// function expandPrice(level) {
-//     base_class  = '.price-list'
-//     li_class    = 'li:visible'
-//     n           = 30
-//
-//     selector = [base_class]
-//     for(i=0; i<level; i++) {
-//         selector[] = li_class
-//     }
-//     selector = selector.join(' ')
-//     length = $(selector).length
-//     while ($([base_class, li_class].join(' ')).length < n) {
-//
-//     }
-// }
+function fileChange(event) {
+    setTimeout(function() {
+        $('.uploaded-photo-box').last().css('background-image', "url('" + URL.createObjectURL(event.target.files[0]) + "')")
+    }, 100)
+}
 /*
  * jQuery File Upload Plugin 5.42.3
  * https://github.com/blueimp/jQuery-File-Upload
