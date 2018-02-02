@@ -1462,7 +1462,7 @@ $uploaded-photo-preview-width: 150px;
     transition: all .15s linear;
     & span {
         position: relative;
-        top: -4px;
+        top: -5px;
         font-family: $font-bold;
     }
     & div {
@@ -1487,4 +1487,14 @@ $uploaded-photo-preview-width: 150px;
 
 .main-wrapper {
     position: relative;
+}
+
+.add-photo-label {
+    padding-bottom: 14px;
+    font-family: $font-medium;
+    & span {
+        margin: 0 0 0 10px;
+        line-height: normal;
+        font-family: $font-regular;
+    }
 }

@@ -3829,7 +3829,7 @@ a[href^="https://www.google.com/maps"] {
   transition: all .15s linear; }
   .add-photo-box span {
     position: relative;
-    top: -4px;
+    top: -5px;
     font-family: "helveticaneuecyrbold"; }
   .add-photo-box div {
     position: absolute;
@@ -3848,6 +3848,14 @@ a[href^="https://www.google.com/maps"] {
 
 .main-wrapper {
   position: relative; }
+
+.add-photo-label {
+  padding-bottom: 14px;
+  font-family: "helveticaneuecyrmedium"; }
+  .add-photo-label span {
+    margin: 0 0 0 10px;
+    line-height: normal;
+    font-family: "helveticaneuecyrregular"; }
 
 .wrap {
   width: 600px;

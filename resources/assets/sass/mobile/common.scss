@@ -965,9 +965,6 @@ h1.padding-top {
     justify-content: center;
     z-index: 99;
     cursor: pointer;
-    &:hover {
-        color: $main-link-color;
-    }
 }
 
 $uploaded-photo-preview-width: 32%;
@@ -1003,7 +1000,7 @@ $uploaded-photo-preview-width: 32%;
     & span {
         font-size: 50px;
         position: relative;
-        top: -4px;
+        top: -5px;
         font-family: $font-bold;
     }
     & div {
@@ -1034,4 +1031,16 @@ $uploaded-photo-preview-width: 32%;
 
 .order-form h1 {
     line-height: 21px;
+}
+
+.add-photo-label {
+    font-family: $font-medium;
+    padding-bottom: 14px;
+    padding-top: 5px;
+    & span {
+        color: $text-red;
+        margin: 0 0 0 10px;
+        line-height: normal;
+        font-family: $font-regular;
+    }
 }

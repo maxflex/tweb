@@ -15,29 +15,11 @@ class UploadController extends Controller
 
     public function original(Request $request)
     {
+        if ($request->file('photo')->getClientSize() > 5242880) {
+              return response()->json(['error' => 'максимальный объём файла – 5 Мб']);
+          }
         $filename = uniqid() . '.' . $request->file('photo')->getClientOriginalExtension();
         $request->file('photo')->move(Photo::getDir(), $filename);
-        return $filename;
-    }
-
-    public function cropped(Request $request)
-    {
-        $filename = uniqid() . '.jpg';
-        $image = new \claviska\SimpleImage();
-        $image
-            ->fromFile($request->file('cropped_image'))
-            ->resize(2000, null)
-            ->toFile(Photo::getDir('cropped') . $filename, 'image/jpeg', 20);
-        // $request->file('cropped_image')->move(Photo::getDir('cropped'), $filename);
-        $photo = Photo::find($request->id);
-        $photo->update(['cropped' => $filename]);
-        return $photo;
-    }
-
-    public function pageItem(Request $request)
-    {
-        $filename = uniqid() . '.' . $request->file('pageitem')->getClientOriginalExtension();
-        $request->pageitem->storeAs('pageitems', $filename, 'public');
         return $filename;
     }
 }

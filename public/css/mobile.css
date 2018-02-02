@@ -7435,8 +7435,6 @@ h1.padding-top {
   justify-content: center;
   z-index: 99;
   cursor: pointer; }
-  .uploaded-photo-remove:hover {
-    color: #960000; }
 
 .uploaded-photo-box {
   margin-right: 5px;
@@ -7476,7 +7474,7 @@ h1.padding-top {
   .add-photo-box span {
     font-size: 50px;
     position: relative;
-    top: -4px;
+    top: -5px;
     font-family: "helveticaneuecyrbold"; }
   .add-photo-box div {
     position: absolute;
@@ -7500,6 +7498,16 @@ h1.padding-top {
 
 .order-form h1 {
   line-height: 21px; }
+
+.add-photo-label {
+  font-family: "helveticaneuecyrmedium";
+  padding-bottom: 14px;
+  padding-top: 5px; }
+  .add-photo-label span {
+    color: #a30000;
+    margin: 0 0 0 10px;
+    line-height: normal;
+    font-family: "helveticaneuecyrregular"; }
 
 .wrap {
   width: 600px;

@@ -12,10 +12,19 @@ angular
             $('#fileupload').fileupload
                 maxFileSize: 5000000
                 # начало загрузки
-                start: ->
+                send: (e, data) ->
+                    if data.files[0].size > 5242880
+                        $scope.upload_error = 'максимальный объём файла – 5 Мб'
+                        $scope.$apply()
+                        return false
+                    $scope.upload_error = null
                     $scope.order.photos.push(null)
                     $scope.$apply()
-                    true
+                # start: ->
+                #     $scope.order.photos.push(null)
+                #     $scope.upload_error = null
+                #     $scope.$apply()
+                #     true
                 # во время загрузки
                 progress: (e, data) ->
                     $scope.uploaded_percentage = Math.round(data.loaded / data.total * 100)
@@ -25,7 +34,10 @@ angular
                 #     $scope.is_uploading = false
                 #     $scope.$apply()
                 done: (i, response) =>
-                    $scope.order.photos[$scope.order.photos.length - 1] = response.result
+                    if response.result.hasOwnProperty('error')
+                        $scope.upload_error = response.result.error
+                    else
+                        $scope.order.photos[$scope.order.photos.length - 1] = response.result
                     $scope.$apply()
 
         $scope.photoUploading = -> $scope.order.photos[$scope.order.photos.length - 1] is null

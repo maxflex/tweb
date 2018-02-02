@@ -196,6 +196,9 @@ function addStyleString(str) {
 }
 
 function fileChange(event) {
+    if (event.target.files[0].size > 5242880) {
+        return false
+    }
     setTimeout(function() {
         $('.uploaded-photo-box').last().css('background-image', "url('" + URL.createObjectURL(event.target.files[0]) + "')")
     }, 100)
