@@ -7,7 +7,7 @@ angular
             $scope.order = {photos: []}
             $scope.popups = {}
             $scope.agreement = true
-            $scope.max_photos = 5
+            $scope.max_photos = 2
 
             $('#fileupload').fileupload
                 maxFileSize: 5000000

@@ -7455,8 +7455,6 @@ h1.padding-top {
   border-radius: 5px;
   background-size: cover;
   background-position: center center;
-  -webkit-transition: all .15s linear;
-  transition: all .15s linear;
   position: relative;
   margin-bottom: 2%;
   display: -webkit-box;
@@ -7480,9 +7478,7 @@ h1.padding-top {
   color: #818181;
   border-radius: 5px;
   position: relative;
-  cursor: pointer;
-  -webkit-transition: all .15s linear;
-  transition: all .15s linear; }
+  cursor: pointer; }
   .add-photo-box span {
     font-size: 50px;
     position: relative;
@@ -8550,7 +8546,8 @@ h1.padding-top {
   border: 0;
   position: relative; }
   .btn:disabled, .btn-fill:disabled, .btn-border:disabled, .btn-border-gray:disabled {
-    background: #818181; }
+    background: #818181;
+    border-color: #818181; }
   .btn span, .btn-fill span, .btn-border span, .btn-border-gray span {
     line-height: inherit !important; }
 

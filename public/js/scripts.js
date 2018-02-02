@@ -20944,7 +20944,7 @@ return PhotoSwipeUI_Default;
       };
       $scope.popups = {};
       $scope.agreement = true;
-      $scope.max_photos = 5;
+      $scope.max_photos = 2;
       return $('#fileupload').fileupload({
         maxFileSize: 5000000,
         send: function(e, data) {

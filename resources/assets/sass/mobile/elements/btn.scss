@@ -11,6 +11,7 @@
     position: relative;
     &:disabled {
         background: $text-grey;
+        border-color: $text-grey;
     }
     & span {
         line-height: inherit !important;

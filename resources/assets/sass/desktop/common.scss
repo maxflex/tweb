@@ -1416,7 +1416,6 @@ $uploaded-photo-preview-width: 150px;
     border-radius: 5px;
     background-size: cover;
     background-position: center center;
-    transition: all .15s linear;
     position: relative;
     display: flex;
     align-items: center;
@@ -1459,7 +1458,7 @@ $uploaded-photo-preview-width: 150px;
     font-size: 50px;
     position: relative;
     cursor: pointer;
-    transition: all .15s linear;
+    // transition: background-color .15s linear;
     & span {
         position: relative;
         top: -5px;
