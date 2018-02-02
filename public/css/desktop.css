@@ -2654,6 +2654,18 @@ th {
   to {
     width: 1.25em; } }
 
+@-webkit-keyframes blink {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@keyframes blink {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
 .loading-inside-button {
   padding: 0;
   position: absolute;
@@ -3855,7 +3867,15 @@ a[href^="https://www.google.com/maps"] {
   .add-photo-label span {
     margin: 0 0 0 10px;
     line-height: normal;
-    font-family: "helveticaneuecyrregular"; }
+    font-family: "helveticaneuecyrregular";
+    -webkit-animation-duration: 600ms;
+    animation-duration: 600ms;
+    -webkit-animation-name: blink;
+    animation-name: blink;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate; }
 
 .wrap {
   width: 600px;
