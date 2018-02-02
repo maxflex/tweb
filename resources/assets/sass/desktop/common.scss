@@ -1373,3 +1373,105 @@ p.last {
         width: 50%;
     }
 }
+
+.order-page {
+    & .h1-top {
+        text-align: left;
+    }
+}
+
+.request-photos-placeholder {
+    display: flex;
+    width: 1200px;
+    & > div {
+        margin-right: 20px;
+    }
+}
+
+.uploaded-photo-remove {
+    position: absolute;
+    right: -9px;
+    top: -9px;
+    background: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    cursor: pointer;
+    display: none;
+    &:hover {
+        color: $main-link-color;
+    }
+}
+
+.uploaded-photo-box {
+    width: 170px;
+    height: 100px;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center center;
+    transition: all .15s linear;
+    position: relative;
+    &:hover {
+        // opacity: 0.5;
+        & .uploaded-photo-remove {
+            display: flex !important;
+        }
+        &:before {
+            content: '';
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: rgba(255,255,255,0.5);
+        }
+    }
+}
+
+.uploaded-photo-hint {
+    // width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: $text-grey-light;
+}
+
+.add-photo-box {
+    overflow: hidden;
+    width: 170px;
+    height: 100px;
+    display: inline-block;
+    background-color: rgba($text-grey-light, .2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-grey;
+    border-radius: 5px;
+    font-size: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: all .15s linear;
+    & span {
+        position: relative;
+        top: -3px;
+        font-family: $font-bold;
+    }
+    &:hover {
+        background-color: $main-color;
+        color: white;
+    }
+}
+
+.photo-uploading {
+    cursor: default !important;
+    &:hover {
+        background-color: rgba($text-grey-light, .2) !important;
+    }
+}
+
+.main-wrapper {
+    position: relative;
+}

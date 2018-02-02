@@ -5,6 +5,8 @@
 
     URL::forceSchema('https');
 
+    Route::post('upload', 'UploadController@original');
+    
     Route::get('sitemap.xml', 'SitemapController@index');
 
     Route::get('/full', function() {

@@ -7414,6 +7414,96 @@ h1.padding-top {
 .master-page .full-width .common h1 {
   display: none; }
 
+.request-photos-placeholder {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between; }
+
+.uploaded-photo-remove {
+  position: absolute;
+  right: -9px;
+  top: -9px;
+  background: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  -webkit-box-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  z-index: 99;
+  cursor: pointer;
+  display: none; }
+  .uploaded-photo-remove:hover {
+    color: #960000; }
+
+.uploaded-photo-box {
+  width: 49%;
+  height: 100px;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transition: all .15s linear;
+  transition: all .15s linear;
+  position: relative;
+  margin-bottom: 2%; }
+  .uploaded-photo-box:hover .uploaded-photo-remove {
+    display: -webkit-box !important;
+    display: flex !important; }
+  .uploaded-photo-box:hover:before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5); }
+
+.uploaded-photo-hint {
+  width: 49%;
+  height: 100px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+  color: #acacac; }
+
+.add-photo-box {
+  width: 49%;
+  height: 100px;
+  display: inline-block;
+  background-color: rgba(172, 172, 172, 0.2);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: #818181;
+  border-radius: 5px;
+  font-size: 50px;
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: all .15s linear;
+  transition: all .15s linear; }
+  .add-photo-box span {
+    position: relative;
+    top: -3px;
+    font-family: "helveticaneuecyrbold"; }
+
+.personal-info-agreement {
+  top: -3px;
+  font-size: 12px;
+  margin-left: 3px;
+  position: relative; }
+
+.order-form h1 {
+  line-height: 21px; }
+
 /* Components */
 .header {
   background: #f3e9d4;
