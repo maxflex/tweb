@@ -10,7 +10,7 @@ angular
             $scope.max_photos = 5
 
             $('#fileupload').fileupload
-                maxFileSize: 10000000, # 10 MB
+                maxFileSize: 5000000
                 # начало загрузки
                 start: ->
                     $scope.order.photos.push(null)

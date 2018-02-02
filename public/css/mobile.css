@@ -7480,7 +7480,7 @@ h1.padding-top {
     font-family: "helveticaneuecyrbold"; }
   .add-photo-box div {
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
     width: 100%;
     text-align: center;
     font-size: 12px; }

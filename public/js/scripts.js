@@ -20946,7 +20946,7 @@ return PhotoSwipeUI_Default;
       $scope.agreement = true;
       $scope.max_photos = 5;
       return $('#fileupload').fileupload({
-        maxFileSize: 10000000,
+        maxFileSize: 5000000,
         start: function() {
           $scope.order.photos.push(null);
           $scope.$apply();
