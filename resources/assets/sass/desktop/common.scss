@@ -1407,8 +1407,10 @@ p.last {
     }
 }
 
+$uploaded-photo-preview-width: 150px;
+
 .uploaded-photo-box {
-    width: 170px;
+    width: $uploaded-photo-preview-width;
     height: 100px;
     border-radius: 5px;
     background-size: cover;
@@ -1441,7 +1443,7 @@ p.last {
 
 .add-photo-box {
     overflow: hidden;
-    width: 170px;
+    width: $uploaded-photo-preview-width;
     height: 100px;
     display: inline-block;
     background-color: rgba($text-grey-light, .2);

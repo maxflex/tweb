@@ -3777,7 +3777,7 @@ a[href^="https://www.google.com/maps"] {
     color: #960000; }
 
 .uploaded-photo-box {
-  width: 170px;
+  width: 150px;
   height: 100px;
   border-radius: 5px;
   background-size: cover;
@@ -3807,7 +3807,7 @@ a[href^="https://www.google.com/maps"] {
 
 .add-photo-box {
   overflow: hidden;
-  width: 170px;
+  width: 150px;
   height: 100px;
   display: inline-block;
   background-color: rgba(172, 172, 172, 0.2);
