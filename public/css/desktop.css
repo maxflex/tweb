@@ -3689,8 +3689,6 @@ a[href^="https://www.google.com/maps"] {
         opacity: 1; }
       .main-gallery-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img {
         width: 100%; }
-      .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child(n + 4), .main-gallery-block .video-wrapper .gallery-item:nth-child(n + 4) {
-        margin-top: 30px; }
       .main-gallery-block .main-gallery-wrapper .gallery-item .gallery-header, .main-gallery-block .video-wrapper .gallery-item .gallery-header {
         font-size: 26px;
         font-family: "helveticaneuecyrlight";

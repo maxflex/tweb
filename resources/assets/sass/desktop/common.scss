@@ -1280,9 +1280,6 @@ p.last {
             & img {
                 width: 100%;
             }
-            &:nth-child(n + 4) {
-                margin-top: 30px;
-            }
             & .gallery-header {
                 font-size: 26px;
                 font-family: $font-light;
