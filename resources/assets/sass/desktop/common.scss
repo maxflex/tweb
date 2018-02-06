@@ -8,6 +8,7 @@ span {
 }
 
 body {
+    overflow-x: hidden;
   font-family: $font-regular;
   font-size: $main-font-size;
 }
@@ -147,6 +148,7 @@ a, .link-like {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  // overflow-x: hidden;
 }
 
 .center-col {
@@ -1249,6 +1251,48 @@ p.last {
 
 
 .main-gallery-block {
+    overflow: hidden;
+    // position: relative;
+    // padding: 0 $screen-width;
+    & b {
+        // font-size: 18px;
+        // display: block;
+        margin: 15px 0;
+        & .fa {
+            font-size: 14px;
+            color: #d24a43;
+            margin-right: 5px;
+            top: -1px;
+            position: relative;
+        }
+    }
+    & .main-gallery-wrapper {
+        display: flex;
+        align-items: flex-start;
+        & .gallery-item {
+            flex: 0 0 $screen-width;
+            padding: 0 20px;
+            opacity: 0.4;
+            transition: opacity .5s linear;
+            &.active {
+                opacity: 1;
+            }
+            & img {
+                width: 100%;
+            }
+            &:nth-child(n + 4) {
+                margin-top: 30px;
+            }
+            & .gallery-header {
+                font-size: 26px;
+                font-family: $font-light;
+                padding: 20px 0;
+            }
+        }
+    }
+}
+
+.video-block {
     & b {
         // font-size: 18px;
         // display: block;
@@ -1279,11 +1323,6 @@ p.last {
             }
         }
     }
-}
-
-.video-block {
-    @extend .main-gallery-block;
-    margin-top: 0 !important;
 }
 
 .video-wrapper {
@@ -1333,7 +1372,10 @@ p.last {
 }
 
 .full-width-wrapper {
-    width: 100vw;
+    // 14px – с какого-то момента сломалось и нужно было добавить это
+    // width: calc(100vw - 16px);
+    // margin-left: calc((100vw - 960px - 16px) / 2 * -1);
+    width: calc(100vw);
     margin-left: calc((100vw - 960px) / 2 * -1);
 }
 
@@ -1366,9 +1408,14 @@ p.last {
     margin: 75px 0 0;
 }
 
+.map-block-wrapper {
+    margin-top: 50px;
+    border: 1px solid #c6c6c6;
+}
+
 .map-block {
     display: flex;
-    margin: 50px 0 30px;
+    padding: 20px;
     & > div {
         width: 50%;
     }
@@ -1501,3 +1548,49 @@ $uploaded-photo-preview-width: 150px;
         animation-direction: alternate;
     }
 }
+
+.header-main-cover {
+    &:before {
+        height: 50px !important;
+    }
+    & .header-menu {
+        height: 50px;
+    }
+    & .header-menu-item a {
+        color: white;
+        height: 32px;
+        padding: 18px 0 0 0;
+    }
+}
+
+.main-gallery-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(black, .5);
+    border-radius: 50%;
+    padding: 20px;
+    z-index: 19;
+    // transition: background .2s linear;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    margin: 0 60px;
+    &:hover {
+        background-color: rgba(black, .9);
+    }
+    &.right {
+        right: 0;
+    }
+    & img {
+        height: 50px;
+    }
+}
+
+.main-gallery-arrows {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 200px;
+}
+

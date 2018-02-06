@@ -17,10 +17,13 @@ angular
 
             $scope.videos.forEach (v) -> initVideo(v)
             $scope.displayed_videos = 3
+            $scope.displayed_masters = 6
+            
             # $scope.has_more_videos = true
             # $scope.videos_page = 0
             # $scope.videos = []
             # searchVideos()
+            GalleryService.init()
 
         # REVIEWS
         $scope.nextReviewsPage = ->

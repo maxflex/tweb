@@ -2739,6 +2739,7 @@ span {
   line-height: 21px; }
 
 body {
+  overflow-x: hidden;
   font-family: "helveticaneuecyrregular";
   font-size: 14px; }
 
@@ -3662,30 +3663,60 @@ a[href^="https://www.google.com/maps"] {
     .price-list .fa.fa-caret-down, .price-list .fa-caret-down.check-mark {
       top: -1px; }
 
-.main-gallery-block b, .video-block b, .main-gallery-block .address-more li > div:first-of-type, .address-more .main-gallery-block li > div:first-of-type, .video-block .address-more li > div:first-of-type, .address-more .video-block li > div:first-of-type {
+.main-gallery-block {
+  overflow: hidden; }
+  .main-gallery-block b, .main-gallery-block .address-more li > div:first-of-type, .address-more .main-gallery-block li > div:first-of-type {
+    margin: 15px 0; }
+    .main-gallery-block b .fa, .main-gallery-block .address-more li > div:first-of-type .fa, .address-more .main-gallery-block li > div:first-of-type .fa, .main-gallery-block b .check-mark, .main-gallery-block .address-more li > div:first-of-type .check-mark, .address-more .main-gallery-block li > div:first-of-type .check-mark {
+      font-size: 14px;
+      color: #d24a43;
+      margin-right: 5px;
+      top: -1px;
+      position: relative; }
+  .main-gallery-block .main-gallery-wrapper, .main-gallery-block .video-wrapper {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: start;
+    align-items: flex-start; }
+    .main-gallery-block .main-gallery-wrapper .gallery-item, .main-gallery-block .video-wrapper .gallery-item {
+      -webkit-box-flex: 0;
+      flex: 0 0 960px;
+      padding: 0 20px;
+      opacity: 0.4;
+      -webkit-transition: opacity .5s linear;
+      transition: opacity .5s linear; }
+      .main-gallery-block .main-gallery-wrapper .gallery-item.active, .main-gallery-block .video-wrapper .gallery-item.active {
+        opacity: 1; }
+      .main-gallery-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img {
+        width: 100%; }
+      .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child(n + 4), .main-gallery-block .video-wrapper .gallery-item:nth-child(n + 4) {
+        margin-top: 30px; }
+      .main-gallery-block .main-gallery-wrapper .gallery-item .gallery-header, .main-gallery-block .video-wrapper .gallery-item .gallery-header {
+        font-size: 26px;
+        font-family: "helveticaneuecyrlight";
+        padding: 20px 0; }
+
+.video-block b, .video-block .address-more li > div:first-of-type, .address-more .video-block li > div:first-of-type {
   margin: 15px 0; }
-  .main-gallery-block b .fa, .video-block b .fa, .main-gallery-block .address-more li > div:first-of-type .fa, .address-more .main-gallery-block li > div:first-of-type .fa, .video-block .address-more li > div:first-of-type .fa, .address-more .video-block li > div:first-of-type .fa, .main-gallery-block b .check-mark, .video-block b .check-mark, .main-gallery-block .address-more li > div:first-of-type .check-mark, .address-more .main-gallery-block li > div:first-of-type .check-mark, .video-block .address-more li > div:first-of-type .check-mark, .address-more .video-block li > div:first-of-type .check-mark {
+  .video-block b .fa, .video-block .address-more li > div:first-of-type .fa, .address-more .video-block li > div:first-of-type .fa, .video-block b .check-mark, .video-block .address-more li > div:first-of-type .check-mark, .address-more .video-block li > div:first-of-type .check-mark {
     font-size: 14px;
     color: #d24a43;
     margin-right: 5px;
     top: -1px;
     position: relative; }
 
-.main-gallery-block .main-gallery-wrapper, .video-block .main-gallery-wrapper, .main-gallery-block .video-wrapper, .video-block .video-wrapper {
+.video-block .main-gallery-wrapper, .video-block .video-wrapper {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap; }
-  .main-gallery-block .main-gallery-wrapper .gallery-item, .video-block .main-gallery-wrapper .gallery-item, .main-gallery-block .video-wrapper .gallery-item, .video-block .video-wrapper .gallery-item {
+  .video-block .main-gallery-wrapper .gallery-item, .video-block .video-wrapper .gallery-item {
     width: 30%; }
-    .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child(3n - 1), .video-block .main-gallery-wrapper .gallery-item:nth-child(3n - 1), .main-gallery-block .video-wrapper .gallery-item:nth-child(3n - 1), .video-block .video-wrapper .gallery-item:nth-child(3n - 1) {
+    .video-block .main-gallery-wrapper .gallery-item:nth-child(3n - 1), .video-block .video-wrapper .gallery-item:nth-child(3n - 1) {
       margin: 0 48px; }
-    .main-gallery-block .main-gallery-wrapper .gallery-item img, .video-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img, .video-block .video-wrapper .gallery-item img {
+    .video-block .main-gallery-wrapper .gallery-item img, .video-block .video-wrapper .gallery-item img {
       width: 100%; }
-    .main-gallery-block .main-gallery-wrapper .gallery-item:nth-child(n + 4), .video-block .main-gallery-wrapper .gallery-item:nth-child(n + 4), .main-gallery-block .video-wrapper .gallery-item:nth-child(n + 4), .video-block .video-wrapper .gallery-item:nth-child(n + 4) {
+    .video-block .main-gallery-wrapper .gallery-item:nth-child(n + 4), .video-block .video-wrapper .gallery-item:nth-child(n + 4) {
       margin-top: 30px; }
-
-.video-block {
-  margin-top: 0 !important; }
 
 .video-wrapper {
   margin-top: 0 !important; }
@@ -3725,7 +3756,7 @@ a[href^="https://www.google.com/maps"] {
   font-size: 12px; }
 
 .full-width-wrapper, .equipment-item.full > div:first-child, .equipment-item-full .equipment-image, .equipment-item-full .equipment-additional-block {
-  width: 100vw;
+  width: calc(100vw);
   margin-left: calc((100vw - 960px) / 2 * -1); }
 
 .price-section-desc {
@@ -3752,10 +3783,14 @@ a[href^="https://www.google.com/maps"] {
 .reviews-wrapper {
   margin: 75px 0 0; }
 
+.map-block-wrapper {
+  margin-top: 50px;
+  border: 1px solid #c6c6c6; }
+
 .map-block {
   display: -webkit-box;
   display: flex;
-  margin: 50px 0 30px; }
+  padding: 20px; }
   .map-block > div {
     width: 50%; }
 
@@ -3872,6 +3907,47 @@ a[href^="https://www.google.com/maps"] {
     animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate; }
+
+.header-main-cover:before {
+  height: 50px !important; }
+
+.header-main-cover .header-menu {
+  height: 50px; }
+
+.header-main-cover .header-menu-item a {
+  color: white;
+  height: 32px;
+  padding: 18px 0 0 0; }
+
+.main-gallery-arrow {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 20px;
+  z-index: 19;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  margin: 0 60px; }
+  .main-gallery-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.9); }
+  .main-gallery-arrow.right {
+    right: 0; }
+  .main-gallery-arrow img {
+    height: 50px; }
+
+.main-gallery-arrows {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  position: absolute;
+  top: 200px; }
 
 .wrap {
   width: 600px;
@@ -4388,7 +4464,7 @@ a[href^="https://www.google.com/maps"] {
       position: relative; }
       .header-menu-wrap__img {
         background: url("/img/background/main.jpeg") no-repeat 50% 50%;
-        height: 470px;
+        height: 600px;
         background-size: cover; }
         .header-menu-wrap__img:before {
           content: '';
@@ -4432,10 +4508,21 @@ a[href^="https://www.google.com/maps"] {
     position: relative;
     z-index: 1;
     color: #fff;
-    text-align: center;
-    padding: 20px 0 0 0;
+    text-align: left;
+    height: calc(100% - 44px);
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0;
     width: 960px;
     margin: 0 auto; }
+    .header-img p {
+      line-height: 24px;
+      font-size: 15px;
+      width: 80%; }
+    .header-img button {
+      margin-top: 20px; }
     .header-img-title {
       font-family: "helveticaneuecyrultralight";
       font-size: 64px;
