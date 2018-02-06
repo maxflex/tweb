@@ -1276,6 +1276,9 @@ p.last {
             transition: opacity .5s linear;
             &.active {
                 opacity: 1;
+                & img {
+                    z-index: 99;
+                }
             }
             & img {
                 width: 100%;
