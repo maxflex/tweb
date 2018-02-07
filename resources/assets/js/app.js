@@ -361,227 +361,6 @@
 }).call(this);
 
 (function() {
-  angular.module('App').directive('academic', function() {
-    return {
-      restrict: 'E',
-      template: "{{ year }}–{{ +(year) + 1 }}",
-      scope: {
-        year: '='
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').directive('digitsOnly', function() {
-    return {
-      restrics: 'A',
-      require: 'ngModel',
-      link: function($scope, $element, $attr, $ctrl) {
-        var filter, ref;
-        filter = function(value) {
-          var new_value;
-          if (!value) {
-            return void 0;
-          }
-          new_value = value.replace(/[^0-9]/g, '');
-          if (new_value !== value) {
-            $ctrl.$setViewValue(new_value);
-            $ctrl.$render();
-          }
-          return value;
-        };
-        return (ref = $ctrl.$parsers) != null ? ref.push(filter) : void 0;
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').directive('errors', function() {
-    return {
-      restrict: 'E',
-      templateUrl: '/directives/errors',
-      scope: {
-        model: '@'
-      },
-      controller: function($scope, $element, $attrs) {
-        $scope.only_first = $attrs.hasOwnProperty('onlyFirst');
-        return $scope.getErrors = function() {
-          var errors;
-          if ($scope.$parent.errors === void 0) {
-            return;
-          }
-          errors = $scope.$parent.errors[$scope.model];
-          if (!errors) {
-            return;
-          }
-          if ($scope.only_first) {
-            return [errors[0]];
-          } else {
-            return errors;
-          }
-        };
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-
-
-}).call(this);
-
-(function() {
-  angular.module('App').directive('ngMark', function() {
-    return {
-      restrict: 'A',
-      scope: {
-        word: '@'
-      },
-      controller: function($scope, $element, $attrs, $timeout) {
-        return $timeout(function() {
-          return $($element).mark($scope.word, {
-            separateWordSearch: true,
-            accuracy: {
-              value: 'exactly',
-              limiters: ['!', '@', '#', '&', '*', '(', ')', '-', '–', '—', '+', '=', '[', ']', '{', '}', '|', ':', ';', '\'', '\"', '‘', '’', '“', '”', ',', '.', '<', '>', '/', '?']
-            }
-          });
-        });
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').directive('ngPhone', function() {
-    return {
-      restrict: 'A',
-      link: function($scope, element) {
-        return $(element).inputmask("+7 (999) 999-99-99", {
-          autoclear: false,
-          showMaskOnHover: false
-        });
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').directive('plural', function() {
-    return {
-      restrict: 'E',
-      scope: {
-        count: '=',
-        type: '@',
-        noneText: '@'
-      },
-      templateUrl: '/directives/plural',
-      controller: function($scope, $element, $attrs, $timeout) {
-        $scope.textOnly = $attrs.hasOwnProperty('textOnly');
-        $scope.hideZero = $attrs.hasOwnProperty('hideZero');
-        return $scope.when = {
-          'age': ['год', 'года', 'лет'],
-          'student': ['ученик', 'ученика', 'учеников'],
-          'minute': ['минуту', 'минуты', 'минут'],
-          'hour': ['час', 'часа', 'часов'],
-          'day': ['день', 'дня', 'дней'],
-          'rubbles': ['рубль', 'рубля', 'рублей'],
-          'client': ['клиент', 'клиента', 'клиентов'],
-          'mark': ['оценки', 'оценок', 'оценок'],
-          'review': ['отзыв', 'отзыва', 'отзывов'],
-          'request': ['заявка', 'заявки', 'заявок'],
-          'profile': ['анкета', 'анкеты', 'анкет'],
-          'address': ['адрес', 'адреса', 'адресов'],
-          'person': ['человек', 'человека', 'человек'],
-          'ton': ['тонна', 'тонны', 'тонн'],
-          'yacht': ['яхта', 'яхты', 'яхт'],
-          'photo': ['фото', 'фотографии', 'фотографий']
-        };
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').directive('priceItem', function() {
-    return {
-      restrict: 'E',
-      templateUrl: function(elem, attrs) {
-        if (isMobile) {
-          return '/directives/price-item-mobile';
-        } else {
-          return '/directives/price-item';
-        }
-      },
-      scope: {
-        item: '=',
-        level: '='
-      },
-      controller: function($scope, $timeout, $rootScope, PriceSection, PricePosition, Units) {
-        $scope.Units = Units;
-        $scope.findById = $rootScope.findById;
-        $scope.controller_scope = scope;
-        $scope.priceRounded = function(price) {
-          return Math.round(price / 10) * 10;
-        };
-        $scope.getStyle = function() {
-          var offset;
-          offset = $scope.level * 20 + 'px';
-          return {
-            left: offset,
-            width: "calc(100% - " + offset + ")"
-          };
-        };
-        return $scope.toggle = function(item, event) {
-          if (item.items && item.items.length) {
-            $(event.target).toggleClass('active');
-            return $(event.target).parent().children('ul').slideToggle(250);
-          }
-        };
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').directive('programItem', function() {
-    return {
-      templateUrl: '/directives/program',
-      scope: {
-        item: '=',
-        level: '=?',
-        levelstring: '='
-      },
-      controller: function($timeout, $element, $scope) {
-        if (!$scope.level) {
-          $scope.level = 0;
-        }
-        return $scope.getChildLevelString = function(child_index) {
-          var str;
-          str = $scope.levelstring ? $scope.levelstring : '';
-          return str + (child_index + 1) + '.';
-        };
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-
-
-}).call(this);
-
-(function() {
 
 
 }).call(this);
@@ -686,6 +465,197 @@
       return _.findIndex($scope.all_photos, {
         id: photo_id
       });
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').controller('index', function($scope, $timeout, $http, PriceService, GalleryService) {
+    var initGmap, initVideo, searchReviews, searchVideos;
+    bindArguments($scope, arguments);
+    $scope.player = {};
+    window.onYouTubeIframeAPIReady = function() {
+      return $scope.videos.forEach(function(v) {
+        return initVideo(v);
+      });
+    };
+    $timeout(function() {
+      $scope.has_more_reviews = true;
+      $scope.reviews_page = 0;
+      $scope.reviews = [];
+      searchReviews();
+      initGmap();
+      $scope.videos.forEach(function(v) {
+        return initVideo(v);
+      });
+      $scope.displayed_videos = 3;
+      $scope.displayed_masters = 6;
+      return GalleryService.init($scope.gallery);
+    });
+    $scope.nextReviewsPage = function() {
+      $scope.reviews_page++;
+      return searchReviews();
+    };
+    searchReviews = function() {
+      var params;
+      $scope.searching_reviews = true;
+      params = {
+        page: $scope.reviews_page
+      };
+      if ($scope.review_tags) {
+        params['tags[]'] = $scope.review_tags.split(',');
+      }
+      return $http.get('/api/reviews?' + $.param(params)).then(function(response) {
+        $scope.searching_reviews = false;
+        $scope.reviews = $scope.reviews.concat(response.data.reviews);
+        return $scope.has_more_reviews = response.data.has_more_reviews;
+      });
+    };
+    $scope.nextVideosPage = function() {
+      $scope.videos_page++;
+      return searchVideos();
+    };
+    searchVideos = function() {
+      $scope.searching_videos = true;
+      return $http.get('/api/videos?page=' + $scope.videos_page).then(function(response) {
+        $scope.searching_videos = false;
+        $scope.videos = $scope.videos.concat(response.data.videos);
+        $scope.has_more_videos = response.data.has_more_videos;
+        return $timeout(function() {
+          return response.data.videos.forEach(function(v) {
+            return bindFullscreenRequest(v);
+          });
+        });
+      });
+    };
+    $scope.videoDuration = function(v) {
+      var format;
+      if (v.duration) {
+        format = v.duration >= 60 ? 'm:ss' : 'ss';
+        return moment.utc(v.duration * 1000).format(format);
+      }
+    };
+    $scope.stopPlaying = function(except_id) {
+      return $.each($scope.player, function(e, p) {
+        if (p.getPlayerState && p.getPlayerState() === 1 && p.a.id !== except_id) {
+          return p.stopVideo();
+        }
+      });
+    };
+    initVideo = function(video) {
+      var iframe, player, requestFullScreen;
+      if (!YT.Player || $scope.player[video.id]) {
+        return;
+      }
+      console.log("binding for video " + video.id);
+      iframe = document.getElementById("youtube-video-" + video.id);
+      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+      player = new YT.Player("youtube-video-" + video.id, {
+        playerVars: {
+          rel: 0
+        },
+        events: {
+          onReady: function(p) {
+            video.duration = p.target.getDuration();
+            return $timeout(function() {
+              return $scope.$apply();
+            });
+          }
+        }
+      });
+      $scope.player[video.id] = player;
+      return $scope.player[video.id].addEventListener('onStateChange', function(state) {
+        requestFullScreen.bind(iframe)();
+        if (state.data === YT.PlayerState.PLAYING) {
+          return $scope.stopPlaying(state.target.a.id);
+        }
+      });
+    };
+    $scope.playVideo = function() {
+      var iframe, requestFullScreen;
+      $scope.player.loadVideoById('qQS-d4cJr0s');
+      $scope.player.playVideo();
+      iframe = document.getElementById('youtube-video');
+      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+      if (requestFullScreen) {
+        return requestFullScreen.bind(iframe)();
+      }
+    };
+    $scope.openPhotoSwipe = function(index) {
+      var options, pswpElement;
+      $scope.items = [];
+      $scope.gallery.forEach(function(g) {
+        return $scope.items.push({
+          src: g.url,
+          msrc: g.url,
+          w: 2200,
+          h: 1100,
+          title: g.name,
+          master: g.master,
+          components: g.components,
+          total_price: g.total_price,
+          days_to_complete: g.days_to_complete
+        });
+      });
+      pswpElement = document.querySelectorAll('.pswp')[0];
+      options = {
+        getThumbBoundsFn: function(index) {
+          var pageYScroll, rect, thumbnail;
+          thumbnail = document.getElementById("p-" + index);
+          pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+          rect = thumbnail.getBoundingClientRect();
+          return {
+            x: rect.left,
+            y: rect.top + pageYScroll,
+            w: rect.width
+          };
+        },
+        history: false,
+        focus: false,
+        index: parseInt(index),
+        tapToToggleControls: false,
+        captionEl: false,
+        arrowEl: true,
+        animateTransitions: true,
+        closeOnVerticalDrag: false,
+        closeOnScroll: false
+      };
+      $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options);
+      $scope.PhotoSwipe.init();
+      return $scope.PhotoSwipe.listen('preventDragEvent', function(e, isDown, preventObj) {
+        return preventObj.prevent = true;
+      });
+    };
+    return initGmap = function() {
+      var markers;
+      $scope.map = new google.maps.Map(document.getElementById("map"), {
+        scrollwheel: false,
+        disableDefaultUI: true,
+        clickableLabels: false,
+        clickableIcons: false,
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        },
+        scaleControl: false
+      });
+      $scope.bounds = new google.maps.LatLngBounds;
+      markers = [newMarker(new google.maps.LatLng(55.7173112, 37.5929021), $scope.map), newMarker(new google.maps.LatLng(55.781081, 37.5141053), $scope.map)];
+      markers.forEach(function(marker) {
+        var marker_location;
+        marker_location = new google.maps.LatLng(marker.lat, marker.lng);
+        return $scope.bounds.extend(marker_location);
+      });
+      $scope.map.fitBounds($scope.bounds);
+      $scope.map.panToBounds($scope.bounds);
+      if (isMobile) {
+        return window.onOpenModal = function() {
+          google.maps.event.trigger($scope.map, 'resize');
+          $scope.map.fitBounds($scope.bounds);
+          return $scope.map.panToBounds($scope.bounds);
+        };
+      }
     };
   });
 
@@ -831,9 +801,7 @@
       $scope.videos.forEach(function(v) {
         return initVideo(v);
       });
-      $scope.displayed_videos = 3;
-      $scope.displayed_masters = 6;
-      return GalleryService.init();
+      return $scope.displayed_videos = 3;
     });
     $scope.nextReviewsPage = function() {
       $scope.reviews_page++;
@@ -1463,6 +1431,227 @@
 }).call(this);
 
 (function() {
+  angular.module('App').directive('academic', function() {
+    return {
+      restrict: 'E',
+      template: "{{ year }}–{{ +(year) + 1 }}",
+      scope: {
+        year: '='
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').directive('digitsOnly', function() {
+    return {
+      restrics: 'A',
+      require: 'ngModel',
+      link: function($scope, $element, $attr, $ctrl) {
+        var filter, ref;
+        filter = function(value) {
+          var new_value;
+          if (!value) {
+            return void 0;
+          }
+          new_value = value.replace(/[^0-9]/g, '');
+          if (new_value !== value) {
+            $ctrl.$setViewValue(new_value);
+            $ctrl.$render();
+          }
+          return value;
+        };
+        return (ref = $ctrl.$parsers) != null ? ref.push(filter) : void 0;
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').directive('errors', function() {
+    return {
+      restrict: 'E',
+      templateUrl: '/directives/errors',
+      scope: {
+        model: '@'
+      },
+      controller: function($scope, $element, $attrs) {
+        $scope.only_first = $attrs.hasOwnProperty('onlyFirst');
+        return $scope.getErrors = function() {
+          var errors;
+          if ($scope.$parent.errors === void 0) {
+            return;
+          }
+          errors = $scope.$parent.errors[$scope.model];
+          if (!errors) {
+            return;
+          }
+          if ($scope.only_first) {
+            return [errors[0]];
+          } else {
+            return errors;
+          }
+        };
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+
+
+}).call(this);
+
+(function() {
+  angular.module('App').directive('ngMark', function() {
+    return {
+      restrict: 'A',
+      scope: {
+        word: '@'
+      },
+      controller: function($scope, $element, $attrs, $timeout) {
+        return $timeout(function() {
+          return $($element).mark($scope.word, {
+            separateWordSearch: true,
+            accuracy: {
+              value: 'exactly',
+              limiters: ['!', '@', '#', '&', '*', '(', ')', '-', '–', '—', '+', '=', '[', ']', '{', '}', '|', ':', ';', '\'', '\"', '‘', '’', '“', '”', ',', '.', '<', '>', '/', '?']
+            }
+          });
+        });
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').directive('ngPhone', function() {
+    return {
+      restrict: 'A',
+      link: function($scope, element) {
+        return $(element).inputmask("+7 (999) 999-99-99", {
+          autoclear: false,
+          showMaskOnHover: false
+        });
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').directive('plural', function() {
+    return {
+      restrict: 'E',
+      scope: {
+        count: '=',
+        type: '@',
+        noneText: '@'
+      },
+      templateUrl: '/directives/plural',
+      controller: function($scope, $element, $attrs, $timeout) {
+        $scope.textOnly = $attrs.hasOwnProperty('textOnly');
+        $scope.hideZero = $attrs.hasOwnProperty('hideZero');
+        return $scope.when = {
+          'age': ['год', 'года', 'лет'],
+          'student': ['ученик', 'ученика', 'учеников'],
+          'minute': ['минуту', 'минуты', 'минут'],
+          'hour': ['час', 'часа', 'часов'],
+          'day': ['день', 'дня', 'дней'],
+          'rubbles': ['рубль', 'рубля', 'рублей'],
+          'client': ['клиент', 'клиента', 'клиентов'],
+          'mark': ['оценки', 'оценок', 'оценок'],
+          'review': ['отзыв', 'отзыва', 'отзывов'],
+          'request': ['заявка', 'заявки', 'заявок'],
+          'profile': ['анкета', 'анкеты', 'анкет'],
+          'address': ['адрес', 'адреса', 'адресов'],
+          'person': ['человек', 'человека', 'человек'],
+          'ton': ['тонна', 'тонны', 'тонн'],
+          'yacht': ['яхта', 'яхты', 'яхт'],
+          'photo': ['фото', 'фотографии', 'фотографий']
+        };
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').directive('priceItem', function() {
+    return {
+      restrict: 'E',
+      templateUrl: function(elem, attrs) {
+        if (isMobile) {
+          return '/directives/price-item-mobile';
+        } else {
+          return '/directives/price-item';
+        }
+      },
+      scope: {
+        item: '=',
+        level: '='
+      },
+      controller: function($scope, $timeout, $rootScope, PriceSection, PricePosition, Units) {
+        $scope.Units = Units;
+        $scope.findById = $rootScope.findById;
+        $scope.controller_scope = scope;
+        $scope.priceRounded = function(price) {
+          return Math.round(price / 10) * 10;
+        };
+        $scope.getStyle = function() {
+          var offset;
+          offset = $scope.level * 20 + 'px';
+          return {
+            left: offset,
+            width: "calc(100% - " + offset + ")"
+          };
+        };
+        return $scope.toggle = function(item, event) {
+          if (item.items && item.items.length) {
+            $(event.target).toggleClass('active');
+            return $(event.target).parent().children('ul').slideToggle(250);
+          }
+        };
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').directive('programItem', function() {
+    return {
+      templateUrl: '/directives/program',
+      scope: {
+        item: '=',
+        level: '=?',
+        levelstring: '='
+      },
+      controller: function($timeout, $element, $scope) {
+        if (!$scope.level) {
+          $scope.level = 0;
+        }
+        return $scope.getChildLevelString = function(child_index) {
+          var str;
+          str = $scope.levelstring ? $scope.levelstring : '';
+          return str + (child_index + 1) + '.';
+        };
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+
+
+}).call(this);
+
+(function() {
   var apiPath, countable, updatable;
 
   angular.module('App').factory('Master', function($resource) {
@@ -1529,31 +1718,53 @@
 
 (function() {
   angular.module('App').service('GalleryService', function() {
-    var el, scroll_left;
+    var DIRECTION, el, scroll_left;
     el = null;
     scroll_left = null;
+    DIRECTION = {
+      next: 1,
+      prev: 0
+    };
     this.open = function(index) {
       return this.ctrl.open(index);
     };
-    this.init = function() {
+    this.init = function(gallery) {
+      this.gallery = gallery;
+      this.gallery.push(gallery[0]);
+      this.gallery.unshift(gallery[gallery.length - 2]);
       el = $('.main-gallery-block');
       this.screen_width = $('.main-gallery-block .gallery-item').first().outerWidth();
       return this.setActive(1);
     };
     this.next = function() {
+      this.rotateControl(DIRECTION.next);
       return this.setActive(this.active + 1);
     };
     this.prev = function() {
+      this.rotateControl(DIRECTION.prev);
       return this.setActive(this.active - 1);
     };
     this.setActive = function(index) {
       this.active = index;
       return this.scroll();
     };
-    this.scroll = function() {
+    this.rotateControl = function(direction) {
+      if (this.active === 1 && direction === DIRECTION.prev) {
+        this.active = this.gallery.length - 1;
+        this.scroll(0);
+      }
+      if (this.active === this.gallery.length - 2 && direction === DIRECTION.next) {
+        this.active = 0;
+        return this.scroll(0);
+      }
+    };
+    this.scroll = function(animation_speed) {
+      if (animation_speed == null) {
+        animation_speed = 500;
+      }
       return el.animate({
         scrollLeft: this.screen_width * this.active + this.screen_width - (($(window).width() - this.screen_width) / 2)
-      }, 500, 'swing');
+      }, animation_speed, 'swing');
     };
     return this;
   });

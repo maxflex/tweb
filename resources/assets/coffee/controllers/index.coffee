@@ -1,6 +1,6 @@
 angular
     .module 'App'
-    .controller 'main', ($scope, $timeout, $http, PriceService, GalleryService) ->
+    .controller 'index', ($scope, $timeout, $http, PriceService, GalleryService) ->
         bindArguments($scope, arguments)
 
         $scope.player = {}
@@ -17,10 +17,13 @@ angular
 
             $scope.videos.forEach (v) -> initVideo(v)
             $scope.displayed_videos = 3
+            $scope.displayed_masters = 6
+
             # $scope.has_more_videos = true
             # $scope.videos_page = 0
             # $scope.videos = []
             # searchVideos()
+            GalleryService.init($scope.gallery)
 
         # REVIEWS
         $scope.nextReviewsPage = ->
