@@ -8044,6 +8044,20 @@ h1.padding-top {
       .header__wrap-img.university:before {
         background-color: rgba(0, 0, 0, 0.4); }
 
+.header-main .header-logo {
+  background-image: url("../img/svg/logo-white.svg"); }
+
+.header-main .header-menu-button {
+  background-image: url("../img/svg/burger-white.svg"); }
+
+.header-main .header-image {
+  text-align: left;
+  padding: 1.429em 1.357em 1.429em 1.357em; }
+
+.header-main .header-image-container {
+  line-height: 48px;
+  padding-bottom: 20px; }
+
 .footer {
   background: #3b3b3b;
   color: #fff;
