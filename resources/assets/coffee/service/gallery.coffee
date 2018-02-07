@@ -1,5 +1,7 @@
 angular.module 'App'
     .service 'GalleryService', () ->
+        @displayed = 6
+        
         el = null
         scroll_left  = null
         DIRECTION = {next: 1, prev: 0}
