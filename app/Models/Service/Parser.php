@@ -9,6 +9,7 @@
     use App\Models\Master;
     use App\Models\Video;
     use App\Models\Equipment;
+    use App\Models\Folder;
     use DB;
     use Cache;
     use App\Models\Decorators\TagsFilterDecorator;
@@ -314,6 +315,14 @@
 
             if ($folder_ids) {
                 $folder_ids = array_filter(explode(',', $folder_ids));
+
+                // append all subfolders
+                $subfolder_ids = [];
+                foreach($folder_ids as $folder_id) {
+                    $subfolder_ids = array_merge($subfolder_ids, Folder::getSubfolderIds($folder_id));
+                }
+                $folder_ids = array_merge($folder_ids, $subfolder_ids);
+
                 $ids_by_folder = [];
                 $max_size = -1;
                 // мерджим фотки из папок по типу
