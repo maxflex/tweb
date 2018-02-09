@@ -322,7 +322,6 @@
                     $subfolder_ids = array_merge($subfolder_ids, Folder::getSubfolderIds($folder_id));
                 }
                 $folder_ids = array_merge($folder_ids, $subfolder_ids);
-
                 $ids_by_folder = [];
                 $max_size = -1;
                 // мерджим фотки из папок по типу
