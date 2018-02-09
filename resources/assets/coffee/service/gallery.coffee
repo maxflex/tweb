@@ -43,7 +43,7 @@ angular.module 'App'
                 @scroll(0)
 
 
-        @scroll = (animation_speed = 3000)->
+        @scroll = (animation_speed = 500)->
             animation_in_progress = true
             el.stop().animate
                 scrollLeft: @screen_width * @active + @screen_width - (($(window).width() - @screen_width) / 2)
