@@ -1,10 +1,11 @@
 angular.module 'App'
     .service 'GalleryService', () ->
         @displayed = 6
-        
+
         el = null
         scroll_left  = null
         DIRECTION = {next: 1, prev: 0}
+        animation_in_progress = false
 
         @open = (index) ->
             @ctrl.open(index)
@@ -20,10 +21,12 @@ angular.module 'App'
             @setActive(1)
 
         @next = ->
+            return if animation_in_progress
             @rotateControl(DIRECTION.next)
             @setActive(@active + 1)
 
         @prev = ->
+            return if animation_in_progress
             @rotateControl(DIRECTION.prev)
             @setActive(@active - 1)
 
@@ -40,9 +43,10 @@ angular.module 'App'
                 @scroll(0)
 
 
-        @scroll = (animation_speed = 500)->
-            el.animate
+        @scroll = (animation_speed = 3000)->
+            animation_in_progress = true
+            el.stop().animate
                 scrollLeft: @screen_width * @active + @screen_width - (($(window).width() - @screen_width) / 2)
-            , animation_speed, 'swing'
+            , animation_speed, -> animation_in_progress = false
 
         @

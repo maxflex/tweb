@@ -970,7 +970,6 @@ h1.padding-top {
 $uploaded-photo-preview-width: 32%;
 
 .uploaded-photo-box {
-    margin-right: 5px;
     width: $uploaded-photo-preview-width;
     height: 100px;
     border-radius: 5px;
@@ -981,6 +980,12 @@ $uploaded-photo-preview-width: 32%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.photo-box {
+    &:nth-child(3n - 1) {
+        margin: 0 2% !important;
+    }
 }
 
 .add-photo-box {
@@ -1045,4 +1050,8 @@ $uploaded-photo-preview-width: 32%;
         animation-iteration-count: infinite;
         animation-direction: alternate;
     }
+}
+
+.price-page .btn-calc {
+    display: none;
 }
