@@ -8058,6 +8058,8 @@ h1.padding-top {
 .header-main .header-image {
   text-align: left;
   padding: 1.429em 1.357em 1.429em 1.357em; }
+  .header-main .header-image p {
+    font-family: "helveticaneuecyrlight" !important; }
 
 .header-main .header-image-container {
   line-height: 48px;
