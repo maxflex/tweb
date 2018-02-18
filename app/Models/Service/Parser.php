@@ -195,7 +195,11 @@
                         break;
                     case 'video':
                         $ids = explode(',', $args[0]);
-                        $replacement = Video::whereIn('id', $ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'))->get()->toJson();
+                        $query = Video::whereIn('id', $ids);
+                        if (count($ids)) {
+                            $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'));
+                        }
+                        $replacement = $query->get()->toJson();
                         break;
                     case 'photo':
                         $replacement = Photo::find($args[0])->url;
@@ -349,9 +353,10 @@
                 $gallery_ids = array_merge($gallery_ids, $ordered_ids);
             }
 
-            $query = Gallery::with('master')->whereIn('id', $gallery_ids)
-                ->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
-
+            $query = Gallery::with('master')->whereIn('id', $gallery_ids);
+            if (count($gallery_ids)) {
+                $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
+            }
             $query = (new TagsFilterDecorator($query))->withTags($tags);
 
             return $query->get()->toJson();
