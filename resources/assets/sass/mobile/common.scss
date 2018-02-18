@@ -303,7 +303,9 @@ a[href^="https://www.google.com/maps"] {
     display: none !important;
 }
 
-.gmnoprint, .gm-style-cc {display:none !important}
+.gm-bundled-control .gmnoprint {
+    display: block;
+}
 
 .video-close-fix {
     position: fixed;
