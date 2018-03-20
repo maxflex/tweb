@@ -126,9 +126,6 @@
                     case 'version':
                         $replacement = DB::table('settings')->where('key', 'version')->value('value');
                         break;
-                    case 'tutor':
-                        $replacement = Tutor::find($args[0])->toJson();
-                        break;
                     // is|test
                     case 'is':
                         $replacement = isTestSubdomain() ? 'true' : 'false';
@@ -223,26 +220,12 @@
                                 $replacement = egecrm(DB::raw("(select 1 from contract_info group by id_student) as x"))->count();
                                 break;
                             }
-                            case 'tutors':
-                                if (@$args[0] == 'egerep') {
-                                    $replacement = egerep('tutors')->where('public_desc', '!=', '')->count();
-                                } else {
-                                    $replacement = Tutor::count(...$args);
-                                }
-                                break;
                             case 'reviews':
                                 if (@$args[0] == 'egerep') {
                                     $replacement = egerep('reviews')->where('state', 'published')->count();
                                 } else {
                                     $replacement = Review::count();
                                 }
-                                break;
-                            case 'subjects':
-                                $counts = [];
-                                foreach(range(1, 11) as $subject_id) {
-                                    $counts[$subject_id] = Tutor::whereSubject($subject_id)->count();
-                                }
-                                $replacement = json_encode($counts);
                                 break;
                         }
                     break;
