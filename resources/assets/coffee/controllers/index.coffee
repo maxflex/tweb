@@ -78,6 +78,7 @@ angular
                     rel: 0
                 events:
                     onReady: (p) ->
+                        console.log("Getting duration for video", video, p.target.getDuration())
                         video.duration = p.target.getDuration()
                         $timeout -> $scope.$apply()
             $scope.player[video.id] = player

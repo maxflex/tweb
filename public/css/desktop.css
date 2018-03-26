@@ -3954,6 +3954,12 @@ a[href^="https://www.google.com/maps"] {
 .price-page .btn-calc {
   display: none; }
 
+.pseudo-hidden {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  left: -150%; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }

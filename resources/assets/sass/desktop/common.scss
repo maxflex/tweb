@@ -237,7 +237,7 @@ a[href^="https://www.google.com/maps"] {
 
 .gm-bundled-control .gmnoprint {
     display: block;
-} 
+}
 
 .medium {
     font-family: $font-medium;
@@ -1598,4 +1598,11 @@ $uploaded-photo-preview-width: 150px;
 
 .price-page .btn-calc {
     display: none;
+}
+
+.pseudo-hidden {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  left: -150%;
 }

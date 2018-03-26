@@ -20644,6 +20644,7 @@ return PhotoSwipeUI_Default;
         },
         events: {
           onReady: function(p) {
+            console.log("Getting duration for video", video, p.target.getDuration());
             video.duration = p.target.getDuration();
             return $timeout(function() {
               return $scope.$apply();
