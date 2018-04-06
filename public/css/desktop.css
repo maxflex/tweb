@@ -3540,6 +3540,9 @@ a[href^="https://www.google.com/maps"] {
     background: #303030; }
   .equipment-item-full.white .equipment-text-block {
     color: black; }
+    .equipment-item-full.white .equipment-text-block button {
+      color: black;
+      border-color: black; }
   .equipment-item-full.white .equipment-overlay {
     background: -webkit-linear-gradient(left, white 33%, transparent 95%);
     background: linear-gradient(to right, white 33%, transparent 95%); }

@@ -1065,11 +1065,11 @@ p.last {
     &.white {
         & .equipment-text-block {
             color: black;
-            // & button {
-            //     color: black;
-            //     border-color: black;
-            // }
-        }
+            & button {
+                color: black;
+                border-color: black;
+            }
+        } 
         & .equipment-overlay {
             background: linear-gradient(to right, white 33%, transparent 95%);
         }
