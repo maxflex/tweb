@@ -7356,6 +7356,23 @@ price-item > ul > li.price-item-section:first-child {
 
 .equipment-item {
   margin-bottom: 30px; }
+  .equipment-item.black {
+    color: white; }
+    .equipment-item.black button {
+      color: white;
+      border-color: white; }
+  .equipment-item.white button {
+    color: black;
+    border-color: black; }
+  .equipment-item .equipment-img-container {
+    position: relative; }
+    .equipment-item .equipment-img-container .equipment-overlay {
+      overflow: hidden;
+      position: absolute;
+      bottom: 0;
+      height: 30%;
+      width: 100%;
+      left: 0; }
   .equipment-item img {
     width: 100%;
     margin-bottom: 10px; }
@@ -7370,7 +7387,7 @@ price-item > ul > li.price-item-section:first-child {
 .map-wrapper center {
   margin-top: 20px; }
 
-.full-width {
+.full-width, .equipment-item.equipment-full {
   margin-left: -1.2em;
   width: calc(100% + 2.4em) !important; }
 
@@ -7423,7 +7440,7 @@ price-item > ul > li.price-item-section:first-child {
 h1.padding-top {
   padding-top: .9em; }
 
-.master-page .full-width .common h1 {
+.master-page .full-width .common h1, .master-page .equipment-item.equipment-full .common h1 {
   display: none; }
 
 .request-photos-placeholder {

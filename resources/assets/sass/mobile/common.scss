@@ -861,6 +861,33 @@ price-item > ul > li.price-item-section:first-child {
 }
 
    .equipment-item {
+       &.equipment-full {
+           @extend .full-width;
+       }
+       &.black {
+           color: white;
+           & button {
+               color: white;
+               border-color: white;
+           }
+       }
+       &.white {
+           & button {
+               color: black;
+               border-color: black;
+           }
+       }
+       & .equipment-img-container {
+           position: relative;
+           & .equipment-overlay {
+               overflow: hidden;
+                position: absolute;
+                bottom: 0;
+                height: 30%;
+                width: 100%;
+                left: 0;
+           }
+       }
         & img {
             width: 100%;
             margin-bottom: 10px;
