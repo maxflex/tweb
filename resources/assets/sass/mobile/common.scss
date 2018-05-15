@@ -863,6 +863,9 @@ price-item > ul > li.price-item-section:first-child {
    .equipment-item {
        &.equipment-full {
            @extend .full-width;
+           & img {
+               margin-bottom: 0 !important;
+           }
        }
        &.black {
            color: white;
@@ -882,8 +885,8 @@ price-item > ul > li.price-item-section:first-child {
            & .equipment-overlay {
                overflow: hidden;
                 position: absolute;
-                bottom: 0;
-                height: 30%;
+                bottom: 15px;
+                height: 50%;
                 width: 100%;
                 left: 0;
            }

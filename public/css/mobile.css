@@ -7356,6 +7356,8 @@ price-item > ul > li.price-item-section:first-child {
 
 .equipment-item {
   margin-bottom: 30px; }
+  .equipment-item.equipment-full img {
+    margin-bottom: 0 !important; }
   .equipment-item.black {
     color: white; }
     .equipment-item.black button {
@@ -7369,8 +7371,8 @@ price-item > ul > li.price-item-section:first-child {
     .equipment-item .equipment-img-container .equipment-overlay {
       overflow: hidden;
       position: absolute;
-      bottom: 0;
-      height: 30%;
+      bottom: 15px;
+      height: 50%;
       width: 100%;
       left: 0; }
   .equipment-item img {
