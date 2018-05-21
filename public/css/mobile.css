@@ -7372,7 +7372,7 @@ price-item > ul > li.price-item-section:first-child {
       overflow: hidden;
       position: absolute;
       bottom: 5px;
-      height: 50%;
+      height: 100%;
       width: 100%;
       left: 0; }
   .equipment-item img {
