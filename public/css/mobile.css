@@ -7382,12 +7382,13 @@ price-item > ul > li.price-item-section:first-child {
     display: block;
     margin: 30px auto 0; }
 
-.map-wrapper b {
-  display: block;
-  margin: 10px 0 20px; }
-
-.map-wrapper center {
-  margin-top: 20px; }
+.map-wrapper {
+  margin-bottom: 25px; }
+  .map-wrapper b {
+    display: block;
+    margin: 10px 0 20px; }
+  .map-wrapper center {
+    margin-top: 20px; }
 
 .full-width, .equipment-item.equipment-full {
   margin-left: -1.2em;
