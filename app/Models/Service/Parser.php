@@ -298,51 +298,106 @@
 
         private static function _parseGallery($gallery_ids, $tags, $folder_ids)
         {
-            $gallery_ids = array_filter(explode(',', $gallery_ids));
+            /**
+             * Если не указаны ID фото и ID папок, то автозаполнение по тегам
+             */
+            if (! $gallery_ids && ! $folder_ids) {
+                return self::findPhotosByTags($tags);
+            } else {
+                $gallery_ids = array_filter(explode(',', $gallery_ids));
 
-            if ($folder_ids) {
-                $folder_ids = array_filter(explode(',', $folder_ids));
+                if ($folder_ids) {
+                    $folder_ids = array_filter(explode(',', $folder_ids));
 
-                // append all subfolders
-                $subfolder_ids = [];
-                foreach($folder_ids as $folder_id) {
-                    $subfolder_ids = array_merge($subfolder_ids, Folder::getSubfolderIds($folder_id));
-                }
-                $folder_ids = array_merge($folder_ids, $subfolder_ids);
-                $ids_by_folder = [];
-                $max_size = -1;
-                // мерджим фотки из папок по типу
-                // 1 3
-                // 2 4
-                // 5
-                // 6
-                // => 1,3,2,4,5,6
-                foreach($folder_ids as $folder_id) {
-                    $ids_by_folder[$folder_id] = Gallery::where('folder_id', $folder_id)->orderBy('position')->pluck('id')->all();
-                    $size = count($ids_by_folder[$folder_id]);
-                    if ($size > $max_size) {
-                        $max_size = $size;
-                    }
-                }
-
-                $ordered_ids = [];
-                foreach(range(0, $max_size - 1) as $i) {
+                    // append all subfolders
+                    $subfolder_ids = [];
                     foreach($folder_ids as $folder_id) {
-                        if (isset($ids_by_folder[$folder_id][$i])) {
-                            $ordered_ids[] = $ids_by_folder[$folder_id][$i];
+                        $subfolder_ids = array_merge($subfolder_ids, Folder::getSubfolderIds($folder_id));
+                    }
+                    $folder_ids = array_merge($folder_ids, $subfolder_ids);
+                    $ids_by_folder = [];
+                    $max_size = -1;
+                    // мерджим фотки из папок по типу
+                    // 1 3
+                    // 2 4
+                    // 5
+                    // 6
+                    // => 1,3,2,4,5,6
+                    foreach($folder_ids as $folder_id) {
+                        $ids_by_folder[$folder_id] = Gallery::where('folder_id', $folder_id)->orderBy('position')->pluck('id')->all();
+                        $size = count($ids_by_folder[$folder_id]);
+                        if ($size > $max_size) {
+                            $max_size = $size;
                         }
                     }
+
+                    $ordered_ids = [];
+                    foreach(range(0, $max_size - 1) as $i) {
+                        foreach($folder_ids as $folder_id) {
+                            if (isset($ids_by_folder[$folder_id][$i])) {
+                                $ordered_ids[] = $ids_by_folder[$folder_id][$i];
+                            }
+                        }
+                    }
+                    $gallery_ids = array_merge($gallery_ids, $ordered_ids);
                 }
-                $gallery_ids = array_merge($gallery_ids, $ordered_ids);
-            }
 
-            $query = Gallery::with('master')->whereIn('id', $gallery_ids);
-            if (count($gallery_ids)) {
-                $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
-            }
-            $query = (new TagsFilterDecorator($query))->withTags($tags);
+                $query = Gallery::with('master')->whereIn('id', $gallery_ids);
+                if (count($gallery_ids)) {
+                    $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
+                }
+                $query = (new TagsFilterDecorator($query))->withTags($tags);
 
-            return $query->get()->toJson();
+                return $query->get()->toJson();
+            }
+        }
+
+        /**
+            Автозаполнение по тегам
+            если параметры ids и folder пустые, то фотографии отображаются по тэгам, то есть автоматически
+            подробный механизм автоматического отображения фотографий (он будет применяться не только в фото,
+            но и в отзывах и, возможно, еще с какими-либо items):
+
+            например, на странице указаны тэги "а", "b", "c". Это значит система должна найти фото, соответствующие этим критериям минимум.
+            То есть в самом верху отобразить фото, в которых будет указаны как минимум все эти тэги
+
+            "а", "b", "с"
+            "а", "b", "с", "d"
+            "а", "b", "с", "d", "e"
+            "с", "d", "а", "b"
+            далее система думает какие фотографии отобразить ниже: она смотрит на оставшиеся тэги и думает какой тэг выбросить.
+            Система смотрит на встречаемость тэгов "а", "b" и "с" в фотографиях и видит, что "а" встретился 450 раз, "b" встретился 5 раз, "c"
+            встретился 100 раз. Значит система как бы "выбрасывает" тэг "b", так как он встречается меньше всех и ниже начинает
+            отображать фотографии, соответствующие набору тэгов "а", "с" и так далее до того момента, как останется только 1 тэг.
+            Далее система отображает фотографии, у которых указан только оставшийся этот последний тэг. Дальше система уже никакие
+            фото не отображает. все фотографии должны быть одображены 1 раз, то есть при выводе не должно быть дублирований
+         */
+        public static function findPhotosByTags($tags)
+        {
+            if ($tags) {
+                if (is_string($tags)) {
+                    $tags = explode(',', $tags);
+                }
+                $combinations = getCombinations($tags);
+                $combination_counts = [];
+                $ids = [];
+                foreach($combinations as $combinations_chunk) {
+                    // для дебага
+                    // foreach($combinations_chunk as $index => $combination) {
+                    //     $ids[implode('-', $combination)] = (new TagsFilterDecorator(Gallery::query()))->withTags($combination)->pluck('id')->all();
+                    // }
+                    $combination_counts = [];
+                    foreach($combinations_chunk as $index => $combination) {
+                        $combination_counts[$index] = (new TagsFilterDecorator(Gallery::query()))->withTags($combination)->whereNotIn('id', $ids)->count();
+                    }
+                    arsort($combination_counts);
+                    foreach($combination_counts as $combination_index => $count) {
+                        $ids = array_merge($ids, (new TagsFilterDecorator(Gallery::query()))->withTags($combinations_chunk[$combination_index])->whereNotIn('id', $ids)->orderBy('position')->pluck('id')->all());
+                    }
+                }
+                return Gallery::whereIn('id', $ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'))->get()->toJson();
+            }
+            return [];
         }
 
         public static function getPostfixed($html, $page, $postfix = '-mobile')

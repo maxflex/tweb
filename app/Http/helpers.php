@@ -275,3 +275,80 @@
         }
         return array_shift((explode('.', @$_SERVER['HTTP_HOST']))) === 'test';
     }
+
+
+    /**
+     * getCombinations(['a', 'b', 'c']);
+     [
+         [
+           [
+             "a",
+             "b",
+             "c",
+           ],
+         ],
+         [
+           [
+             "a",
+             "b",
+           ],
+           [
+             "a",
+             "c",
+           ],
+           [
+             "b",
+             "c",
+           ],
+         ],
+         [
+           [
+             "a",
+           ],
+           [
+             "b",
+           ],
+           [
+             "c",
+           ],
+         ],
+       ]
+     */
+    function getCombinations($words) {
+        $elements = pow(2, count($words))-1;
+
+        $result = array();
+
+        for ($i = 1; $i<=$elements; $i++){
+            $bin = decbin($i);
+            $padded_bin = str_pad($bin, count($words), "0", STR_PAD_LEFT);
+
+            $res = array();
+            for ($k=0; $k<count($words); $k++){
+                //append element, if binary position says "1";
+                if ($padded_bin[$k]==1){
+                    $res[] = $words[$k];
+                }
+            }
+
+            sort($res);
+            $result[] = $res;
+        }
+        sort($result);
+
+        // @custom
+        // в каждом элементе массива хранятся пермутации одной и той же длинны
+        // [0] => [a], [b], [c]
+        // [1] => [ab], [ac]
+
+        $current_chunk = 0;
+        $chunked_result[$current_chunk] = [$result[0]];
+        foreach(range(1, count($result) - 1) as $i) {
+            if (count($result[$i]) > count($result[$i - 1])) {
+                $current_chunk++;
+            }
+            $chunked_result[$current_chunk][] = $result[$i];
+        }
+
+        return array_reverse($chunked_result);
+    }
