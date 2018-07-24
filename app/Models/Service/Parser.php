@@ -382,6 +382,10 @@
                 $combination_counts = [];
                 $ids = [];
                 foreach($combinations as $combinations_chunk) {
+                    // временно
+                    if (count($ids) > 0) {
+                        break;
+                    }
                     // для дебага
                     // foreach($combinations_chunk as $index => $combination) {
                     //     $ids[implode('-', $combination)] = (new TagsFilterDecorator(Gallery::query()))->withTags($combination)->pluck('id')->all();
@@ -393,6 +397,10 @@
                     arsort($combination_counts);
                     foreach($combination_counts as $combination_index => $count) {
                         $ids = array_merge($ids, (new TagsFilterDecorator(Gallery::query()))->withTags($combinations_chunk[$combination_index])->whereNotIn('id', $ids)->orderBy('position')->pluck('id')->all());
+                        // временно
+                        if (count($ids) > 0) {
+                            break;
+                        }
                     }
                 }
                 return Gallery::whereIn('id', $ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'))->get()->toJson();
