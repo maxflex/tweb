@@ -404,7 +404,7 @@
                     }
                 }
                 // return Gallery::whereIn('id', $ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'))->get()->toJson();
-                return Gallery::whereIn('id', $ids)->orderBy(DB::raw('folder_id asc, position asc'))->get()->toJson();
+                return Gallery::whereIn('id', $ids)->orderBy('folder_id', 'asc')->orderBy('position', 'asc')->get()->toJson();
             }
             return [];
         }
