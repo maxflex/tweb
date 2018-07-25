@@ -302,7 +302,7 @@
              * Если не указаны ID фото и ID папок, то автозаполнение по тегам
              */
             if (! $gallery_ids && ! $folder_ids) {
-                return self::findPhotosByTags($tags);
+                return (new TagsFilterDecorator(Gallery::query()))->withTags($tags)->orderBy('folder_id', 'asc')->orderBy('position', 'asc')->get()->toJson();
             } else {
                 $gallery_ids = array_filter(explode(',', $gallery_ids));
 
@@ -339,7 +339,7 @@
                             }
                         }
                     }
-                    $gallery_ids = array_merge($gallery_ids, $ordered_ids);
+                    $gallery_ids = array_merge($ordered_ids, $gallery_ids);
                 }
 
                 $query = Gallery::with('master')->whereIn('id', $gallery_ids);
@@ -382,10 +382,6 @@
                 $combination_counts = [];
                 $ids = [];
                 foreach($combinations as $combinations_chunk) {
-                    // временно
-                    if (count($ids) > 0) {
-                        break;
-                    }
                     // для дебага
                     // foreach($combinations_chunk as $index => $combination) {
                     //     $ids[implode('-', $combination)] = (new TagsFilterDecorator(Gallery::query()))->withTags($combination)->pluck('id')->all();
@@ -397,13 +393,8 @@
                     arsort($combination_counts);
                     foreach($combination_counts as $combination_index => $count) {
                         $ids = array_merge($ids, (new TagsFilterDecorator(Gallery::query()))->withTags($combinations_chunk[$combination_index])->whereNotIn('id', $ids)->orderBy('position')->pluck('id')->all());
-                        // временно
-                        if (count($ids) > 0) {
-                            break;
-                        }
                     }
                 }
-                // return Gallery::whereIn('id', $ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'))->get()->toJson();
                 return Gallery::whereIn('id', $ids)->orderBy('folder_id', 'asc')->orderBy('position', 'asc')->get()->toJson();
             }
             return [];
