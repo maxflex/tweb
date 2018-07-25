@@ -328,7 +328,6 @@
                 if (count($gallery_ids)) {
                     $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
                 }
-                $query = (new TagsFilterDecorator($query))->withTags($tags);
 
                 return $query->get()->toJson();
             }
