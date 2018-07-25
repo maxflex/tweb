@@ -59,4 +59,9 @@ class Gallery extends Model
         }
         return $components;
     }
+
+    public function scopeOrderByPosition($query)
+    {
+        return $query->orderBy('position', 'asc')->orderBy('id', 'asc');
+    }
 }

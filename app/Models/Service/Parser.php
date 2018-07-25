@@ -302,7 +302,7 @@
              * Если не указаны ID фото и ID папок, то автозаполнение по тегам
              */
             if (! $gallery_ids && ! $folder_ids) {
-                return (new TagsFilterDecorator(Gallery::query()))->withTags($tags)->orderBy('folder_id', 'asc')->orderBy('position', 'asc')->get()->toJson();
+                return (new TagsFilterDecorator(Gallery::query()))->withTags($tags)->orderBy('folder_id', 'asc')->orderByPosition()->get()->toJson();
             } else {
                 $gallery_ids = array_filter(explode(',', $gallery_ids));
 
@@ -315,31 +315,13 @@
                         $subfolder_ids = array_merge($subfolder_ids, Folder::getSubfolderIds($folder_id));
                     }
                     $folder_ids = array_merge($folder_ids, $subfolder_ids);
-                    $ids_by_folder = [];
-                    $max_size = -1;
-                    // мерджим фотки из папок по типу
-                    // 1 3
-                    // 2 4
-                    // 5
-                    // 6
-                    // => 1,3,2,4,5,6
+
+                    $gallery_ids_from_folders = [];
                     foreach($folder_ids as $folder_id) {
-                        $ids_by_folder[$folder_id] = Gallery::where('folder_id', $folder_id)->orderBy('position')->pluck('id')->all();
-                        $size = count($ids_by_folder[$folder_id]);
-                        if ($size > $max_size) {
-                            $max_size = $size;
-                        }
+                        $gallery_ids_from_folders = array_merge($gallery_ids_from_folders, Gallery::where('folder_id', $folder_id)->orderByPosition()->pluck('id')->all());
                     }
 
-                    $ordered_ids = [];
-                    foreach(range(0, $max_size - 1) as $i) {
-                        foreach($folder_ids as $folder_id) {
-                            if (isset($ids_by_folder[$folder_id][$i])) {
-                                $ordered_ids[] = $ids_by_folder[$folder_id][$i];
-                            }
-                        }
-                    }
-                    $gallery_ids = array_merge($ordered_ids, $gallery_ids);
+                    $gallery_ids = array_merge($gallery_ids_from_folders, $gallery_ids);
                 }
 
                 $query = Gallery::with('master')->whereIn('id', $gallery_ids);
@@ -392,10 +374,10 @@
                     }
                     arsort($combination_counts);
                     foreach($combination_counts as $combination_index => $count) {
-                        $ids = array_merge($ids, (new TagsFilterDecorator(Gallery::query()))->withTags($combinations_chunk[$combination_index])->whereNotIn('id', $ids)->orderBy('position')->pluck('id')->all());
+                        $ids = array_merge($ids, (new TagsFilterDecorator(Gallery::query()))->withTags($combinations_chunk[$combination_index])->whereNotIn('id', $ids)->orderByPosition()->pluck('id')->all());
                     }
                 }
-                return Gallery::whereIn('id', $ids)->orderBy('folder_id', 'asc')->orderBy('position', 'asc')->get()->toJson();
+                return Gallery::whereIn('id', $ids)->orderBy('folder_id', 'asc')->orderByPosition()->get()->toJson();
             }
             return [];
         }
