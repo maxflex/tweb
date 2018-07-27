@@ -8,10 +8,9 @@ angular
         window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v) -> initVideo(v)
 
         $timeout ->
-            $scope.has_more_reviews = true
-            $scope.reviews_page = 0
-            $scope.reviews = []
-            searchReviews()
+            $scope.reviews_per_page = 10
+            $scope.displayed_reviews = 2
+            loadReviews()
 
             initGmap()
 
@@ -23,20 +22,16 @@ angular
             # searchVideos()
 
         # REVIEWS
-        $scope.nextReviewsPage = ->
-            $scope.reviews_page++
-            # StreamService.run('load_more_tutors', null, {page: $scope.page})
-            searchReviews()
+        $scope.loadMoreReviews = ->
+            $scope.displayed_reviews += $scope.reviews_per_page
 
-        searchReviews = ->
-            $scope.searching_reviews = true
-            params = {page: $scope.reviews_page}
+        loadReviews = ->
+            params =
+                folders: $scope.review_folders
+                ids: $scope.review_ids
             params['tags[]'] = $scope.review_tags.split(',') if $scope.review_tags
             $http.get('/api/reviews?' + $.param(params)).then (response) ->
-                $scope.searching_reviews = false
-                $scope.reviews = $scope.reviews.concat(response.data.reviews)
-                $scope.has_more_reviews = response.data.has_more_reviews
-                # if $scope.mobile then $timeout -> bindToggle()
+                $scope.reviews = response.data
 
         # VIDEOS
         $scope.nextVideosPage = ->
