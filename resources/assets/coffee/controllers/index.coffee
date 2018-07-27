@@ -9,7 +9,7 @@ angular
 
         $timeout ->
             $scope.reviews_per_page = 10
-            $scope.displayed_reviews = 2
+            $scope.displayed_reviews = 3
             loadReviews()
 
             initGmap()
