@@ -8,9 +8,12 @@ use App\Service\Cacher;
 use App\Service\Months;
 use Cache;
 use DB;
+use App\Traits\{HasTags, HasFolders};
 
 class Review extends Model
 {
+    use HasTags, HasFolders;
+
     protected $appends = ['date_string'];
 
     public function master()

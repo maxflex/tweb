@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\HasTags;
-use App\Traits\HasPhotos;
+use App\Traits\{HasTags, HasPhotos, HasFolders};
 
 class Gallery extends Model
 {
-    use HasTags, HasPhotos;
+    use HasTags, HasPhotos, HasFolders;
 
     protected $casts = [
         'watermark' => 'boolean',
@@ -58,10 +57,5 @@ class Gallery extends Model
             }
         }
         return $components;
-    }
-
-    public function scopeOrderByPosition($query)
-    {
-        return $query->orderBy('position', 'asc')->orderBy('id', 'asc');
     }
 }
