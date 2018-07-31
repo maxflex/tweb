@@ -302,7 +302,7 @@
              * Если не указаны ID фото и ID папок, то автозаполнение по тегам
              */
             if (! $gallery_ids && ! $folder_ids) {
-                return (new TagsFilterDecorator(Gallery::query()))->withTags($tags)->orderBy('folder_id', 'asc')->orderByPosition()->get()->toJson();
+                return (new TagsFilterDecorator(Gallery::with('master')))->withTags($tags)->orderBy('folder_id', 'asc')->orderByPosition()->get()->toJson();
             } else {
                 $gallery_ids = array_filter(explode(',', $gallery_ids));
 
@@ -334,6 +334,7 @@
         }
 
         /**
+         *  НЕ ИСПОЛЬЗУЕТСЯ
             Автозаполнение по тегам
             если параметры ids и folder пустые, то фотографии отображаются по тэгам, то есть автоматически
             подробный механизм автоматического отображения фотографий (он будет применяться не только в фото,
