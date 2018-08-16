@@ -125,7 +125,12 @@
                         if ($args[0] == 'all') {
                             $replacement = Master::with('photos')->get();
                         } else {
-                            $replacement = Master::with('photos')->whereIn('id', explode(',', $args[0]))->take(3)->get();
+                            $ids = array_filter(explode(',', $args[0]));
+                            $query = Master::with('photos')->whereIn('id', $ids);
+                            if (count($ids)) {
+                                $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'));
+                            }
+                            $replacement = $query->get();
                         }
                         break;
                     case 'equipment':
