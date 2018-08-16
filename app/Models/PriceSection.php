@@ -28,12 +28,12 @@ class PriceSection extends Model
          return $this->getItem();
      }
 
-     public function getItem($tags = null, $folders = null, $ids = null)
+     public function getItem($tags = null, $allowed_ids = null)
      {
          $items = [];
 
          foreach($this->sections as $section) {
-             $item = $section->getItem($tags, $folders, $ids);
+             $item = $section->getItem($tags, $allowed_ids);
              if ($item !== null) {
                  $items[] = [
                      'model'        => $section,
@@ -43,7 +43,7 @@ class PriceSection extends Model
                  ];
              }
          }
-         foreach($this->getPositions($tags, $folders, $ids) as $position) {
+         foreach($this->getPositions($tags, $allowed_ids) as $position) {
              $items[] = [
                  'model'        => $position,
                  'is_section'   => false,
@@ -70,10 +70,26 @@ class PriceSection extends Model
      /**
       * @param array $tags
       */
-     public function getPositions($tags = null)
+     public function getPositions($tags = null, $allowed_ids = null)
      {
          $query = PricePosition::where('price_section_id', $this->id);
-         $query = (new TagsFilterDecorator($query))->withTags($tags);
+         if ($allowed_ids) {
+             $query->whereIn('id', $allowed_ids);
+         } else {
+             $query = (new TagsFilterDecorator($query))->withTags($tags);
+         }
          return $query->orderBy('position')->get();
+     }
+
+     public static function getSubsectionIds($section_id)
+     {
+         $ids = self::where('price_section_id', $section_id)->pluck('id')->all();
+
+         $subsection_ids = [];
+         foreach($ids as $id) {
+             $subsection_ids = array_merge($subsection_ids, self::getSubsectionIds($id));
+         }
+
+         return array_merge($ids, $subsection_ids);
      }
 }

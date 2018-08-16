@@ -65,7 +65,6 @@ angular
 
         initVideo = (video) ->
             return if not YT.Player or $scope.player[video.id]
-            console.log("binding for video #{video.id}")
             iframe = document.getElementById("youtube-video-#{video.id}")
             requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
             player = new YT.Player "youtube-video-#{video.id}",
@@ -73,7 +72,6 @@ angular
                     rel: 0
                 events:
                     onReady: (p) ->
-                        console.log("Getting duration for video", video, p.target.getDuration())
                         video.duration = p.target.getDuration()
                         $timeout -> $scope.$apply()
             $scope.player[video.id] = player
