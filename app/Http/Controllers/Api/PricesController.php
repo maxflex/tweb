@@ -15,9 +15,9 @@ class PricesController extends Controller
         $items = [];
         $top_level_price_sections = PriceSection::whereNull('price_section_id')->orderBy('position')->get();
         foreach($top_level_price_sections as $section) {
-            $item = $section->getItem($request->tags);
+            $item = $section->getItem($request->tags, $request->folders, $request->ids);
             if ($item !== null) {
-                $items[] = $section->getItem($request->tags);
+                $items[] = $section->getItem($request->tags, $request->folders, $request->ids);
             }
         }
         return $items;

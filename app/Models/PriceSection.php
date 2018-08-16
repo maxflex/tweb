@@ -28,12 +28,12 @@ class PriceSection extends Model
          return $this->getItem();
      }
 
-     public function getItem($tags = null)
+     public function getItem($tags = null, $folders = null, $ids = null)
      {
          $items = [];
 
          foreach($this->sections as $section) {
-             $item = $section->getItem($tags);
+             $item = $section->getItem($tags, $folders, $ids);
              if ($item !== null) {
                  $items[] = [
                      'model'        => $section,
@@ -43,7 +43,7 @@ class PriceSection extends Model
                  ];
              }
          }
-         foreach($this->getPositions($tags) as $position) {
+         foreach($this->getPositions($tags, $folders, $ids) as $position) {
              $items[] = [
                  'model'        => $position,
                  'is_section'   => false,

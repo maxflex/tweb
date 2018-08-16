@@ -1,15 +1,6 @@
 <?php
     namespace App\Models\Service;
-    use App\Models\Program;
-    use App\Models\Variable;
-    use App\Models\Photo;
-    use App\Models\Gallery;
-    use App\Models\Review;
-    use App\Models\Page;
-    use App\Models\Master;
-    use App\Models\Video;
-    use App\Models\Equipment;
-    use App\Models\Folder;
+    use App\Models\{Program, Variable, Photo, Gallery, Review, Page, Mater, Video, Equipment, Folder, Master};
     use DB;
     use Cache;
     use App\Models\Decorators\TagsFilterDecorator;
@@ -191,7 +182,7 @@
                         $replacement = self::_parseGallery(...$args);
                         break;
                     case 'video':
-                        $ids = explode(',', $args[0]);
+                        $ids = array_filter(explode(',', $args[0]));
                         $query = Video::whereIn('id', $ids);
                         if (count($ids)) {
                             $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'));
@@ -260,6 +251,7 @@
             static::replace($html, 'master-name', implode(' ', [$master->last_name, $master->first_name, $master->middle_name]));
             static::replace($html, 'current_master', $master->toJson());
             static::replace($html, 'current_master_gallery_ids', Gallery::where('master_id', $master->id)->pluck('id')->implode(','));
+            static::replace($html, 'current_master_video_ids', Video::where('master_id', $master->id)->pluck('id')->implode(','));
         }
 
         public static function interpolate($text = '', $start = null, $end = null)
