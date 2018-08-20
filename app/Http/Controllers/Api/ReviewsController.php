@@ -18,7 +18,7 @@ class ReviewsController extends Controller
     public function index(Request $request)
     {
         if (! $request->ids && ! $request->folders) {
-            $final_query = (new TagsFilterDecorator(Review::query()))->withTags($request->tags)->orderBy('folder_id', 'asc')->orderByPosition();
+            $final_query = (new TagsFilterDecorator(Review::query()))->with('master')->withTags($request->tags)->orderBy('folder_id', 'asc')->orderByPosition();
         } else {
             $ids = array_filter(explode(',', $request->ids));
 
