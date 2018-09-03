@@ -5377,8 +5377,10 @@ ol, ul {
   font-family: 'helveticaneuecyrbold';
   margin: 10px 0 22px; }
 
-.footer-links a {
-  margin-right: 10px; }
+.footer-links {
+  margin-top: 30px; }
+  .footer-links a {
+    margin-right: 10px; }
 
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {
