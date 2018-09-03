@@ -3432,7 +3432,7 @@ a[href^="https://www.google.com/maps"] {
     .main-page-masters .more-masters .btn-border {
       margin-top: 26px; }
   .main-page-masters > div {
-    width: 207px; }
+    width: 250px; }
     .main-page-masters > div:not(:last-child) {
       margin-right: 30px; }
     .main-page-masters > div b, .main-page-masters > div .address-more li > div:first-of-type, .address-more .main-page-masters > div li > div:first-of-type {
@@ -5370,6 +5370,15 @@ ol, ul {
   .footer-icon img {
     height: 30px;
     margin-right: 12px; }
+
+.menu-header {
+  color: #cc8d87;
+  font-size: 16px;
+  font-family: 'helveticaneuecyrbold';
+  margin: 10px 0; }
+
+.footer-links a {
+  margin-right: 10px; }
 
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {

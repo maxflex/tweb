@@ -10,6 +10,10 @@ angular
         $timeout ->
             $scope.reviews_per_page = 10
             $scope.displayed_reviews = 3
+
+            $scope.items_per_page = 6
+            $scope.displayed_items = 6
+
             loadReviews()
 
             initGmap()

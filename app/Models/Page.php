@@ -9,6 +9,7 @@ use App\Scopes\PageScope;
 use App\Models\Service\Factory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\HasTags;
+use DB;
 
 class Page extends Model
 {
@@ -69,6 +70,19 @@ class Page extends Model
         return json_encode($data, JSON_FORCE_OBJECT);
     }
 
+    public function getSeoPageIdsAttribute($seo_page_ids)
+    {
+        if ($seo_page_ids) {
+            $seo_page_ids = explode(',', $seo_page_ids);
+            $seo_page_ids = array_map('trim', $seo_page_ids);
+
+            if (count($seo_page_ids)) {
+                $pages = Page::select('id', 'url', 'keyphrase')->whereIn('id', $seo_page_ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $seo_page_ids) . ')'))->get();
+                return view('seo.links')->with(compact('pages'));
+            }
+        }
+        return '';
+    }
 
     public function getHtmlAttribute()
     {

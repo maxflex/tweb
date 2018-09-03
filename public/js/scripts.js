@@ -20570,6 +20570,8 @@ return PhotoSwipeUI_Default;
     $timeout(function() {
       $scope.reviews_per_page = 10;
       $scope.displayed_reviews = 3;
+      $scope.items_per_page = 6;
+      $scope.displayed_items = 6;
       loadReviews();
       initGmap();
       $scope.videos.forEach(function(v) {
@@ -21052,6 +21054,11 @@ return PhotoSwipeUI_Default;
 (function() {
   angular.module('App').constant('REVIEWS_PER_PAGE', 5).controller('master', function($scope, $timeout, $http, Master, REVIEWS_PER_PAGE, GalleryService) {
     bindArguments($scope, arguments);
+    $timeout(function() {
+      if ($scope.masters.length % 3 === 2 && !isMobile) {
+        return $scope.masters.push(null);
+      }
+    });
     $scope.reviews = function(master, index) {
       if (master.all_reviews === void 0) {
         master.all_reviews = Master.reviews({
@@ -21730,6 +21737,71 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Master', function($resource) {
+    return $resource(apiPath('masters'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('masters', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
+
+}).call(this);
+
+(function() {
   angular.module('App').service('GalleryService', function() {
     var DIRECTION, animation_in_progress, el, scroll_left;
     this.displayed = 6;
@@ -21994,71 +22066,6 @@ return PhotoSwipeUI_Default;
     };
     return this;
   });
-
-}).call(this);
-
-(function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Master', function($resource) {
-    return $resource(apiPath('masters'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('masters', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
-      }
-    });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
-  });
-
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
-
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
-      }
-    };
-  };
-
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
-      }
-    };
-  };
 
 }).call(this);
 

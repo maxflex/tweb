@@ -346,3 +346,16 @@ ol, ul {
         margin-right: 12px;
     }
 }
+
+.menu-header {
+    color: #cc8d87;
+    font-size: 16px;
+    font-family: 'helveticaneuecyrbold';
+    margin: 10px 0;
+}
+
+.footer-links {
+    & a {
+        margin-right: 10px;
+    }
+}

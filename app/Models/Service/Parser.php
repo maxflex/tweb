@@ -121,6 +121,9 @@
                     case 'is':
                         $replacement = isTestSubdomain() ? 'true' : 'false';
                         break;
+                    // case 'seo':
+                    //     $replacement = view('seo.links');
+                    //     return;
                     case 'masters':
                         if ($args[0] == 'all') {
                             $replacement = Master::with('photos')->get();

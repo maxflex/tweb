@@ -4,6 +4,10 @@ angular
     .controller 'master', ($scope, $timeout, $http, Master, REVIEWS_PER_PAGE, GalleryService) ->
         bindArguments($scope, arguments)
 
+        # fix FLEX rows
+        $timeout ->
+            $scope.masters.push(null) if $scope.masters.length % 3 == 2 && not isMobile
+
         $scope.reviews = (master, index) ->
             # StreamService.run('master_reviews', master.id)
             #     position: $scope.getIndex(index)
