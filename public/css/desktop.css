@@ -5380,7 +5380,8 @@ ol, ul {
 .footer-links {
   margin-top: 30px; }
   .footer-links a {
-    margin-right: 10px; }
+    margin-right: 10px;
+    font-size: 12px; }
 
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {
