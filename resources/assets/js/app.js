@@ -475,23 +475,23 @@
     var initGmap, initVideo, loadReviews, searchVideos;
     bindArguments($scope, arguments);
     $scope.player = {};
+    $scope.reviews_per_page = 10;
+    $scope.displayed_reviews = 3;
+    $scope.items_per_page = 6;
+    $scope.displayed_items = 6;
+    $scope.displayed_videos = 3;
+    $scope.displayed_masters = 6;
     window.onYouTubeIframeAPIReady = function() {
       return $scope.videos.forEach(function(v) {
         return initVideo(v);
       });
     };
     $timeout(function() {
-      $scope.reviews_per_page = 10;
-      $scope.displayed_reviews = 3;
-      $scope.items_per_page = 6;
-      $scope.displayed_items = 6;
       loadReviews();
       initGmap();
       $scope.videos.forEach(function(v) {
         return initVideo(v);
       });
-      $scope.displayed_videos = 3;
-      $scope.displayed_masters = 6;
       return GalleryService.init($scope.gallery);
     });
     $scope.loadMoreReviews = function() {

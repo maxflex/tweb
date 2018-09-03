@@ -45,9 +45,9 @@ $(document).ready(function() {
     //     google_id: googleClientId(),
     //     yandex_id:
     // })
-    setTimeout(function() {
-        scope.StreamService.run('page', null, {href: window.location.href})
-    }, 500)
+    // setTimeout(function() {
+    //     scope.StreamService.run('page', null, {href: window.location.href})
+    // }, 500)
 })
 
 function closeModal() {

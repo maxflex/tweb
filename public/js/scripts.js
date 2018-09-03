@@ -20562,23 +20562,23 @@ return PhotoSwipeUI_Default;
     var initGmap, initVideo, loadReviews, searchVideos;
     bindArguments($scope, arguments);
     $scope.player = {};
+    $scope.reviews_per_page = 10;
+    $scope.displayed_reviews = 3;
+    $scope.items_per_page = 6;
+    $scope.displayed_items = 6;
+    $scope.displayed_videos = 3;
+    $scope.displayed_masters = 6;
     window.onYouTubeIframeAPIReady = function() {
       return $scope.videos.forEach(function(v) {
         return initVideo(v);
       });
     };
     $timeout(function() {
-      $scope.reviews_per_page = 10;
-      $scope.displayed_reviews = 3;
-      $scope.items_per_page = 6;
-      $scope.displayed_items = 6;
       loadReviews();
       initGmap();
       $scope.videos.forEach(function(v) {
         return initVideo(v);
       });
-      $scope.displayed_videos = 3;
-      $scope.displayed_masters = 6;
       return GalleryService.init($scope.gallery);
     });
     $scope.loadMoreReviews = function() {
@@ -22118,9 +22118,9 @@ $(document).ready(function() {
     //     google_id: googleClientId(),
     //     yandex_id:
     // })
-    setTimeout(function() {
-        scope.StreamService.run('page', null, {href: window.location.href})
-    }, 500)
+    // setTimeout(function() {
+    //     scope.StreamService.run('page', null, {href: window.location.href})
+    // }, 500)
 })
 
 function closeModal() {
@@ -22276,6 +22276,7 @@ function fileChange(event) {
         $('.uploaded-photo-box').last().css('background-image', "url('" + URL.createObjectURL(event.target.files[0]) + "')")
     }, 100)
 }
+
 /*
  * jQuery File Upload Plugin 5.42.3
  * https://github.com/blueimp/jQuery-File-Upload
