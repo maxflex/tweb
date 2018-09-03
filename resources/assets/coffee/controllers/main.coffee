@@ -5,17 +5,22 @@ angular
 
         $scope.player = {}
 
+        $scope.reviews_per_page = 10
+        $scope.displayed_reviews = 3
+
+        $scope.items_per_page = 6
+        $scope.displayed_items = 6
+
+        $scope.displayed_videos = 3
+        $scope.displayed_masters = 6
+
         window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v) -> initVideo(v)
 
         $timeout ->
-            $scope.reviews_per_page = 10
-            $scope.displayed_reviews = 3
             loadReviews()
-
             initGmap()
 
             $scope.videos.forEach (v) -> initVideo(v)
-            $scope.displayed_videos = 3
             # $scope.has_more_videos = true
             # $scope.videos_page = 0
             # $scope.videos = []
