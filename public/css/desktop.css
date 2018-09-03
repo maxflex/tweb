@@ -4517,7 +4517,8 @@ a[href^="https://www.google.com/maps"] {
         padding: 14px 0 0 0;
         text-decoration: none;
         color: #ae4037;
-        font-family: "helveticaneuecyrmedium"; }
+        font-family: "helveticaneuecyrmedium";
+        white-space: nowrap; }
   .header-img {
     position: relative;
     z-index: 1;

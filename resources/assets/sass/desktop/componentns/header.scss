@@ -130,6 +130,7 @@
         text-decoration: none;
         color: $menu-color;
         font-family: $font-medium;
+        white-space: nowrap;
         &:hover {
         //   text-decoration: underline;
         }
