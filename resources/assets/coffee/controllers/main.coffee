@@ -16,6 +16,12 @@ angular
 
         window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v) -> initVideo(v)
 
+        $scope.initGallery = (ids, tags, folders) ->
+            $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
+            .then (response) ->
+                console.log(response.data)
+                $scope.gallery = response.data
+
         $timeout ->
             loadReviews()
             initGmap()

@@ -20711,6 +20711,16 @@ return PhotoSwipeUI_Default;
         return preventObj.prevent = true;
       });
     };
+    $scope.initGallery = function(ids, tags, folders) {
+      return $http.post('/api/gallery/init', {
+        ids: ids,
+        tags: tags,
+        folders: folders
+      }).then(function(response) {
+        console.log(response.data);
+        return $scope.gallery = response.data;
+      });
+    };
     return initGmap = function() {
       var markers;
       $scope.map = new google.maps.Map(document.getElementById("map"), {
@@ -20880,6 +20890,16 @@ return PhotoSwipeUI_Default;
     window.onYouTubeIframeAPIReady = function() {
       return $scope.videos.forEach(function(v) {
         return initVideo(v);
+      });
+    };
+    $scope.initGallery = function(ids, tags, folders) {
+      return $http.post('/api/gallery/init', {
+        ids: ids,
+        tags: tags,
+        folders: folders
+      }).then(function(response) {
+        console.log(response.data);
+        return $scope.gallery = response.data;
       });
     };
     $timeout(function() {
