@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\{Gallery, Folder};
+use App\Models\Decorators\TagsFilterDecorator;
 use DB;
 
 class GalleryController extends Controller
