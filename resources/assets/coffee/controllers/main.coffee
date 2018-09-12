@@ -25,12 +25,8 @@ angular
         $timeout ->
             loadReviews()
             initGmap()
-
-            $scope.videos.forEach (v) -> initVideo(v)
-            # $scope.has_more_videos = true
-            # $scope.videos_page = 0
-            # $scope.videos = []
-            # searchVideos()
+            if $scope.videos then $scope.videos.forEach (v) -> initVideo(v)
+            if $scope.gallery then GalleryService.init($scope.gallery)
 
         # REVIEWS
         $scope.loadMoreReviews = ->

@@ -4,6 +4,7 @@
     use DB;
     use Cache;
     use App\Models\Decorators\TagsFilterDecorator;
+    use App\Service\Settings;
 
     /**
      * Parser
@@ -134,6 +135,14 @@
                                 $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'));
                             }
                             $replacement = $query->get();
+                        }
+                        break;
+                    case 'header-message':
+                        $header = trim(Settings::get('header'));
+                        if ($header) {
+                            $replacement = "<div class='header-message'>{$header}</div>";
+                        } else {
+                            $replacement = '';
                         }
                         break;
                     case 'equipment':

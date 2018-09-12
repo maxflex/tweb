@@ -5388,6 +5388,120 @@ ol, ul {
   text-align: center;
   margin-bottom: 18px; }
 
+.header-message {
+  text-align: center;
+  background: #ae4037;
+  color: white;
+  padding: 6px 0; }
+
+@media only screen and (max-width: 1000px) {
+  .full-width-wrapper:not(.banner-block), .equipment-item.full > div:not(.banner-block):first-child, .equipment-item-full .equipment-image:not(.banner-block), .equipment-item-full .equipment-additional-block:not(.banner-block) {
+    margin-left: -20px !important; }
+  .banner-block.right {
+    margin-left: -20px !important; } }
+
+.banner-block-full-width-wrapper {
+  background: #f2f2f2;
+  position: relative; }
+
+.banner-block {
+  height: calc(100vw * 0.39);
+  min-height: 600px;
+  margin-top: -19px;
+  width: calc(100vw - ((100vw - 960px) / 2));
+  position: relative;
+  margin-bottom: 100px; }
+  .banner-block__image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: white;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    width: calc(100% - 230px); }
+  .banner-block .image-link {
+    position: absolute;
+    z-index: 11;
+    top: 14px;
+    font-size: 12px;
+    font-weight: 600; }
+    .banner-block .image-link img {
+      height: 16px;
+      margin-right: 5px; }
+  .banner-block .info {
+    text-align: right;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    position: inherit;
+    z-index: 10;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%; }
+    .banner-block .info h1, .banner-block .info .landingnew-page .common h3, .landingnew-page .common .banner-block .info h3 {
+      text-align: right !important;
+      padding: 0;
+      font-weight: 800;
+      font-size: 45px;
+      width: 125%;
+      margin-left: -25%;
+      padding-bottom: 140px;
+      font-family: "helveticaneuecyrbold"; }
+    .banner-block .info .quote {
+      font-size: 16px;
+      font-style: italic; }
+    .banner-block .info .tutor-title {
+      margin-top: 18px;
+      font-style: italic; }
+      .banner-block .info .tutor-title b, .banner-block .info .tutor-title .address-more li > div:first-of-type, .address-more .banner-block .info .tutor-title li > div:first-of-type {
+        font-size: 16px !important;
+        display: block;
+        margin-bottom: 5px; }
+      .banner-block .info .tutor-title div {
+        font-size: 12px !important;
+        line-height: 17px; }
+    .banner-block .info .button-green-large {
+      margin-top: 80px; }
+    .banner-block .info > div {
+      width: 515px; }
+  .banner-block .gradient {
+    background: -webkit-linear-gradient(right, #f2f2f2 230px, rgba(242, 242, 242, 0) 95%);
+    background: linear-gradient(to left, #f2f2f2 230px, rgba(242, 242, 242, 0) 95%);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 70%;
+    left: auto;
+    right: 0; }
+  .banner-block.left {
+    margin-left: 0;
+    margin-right: calc((100vw - 960px) / 2 * -1);
+    background-position: 230px center; }
+    .banner-block.left .info {
+      -webkit-box-pack: start;
+      justify-content: flex-start;
+      text-align: left; }
+      .banner-block.left .info h1, .banner-block.left .info .landingnew-page .common h3, .landingnew-page .common .banner-block.left .info h3 {
+        margin-left: 0;
+        text-align: left !important; }
+    .banner-block.left .banner-block__image {
+      right: 0;
+      background-position: center center; }
+    .banner-block.left .gradient {
+      left: 0;
+      right: auto;
+      background: -webkit-linear-gradient(left, #f2f2f2 230px, rgba(242, 242, 242, 0) 95%);
+      background: linear-gradient(to right, #f2f2f2 230px, rgba(242, 242, 242, 0) 95%); }
+  .banner-block.right {
+    min-width: 980px !important; }
+    .banner-block.right .banner-block__image {
+      left: 0;
+      background-position: center center; }
+    .banner-block.right .image-link {
+      right: 0px; }
+
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {
     -webkit-transform: scaleY(0.4); }

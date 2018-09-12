@@ -4,6 +4,11 @@ angular
     .controller 'master', ($scope, $timeout, $http, Master, REVIEWS_PER_PAGE, GalleryService) ->
         bindArguments($scope, arguments)
 
+        $scope.initGallery = (ids, tags, folders) ->
+            $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
+            .then (response) ->
+                $scope.gallery = response.data
+
         # fix FLEX rows
         $timeout ->
             $scope.masters.push(null) if $scope.masters.length % 3 == 2 && not isMobile
