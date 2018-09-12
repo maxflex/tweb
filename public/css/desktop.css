@@ -4423,7 +4423,8 @@ a[href^="https://www.google.com/maps"] {
     line-height: 21px; }
 
 .header {
-  padding: 0 0 19px 0; }
+  padding: 0 0 19px 0;
+  z-index: 12; }
   .header-inner {
     position: relative;
     width: 960px;
@@ -4475,7 +4476,8 @@ a[href^="https://www.google.com/maps"] {
     line-height: inherit; }
     .header-menu-wrap {
       background: #f3e9d4;
-      position: relative; }
+      position: relative;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); }
       .header-menu-wrap__img {
         background: url("/img/background/main.jpeg") no-repeat 50% 50%;
         height: 600px;
@@ -5419,6 +5421,14 @@ ol, ul {
     top: 0;
     position: absolute;
     width: calc(100% - 230px); }
+  .banner-block .btn-calc {
+    margin-top: 20px; }
+    .banner-block .btn-calc img {
+      height: 17px !important; }
+    .banner-block .btn-calc span {
+      font-size: 14px !important;
+      top: 1px;
+      position: relative; }
   .banner-block .image-link {
     position: absolute;
     z-index: 11;
@@ -5446,7 +5456,7 @@ ol, ul {
       font-size: 45px;
       width: 125%;
       margin-left: -25%;
-      padding-bottom: 140px;
+      padding-bottom: 112px;
       font-family: "helveticaneuecyrbold"; }
     .banner-block .info .quote {
       font-size: 16px;

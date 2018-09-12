@@ -408,6 +408,17 @@ $line-height-small: 17px;
 		position: absolute;
 		width: calc(100% - #{$gradient-offset});
     }
+    & .btn-calc {
+        margin-top: 20px;
+        & img {
+            height: 17px !important;
+        }
+        & span {
+            font-size: 14px !important;
+            top: 1px;
+            position: relative;
+        }
+    }
     & .image-link {
 	    position: absolute;
 	    z-index: 11;
@@ -434,7 +445,7 @@ $line-height-small: 17px;
 			font-size: 45px;
 			width: 125%;
 			margin-left: -25%;
-			padding-bottom: 140px;
+			padding-bottom: 112px;
             font-family: $font-bold;
         }
         & .quote {

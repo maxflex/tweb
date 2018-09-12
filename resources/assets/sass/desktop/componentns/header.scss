@@ -1,5 +1,6 @@
 .header {
   padding: 0 0 19px 0;
+  z-index: 12;
   &-inner {
     position: relative;
     width: $screen-width;
@@ -71,7 +72,7 @@
     &-wrap {
       background: $menu;
       position: relative;
-
+      box-shadow: 0 0 40px rgba(0,0,0,.8);
       &__img {
         background: url('/img/background/main.jpeg') no-repeat 50% 50%;
         height: 600px;
