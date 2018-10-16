@@ -1088,3 +1088,45 @@ $uploaded-photo-preview-width: 32%;
 .price-page .btn-calc {
     display: none;
 }
+
+.banner-block {
+    margin-bottom: 60px;
+    font-style: italic;
+  }
+  .banner-block .h1-top {
+    font-style: normal;
+  }
+  .banner-block img {
+    width: 100%;
+    margin-bottom: 0.9em;
+  }
+  .banner-block .quote {
+    margin-bottom: 0.9em;
+    padding-left: 10%;
+    text-align: right;
+  }
+  .banner-block .tutor-title {
+    padding-left: 10%;
+    text-align: right;
+    font-size: 12px;
+    line-height: 17px;
+  }
+  .banner-block .tutor-title b {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .banner-block h1 {
+    font-weight: 800;
+    text-align: left;
+    font-size: 1.9em;
+  }
+  
+  .gallery-photo-master-info .master-photo img {
+      height: 60px;
+      width: 60px;
+  }
+
+  .gallery-flow-control-arrow {
+      pointer-events: all !important;
+  }
