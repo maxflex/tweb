@@ -422,7 +422,6 @@
 
                    // Change image to prev
                    scope.methods.prev = function() {
-                       console.log('here')
                        if(scope._activeImageIndex == 0) {
                            scope._activeImageIndex = scope.images.length - 1;
                        } else {

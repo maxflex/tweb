@@ -77,7 +77,7 @@
                             <div>
                                 <img ng-src="@{{image.master.photo_url}}" />
                             </div>
-                            <div>
+                            <div style='flex-direction: column'>
                                 <div class="master-name">
                                     Мастер-исполнитель
                                 </div>
