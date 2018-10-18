@@ -26,7 +26,7 @@ angular
             loadReviews()
             initGmap()
             if $scope.videos then $scope.videos.forEach (v) -> initVideo(v)
-            if $scope.gallery then GalleryService.init($scope.gallery)
+            if ($scope.gallery && !isMobile) then GalleryService.init($scope.gallery)
 
         # REVIEWS
         $scope.loadMoreReviews = ->
