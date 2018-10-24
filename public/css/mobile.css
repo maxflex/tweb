@@ -7589,6 +7589,22 @@ h1.padding-top {
 .gallery-flow-control-arrow {
   pointer-events: all !important; }
 
+.header-message {
+  text-align: center;
+  background: #ae4037;
+  color: white;
+  padding: 6px 0; }
+
+.footer-links {
+  margin-top: 30px; }
+  .footer-links a {
+    margin-right: 10px;
+    font-size: 12px; }
+
+.btn-small {
+  font-size: 10px !important;
+  padding: 2px 6px !important; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }

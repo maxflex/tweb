@@ -4,7 +4,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::post('masters/search', 'MastersController@search');
     Route::resource('requests', 'RequestsController', ['only' => 'store']);
     Route::resource('prices', 'PricesController', ['only' => 'index']);
-    Route::get('reviews/block', 'ReviewsController@block');
+    Route::get('reviews/bypage', 'ReviewsController@bypage');
     Route::resource('reviews', 'ReviewsController');
     Route::resource('videos', 'VideosController', ['only' => 'index']);
     Route::post('gallery/init', 'GalleryController@init');

@@ -1121,7 +1121,7 @@ $uploaded-photo-preview-width: 32%;
     text-align: left;
     font-size: 1.9em;
   }
-  
+
   .gallery-photo-master-info .master-photo img {
       height: 60px;
       width: 60px;
@@ -1130,3 +1130,23 @@ $uploaded-photo-preview-width: 32%;
   .gallery-flow-control-arrow {
       pointer-events: all !important;
   }
+
+.header-message {
+  text-align: center;
+  background: $main-color;
+  color: white;
+  padding: 6px 0;
+}
+
+.footer-links {
+    margin-top: 30px;
+    & a {
+        margin-right: 10px;
+        font-size: 12px;
+    }
+}
+
+.btn-small {
+  font-size: 10px !important;
+  padding: 2px 6px !important; 
+}

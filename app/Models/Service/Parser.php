@@ -154,6 +154,9 @@
                             $replacement = $query->whereIn('id', $ids)->get();
                         }
                         break;
+                    case 'articles':
+                        $replacement = Page::where('folder_id', 29)->select('url', 'title')->get()->toJson();
+                        break;
                     case 'filesize':
                         $replacement = getSize($args[0], 0);
                         break;

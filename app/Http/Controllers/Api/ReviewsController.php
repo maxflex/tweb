@@ -49,6 +49,16 @@ class ReviewsController extends Controller
         return $final_query->get();
     }
 
+    public function bypage(Request $request)
+    {
+        $paginator = Review::with('master')->orderBy('id', 'desc')->simplePaginate(20);
+
+        return [
+            'reviews'        => $paginator->getCollection(),
+            'has_more_pages' => $paginator->hasMorePages(),
+        ];
+    }
+
     public function show($id)
     {
         return Review::where('master_id', $id)->orderBy('date', 'desc')->get();

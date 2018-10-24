@@ -4504,7 +4504,7 @@ a[href^="https://www.google.com/maps"] {
         background: rgba(0, 0, 0, 0.5); }
     .header-menu-item {
       float: left;
-      padding: 0 15px;
+      padding: 0 14px;
       font-size: 14px;
       font-family: 'helveticaneuecyrregular'; }
       .header-menu-item__active {
