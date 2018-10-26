@@ -1148,5 +1148,30 @@ $uploaded-photo-preview-width: 32%;
 
 .btn-small {
   font-size: 10px !important;
-  padding: 2px 6px !important; 
+  padding: 2px 6px !important;
+}
+
+.icons-block {
+	padding: 45px 0 30px !important;
+    & .icons-block-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        & a {
+	        font-size: 16px;
+	        // font-family: $font-bold;
+        }
+        & > div {
+            width: 45%;
+            text-align: center;
+            margin-bottom: 40px;
+            & > *  {
+                margin-bottom: 15px;
+            }
+            & img {
+                height: 60px;
+                margin-bottom: 4px;
+            }
+        }
+    }
 }

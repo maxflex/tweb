@@ -7605,6 +7605,26 @@ h1.padding-top {
   font-size: 10px !important;
   padding: 2px 6px !important; }
 
+.icons-block {
+  padding: 45px 0 30px !important; }
+  .icons-block .icons-block-items {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between; }
+    .icons-block .icons-block-items a {
+      font-size: 16px; }
+    .icons-block .icons-block-items > div {
+      width: 45%;
+      text-align: center;
+      margin-bottom: 40px; }
+      .icons-block .icons-block-items > div > * {
+        margin-bottom: 15px; }
+      .icons-block .icons-block-items > div img {
+        height: 60px;
+        margin-bottom: 4px; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }
