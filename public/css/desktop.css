@@ -3963,6 +3963,17 @@ a[href^="https://www.google.com/maps"] {
   position: absolute;
   left: -150%; }
 
+.map-block__soc {
+  display: -webkit-box;
+  display: flex;
+  margin-top: 8px;
+  -webkit-box-align: center;
+  align-items: center; }
+  .map-block__soc img {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }

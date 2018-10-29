@@ -1606,3 +1606,14 @@ $uploaded-photo-preview-width: 150px;
   position: absolute;
   left: -150%;
 }
+
+.map-block__soc {
+  display: flex;
+  margin-top: 8px;
+  align-items: center;
+  & img {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+  }
+}
