@@ -1186,3 +1186,10 @@ $uploaded-photo-preview-width: 32%;
     margin-right: 10px;
   }
 }
+
+.img-banner {
+  & img {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
