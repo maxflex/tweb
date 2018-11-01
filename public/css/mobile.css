@@ -7670,7 +7670,9 @@ h1.padding-top {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
-  align-items: center; }
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center; }
   .footer-menu-item.with-icon img {
     height: 22px;
     width: 22px;
