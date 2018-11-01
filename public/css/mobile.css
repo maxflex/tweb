@@ -7622,7 +7622,7 @@ h1.padding-top {
       .icons-block .icons-block-items > div > * {
         margin-bottom: 15px; }
       .icons-block .icons-block-items > div img {
-        height: 60px;
+        height: 100px;
         margin-bottom: 4px; }
 
 .map-block__soc {
@@ -7639,6 +7639,42 @@ h1.padding-top {
 .img-banner img {
   width: 100%;
   margin-bottom: 20px; }
+
+.map-inline-icons {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-top: 20px; }
+  .map-inline-icons img {
+    height: 56px;
+    width: 56px;
+    margin-right: 10px; }
+    .map-inline-icons img.yandex {
+      border-radius: 10px;
+      height: 46px;
+      width: 46px; }
+  .map-inline-icons span {
+    display: inline-block;
+    width: 170px; }
+  .map-inline-icons--soc span {
+    width: 176px; }
+  .map-inline-icons--soc img {
+    height: 42px;
+    width: 42px; }
+    .map-inline-icons--soc img.viber {
+      height: 46px;
+      width: 46px; }
+
+.footer-menu-item.with-icon {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center; }
+  .footer-menu-item.with-icon img {
+    height: 22px;
+    width: 22px;
+    margin-right: 6px; }
 
 .wrap {
   width: 600px;

@@ -1617,3 +1617,14 @@ $uploaded-photo-preview-width: 150px;
     margin-right: 10px;
   }
 }
+
+
+.footer-menu-item.with-icon {
+  display: flex;
+  align-items: center;
+  & img {
+    height: 22px;
+    width: 22px;
+    margin-right: 6px;
+  }
+}

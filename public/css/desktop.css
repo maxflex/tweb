@@ -3974,6 +3974,16 @@ a[href^="https://www.google.com/maps"] {
     height: 36px;
     margin-right: 10px; }
 
+.footer-menu-item.with-icon {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center; }
+  .footer-menu-item.with-icon img {
+    height: 22px;
+    width: 22px;
+    margin-right: 6px; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }
