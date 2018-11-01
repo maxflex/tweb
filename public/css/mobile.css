@@ -7666,17 +7666,10 @@ h1.padding-top {
       height: 46px;
       width: 46px; }
 
-.footer-menu-item.with-icon {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center; }
-  .footer-menu-item.with-icon img {
-    height: 22px;
-    width: 22px;
-    margin-right: 6px; }
+.footer-menu-item.with-icons img {
+  height: 28px;
+  width: 28px;
+  margin: 0 3px; }
 
 .wrap {
   width: 600px;

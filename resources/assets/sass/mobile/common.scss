@@ -1228,13 +1228,10 @@ $uploaded-photo-preview-width: 32%;
   }
 }
 
-.footer-menu-item.with-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer-menu-item.with-icons {
   & img {
-    height: 22px;
-    width: 22px;
-    margin-right: 6px;
+    height: 28px;
+    width: 28px;
+    margin: 0 3px;
   }
 }
