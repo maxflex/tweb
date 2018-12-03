@@ -30,6 +30,6 @@ class Order extends Mailable
      */
     public function build()
     {
-        return $this->from(config('mail.from.address'))->to('levinfa@yandex.ru')->subject('Новая заявка')->view("mail.order");
+        return $this->from(config('mail.from.address'))->to('makcyxa-k@yandex.ru')->subject('Новая заявка')->view("mail.order");
     }
 }
