@@ -5428,6 +5428,7 @@ ol, ul {
   position: relative; }
 
 .banner-block {
+  z-index: 1;
   height: calc(100vw * 0.39);
   min-height: 600px;
   margin-top: -19px;

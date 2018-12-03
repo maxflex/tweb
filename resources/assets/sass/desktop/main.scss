@@ -391,7 +391,9 @@ $line-height-small: 17px;
 	background: $banner-block-gradient-color;
     position: relative;
 }
+
 .banner-block {
+  z-index: 1;
 	$gradient-offset: 230px;
     height: calc(100vw * 0.39);
     min-height: 600px;

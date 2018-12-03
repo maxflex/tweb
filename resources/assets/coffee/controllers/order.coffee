@@ -33,6 +33,7 @@ angular
                 # always: ->
                 #     $scope.is_uploading = false
                 #     $scope.$apply()
+                acceptFileTypes: /(zip)|(rar)$/i 
                 done: (i, response) =>
                     if response.result.hasOwnProperty('error')
                         $scope.upload_error = response.result.error
