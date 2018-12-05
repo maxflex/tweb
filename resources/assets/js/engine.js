@@ -52,15 +52,15 @@ $(document).ready(function() {
 
 function closeModal() {
     $('.modal.active').removeClass('modal-animate-open').addClass('modal-animate-close')
+    // if(window.location.hash == "#modal") {
+    //     window.history.back()
+    // }
     setTimeout(function() {
         $('.modal').removeClass('active')
         $('body').removeClass()
     	// $("body").addClass('open-modal-' + active_modal); active_modal = false
         $('.container').off('touchmove');
         // @todo: почему-то эта строчка ломает повторное воспроизведение видео
-        if(window.location.hash == "#modal") {
-            window.history.back()
-        }
         if (typeof(onCloseModal) == 'function') {
             onCloseModal()
         }
@@ -74,7 +74,7 @@ function openModal(id) {
     $("body").addClass('modal-open open-modal-' + id);
     // active_modal = id
     $('.container').on('touchmove', function(e){e.preventDefault();});
-    window.location.hash = '#modal'
+    // window.location.hash = '#modal'
     if (typeof(onOpenModal) == 'function') {
         onOpenModal(id)
     }
@@ -223,7 +223,7 @@ function printDiv(id_div) {
     	h4 {text-align: center}\
     	p {text-indent: 50px; margin: 0}\
 	  </style>"
-	); 
+	);
     frameDoc.document.write('</head><body>');
     frameDoc.document.write(contents);
     frameDoc.document.write('</body></html>');

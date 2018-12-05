@@ -9,6 +9,10 @@ angular
             $scope.agreement = true
             $scope.max_photos = 5
 
+            $('body').on 'drop dragover', (e) ->
+                e.preventDefault()
+                return false
+
             $('#fileupload').fileupload
                 maxFileSize: 5000000
                 # начало загрузки
@@ -33,9 +37,9 @@ angular
                 # always: ->
                 #     $scope.is_uploading = false
                 #     $scope.$apply()
-                acceptFileTypes: /(zip)|(rar)$/i 
                 done: (i, response) =>
                     if response.result.hasOwnProperty('error')
+                        $scope.order.photos.splice(-1)
                         $scope.upload_error = response.result.error
                     else
                         $scope.order.photos[$scope.order.photos.length - 1] = response.result

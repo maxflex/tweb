@@ -1084,6 +1084,10 @@
       $scope.popups = {};
       $scope.agreement = true;
       $scope.max_photos = 5;
+      $('body').on('drop dragover', function(e) {
+        e.preventDefault();
+        return false;
+      });
       return $('#fileupload').fileupload({
         maxFileSize: 5000000,
         send: function(e, data) {
@@ -1100,10 +1104,10 @@
           $scope.uploaded_percentage = Math.round(data.loaded / data.total * 100);
           return $scope.$apply();
         },
-        acceptFileTypes: /(zip)|(rar)$/i,
         done: (function(_this) {
           return function(i, response) {
             if (response.result.hasOwnProperty('error')) {
+              $scope.order.photos.splice(-1);
               $scope.upload_error = response.result.error;
             } else {
               $scope.order.photos[$scope.order.photos.length - 1] = response.result;
@@ -1647,9 +1651,11 @@
           };
         };
         return $scope.toggle = function(item, event) {
+          var target;
           if (item.items && item.items.length) {
-            $(event.target).toggleClass('active');
-            return $(event.target).parent().children('ul').slideToggle(250);
+            target = $(event.target).hasClass('price-line') ? $(event.target) : $(event.target).closest('.price-line');
+            target.toggleClass('active');
+            return target.parent().children('ul').slideToggle(250);
           }
         };
       }

@@ -21171,6 +21171,10 @@ return PhotoSwipeUI_Default;
       $scope.popups = {};
       $scope.agreement = true;
       $scope.max_photos = 5;
+      $('body').on('drop dragover', function(e) {
+        e.preventDefault();
+        return false;
+      });
       return $('#fileupload').fileupload({
         maxFileSize: 5000000,
         send: function(e, data) {
@@ -21187,10 +21191,10 @@ return PhotoSwipeUI_Default;
           $scope.uploaded_percentage = Math.round(data.loaded / data.total * 100);
           return $scope.$apply();
         },
-        acceptFileTypes: /(zip)|(rar)$/i,
         done: (function(_this) {
           return function(i, response) {
             if (response.result.hasOwnProperty('error')) {
+              $scope.order.photos.splice(-1);
               $scope.upload_error = response.result.error;
             } else {
               $scope.order.photos[$scope.order.photos.length - 1] = response.result;
@@ -21734,9 +21738,11 @@ return PhotoSwipeUI_Default;
           };
         };
         return $scope.toggle = function(item, event) {
+          var target;
           if (item.items && item.items.length) {
-            $(event.target).toggleClass('active');
-            return $(event.target).parent().children('ul').slideToggle(250);
+            target = $(event.target).hasClass('price-line') ? $(event.target) : $(event.target).closest('.price-line');
+            target.toggleClass('active');
+            return target.parent().children('ul').slideToggle(250);
           }
         };
       }
@@ -22163,15 +22169,15 @@ $(document).ready(function() {
 
 function closeModal() {
     $('.modal.active').removeClass('modal-animate-open').addClass('modal-animate-close')
+    // if(window.location.hash == "#modal") {
+    //     window.history.back()
+    // }
     setTimeout(function() {
         $('.modal').removeClass('active')
         $('body').removeClass()
     	// $("body").addClass('open-modal-' + active_modal); active_modal = false
         $('.container').off('touchmove');
         // @todo: почему-то эта строчка ломает повторное воспроизведение видео
-        if(window.location.hash == "#modal") {
-            window.history.back()
-        }
         if (typeof(onCloseModal) == 'function') {
             onCloseModal()
         }
@@ -22185,7 +22191,7 @@ function openModal(id) {
     $("body").addClass('modal-open open-modal-' + id);
     // active_modal = id
     $('.container').on('touchmove', function(e){e.preventDefault();});
-    window.location.hash = '#modal'
+    // window.location.hash = '#modal'
     if (typeof(onOpenModal) == 'function') {
         onOpenModal(id)
     }
@@ -22334,7 +22340,7 @@ function printDiv(id_div) {
     	h4 {text-align: center}\
     	p {text-indent: 50px; margin: 0}\
 	  </style>"
-	); 
+	);
     frameDoc.document.write('</head><body>');
     frameDoc.document.write(contents);
     frameDoc.document.write('</body></html>');
@@ -24561,5 +24567,94 @@ addMarker = function(map, latLng) {
        }
    }]);
 })();
+
+/*
+ * Pointer Events Polyfill: Adds support for the style attribute
+ * "pointer-events: none" to browsers without this feature (namely, IE).
+ * (c) 2013, Kent Mewhort, licensed under BSD. See LICENSE.txt for details.
+ */
+
+// constructor
+function PointerEventsPolyfill(options) {
+    // set defaults
+    this.options = {
+        selector: '*',
+        mouseEvents: ['click', 'dblclick', 'mousedown', 'mouseup'],
+        usePolyfillIf: function() {
+            if (navigator.appName == 'Microsoft Internet Explorer')
+            {
+                /* jshint ignore:start */
+                var agent = navigator.userAgent;
+                if (agent.match(/MSIE ([0-9]{1,}[\.0-9]{0,})/) != null) {
+                    var version = parseFloat(RegExp.$1);
+                    if (version < 11)
+                      return true;
+                }
+                /* jshint ignore:end */
+            }
+            return false;
+        }
+    };
+    if (options) {
+        var obj = this;
+        $.each(options, function(k, v) {
+          obj.options[k] = v;
+        });
+    }
+
+    if (this.options.usePolyfillIf())
+      this.register_mouse_events();
+}
+
+
+/**
+ * singleton initializer
+ *
+ * @param   {object}    options     Polyfill options.
+ * @return  {object}    The polyfill object.
+ */
+
+PointerEventsPolyfill.initialize = function(options) {
+/* jshint ignore:start */
+    if (PointerEventsPolyfill.singleton == null)
+      PointerEventsPolyfill.singleton = new PointerEventsPolyfill(options);
+/* jshint ignore:end */
+    return PointerEventsPolyfill.singleton;
+};
+
+
+/**
+ * handle mouse events w/ support for pointer-events: none
+ */
+PointerEventsPolyfill.prototype.register_mouse_events = function() {
+    // register on all elements (and all future elements) matching the selector
+    $(document).on(
+        this.options.mouseEvents.join(' '),
+        this.options.selector,
+        function(e) {
+        if ($(this).css('pointer-events') == 'none') {
+             // peak at the element below
+             var origDisplayAttribute = $(this).css('display');
+             $(this).css('display', 'none');
+
+             var underneathElem = document.elementFromPoint(
+                e.clientX,
+                e.clientY);
+
+            if (origDisplayAttribute)
+                $(this)
+                    .css('display', origDisplayAttribute);
+            else
+                $(this).css('display', '');
+
+             // fire the mouse event on the element below
+            e.target = underneathElem;
+            $(underneathElem).trigger(e);
+
+            return false;
+        }
+        return true;
+    });
+};
 
 //# sourceMappingURL=scripts.js.map

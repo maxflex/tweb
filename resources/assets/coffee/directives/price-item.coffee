@@ -21,5 +21,7 @@ angular.module 'App'
 
             $scope.toggle = (item, event) ->
                 if item.items && item.items.length
-                    $(event.target).toggleClass('active')
-                    $(event.target).parent().children('ul').slideToggle(250)
+                    # IE fix
+                    target = if $(event.target).hasClass('price-line') then $(event.target) else $(event.target).closest('.price-line')
+                    target.toggleClass('active')
+                    target.parent().children('ul').slideToggle(250)
