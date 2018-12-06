@@ -176,6 +176,28 @@ function streamLink(url, action, type, additional) {
     }
 }
 
+function eventAction(category, action) {
+  eventUrl(null, category, action)
+}
+
+function prefixEvent(eventName) {
+  return isMobile ? 'mob-' + eventName : 'stat-' + eventName
+}
+
+function eventUrl(url, category, action) {
+  params = {
+    event: 'user-event',
+    eventCategory: category,
+    eventAction: action || null,
+  }
+  dataLayerPush(params)
+  console.log('/' + url, params)
+  // return
+  if (url !== null) {
+    window.location = '/' + url
+  }
+}
+
 function openChat() {
     $('#intergramRoot > div > div').first().click()
 }
@@ -203,6 +225,8 @@ function fileChange(event) {
         $('.uploaded-photo-box').last().css('background-image', "url('" + URL.createObjectURL(event.target.files[0]) + "')")
     }, 100)
 }
+
+
 
 /**
  * Печать дива.

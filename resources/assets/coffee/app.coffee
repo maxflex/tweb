@@ -36,6 +36,8 @@ angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileU
     .run ($rootScope, $q, StreamService) ->
         $rootScope.streamLink = streamLink
         $rootScope.StreamService = StreamService
+        $rootScope.eventUrl = eventUrl
+        $rootScope.eventAction = eventAction
 
         # отвечает за загрузку данных
         $rootScope.dataLoaded = $q.defer()

@@ -1215,14 +1215,17 @@ $uploaded-photo-preview-width: 32%;
   }
   &--soc {
     & span {
-      width: 176px;
+      width: 170px;
     }
     & img {
-      height: 42px;
-      width: 42px;
       &.viber {
         height: 46px;
         width: 46px;
+      }
+      &.wa {
+        height: 46px;
+        width: 46px;
+        margin-right: 16px;
       }
     }
   }

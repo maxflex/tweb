@@ -14,7 +14,7 @@ angular
         $scope.displayed_videos = 3
         $scope.displayed_masters = 6
 
-        window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v) -> initVideo(v)
+        window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v, i) -> initVideo(v, i)
 
         $scope.initGallery = (ids, tags, folders) ->
             $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
@@ -25,7 +25,7 @@ angular
         $timeout ->
             loadReviews()
             initGmap()
-            if $scope.videos then $scope.videos.forEach (v) -> initVideo(v)
+            if $scope.videos then $scope.videos.forEach (v, i) -> initVideo(v, i)
             if $scope.init_gallery_service then GalleryService.init($scope.gallery)
 
         # REVIEWS
@@ -67,9 +67,8 @@ angular
             $.each $scope.player, (e, p) ->
                 p.stopVideo() if (p.getPlayerState && p.getPlayerState() == 1 && p.a.id != except_id)
 
-        initVideo = (video) ->
+        initVideo = (video, index) ->
             return if not YT.Player or $scope.player[video.id]
-            console.log("binding for video #{video.id}")
             iframe = document.getElementById("youtube-video-#{video.id}")
             requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
             player = new YT.Player "youtube-video-#{video.id}",
@@ -82,14 +81,16 @@ angular
             $scope.player[video.id] = player
             $scope.player[video.id].addEventListener 'onStateChange', (state) ->
                 requestFullScreen.bind(iframe)()
-                $scope.stopPlaying(state.target.a.id) if state.data is YT.PlayerState.PLAYING
-
-        $scope.playVideo = ->
-            $scope.player.loadVideoById('qQS-d4cJr0s')
-            $scope.player.playVideo()
-            iframe = document.getElementById('youtube-video')
-            requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-            requestFullScreen.bind(iframe)() if (requestFullScreen)
+                if state.data is YT.PlayerState.PLAYING
+                    eventAction(prefixEvent('videogallery'), index + 1)
+                    $scope.stopPlaying(state.target.a.id)
+                    
+        # $scope.playVideo = ->
+        #     $scope.player.loadVideoById('qQS-d4cJr0s')
+        #     $scope.player.playVideo()
+        #     iframe = document.getElementById('youtube-video')
+        #     requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+        #     requestFullScreen.bind(iframe)() if (requestFullScreen)
 
         $scope.openPhotoSwipe = (index) ->
             $scope.items = []

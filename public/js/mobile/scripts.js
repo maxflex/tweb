@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 	$('.header-menu-button').click(function() {
         openModal('menu')
-        streamLink(null, 'menu')
+        eventAction('mob-burger-open') 
 	})
 
     bindToggle()

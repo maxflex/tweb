@@ -20146,6 +20146,8 @@ return PhotoSwipeUI_Default;
   }).run(function($rootScope, $q, StreamService) {
     $rootScope.streamLink = streamLink;
     $rootScope.StreamService = StreamService;
+    $rootScope.eventUrl = eventUrl;
+    $rootScope.eventAction = eventAction;
     $rootScope.dataLoaded = $q.defer();
     $rootScope.frontendStop = function(rebind_masks) {
       if (rebind_masks == null) {
@@ -20888,8 +20890,8 @@ return PhotoSwipeUI_Default;
     $scope.displayed_videos = 3;
     $scope.displayed_masters = 6;
     window.onYouTubeIframeAPIReady = function() {
-      return $scope.videos.forEach(function(v) {
-        return initVideo(v);
+      return $scope.videos.forEach(function(v, i) {
+        return initVideo(v, i);
       });
     };
     $scope.initGallery = function(ids, tags, folders) {
@@ -20906,8 +20908,8 @@ return PhotoSwipeUI_Default;
       loadReviews();
       initGmap();
       if ($scope.videos) {
-        $scope.videos.forEach(function(v) {
-          return initVideo(v);
+        $scope.videos.forEach(function(v, i) {
+          return initVideo(v, i);
         });
       }
       if ($scope.init_gallery_service) {
@@ -20961,12 +20963,11 @@ return PhotoSwipeUI_Default;
         }
       });
     };
-    initVideo = function(video) {
+    initVideo = function(video, index) {
       var iframe, player, requestFullScreen;
       if (!YT.Player || $scope.player[video.id]) {
         return;
       }
-      console.log("binding for video " + video.id);
       iframe = document.getElementById("youtube-video-" + video.id);
       requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
       player = new YT.Player("youtube-video-" + video.id, {
@@ -20986,19 +20987,10 @@ return PhotoSwipeUI_Default;
       return $scope.player[video.id].addEventListener('onStateChange', function(state) {
         requestFullScreen.bind(iframe)();
         if (state.data === YT.PlayerState.PLAYING) {
+          eventAction(prefixEvent('videogallery'), index + 1);
           return $scope.stopPlaying(state.target.a.id);
         }
       });
-    };
-    $scope.playVideo = function() {
-      var iframe, requestFullScreen;
-      $scope.player.loadVideoById('qQS-d4cJr0s');
-      $scope.player.playVideo();
-      iframe = document.getElementById('youtube-video');
-      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-      if (requestFullScreen) {
-        return requestFullScreen.bind(iframe)();
-      }
     };
     $scope.openPhotoSwipe = function(index) {
       var options, pswpElement;
@@ -21196,8 +21188,10 @@ return PhotoSwipeUI_Default;
             if (response.result.hasOwnProperty('error')) {
               $scope.order.photos.splice(-1);
               $scope.upload_error = response.result.error;
+              eventAction('stat-order-error', response.result.error);
             } else {
               $scope.order.photos[$scope.order.photos.length - 1] = response.result;
+              eventAction('stat-file-attach', $scope.order.photos.length);
             }
             return $scope.$apply();
           };
@@ -21226,14 +21220,18 @@ return PhotoSwipeUI_Default;
       return Request.save($scope.order, function() {
         $scope.sending = false;
         $scope.sent = true;
+        eventAction('stat-order');
         return $('body').animate({
           scrollTop: $('.header').offset().top
         });
       }, function(response) {
+        var errors_string;
         $scope.sending = false;
-        return angular.forEach(response.data, function(errors, field) {
+        errors_string = [];
+        angular.forEach(response.data, function(errors, field) {
           var input, selector;
           $scope.errors[field] = errors;
+          errors_string.push((field + ": ") + errors.join(', '));
           selector = "[ng-model$='" + field + "']";
           $('html,body').animate({
             scrollTop: $("input" + selector + ", textarea" + selector).first().offset().top
@@ -21244,6 +21242,7 @@ return PhotoSwipeUI_Default;
             return input.notify(errors[0], notify_options);
           }
         });
+        return eventAction('stat-order-error', errors_string.join(' | '));
       });
     };
   });
@@ -21441,123 +21440,6 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
-  });
-
-}).call(this);
-
-(function() {
   angular.module('App').directive('academic', function() {
     return {
       restrict: 'E',
@@ -21738,11 +21620,14 @@ return PhotoSwipeUI_Default;
           };
         };
         return $scope.toggle = function(item, event) {
-          var target;
+          var event_name, target, ul;
           if (item.items && item.items.length) {
             target = $(event.target).hasClass('price-line') ? $(event.target) : $(event.target).closest('.price-line');
             target.toggleClass('active');
-            return target.parent().children('ul').slideToggle(250);
+            ul = target.parent().children('ul');
+            event_name = ul.is(':visible') ? prefixEvent('price-minimize') : prefixEvent('price-expand');
+            eventAction(event_name, item.model.name);
+            return ul.slideToggle(250);
           }
         };
       }
@@ -21777,6 +21662,123 @@ return PhotoSwipeUI_Default;
 
 (function() {
 
+
+}).call(this);
+
+(function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
+  });
 
 }).call(this);
 
@@ -22293,6 +22295,28 @@ function streamLink(url, action, type, additional) {
     }
 }
 
+function eventAction(category, action) {
+  eventUrl(null, category, action)
+}
+
+function prefixEvent(eventName) {
+  return isMobile ? 'mob-' + eventName : 'stat-' + eventName
+}
+
+function eventUrl(url, category, action) {
+  params = {
+    event: 'user-event',
+    eventCategory: category,
+    eventAction: action || null,
+  }
+  dataLayerPush(params)
+  console.log('/' + url, params)
+  // return
+  if (url !== null) {
+    window.location = '/' + url
+  }
+}
+
 function openChat() {
     $('#intergramRoot > div > div').first().click()
 }
@@ -22320,6 +22344,8 @@ function fileChange(event) {
         $('.uploaded-photo-box').last().css('background-image', "url('" + URL.createObjectURL(event.target.files[0]) + "')")
     }, 100)
 }
+
+
 
 /**
  * Печать дива.
@@ -23821,6 +23847,12 @@ function printDiv(id_div) {
 
 }));
 
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M7RH9MX');
+
 /*
 Constructor for the tooltip
 @ param options an object containing: marker(required), content(required) and cssClass(a css class, optional)
@@ -24433,7 +24465,7 @@ addMarker = function(map, latLng) {
 
                    // Close gallery modal
                    scope.methods.close = function(){
-                       scope.$parent.StreamService.run('photogallery', 'close')
+                       eventAction(prefixEvent('photogallery-close'))
                        scope.opened = false; // Model closed
                        $('.ng-image-gallery-modal').remove()
                        // set overflow hidden to body
@@ -24453,7 +24485,7 @@ addMarker = function(map, latLng) {
                        } else {
                            scope._activeImageIndex = scope._activeImageIndex + 1;
                        }
-                       scope.$parent.StreamService.run('photogallery', 'right')
+                       eventAction(prefixEvent('photogallery-right'), scope._activeImageIndex + 1)
                    }
 
                    // Change image to prev
@@ -24463,7 +24495,7 @@ addMarker = function(map, latLng) {
                        } else {
                            scope._activeImageIndex--;
                        }
-                       scope.$parent.StreamService.run('photogallery', 'left')
+                       eventAction(prefixEvent('photogallery-left'), scope._activeImageIndex + 1)
                    }
 
                    // Close gallery on background click
@@ -24567,94 +24599,5 @@ addMarker = function(map, latLng) {
        }
    }]);
 })();
-
-/*
- * Pointer Events Polyfill: Adds support for the style attribute
- * "pointer-events: none" to browsers without this feature (namely, IE).
- * (c) 2013, Kent Mewhort, licensed under BSD. See LICENSE.txt for details.
- */
-
-// constructor
-function PointerEventsPolyfill(options) {
-    // set defaults
-    this.options = {
-        selector: '*',
-        mouseEvents: ['click', 'dblclick', 'mousedown', 'mouseup'],
-        usePolyfillIf: function() {
-            if (navigator.appName == 'Microsoft Internet Explorer')
-            {
-                /* jshint ignore:start */
-                var agent = navigator.userAgent;
-                if (agent.match(/MSIE ([0-9]{1,}[\.0-9]{0,})/) != null) {
-                    var version = parseFloat(RegExp.$1);
-                    if (version < 11)
-                      return true;
-                }
-                /* jshint ignore:end */
-            }
-            return false;
-        }
-    };
-    if (options) {
-        var obj = this;
-        $.each(options, function(k, v) {
-          obj.options[k] = v;
-        });
-    }
-
-    if (this.options.usePolyfillIf())
-      this.register_mouse_events();
-}
-
-
-/**
- * singleton initializer
- *
- * @param   {object}    options     Polyfill options.
- * @return  {object}    The polyfill object.
- */
-
-PointerEventsPolyfill.initialize = function(options) {
-/* jshint ignore:start */
-    if (PointerEventsPolyfill.singleton == null)
-      PointerEventsPolyfill.singleton = new PointerEventsPolyfill(options);
-/* jshint ignore:end */
-    return PointerEventsPolyfill.singleton;
-};
-
-
-/**
- * handle mouse events w/ support for pointer-events: none
- */
-PointerEventsPolyfill.prototype.register_mouse_events = function() {
-    // register on all elements (and all future elements) matching the selector
-    $(document).on(
-        this.options.mouseEvents.join(' '),
-        this.options.selector,
-        function(e) {
-        if ($(this).css('pointer-events') == 'none') {
-             // peak at the element below
-             var origDisplayAttribute = $(this).css('display');
-             $(this).css('display', 'none');
-
-             var underneathElem = document.elementFromPoint(
-                e.clientX,
-                e.clientY);
-
-            if (origDisplayAttribute)
-                $(this)
-                    .css('display', origDisplayAttribute);
-            else
-                $(this).css('display', '');
-
-             // fire the mouse event on the element below
-            e.target = underneathElem;
-            $(underneathElem).trigger(e);
-
-            return false;
-        }
-        return true;
-    });
-};
 
 //# sourceMappingURL=scripts.js.map

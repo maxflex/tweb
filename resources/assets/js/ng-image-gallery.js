@@ -397,7 +397,7 @@
 
                    // Close gallery modal
                    scope.methods.close = function(){
-                       scope.$parent.StreamService.run('photogallery', 'close')
+                       eventAction(prefixEvent('photogallery-close'))
                        scope.opened = false; // Model closed
                        $('.ng-image-gallery-modal').remove()
                        // set overflow hidden to body
@@ -417,7 +417,7 @@
                        } else {
                            scope._activeImageIndex = scope._activeImageIndex + 1;
                        }
-                       scope.$parent.StreamService.run('photogallery', 'right')
+                       eventAction(prefixEvent('photogallery-right'), scope._activeImageIndex + 1)
                    }
 
                    // Change image to prev
@@ -427,7 +427,7 @@
                        } else {
                            scope._activeImageIndex--;
                        }
-                       scope.$parent.StreamService.run('photogallery', 'left')
+                       eventAction(prefixEvent('photogallery-left'), scope._activeImageIndex + 1)
                    }
 
                    // Close gallery on background click

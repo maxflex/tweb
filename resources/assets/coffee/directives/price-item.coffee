@@ -24,4 +24,7 @@ angular.module 'App'
                     # IE fix
                     target = if $(event.target).hasClass('price-line') then $(event.target) else $(event.target).closest('.price-line')
                     target.toggleClass('active')
-                    target.parent().children('ul').slideToggle(250)
+                    ul = target.parent().children('ul')
+                    event_name = if ul.is(':visible') then prefixEvent('price-minimize') else prefixEvent('price-expand')
+                    eventAction(event_name, item.model.name)
+                    ul.slideToggle(250)

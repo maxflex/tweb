@@ -7658,13 +7658,14 @@ h1.padding-top {
     display: inline-block;
     width: 170px; }
   .map-inline-icons--soc span {
-    width: 176px; }
-  .map-inline-icons--soc img {
-    height: 42px;
-    width: 42px; }
-    .map-inline-icons--soc img.viber {
-      height: 46px;
-      width: 46px; }
+    width: 170px; }
+  .map-inline-icons--soc img.viber {
+    height: 46px;
+    width: 46px; }
+  .map-inline-icons--soc img.wa {
+    height: 46px;
+    width: 46px;
+    margin-right: 16px; }
 
 .footer-menu-item.with-icons img {
   height: 28px;
