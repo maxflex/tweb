@@ -191,10 +191,21 @@ function eventUrl(url, category, action) {
     eventAction: action || null,
   }
   dataLayerPush(params)
-  console.log('/' + url, params)
   // return
   if (url !== null) {
-    window.location = '/' + url
+    special_links = ['whatsapp', 'viber', 'maps', 'yandexnavi', 'tel']
+    is_special_link = false
+    special_links.forEach(function(link) {
+      if (url.indexOf(link) === 0) {
+        is_special_link = true
+      }
+    })
+
+    if (is_special_link) {
+      window.location = url
+    } else {
+      window.location = '/' + url
+    }
   }
 }
 
