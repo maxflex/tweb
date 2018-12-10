@@ -84,7 +84,7 @@ angular
                 if state.data is YT.PlayerState.PLAYING
                     eventAction(prefixEvent('videogallery'), index + 1)
                     $scope.stopPlaying(state.target.a.id)
-                    
+
         # $scope.playVideo = ->
         #     $scope.player.loadVideoById('qQS-d4cJr0s')
         #     $scope.player.playVideo()
@@ -150,8 +150,8 @@ angular
             $scope.bounds = new (google.maps.LatLngBounds)
 
             markers = [
-                newMarker(new google.maps.LatLng(55.7173112, 37.5929021), $scope.map),
-                newMarker(new google.maps.LatLng(55.781081,  37.5141053), $scope.map),
+                newMarker(new google.maps.LatLng(55.717295, 37.595088), $scope.map),
+                newMarker(new google.maps.LatLng(55.781302,  37.516045), $scope.map),
             ]
 
             markers.forEach (marker) ->

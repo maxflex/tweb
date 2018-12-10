@@ -3384,7 +3384,7 @@ a[href^="https://www.google.com/maps"] {
     height: 14px;
     margin: 0px 10px 0 10px; }
 
-.service-list {
+.service-list__items {
   width: 800px;
   margin: 15px auto 30px;
   text-align: left;
@@ -3393,14 +3393,24 @@ a[href^="https://www.google.com/maps"] {
   flex-wrap: wrap;
   -webkit-box-pack: justify;
   justify-content: space-between; }
-  .service-list > div {
+  .service-list__items > div {
     display: -webkit-box;
     display: flex;
     width: 47%;
     margin-top: 30px; }
-    .service-list > div img {
+    .service-list__items > div img {
       height: 90px;
       margin-right: 20px; }
+
+.service-list__item-description img {
+  height: 11px !important;
+  width: 11px !important;
+  margin-right: 6px !important; }
+
+.service-list__item-description a {
+  text-decoration: none; }
+  .service-list__item-description a:hover {
+    text-decoration: underline; }
 
 .main-page h1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3 {
   padding-top: 40px;

@@ -7414,19 +7414,24 @@ price-item > ul > li.price-item-section:first-child {
   padding-bottom: 25px;
   margin-bottom: 2.5em; }
 
-.service-list h3 {
+.service-list_one-line img {
+  height: 11px !important;
+  width: 11px !important;
+  margin-right: 6px !important; }
+
+.service-list__items h3 {
   font-family: "helveticaneuecyrmedium"; }
 
-.service-list img {
+.service-list__items img {
   width: 100px; }
 
-.service-list > div {
+.service-list__items > div {
   vertical-align: top;
   text-align: center;
   width: 34%;
   padding: 0 8% 5%;
   display: inline-block; }
-  .service-list > div a {
+  .service-list__items > div a {
     color: black;
     text-decoration: underline; }
 

@@ -29,4 +29,26 @@ class PageItem extends Model
         }
         return null;
     }
+
+    // 500 limit
+
+    public function getDescriptionAttribute($value)
+    {
+        if ($this->position == 0 && $this->is_one_line) {
+            preg_match_all('#\[link\|([\d]+)\|([\w\s]+)\]#um', $value, $m);
+            foreach($m[0] as $i => $to_be_replaced) {
+                $url = Page::getUrl($m[1][$i]);
+                $value = str_replace($to_be_replaced, "<a href=\"/{$url}\">{$m[2][$i]}</a>", $value);
+            }
+            if (strpos($value, "\n") !== false) {
+                $value = explode("\n", $value);
+                $value = array_map(function($a) {
+                    return '<div><img src="/img/svg/right-chevron.svg" />' . $a . '</div>';
+                }, $value);
+                $value = implode('', $value);
+            }
+            return $value;
+        }
+        return $value;
+    }
 }

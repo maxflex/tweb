@@ -938,23 +938,32 @@ price-item > ul > li.price-item-section:first-child {
 }
 
 .service-list {
+  &_one-line {
+    & img {
+      height: 11px !important;
+      width: 11px !important;
+      margin-right: 6px !important;
+    }
+  }
+  &__items {
     & h3 {
-        font-family: $font-medium;
+      font-family: $font-medium;
     }
     & img {
-        width: 100px;
+      width: 100px;
     }
     & > div {
-        vertical-align: top;
-        text-align: center;
-        width: 34%;
-        padding: 0 8% 5%;
-        display: inline-block;
-        & a {
-            color: black;
-            text-decoration: underline;
-        }
+      vertical-align: top;
+      text-align: center;
+      width: 34%;
+      padding: 0 8% 5%;
+      display: inline-block;
+      & a {
+        color: black;
+        text-decoration: underline;
+      }
     }
+  }
 }
 
 .video-duratoin {

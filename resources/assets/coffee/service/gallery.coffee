@@ -1,6 +1,6 @@
 angular.module 'App'
     .service 'GalleryService', () ->
-        @displayed = 6
+        @displayed = 3
 
         el = null
         scroll_left  = null
