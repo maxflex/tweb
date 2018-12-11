@@ -25,14 +25,14 @@ class RequestStore extends FormRequest
     {
         return [
             'phone'   => ['required', 'phone_filled', 'starts_with_correct_digit'],
-            'name'    => [
-                'regex:' . TEXT_VALIDATION_REGEX,
-                'max:' . MAX_NAME_LENGTH,
-            ],
-            'comment' => [
-                'regex:' . TEXT_VALIDATION_REGEX,
-                'max:' . MAX_COMMENT_LENGTH,
-            ]
+            // 'name'    => [
+            //     'regex:' . TEXT_VALIDATION_REGEX,
+            //     'max:' . MAX_NAME_LENGTH,
+            // ],
+            // 'comment' => [
+            //     'regex:' . TEXT_VALIDATION_REGEX,
+            //     'max:' . MAX_COMMENT_LENGTH,
+            // ]
         ];
     }
 
