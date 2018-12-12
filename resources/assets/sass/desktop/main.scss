@@ -348,10 +348,12 @@ ol, ul {
 }
 
 .menu-header {
-    color: #cc8d87;
-    font-size: 23px;
+  & a {
+    color: #cc8d87 !important;
+    font-size: 18px;
     font-family: 'helveticaneuecyrbold';
-    margin: 10px 0 22px;
+    margin: 10px 0 16px;
+  }
 }
 
 .footer-links {

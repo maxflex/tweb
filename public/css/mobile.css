@@ -7435,6 +7435,11 @@ price-item > ul > li.price-item-section:first-child {
     color: black;
     text-decoration: underline; }
 
+.service-list__items_after-one-line {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid #c6c6c6; }
+
 .video-duratoin {
   background: rgba(0, 0, 0, 0.7);
   color: white;

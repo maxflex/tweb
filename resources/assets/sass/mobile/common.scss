@@ -963,6 +963,11 @@ price-item > ul > li.price-item-section:first-child {
         text-decoration: underline;
       }
     }
+    &_after-one-line {
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid #c6c6c6;
+    }
   }
 }
 

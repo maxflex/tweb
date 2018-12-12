@@ -868,8 +868,9 @@ p.last {
               margin-right: 20px;
           }
       }
-      &_one_line {
-
+      &_after-one-line {
+        padding-top: 15px;
+        border-top: 1px solid #c6c6c6;
       }
     }
     &__item-description {

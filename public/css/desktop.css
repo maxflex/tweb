@@ -3401,6 +3401,9 @@ a[href^="https://www.google.com/maps"] {
     .service-list__items > div img {
       height: 90px;
       margin-right: 20px; }
+  .service-list__items_after-one-line {
+    padding-top: 15px;
+    border-top: 1px solid #c6c6c6; }
 
 .service-list__item-description img {
   height: 11px !important;
@@ -5405,11 +5408,11 @@ ol, ul {
     height: 30px;
     margin-right: 12px; }
 
-.menu-header {
-  color: #cc8d87;
-  font-size: 23px;
+.menu-header a {
+  color: #cc8d87 !important;
+  font-size: 18px;
   font-family: 'helveticaneuecyrbold';
-  margin: 10px 0 22px; }
+  margin: 10px 0 16px; }
 
 .footer-links {
   margin-top: 30px; }
