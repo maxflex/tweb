@@ -3412,8 +3412,6 @@ a[href^="https://www.google.com/maps"] {
 
 .service-list__item-description a {
   text-decoration: none; }
-  .service-list__item-description a:hover {
-    text-decoration: underline; }
 
 .main-page h1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3 {
   padding-top: 40px;
