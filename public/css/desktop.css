@@ -3696,8 +3696,7 @@ a[href^="https://www.google.com/maps"] {
       padding: 0 20px;
       opacity: 0.4;
       -webkit-transition: opacity .5s linear;
-      transition: opacity .5s linear;
-      z-index: -1; }
+      transition: opacity .5s linear; }
       .main-gallery-block .main-gallery-wrapper .gallery-item.active, .main-gallery-block .video-wrapper .gallery-item.active {
         opacity: 1; }
       .main-gallery-block .main-gallery-wrapper .gallery-item img, .main-gallery-block .video-wrapper .gallery-item img {
