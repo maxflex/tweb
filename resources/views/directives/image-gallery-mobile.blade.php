@@ -63,11 +63,11 @@
                                 <span>@{{ image.component_6 }}</span> –
                                 <span>@{{ image.price_6 | number }} руб.</span>
                             </div>
-                            <div class="gallery-component-sum">
+                            <div class="gallery-component-sum" ng-if="image.total_price">
                                 <span>Итого:</span>
                                 <span>@{{ image.total_price | number }} руб.</span>
                             </div>
-                            <div>
+                            <div ng-if="image.days_to_complete">
                                 <span>Срок выполнения:</span>
                                 <span class="gallery-days-to-complete"><plural count="image.days_to_complete" type='day'></plural></span>
                             </div>
