@@ -54,4 +54,7 @@ class PagesController extends Controller
         $html = Page::whereUrl(Faq::URL)->first()->html;
         return view('pages.index')->with(compact('html'));
     }
+	
+	
+	
 }

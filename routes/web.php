@@ -35,3 +35,5 @@
 
     # All serp pages
     Route::get('{url?}', 'PagesController@index')->where('url', '.*');
+	
+	Route::get('/sitemap.xml', 'PagesController@sitemap');

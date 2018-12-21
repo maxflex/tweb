@@ -12,11 +12,12 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        return Sitemap::render();
+      return Sitemap::render();
     }
 
     private static function _url($url = '')
     {
-        return config('app.url') . ($url[0] == '/' ? substr($url, 1) : $url);
+       return config('app.url') . ($url[0] == '/' ? substr($url, 1) : $url);
     }
 }
+

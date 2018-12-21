@@ -1,6 +1,61 @@
+User-agent: Yandex
+Disallow: /*.pdf
+Disallow: /*.xls
+Disallow: /*.doc
+Disallow: /*.ppt
+Disallow: /*.txt
+Disallow: /*.zip
+Disallow: /*.rar
+Disallow: /*.swf
+Disallow: /*.rtf
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /img/*.jpg
+Allow: /img/*.jpeg
+Allow: /img/*.png
+Allow: /img/*.gif
+Allow: /img/*.JPG
+Clean-param: utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid&_openstat&from&roistat&roistat_referrer&roistat_pos /
+
+User-agent: Googlebot
+Disallow: /*.pdf
+Disallow: /*.xls
+Disallow: /*.doc
+Disallow: /*.ppt
+Disallow: /*.txt
+Disallow: /*.zip
+Disallow: /*.rar
+Disallow: /*.swf
+Disallow: /*.rtf
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /img/*.jpg
+Allow: /img/*.jpeg
+Allow: /img/*.png
+Allow: /img/*.gif
+Allow: /img/*.JPG
+
 User-agent: *
-Allow: /
+Disallow: /*.pdf
+Disallow: /*.xls
+Disallow: /*.doc
+Disallow: /*.ppt
+Disallow: /*.txt
+Disallow: /*.zip
+Disallow: /*.rar
+Disallow: /*.swf
+Disallow: /*.rtf
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /img/*.jpg
+Allow: /img/*.jpeg
+Allow: /img/*.png
+Allow: /img/*.gif
+Allow: /img/*.JPG
+Disallow: *utm
+Disallow: *clid=
+Disallow: *openstat
+Disallow: *from
+Disallow: /*roistat
 
-Sitemap: https://ege-centr.ru/sitemap.xml
-
-Host: ege-centr.ru
+Sitemap: https://www.atelier-talisman.ru/sitemap.xml
