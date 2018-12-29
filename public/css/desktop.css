@@ -5497,11 +5497,11 @@ ol, ul {
       margin-top: 18px;
       font-style: italic; }
       .banner-block .info .tutor-title b, .banner-block .info .tutor-title .address-more li > div:first-of-type, .address-more .banner-block .info .tutor-title li > div:first-of-type {
-        font-size: 16px !important;
+        font-size: 20px !important;
         display: block;
         margin-bottom: 5px; }
       .banner-block .info .tutor-title div {
-        font-size: 12px !important;
+        font-size: 17px !important;
         line-height: 17px; }
     .banner-block .info .button-green-large {
       margin-top: 80px; }
