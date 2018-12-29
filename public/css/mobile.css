@@ -7579,11 +7579,12 @@ h1.padding-top {
 .banner-block .tutor-title {
   padding-left: 10%;
   text-align: right;
-  font-size: 12px;
-  line-height: 17px; }
+  font-size: 15px;
+  line-height: 18px; }
 
 .banner-block .tutor-title b {
-  font-size: 14px;
+  font-size: 18px;
+  line-height: 20px;
   display: block;
   margin-bottom: 8px; }
 
