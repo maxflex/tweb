@@ -7561,7 +7561,9 @@ h1.padding-top {
   display: none; }
 
 .banner-block {
-  margin-bottom: 60px;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #c7c7c7;
   font-style: italic; }
 
 .banner-block .h1-top {

@@ -392,6 +392,27 @@ $line-height-small: 17px;
 .banner-block-full-width-wrapper {
 	background: $banner-block-gradient-color;
     position: relative;
+    &_3 {
+        & .lines {
+            & .line {
+                display: flex;
+                align-items: center;
+                font-size: 17px;
+                margin-bottom: 14px;
+                & img {
+                    height: 26px;
+                    width: 26px;
+                    margin-right: 6px;
+                }
+                & span {
+                    text-align: left;
+                }
+            }
+        }
+        & .banner-block {
+            margin-bottom: 50px !important;
+        }
+    }
 }
 
 .banner-block {

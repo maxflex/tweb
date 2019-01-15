@@ -5436,6 +5436,21 @@ ol, ul {
 .banner-block-full-width-wrapper {
   background: #f2f2f2;
   position: relative; }
+  .banner-block-full-width-wrapper_3 .lines .line {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 17px;
+    margin-bottom: 14px; }
+    .banner-block-full-width-wrapper_3 .lines .line img {
+      height: 26px;
+      width: 26px;
+      margin-right: 6px; }
+    .banner-block-full-width-wrapper_3 .lines .line span {
+      text-align: left; }
+  .banner-block-full-width-wrapper_3 .banner-block {
+    margin-bottom: 50px !important; }
 
 .banner-block {
   z-index: 1;
