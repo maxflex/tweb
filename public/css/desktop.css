@@ -5510,7 +5510,7 @@ ol, ul {
           flex-direction: column;
           -webkit-box-pack: end;
           justify-content: flex-end;
-          margin-top: -80px; }
+          margin-top: -90px; }
     .banner-block .info h1, .banner-block .info .landingnew-page .common h3, .landingnew-page .common .banner-block .info h3 {
       text-align: right !important;
       padding-top: 150px !important;
