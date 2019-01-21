@@ -5449,6 +5449,8 @@ ol, ul {
       margin-right: 6px; }
     .banner-block-full-width-wrapper_3 .lines .line span {
       text-align: left; }
+    .banner-block-full-width-wrapper_3 .lines .line:last-of-type {
+      margin-bottom: 0; }
   .banner-block-full-width-wrapper_3 .banner-block {
     margin-bottom: 50px !important; }
 

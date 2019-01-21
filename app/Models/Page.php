@@ -97,6 +97,35 @@ class Page extends Model
         return '';
     }
 
+    public static function seo($seo_page_ids)
+    {
+        if ($seo_page_ids) {
+            $seo_page_ids = explode(',', $seo_page_ids);
+            $seo_page_ids = array_map('trim', $seo_page_ids);
+
+            // обрабатываем ссылки вида [370|тебя что-то не устраивает]
+            $update_title = [];
+            foreach($seo_page_ids as $index => $seo_page_id) {
+                if ($seo_page_id[0] === '[') {
+                    preg_match('/\[([\d]+)\|(.*)\]/', $seo_page_id, $m);
+                    $seo_page_ids[$index] = $m[1];
+                    $update_title[$m[1]] = $m[2];
+                }
+            }
+
+            if (count($seo_page_ids)) {
+                return $seo_page_ids;
+                $pages = Page::select('id', 'url', 'keyphrase')->whereIn('id', $seo_page_ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $seo_page_ids) . ')'))->get();
+                return $seo_page_ids;
+                foreach($update_title as $page_id => $title) {
+                    $pages->where('id', $page_id)->first()->keyphrase = $title;
+                }
+                return $pages;
+            }
+        }
+        return '';
+    }
+
     public function getHtmlAttribute()
     {
         $value = $this->getHtml();

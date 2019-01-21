@@ -7685,6 +7685,9 @@ h1.padding-top {
   width: 28px;
   margin: 0 3px; }
 
+.more-button {
+  margin: 40px 0; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }
