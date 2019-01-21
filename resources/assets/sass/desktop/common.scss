@@ -854,7 +854,7 @@ p.last {
 .service-list {
     &__items {
       width: 800px;
-      margin: 15px auto 30px;
+      margin: 15px auto 0;
       text-align: left;
       display: flex;
       flex-wrap: wrap;
@@ -1143,7 +1143,7 @@ p.last {
             }
         }
     }
-    margin: 80px 0;
+    margin: 50px 0 80px;
     position: relative;
     & .equipment-overlay {
         overflow: hidden;

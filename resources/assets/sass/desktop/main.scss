@@ -463,14 +463,28 @@ $line-height-small: 17px;
         display: flex;
         align-items: center;
         height: 100%;
+        &__items {
+            height: 100%;
+            & > div {
+                height: 50%;
+                &:nth-child(2n) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    margin-top: -50px;
+                }
+            }
+        }
         & h1 {
             text-align: right !important;
-            padding: 0;
+            padding-top: 150px !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
             font-weight: 800;
 			font-size: 45px;
 			width: 125%;
 			margin-left: -25%;
-			padding-bottom: 112px;
             font-family: $font-bold;
         }
         & .quote {
@@ -541,4 +555,8 @@ $line-height-small: 17px;
 			right: 0px;
 		}
     }
+}
+
+.more-button {
+    margin: 35px 0 10px; 
 }

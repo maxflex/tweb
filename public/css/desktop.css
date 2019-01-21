@@ -3386,7 +3386,7 @@ a[href^="https://www.google.com/maps"] {
 
 .service-list__items {
   width: 800px;
-  margin: 15px auto 30px;
+  margin: 15px auto 0;
   text-align: left;
   display: -webkit-box;
   display: flex;
@@ -3537,7 +3537,7 @@ a[href^="https://www.google.com/maps"] {
           width: 100%; }
 
 .equipment-item-full {
-  margin: 80px 0;
+  margin: 50px 0 80px;
   position: relative; }
   .equipment-item-full.black .equipment-text-block {
     color: white; }
@@ -5496,14 +5496,29 @@ ol, ul {
     -webkit-box-align: center;
     align-items: center;
     height: 100%; }
+    .banner-block .info__items {
+      height: 100%; }
+      .banner-block .info__items > div {
+        height: 50%; }
+        .banner-block .info__items > div:nth-child(2n) {
+          display: -webkit-box;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          flex-direction: column;
+          -webkit-box-pack: end;
+          justify-content: flex-end;
+          margin-top: -50px; }
     .banner-block .info h1, .banner-block .info .landingnew-page .common h3, .landingnew-page .common .banner-block .info h3 {
       text-align: right !important;
-      padding: 0;
+      padding-top: 150px !important;
+      padding-bottom: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
       font-weight: 800;
       font-size: 45px;
       width: 125%;
       margin-left: -25%;
-      padding-bottom: 112px;
       font-family: "helveticaneuecyrbold"; }
     .banner-block .info .quote {
       font-size: 16px;
@@ -5558,6 +5573,9 @@ ol, ul {
       background-position: center center; }
     .banner-block.right .image-link {
       right: 0px; }
+
+.more-button {
+  margin: 35px 0 10px; }
 
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {
