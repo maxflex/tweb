@@ -7,15 +7,17 @@ angular
         $scope.displayed_videos = 3
 
         $scope.reviews_per_page = 10
-        $scope.displayed_reviews = 3
+        $scope.displayed_reviews = 5
+
+        $scope.gallery = []
         
         $scope.initGallery = (ids, tags, folders) ->
-            $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
-            .then (response) ->
-                $scope.gallery = response.data
+            if ids 
+                $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
+                .then (response) -> $scope.gallery = response.data
 
         # fix FLEX rows
-        $timeout ->
+        $timeout -> 
             $scope.masters.push(null) if $scope.masters.length % 3 == 2 && not isMobile
         
         $scope.loadMoreReviews = ->
