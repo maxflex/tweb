@@ -538,6 +538,7 @@ input {
       background-position: center center;
       background-size: cover;
       margin-right: 20px;
+      background-image: url('/img/icons/no-profile.png');
 }
 
 .student-review-info {
@@ -837,7 +838,7 @@ input {
     }
 }
 
-price-item > ul > li.price-item-section:first-child {
+.price-item > ul > li.price-item-section:first-child {
     border-top: 1px solid rgba(#a40000, .25);
 }
 
@@ -955,7 +956,7 @@ price-item > ul > li.price-item-section:first-child {
     & > div {
       vertical-align: top;
       text-align: center;
-      width: 34%;
+      width: 33%;
       padding: 0 8% 5%;
       display: inline-block;
       & a {
@@ -986,7 +987,7 @@ h1.padding-top {
     padding-top: .9em;
 }
 
-.master-page .full-width .common h1 {
+.masters-page .full-width .common h1 {
     display: none;
 }
 

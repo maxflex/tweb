@@ -2332,7 +2332,7 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-h1, .landingnew-page .common h3 {
+h1, .header-1, .landingnew-page .common h3, .landingnew-page .common .header-3 {
   font-size: 2em;
   margin: 0.67em 0; }
 
@@ -2731,6 +2731,10 @@ mark {
   color: #acacac;
   font-size: 12px; }
 
+.no-style-link {
+  text-decoration: none;
+  color: black; }
+
 html, body {
   height: 100%;
   -webkit-tap-highlight-color: transparent; }
@@ -2748,10 +2752,10 @@ body {
   margin: 0 auto;
   -webkit-box-flex: 1;
   flex: 1; }
-  .common h1:first-child, .landingnew-page .common h3:first-child {
+  .common h1:first-child, .common .header-1:first-child, .landingnew-page .common h3:first-child, .landingnew-page .common .header-3:first-child {
     padding-top: 0 !important; }
 
-h1, .landingnew-page .common h3 {
+h1, .header-1, .landingnew-page .common h3, .landingnew-page .common .header-3 {
   text-align: center;
   margin: 0;
   padding: 18px 0;
@@ -2759,17 +2763,17 @@ h1, .landingnew-page .common h3 {
   font-weight: normal;
   font-family: 'helveticaneuecyrregular'; }
 
-h2 {
+h2, .header-2 {
   margin: 0;
   padding: 0 0 17px 0;
   font-size: 20px;
   font-weight: normal;
   font-family: 'helveticaneuecyrmedium'; }
 
-h2.not-first {
+h2.not-first, .not-first.header-2 {
   padding-top: 17px; }
 
-h3 {
+h3, .header-3 {
   margin: 0;
   padding: 0 0 17px 0;
   font-size: 16px;
@@ -3180,7 +3184,8 @@ a[href^="https://www.google.com/maps"] {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  margin-right: 25px; }
+  margin-right: 25px;
+  background-image: url("/img/icons/no-profile.png"); }
 
 .student-review-text {
   -webkit-box-flex: 1;
@@ -3255,10 +3260,10 @@ a[href^="https://www.google.com/maps"] {
       .header-messengers > div:last-of-type > div:not(:last-of-type) {
         margin-bottom: 3px; }
 
-.landingnew-page .common > h1:not(:first-of-type), .landingnew-page .common > h3:not(:first-of-type) {
+.landingnew-page .common > h1:not(:first-of-type), .landingnew-page .common > .header-1:not(:first-of-type), .landingnew-page .common > h3:not(:first-of-type), .landingnew-page .common > .header-3:not(:first-of-type) {
   margin-top: 36px; }
 
-.landingnew-page .common h3 {
+.landingnew-page .common h3, .landingnew-page .common .header-3 {
   margin-top: 36px; }
 
 .header-landing {
@@ -3413,7 +3418,7 @@ a[href^="https://www.google.com/maps"] {
 .service-list__item-description a {
   text-decoration: none; }
 
-.main-page h1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3 {
+.main-page h1, .main-page .header-1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3, .main-page .landingnew-page .common .header-3, .landingnew-page .common .main-page .header-3 {
   padding-top: 40px;
   margin-bottom: 10px; }
 
@@ -3452,7 +3457,7 @@ a[href^="https://www.google.com/maps"] {
     .main-page-masters > div span {
       float: left;
       text-align: left; }
-    .main-page-masters > div h3 {
+    .main-page-masters > div h3, .main-page-masters > div .header-3 {
       padding-top: 21px;
       text-align: left; }
 
@@ -3488,7 +3493,7 @@ a[href^="https://www.google.com/maps"] {
   font-family: "helveticaneuecyrmedium";
   font-size: 20px; }
 
-.master-page .full-page-masters {
+.masters-page .full-page-masters {
   padding-bottom: 0 !important;
   margin-top: 0;
   background-color: white; }
@@ -3993,6 +3998,9 @@ a[href^="https://www.google.com/maps"] {
     height: 22px;
     width: 22px;
     margin-right: 6px; }
+
+.gallery-block-placeholder {
+  min-height: 278px; }
 
 .wrap {
   width: 600px;
@@ -4882,9 +4890,9 @@ a[href^="https://www.google.com/maps"] {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center; }
-  .landing-body h2 {
+  .landing-body h2, .landing-body .header-2 {
     font-size: 18px; }
-    .landing-body h2.header {
+    .landing-body h2.header, .landing-body .header.header-2 {
       border-bottom: 1px solid #dfdfdf;
       margin-bottom: 30px; }
   .landing-body > div {
@@ -4897,7 +4905,7 @@ a[href^="https://www.google.com/maps"] {
       display: flex; }
       .landing-body > div .landing-options > div img {
         height: 120px; }
-      .landing-body > div .landing-options > div h2 {
+      .landing-body > div .landing-options > div h2, .landing-body > div .landing-options > div .header-2 {
         padding: 30px 0; }
       .landing-body > div .landing-options > div a {
         margin-top: 40px; }
@@ -5268,7 +5276,7 @@ span.customSelect {
 p {
   line-height: 21px; }
 
-h3.padding-top {
+h3.padding-top, .padding-top.header-3 {
   margin-top: 32px; }
 
 .absolute-message {
@@ -5321,7 +5329,7 @@ ol, ul {
   align-items: center; }
   .page-not-found-wrapper .page-not-found {
     text-align: center; }
-    .page-not-found-wrapper .page-not-found h1, .page-not-found-wrapper .page-not-found .landingnew-page .common h3, .landingnew-page .common .page-not-found-wrapper .page-not-found h3 {
+    .page-not-found-wrapper .page-not-found h1, .page-not-found-wrapper .page-not-found .header-1, .page-not-found-wrapper .page-not-found .landingnew-page .common h3, .landingnew-page .common .page-not-found-wrapper .page-not-found h3, .page-not-found-wrapper .page-not-found .landingnew-page .common .header-3, .landingnew-page .common .page-not-found-wrapper .page-not-found .header-3 {
       font-family: "helveticaneuecyrregular"; }
     .page-not-found-wrapper .page-not-found ul {
       list-style: none;
@@ -5511,7 +5519,7 @@ ol, ul {
           -webkit-box-pack: end;
           justify-content: flex-end;
           margin-top: -90px; }
-    .banner-block .info h1, .banner-block .info .landingnew-page .common h3, .landingnew-page .common .banner-block .info h3 {
+    .banner-block .info h1, .banner-block .info .header-1, .banner-block .info .landingnew-page .common h3, .landingnew-page .common .banner-block .info h3, .banner-block .info .landingnew-page .common .header-3, .landingnew-page .common .banner-block .info .header-3 {
       text-align: right !important;
       padding-top: 150px !important;
       padding-bottom: 0 !important;
@@ -5557,7 +5565,7 @@ ol, ul {
       -webkit-box-pack: start;
       justify-content: flex-start;
       text-align: left; }
-      .banner-block.left .info h1, .banner-block.left .info .landingnew-page .common h3, .landingnew-page .common .banner-block.left .info h3 {
+      .banner-block.left .info h1, .banner-block.left .info .header-1, .banner-block.left .info .landingnew-page .common h3, .landingnew-page .common .banner-block.left .info h3, .banner-block.left .info .landingnew-page .common .header-3, .landingnew-page .common .banner-block.left .info .header-3 {
         margin-left: 0;
         text-align: left !important; }
     .banner-block.left .banner-block__image {

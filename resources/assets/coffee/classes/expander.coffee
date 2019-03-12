@@ -14,7 +14,7 @@ class window.PriceExpander
         $(selector).each (i, e) =>
             return if expanded
             # console.log("Length: ", @getLength(), @isExpanded(), expanded)
-            e = $(e).find('>price-item>.price-section')
+            e = $(e).children().children('.price-section')
             e.click()
             if @isExpanded()
                 # console.log("Length2: ", @getLength(), @isExpanded(), expanded)

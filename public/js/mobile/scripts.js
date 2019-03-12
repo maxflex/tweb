@@ -44,12 +44,12 @@ $(document).ready(function() {
     });
 })
 
-function togglePrice(){
-    var $parent = $(this).closest('.price-list-item');
+// function togglePrice(){
+//     var $parent = $(this).closest('.price-list-item');
 
-    $parent.toggleClass('price-list-item__active');
-    $parent.children('.price-list-inner').slideToggle();
-}
+//     $parent.toggleClass('price-list-item__active');
+//     $parent.children('.price-list-inner').slideToggle();
+// }
 
 function toggleCatalog(){
     var $parent = $(this).parent('.catalog-list-item');
@@ -58,9 +58,9 @@ function toggleCatalog(){
     $parent.children('.catalog-list-inner').slideToggle();
 }
 
-function bindToggle() {
-    $('.price-list .price-list-item-title').click(togglePrice)
-    $('.catalog-list .catalog-list-item-title').click(toggleCatalog)
-}
+// function bindToggle() {
+//     $('.price-list .price-list-item-title').click(togglePrice)
+//     $('.catalog-list .catalog-list-item-title').click(toggleCatalog)
+// }
 
 //# sourceMappingURL=scripts.js.map

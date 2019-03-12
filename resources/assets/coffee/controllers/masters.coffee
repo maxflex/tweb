@@ -1,4 +1,4 @@
 angular
     .module 'App'
-    .controller 'price', ($scope) ->
+    .controller 'masters', ($scope) ->
         bindArguments($scope, arguments)

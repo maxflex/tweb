@@ -5505,7 +5505,7 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-h1 {
+h1, .header-1 {
   font-size: 2em;
   margin: 0.67em 0; }
 
@@ -5896,6 +5896,10 @@ mark {
   text-decoration: line-through;
   color: #acacac;
   font-size: 12px; }
+
+.no-style-link {
+  text-decoration: none;
+  color: black; }
 
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {
@@ -6704,21 +6708,21 @@ body {
 .common {
   padding: 1.2em 1.2em 0; }
 
-h1 {
+h1, .header-1 {
   margin: 0;
   padding: 0 0 .9em 0;
   font-size: 1.5em;
   font-weight: normal;
   font-family: 'helveticaneuecyrmedium'; }
 
-h2 {
+h2, .header-2 {
   margin: 0;
   padding: 0 0 0.938em 0;
   font-size: 1.2em;
   font-weight: normal;
   font-family: 'helveticaneuecyrmedium'; }
 
-h3 {
+h3, .header-3 {
   margin: 0;
   padding: 0 0 1.125em 0;
   font-size: 1em;
@@ -6999,7 +7003,7 @@ a[href^="https://www.google.com/maps"] {
   align-items: center; }
   .page-not-found-wrapper .page-not-found {
     text-align: center; }
-    .page-not-found-wrapper .page-not-found h1 {
+    .page-not-found-wrapper .page-not-found h1, .page-not-found-wrapper .page-not-found .header-1 {
       font-family: "helveticaneuecyrlight"; }
     .page-not-found-wrapper .page-not-found ul {
       list-style: none;
@@ -7115,7 +7119,8 @@ input {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  margin-right: 20px; }
+  margin-right: 20px;
+  background-image: url("/img/icons/no-profile.png"); }
 
 .student-review-info {
   -webkit-box-flex: 1;
@@ -7335,7 +7340,7 @@ input {
   .price-wrapper .price-section {
     background: rgba(243, 233, 212, 0.7); }
 
-price-item > ul > li.price-item-section:first-child {
+.price-item > ul > li.price-item-section:first-child {
   border-top: 1px solid rgba(164, 0, 0, 0.25); }
 
 .main-page-masters img {
@@ -7419,7 +7424,7 @@ price-item > ul > li.price-item-section:first-child {
   width: 11px !important;
   margin-right: 6px !important; }
 
-.service-list__items h3 {
+.service-list__items h3, .service-list__items .header-3 {
   font-family: "helveticaneuecyrmedium"; }
 
 .service-list__items img {
@@ -7428,7 +7433,7 @@ price-item > ul > li.price-item-section:first-child {
 .service-list__items > div {
   vertical-align: top;
   text-align: center;
-  width: 34%;
+  width: 33%;
   padding: 0 8% 5%;
   display: inline-block; }
   .service-list__items > div a {
@@ -7450,10 +7455,10 @@ price-item > ul > li.price-item-section:first-child {
   right: 4px;
   font-size: 12px; }
 
-h1.padding-top {
+h1.padding-top, .padding-top.header-1 {
   padding-top: .9em; }
 
-.master-page .full-width .common h1, .master-page .equipment-item.equipment-full .common h1 {
+.masters-page .full-width .common h1, .masters-page .equipment-item.equipment-full .common h1, .masters-page .full-width .common .header-1, .masters-page .equipment-item.equipment-full .common .header-1 {
   display: none; }
 
 .request-photos-placeholder {
@@ -7536,7 +7541,7 @@ h1.padding-top {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.5); }
 
-.order-form h1 {
+.order-form h1, .order-form .header-1 {
   line-height: 21px; }
 
 .add-photo-label {
@@ -7590,7 +7595,7 @@ h1.padding-top {
   display: block;
   margin-bottom: 8px; }
 
-.banner-block h1 {
+.banner-block h1, .banner-block .header-1 {
   font-weight: 800;
   text-align: left;
   font-size: 1.9em; }
@@ -8504,7 +8509,7 @@ h1.padding-top {
   padding: 1.5em 0 3.5em; }
   .landing-container:first-of-type {
     padding-top: 0; }
-  .landing-container h2 {
+  .landing-container h2, .landing-container .header-2 {
     padding-bottom: 1.5em; }
   .landing-container .list-main {
     padding-bottom: 2em; }

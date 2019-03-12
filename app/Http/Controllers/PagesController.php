@@ -37,9 +37,7 @@ class PagesController extends Controller
     {
         if (Master::whereId($id)->exists()) {
             $page = Page::whereUrl(Master::URL . '/:id')->first();
-            $html = $page->getHtml();
-            Parser::compileMaster($id, $html);
-            $page->html = $html;
+            Parser::compileMaster($id, $page);
             $status = 200;
         } else {
             $page = Page::withoutGlobalScopes()->whereUrl('404')->first();
@@ -54,7 +52,7 @@ class PagesController extends Controller
         $html = Page::whereUrl(Faq::URL)->first()->html;
         return view('pages.index')->with(compact('html'));
     }
-	
-	
-	
+
+
+
 }

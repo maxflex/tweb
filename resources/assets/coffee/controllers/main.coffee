@@ -1,96 +1,21 @@
 angular
     .module 'App'
-    .controller 'main', ($scope, $timeout, $http, PriceService, GalleryService) ->
+    .controller 'main', ($scope, $timeout, $http, GalleryService, VideoService) ->
         bindArguments($scope, arguments)
 
-        $scope.player = {}
-
-        $scope.reviews_per_page = 10
-        $scope.displayed_reviews = 3
-
-        $scope.items_per_page = 6
-        $scope.displayed_items = 6
-
-        $scope.displayed_videos = 3
-        $scope.displayed_masters = 6
-
-        window.onYouTubeIframeAPIReady = -> $scope.videos.forEach (v, i) -> initVideo(v, i)
+        $scope.galleryLoaded = false
 
         $scope.initGallery = (ids, tags, folders) ->
             $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
             .then (response) ->
-                console.log(response.data)
                 $scope.gallery = response.data
+                if $scope.init_gallery_service then GalleryService.init($scope.gallery)
+                $scope.galleryLoaded = true
+
 
         $timeout ->
-            loadReviews()
+            PriceExpander.expand(if isMobile then 15 else 30)
             initGmap()
-            if $scope.videos then $scope.videos.forEach (v, i) -> initVideo(v, i)
-            if $scope.init_gallery_service then GalleryService.init($scope.gallery)
-
-        # REVIEWS
-        $scope.loadMoreReviews = ->
-            $scope.displayed_reviews += $scope.reviews_per_page
-
-        loadReviews = ->
-            params =
-                folders: $scope.review_folders
-                ids: $scope.review_ids
-            params['tags[]'] = $scope.review_tags.split(',') if $scope.review_tags
-            $http.get('/api/reviews?' + $.param(params)).then (response) ->
-                $scope.reviews = response.data
-
-        # VIDEOS
-        $scope.nextVideosPage = ->
-            $scope.videos_page++
-            # StreamService.run('load_more_tutors', null, {page: $scope.page})
-            searchVideos()
-
-        searchVideos = ->
-            $scope.searching_videos = true
-            $http.get('/api/videos?page=' + $scope.videos_page).then (response) ->
-                $scope.searching_videos = false
-                $scope.videos = $scope.videos.concat(response.data.videos)
-                $scope.has_more_videos = response.data.has_more_videos
-                $timeout -> response.data.videos.forEach (v) -> bindFullscreenRequest(v)
-                # if $scope.mobile then $timeout -> bindToggle()
-
-        # длительность видео
-        $scope.videoDuration = (v) ->
-            if v.duration
-                format = if v.duration >= 60 then 'm:ss' else 'ss'
-                moment.utc(v.duration * 1000).format(format)
-
-        # остановить воспроизведение всех проигрывателей
-        # except_id – кроме
-        $scope.stopPlaying = (except_id) ->
-            $.each $scope.player, (e, p) ->
-                p.stopVideo() if (p.getPlayerState && p.getPlayerState() == 1 && p.a.id != except_id)
-
-        initVideo = (video, index) ->
-            return if not YT.Player or $scope.player[video.id]
-            iframe = document.getElementById("youtube-video-#{video.id}")
-            requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
-            player = new YT.Player "youtube-video-#{video.id}",
-                playerVars:
-                    rel: 0
-                events:
-                    onReady: (p) ->
-                        video.duration = p.target.getDuration()
-                        $timeout -> $scope.$apply()
-            $scope.player[video.id] = player
-            $scope.player[video.id].addEventListener 'onStateChange', (state) ->
-                requestFullScreen.bind(iframe)()
-                if state.data is YT.PlayerState.PLAYING
-                    eventAction(prefixEvent('videogallery'), index + 1)
-                    $scope.stopPlaying(state.target.a.id)
-
-        # $scope.playVideo = ->
-        #     $scope.player.loadVideoById('qQS-d4cJr0s')
-        #     $scope.player.playVideo()
-        #     iframe = document.getElementById('youtube-video')
-        #     requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-        #     requestFullScreen.bind(iframe)() if (requestFullScreen)
 
         $scope.openPhotoSwipe = (index) ->
             $scope.items = []

@@ -122,3 +122,20 @@ mark {
     color: $text-grey-light;
     font-size: 12px;
 }
+
+.header-1 {
+  @extend h1;
+}
+
+.header-2 {
+  @extend h2;
+}
+
+.header-3 {
+  @extend h3;
+}
+
+.no-style-link {
+  text-decoration: none;
+  color: black;
+}

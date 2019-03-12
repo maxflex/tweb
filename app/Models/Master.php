@@ -8,11 +8,19 @@ class Master extends Service\Model
 
     const URL = 'masters';
 
-    protected $appends = ['photo_url', 'reviews_count'];
+    protected $appends = ['photo_url'];
 
-
-    public function getReviewsCountAttribute()
+    public function reviews()
     {
-        return Review::where('master_id', $this->id)->count();
+        return $this->hasMany(Review::class)->orderBy('date', 'desc');
+    }
+
+    public function getDescriptionShortAttribute()
+    {
+        $description = $this->attributes['description'];
+        if (count($description) > 150) {
+            return mb_strimwidth($description, 0, 150) . '...';
+        }
+        return $description;
     }
 }

@@ -1,54 +1,20 @@
 angular
     .module 'App'
-    .constant 'REVIEWS_PER_PAGE', 5
-    .controller 'master', ($scope, $timeout, $http, Master, REVIEWS_PER_PAGE, GalleryService) ->
+    .controller 'master', ($scope, $timeout, $http, Master, GalleryService, VideoService) ->
         bindArguments($scope, arguments)
 
-        $scope.displayed_videos = 3
+        VideoService.init()
 
-        $scope.reviews_per_page = 10
-        $scope.displayed_reviews = 5
-
+        $scope.reviews_block = false
         $scope.gallery = []
+        $scope.galleryLoaded = false
         
         $scope.initGallery = (ids, tags, folders) ->
             if ids 
                 $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
-                .then (response) -> $scope.gallery = response.data
-
-        # fix FLEX rows
-        $timeout -> 
-            $scope.masters.push(null) if $scope.masters.length % 3 == 2 && not isMobile
-        
-        $scope.loadMoreReviews = ->
-            $scope.displayed_reviews += $scope.reviews_per_page
-
-        $scope.reviews = (master, index) ->
-            # StreamService.run('master_reviews', master.id)
-            #     position: $scope.getIndex(index)
-            #     master_id: master.id
-            if master.all_reviews is undefined
-                master.all_reviews = Master.reviews
-                    id: master.id
-                , (response) ->
-                    $scope.showMoreReviews(master)
-            $scope.toggleShow(master, 'show_reviews', 'reviews', false)
-
-        $scope.showMoreReviews = (master, index) ->
-            # if master.reviews_page then StreamService.run 'reviews_more', StreamService.identifySource(master),
-            #     position: $scope.getIndex(index)
-            #     master_id: master.id
-            #     depth: (master.reviews_page + 1) * REVIEWS_PER_PAGE
-            master.reviews_page = if not master.reviews_page then 1 else (master.reviews_page + 1)
-            from = (master.reviews_page - 1) * REVIEWS_PER_PAGE
-            to = from + REVIEWS_PER_PAGE
-            master.displayed_reviews = master.all_reviews.slice(0, to)
-            # highlight('search-result-reviews-text')
-
-        $scope.reviewsLeft = (master) ->
-            return if not master.all_reviews or not master.displayed_reviews
-            reviews_left = master.all_reviews.length - master.displayed_reviews.length
-            if reviews_left > REVIEWS_PER_PAGE then REVIEWS_PER_PAGE else reviews_left
+                .then (response) -> 
+                    $scope.gallery = response.data
+                    $scope.galleryLoaded = true
 
         # stream if index isnt null
         $scope.toggleShow = (master, prop, iteraction_type, index = null) ->

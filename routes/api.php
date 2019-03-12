@@ -3,10 +3,9 @@ URL::forceSchema('https');
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::post('masters/search', 'MastersController@search');
     Route::resource('requests', 'RequestsController', ['only' => 'store']);
-    Route::resource('prices', 'PricesController', ['only' => 'index']);
+    // Route::resource('prices', 'PricesController', ['only' => 'index']);
     Route::get('reviews/bypage', 'ReviewsController@bypage');
     Route::resource('reviews', 'ReviewsController');
-    Route::resource('videos', 'VideosController', ['only' => 'index']);
     Route::post('gallery/init', 'GalleryController@init');
     Route::resource('gallery', 'GalleryController');
     Route::resource('stats', 'StatsController', ['only' => 'index']);

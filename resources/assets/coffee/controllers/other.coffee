@@ -1,4 +1,4 @@
 angular
     .module 'App'
-    .controller 'other', ($scope, $timeout, $filter, $http, StreamService) ->
+    .controller 'other', ($scope) ->
         bindArguments($scope, arguments)

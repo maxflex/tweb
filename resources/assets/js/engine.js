@@ -238,6 +238,13 @@ function fileChange(event) {
 }
 
 
+function togglePrice(event) {
+    // console.log('togglePrice', event)
+    target = $(event.target).hasClass('price-line') ? $(event.target) : $(event.target).closest('.price-line')
+    target.toggleClass('active')
+    ul = target.parent().children('ul')
+    ul.slideToggle(250)
+}
 
 /**
  * Печать дива.

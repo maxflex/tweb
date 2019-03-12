@@ -564,13 +564,14 @@ p.last {
 
 .student-review-photo {
     display: inline-block;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-      margin-right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-right: 25px;
+    background-image: url('/img/icons/no-profile.png');
 }
 
 .student-review-text {
@@ -990,7 +991,7 @@ p.last {
     font-size: 20px;
 }
 
-.master-page .full-page-masters {
+.masters-page .full-page-masters {
     padding-bottom: 0 !important;
     margin-top: 0;
     background-color: white;
@@ -1646,4 +1647,8 @@ $uploaded-photo-preview-width: 150px;
     width: 22px;
     margin-right: 6px;
   }
+}
+
+.gallery-block-placeholder {
+    min-height: 278px;
 }

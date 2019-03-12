@@ -5,6 +5,7 @@
     use Cache;
     use App\Models\Decorators\TagsFilterDecorator;
     use App\Service\Settings;
+    use App\Service\Ssr\SsrParser;
 
     /**
      * Parser
@@ -25,13 +26,18 @@
             $vars = $matches[0];
             foreach ($vars as $var) {
                 $var = trim($var, static::interpolate());
-                // если в переменной есть знак =, то воспроизводить значения
-                if (strpos($var, '=')) {
-                    static::replace($html, $var, static::compileValues($var, $page));
+                $ssrParser = new SsrParser($var, $page);
+                if ($ssrParser->exists()) {
+                    static::replace($html, $var, $ssrParser->parse());
                 } else {
-                    $variable = Variable::findByName($var)->first();
-                    if ($variable) {
-                        static::replace($html, $var, $variable->html);
+                    // если в переменной есть знак =, то воспроизводить значения
+                    if (strpos($var, '=')) {
+                        static::replace($html, $var, static::compileValues($var, $page));
+                    } else {
+                        $variable = Variable::findByName($var)->first();
+                        if ($variable) {
+                            static::replace($html, $var, $variable->html);
+                        }
                     }
                 }
             }
@@ -65,12 +71,14 @@
             // map|a=1|b=2
             // tutor|{subject}|{count}
             $values = explode('|', $var_string);
+
             // первая часть – название переменной
-            $html = Variable::findByName($values[0])->first()->html;
+            $html = Variable::findByName($values[0])->first();
             // $html = DB::table('variables')->whereName($values[0])->value('html');
 
             // если переменная нашлась
             if ($html !== null) {
+                $html = $html->html;
                 // убираем название переменной из массива
                 array_shift($values);
 
@@ -92,8 +100,14 @@
 
                 return $html;
             } else {
-                // если переменная не нашлась, возвращаем неизменную $var_string
-                return $var_string;
+                $var = array_shift($values);
+                $ssrParser = new SsrParser($var, $page, $values);
+                if ($ssrParser->exists()) {
+                    return $ssrParser->parse();
+                    // static::replace($html, $var, $ssrParser->parse());
+                } else {
+                    return $var_string;
+                }
             }
         }
 
@@ -264,14 +278,21 @@
         /**
          * Компилировать страницу сущности
          */
-        public static function compileMaster($id, &$html)
+        public static function compileMaster($id, &$page)
         {
+            $html = $page->getHtml();
+            $title = $page->title;
             $master = Master::whereId($id)->first();
-            static::replace($html, 'subject', $master->subjects_string);
-            static::replace($html, 'master-name', implode(' ', [$master->last_name, $master->first_name, $master->middle_name]));
-            static::replace($html, 'current_master', $master->toJson());
+
+
+            $masterProfileVariable = new \App\Service\Ssr\Variables\MasterProfile('master-profile', $page, (object)['master' => $master]);
+            static::replace($html, 'master-profile', $masterProfileVariable->parse());
+
+            static::replace($title,  'master-name', implode(' ', [$master->last_name, $master->first_name, $master->middle_name]));
             static::replace($html, 'current_master_gallery_ids', Gallery::where('master_id', $master->id)->pluck('id')->implode(','));
             static::replace($html, 'current_master_video_ids', Video::where('master_id', $master->id)->pluck('id')->implode(','));
+            $page->html = $html;
+            $page->title = $title;
         }
 
         public static function interpolate($text = '', $start = null, $end = null)
