@@ -47,7 +47,7 @@
                 </div>
             </div>
         @endforeach
-        @if ($options['show'] < $options['count'])
+        @if ($options['show'] < count($items))
             <center style="width: 100%; margin: 38px 0 0" ng-show='options.show < {{ count($items) }}'>
                 <button class="btn-border" ng-click="options.show = options.show + 6">
                     показать ещё
