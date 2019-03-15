@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\{HasTags, HasPhotos, HasFolders};
+use App\Models\Decorators\TagsFilterDecorator;
+use DB;
 
 class Gallery extends Model
 {
@@ -57,5 +59,42 @@ class Gallery extends Model
             }
         }
         return $components;
+    }
+
+    public static function getItems($gallery_ids, $folder_ids, $tags)
+    {
+        /**
+         * Если не указаны ID фото и ID папок, то автозаполнение по тегам
+         */
+        if (! $gallery_ids && ! $folder_ids) {
+            return (new TagsFilterDecorator(Gallery::with('master')))->withTags($tags)->orderBy('folder_id', 'asc')->orderByPosition();
+        } else {
+            $gallery_ids = array_filter(explode(',', $gallery_ids));
+
+            if ($folder_ids) {
+                $folder_ids = array_filter(explode(',', $folder_ids));
+
+                // append all subfolders
+                $subfolder_ids = [];
+                foreach($folder_ids as $folder_id) {
+                    $subfolder_ids = array_merge($subfolder_ids, Folder::getSubfolderIds($folder_id));
+                }
+                $folder_ids = array_merge($folder_ids, $subfolder_ids);
+
+                $gallery_ids_from_folders = [];
+                foreach($folder_ids as $folder_id) {
+                    $gallery_ids_from_folders = array_merge($gallery_ids_from_folders, Gallery::where('folder_id', $folder_id)->orderByPosition()->pluck('id')->all());
+                }
+
+                $gallery_ids = array_merge($gallery_ids_from_folders, $gallery_ids);
+            }
+
+            $query = Gallery::with('master')->whereIn('id', $gallery_ids);
+            if (count($gallery_ids)) {
+                $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $gallery_ids) . ')'));
+            }
+
+            return $query;
+        }
     }
 }

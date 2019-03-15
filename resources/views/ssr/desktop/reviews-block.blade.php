@@ -24,7 +24,7 @@
 
     @if (count($items))
         <center class='more-button' ng-show='options.show < {{ count($items) }}'>
-            <button class="btn-border gray" ng-click="console.log('allo'); options.show = options.show + options.showBy">
+            <button class="btn-border gray" ng-click="options.show = options.show + options.showBy">
                 еще {{ $options['showBy'] }} из <b>{{ count($items) }}</b> отзывов
             </button>
         </center>

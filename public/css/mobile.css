@@ -7693,6 +7693,10 @@ h1.padding-top, .padding-top.header-1 {
 .more-button {
   margin: 40px 0; }
 
+.article-list p {
+  margin: 0;
+  padding: 0 0 .725em 0; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }

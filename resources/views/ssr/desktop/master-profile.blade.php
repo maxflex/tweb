@@ -9,7 +9,7 @@
         @endif
     </div>
     <div>
-        <b class="master-name">{{ implode(' ', [$master->last_name, $master->first_name, $master->middle_name]) }}</b>
+        <h1 class="master-name">{{ implode(' ', [$master->last_name, $master->first_name, $master->middle_name]) }}</h1>
         <div class="master-desc">{{ $master->description }}</div>
     </div>
 </div>

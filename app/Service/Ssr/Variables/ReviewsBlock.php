@@ -12,12 +12,13 @@ class ReviewsBlock extends SsrVariable {
     {
         $items = isset($this->args->items) ? $this->args->items : $this->getItems();
         $show = isset($this->args->show) ? $this->args->show : 3;
+        $showBy = isset($this->args->showBy) ? $this->args->showBy : 10;
 
         return view($this->getViewName(), [
             'items' => $items,
             'options' => [
                 'show' => $show,
-                'showBy' => 10,
+                'showBy' => intval($showBy),
             ],
         ]);
     }

@@ -8,10 +8,12 @@ use App\Models\{PriceSection, PricePosition};
 class PriceBlock extends SsrVariable {
     public function parse()
     {
+        $isFullPrice = $this->page->url === 'price';
         return view($this->getViewName(), [
             'title' => $this->args->title,
             'items' => $this->getItems(),
             'nobutton' => isset($this->args->nobutton),
+            'isFullPrice' => $isFullPrice,
         ]);
     }
 

@@ -9,7 +9,7 @@
                     <span id='video-duration-{{ $item->id }}' class="video-duratoin"></span>
                 </div>
                 <div>
-                    <h3 class="entity-header">{{ $item->title }}</h3>
+                    <div class="header-3 entity-header">{{ $item->title }}</div>
                 </div>
             </div>
         @endforeach

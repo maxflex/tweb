@@ -37,7 +37,7 @@ class PageItem extends Model
         preg_match_all('#\[link\|([\d]+)\|([\w\s]+)\]#um', $value, $m);
         foreach($m[0] as $i => $to_be_replaced) {
             $url = Page::getUrl($m[1][$i]);
-            $value = str_replace($to_be_replaced, "<a href=\"/{$url}\">{$m[2][$i]}</a>", $value);
+            $value = str_replace($to_be_replaced, "<a href=\"/{$url}/\">{$m[2][$i]}</a>", $value);
         }
         if ($this->position == 0 && $this->is_one_line) {
             if (strpos($value, "\n") !== false) {

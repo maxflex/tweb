@@ -18,6 +18,12 @@ class Equipment extends SsrVariable {
         // }
 
         $item = EquipmentModel::with('photos')->whereId($this->args->id)->first();
+
+        // в cms есть случаи, когда висит старый несуществующий equipmentId
+        if ($item === null) {
+            return '';
+        }
+
         return view($this->getViewName(), [
             'item' => $item,
             'args' => $this->args,
