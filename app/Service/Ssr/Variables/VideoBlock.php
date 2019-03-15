@@ -19,7 +19,7 @@ class VideoBlock extends SsrVariable {
             'title' => $this->args->title,
             'items' => $items,
             'options' => [
-                'show' => isset($this->args->show) ? $this->args->show : 6,
+                'show' => isset($this->args->show) ? $this->args->show : 3,
                 'showBy' => 3,
             ],
         ]);

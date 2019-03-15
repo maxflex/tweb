@@ -22,6 +22,10 @@ class MastersBlock extends SsrVariable {
             $items = $query->get();
         }
 
+        if (count($items) === 0) {
+            return '';
+        }
+
         return view($this->getViewName(), [
             'title' => @$this->args->title,
             'desc' => @$this->args->desc,

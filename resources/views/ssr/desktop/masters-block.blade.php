@@ -28,18 +28,18 @@
     @else
         <div class="common main-page-masters masters-count-1">
             <div>
-                <a class='no-style-link' href='/masters/{{ $item->id }}/'>
-                    <img src='{{ $item->photo_url }}' class="master-photo pointer">
+                <a class='no-style-link' href='/masters/{{ $items[0]->id }}/'>
+                    <img src='{{ $items[0]->photo_url }}' class="master-photo pointer">
                 </a>
             </div>
             <div>
                 <b class="master-name" style='margin: 0'>{{ $title }}</b>
                 <b class="pointer master-name">
-                    <a class='no-style-link' href='/masters/{{ $item->id }}/'>
-                        {{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}
+                    <a class='no-style-link' href='/masters/{{ $items[0]->id }}/'>
+                        {{ $items[0]->first_name }} {{ $items[0]->middle_name }} {{ $items[0]->last_name }}
                     </a>
                 </b>
-                <span class="master-desc">>{{ $item->description }} <a href='/masters/{{ $item->id }}/'>Подробнее...</a></span>
+                <span class="master-desc">>{{ $items[0]->description }} <a href='/masters/{{ $items[0]->id }}/'>Подробнее...</a></span>
             </div>
         </div>
     @endif
