@@ -20491,6 +20491,7 @@ return PhotoSwipeUI_Default;
     };
     $timeout(function() {
       PriceExpander.expand(isMobile ? 15 : 30);
+      VideoService.init();
       return initGmap();
     });
     $scope.openPhotoSwipe = function(index) {

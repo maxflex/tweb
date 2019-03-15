@@ -17,6 +17,6 @@ class GalleryBlockMain extends SsrVariable {
 
     private function getItems()
     {
-        return Gallery::getItems('', '713' , '')->take(20)->get();
+        return Gallery::getItems('', '713,714' , '')->take(20)->get();
     }
 }
