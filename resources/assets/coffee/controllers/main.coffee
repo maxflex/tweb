@@ -14,7 +14,7 @@ angular
 
 
         $timeout ->
-            # PriceExpander.expand(if isMobile then 15 else 30)
+            PriceExpander.expand(if isMobile then 15 else 30) 
             VideoService.init() 
             initGmap()
 
