@@ -1,7 +1,7 @@
 <div class='header-1'>{{ $args->title }}</div>
 
 @if (count($items) > 0)
-<div class="gallery-block gallery-block-placeholder" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}')" ng-show='galleryLoaded'>
+<div class="gallery-block gallery-block-photos gallery-block-placeholder" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}')" ng-show='galleryLoaded'>
     <div class="main-gallery-wrapper">
         <div ng-repeat="g in gallery.slice(0, GalleryService.displayed) track by $index" class="gallery-item">
             <gallery-item item='g' index='$index' service='GalleryService'></gallery-item>
@@ -13,7 +13,7 @@
 </div>
 <ng-image-gallery images="gallery" thumbnails='false' methods='GalleryService.ctrl' bg-close='true'></ng-image-gallery>
 
-<div class='gallery-block gallery-block-placeholder' ng-if='!galleryLoaded'>
+<div class='gallery-block gallery-block-photos gallery-block-placeholder' ng-if='!galleryLoaded'>
      <div class="main-gallery-wrapper">
         @foreach ($items as $index => $item)
             <div class='gallery-item' @if ($index >= 3) style='display: none' @endif >

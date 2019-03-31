@@ -4006,7 +4006,7 @@ a[href^="https://www.google.com/maps"] {
 .gallery-block-placeholder {
   min-height: 278px; }
 
-.section-block, .gallery-block, .video-block, .service-list {
+.section-block, .gallery-block-photos, .price-wrapper, .service-list {
   border-bottom: 1px solid #EEEEEE;
   padding-bottom: 38px; }
 

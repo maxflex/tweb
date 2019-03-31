@@ -3,15 +3,15 @@
 @else
 <div class='header-1'>
     {{ $title }}
-    
+
     @if ($nobutton !== true)
-	    <center style='margin: 15px 0 10px'>
+	    <center style='margin: 15px 0 0'>
 	        <a href='/price/' class='no-style-link'>
 	            <button class="btn-border">полный прайс лист</button>
 	        </a>
 	    </center>
 	@endif
-    
+
     {{-- @if ($nobutton !== true)
         <div style="margin-bottom: 25px; color: #960000">
             <i class="fas fa-align-left" style="margin-right: 3px; font-size: 12px"></i>
