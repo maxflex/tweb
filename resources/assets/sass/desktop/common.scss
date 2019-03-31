@@ -1663,6 +1663,13 @@ $uploaded-photo-preview-width: 150px;
     margin-top: 40px;
 }
 
+.price-page {
+    .price-wrapper {
+        border-bottom: none !important;
+        padding-bottom: 38px !important;
+    }
+}
+
 @media print { 
    header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
        display: none !important;

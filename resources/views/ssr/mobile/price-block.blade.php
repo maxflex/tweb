@@ -34,3 +34,7 @@
         </a>
     </center>
 </div>
+
+@if (! $isFullPrice)
+    <div class='block-separator block-separator_with-margins'></div>
+@endif
