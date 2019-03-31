@@ -1354,7 +1354,7 @@
         action: action,
         type: type,
         step: this.cookie.step,
-        mobile: typeof isMobile === 'undefined' ? '0' : '1'
+        mobile: (typeof isMobile === 'undefined') ? '0' : '1'
       };
       $.each(additional, (function(_this) {
         return function(key, value) {
