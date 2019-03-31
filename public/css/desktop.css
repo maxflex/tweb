@@ -5433,10 +5433,13 @@ ol, ul {
     margin-right: 12px; }
 
 .menu-header a {
-  color: #cc8d87 !important;
+  color: #ecdede !important;
+  text-decoration: underline;
   font-size: 18px;
   font-family: 'helveticaneuecyrbold';
   margin: 10px 0 16px; }
+  .menu-header a:hover {
+    text-decoration: none; }
 
 .footer-links {
   margin-top: 30px; }

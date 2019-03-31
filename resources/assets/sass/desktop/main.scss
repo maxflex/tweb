@@ -349,10 +349,14 @@ ol, ul {
 
 .menu-header {
   & a {
-    color: #cc8d87 !important;
+    color: #ecdede !important;
+    text-decoration: underline;
     font-size: 18px;
     font-family: 'helveticaneuecyrbold';
     margin: 10px 0 16px;
+    &:hover {
+        text-decoration: none;
+    }
   }
 }
 
