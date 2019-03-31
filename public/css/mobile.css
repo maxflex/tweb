@@ -7261,29 +7261,29 @@ input {
     .vertical-slider > * > *:first-child {
       padding-left: 1.2em; }
 
-.price-wrapper {
+.price-wrapper, .expander {
   margin-left: -1.2em;
   width: calc(100% + 2.4em);
   border-top: 1px solid rgba(164, 0, 0, 0.25); }
-  .price-wrapper .price-list {
+  .price-wrapper .price-list, .price-wrapper .expander__item, .expander .price-list, .expander .expander__item {
     overflow: hidden; }
-    .price-wrapper .price-list ul {
+    .price-wrapper .price-list ul, .price-wrapper .expander__item ul, .expander .price-list ul, .expander .expander__item ul {
       list-style-type: none;
       padding-left: 0;
       border-bottom: 1px solid rgba(164, 0, 0, 0.25); }
-      .price-wrapper .price-list ul > li .price-item-root > .price-section {
+      .price-wrapper .price-list ul > li .price-item-root > .price-section, .price-wrapper .expander__item ul > li .price-item-root > .price-section, .expander .price-list ul > li .price-item-root > .price-section, .expander .expander__item ul > li .price-item-root > .price-section {
         font-family: "helveticaneuecyrbold"; }
-        .price-wrapper .price-list ul > li .price-item-root > .price-section .price-line-title {
+        .price-wrapper .price-list ul > li .price-item-root > .price-section .price-line-title, .price-wrapper .expander__item ul > li .price-item-root > .price-section .price-line-title, .expander .price-list ul > li .price-item-root > .price-section .price-line-title, .expander .expander__item ul > li .price-item-root > .price-section .price-line-title {
           font-size: 19px; }
-      .price-wrapper .price-list ul > li .price-line {
+      .price-wrapper .price-list ul > li .price-line, .price-wrapper .expander__item ul > li .price-line, .expander .price-list ul > li .price-line, .expander .expander__item ul > li .price-line {
         padding: 1em 1.2em; }
-        .price-wrapper .price-list ul > li .price-line.price-section {
+        .price-wrapper .price-list ul > li .price-line.price-section, .price-wrapper .expander__item ul > li .price-line.price-section, .expander .price-list ul > li .price-line.price-section, .expander .expander__item ul > li .price-line.price-section {
           border-bottom: 1px solid rgba(164, 0, 0, 0.25);
           font-family: "helveticaneuecyrbold";
           display: block !important;
           position: relative;
           display: block; }
-        .price-wrapper .price-list ul > li .price-line img {
+        .price-wrapper .price-list ul > li .price-line img, .price-wrapper .expander__item ul > li .price-line img, .expander .price-list ul > li .price-line img, .expander .expander__item ul > li .price-line img {
           height: 8px;
           margin-left: 4px;
           -webkit-transition: -webkit-transform .2s;
@@ -7294,9 +7294,9 @@ input {
           right: 20px;
           top: calc(50% - 3px);
           position: absolute; }
-        .price-wrapper .price-list ul > li .price-line.active {
+        .price-wrapper .price-list ul > li .price-line.active, .price-wrapper .expander__item ul > li .price-line.active, .expander .price-list ul > li .price-line.active, .expander .expander__item ul > li .price-line.active {
           border-bottom: none; }
-          .price-wrapper .price-list ul > li .price-line.active img {
+          .price-wrapper .price-list ul > li .price-line.active img, .price-wrapper .expander__item ul > li .price-line.active img, .expander .price-list ul > li .price-line.active img, .expander .expander__item ul > li .price-line.active img {
             -webkit-transform: rotate(-180deg);
             /* Chrome and other webkit browsers */
             /* FF */
@@ -7304,31 +7304,31 @@ input {
             /* IE9 */
             transform: rotate(-180deg);
             /* W3C compliant browsers */ }
-      .price-wrapper .price-list ul > li .price-line-title {
+      .price-wrapper .price-list ul > li .price-line-title, .price-wrapper .expander__item ul > li .price-line-title, .expander .price-list ul > li .price-line-title, .expander .expander__item ul > li .price-line-title {
         pointer-events: none;
         position: relative;
         display: block; }
-      .price-wrapper .price-list ul > li .price-item-info {
+      .price-wrapper .price-list ul > li .price-item-info, .price-wrapper .expander__item ul > li .price-item-info, .expander .price-list ul > li .price-item-info, .expander .expander__item ul > li .price-item-info {
         display: block;
         position: relative;
         display: block; }
-        .price-wrapper .price-list ul > li .price-item-info .price-item-price {
+        .price-wrapper .price-list ul > li .price-item-info .price-item-price, .price-wrapper .expander__item ul > li .price-item-info .price-item-price, .expander .price-list ul > li .price-item-info .price-item-price, .expander .expander__item ul > li .price-item-info .price-item-price {
           font-size: 16px;
           font-family: "helveticaneuecyrbold"; }
-      .price-wrapper .price-list ul > li .price-section .price-line-title {
+      .price-wrapper .price-list ul > li .price-section .price-line-title, .price-wrapper .expander__item ul > li .price-section .price-line-title, .expander .price-list ul > li .price-section .price-line-title, .expander .expander__item ul > li .price-section .price-line-title {
         color: #a40000; }
-    .price-wrapper .price-list > ul {
+    .price-wrapper .price-list > ul, .price-wrapper .expander__item > ul, .expander .price-list > ul, .expander .expander__item > ul {
       padding: 0;
       margin: 0; }
-    .price-wrapper .price-list .fa, .price-wrapper .price-list .check-mark {
+    .price-wrapper .price-list .fa, .price-wrapper .price-list .check-mark, .price-wrapper .expander__item .fa, .price-wrapper .expander__item .check-mark, .expander .price-list .fa, .expander .price-list .check-mark, .expander .expander__item .fa, .expander .expander__item .check-mark {
       font-size: 24px;
       top: -4px;
       position: relative; }
-      .price-wrapper .price-list .fa.fa-caret-down, .price-wrapper .price-list .fa-caret-down.check-mark {
+      .price-wrapper .price-list .fa.fa-caret-down, .price-wrapper .price-list .fa-caret-down.check-mark, .price-wrapper .expander__item .fa.fa-caret-down, .price-wrapper .expander__item .fa-caret-down.check-mark, .expander .price-list .fa.fa-caret-down, .expander .price-list .fa-caret-down.check-mark, .expander .expander__item .fa.fa-caret-down, .expander .expander__item .fa-caret-down.check-mark {
         top: -2px; }
-  .price-wrapper .price-item-root > ul {
+  .price-wrapper .price-item-root > ul, .expander .price-item-root > ul {
     border-bottom: none !important; }
-  .price-wrapper .price-section-desc {
+  .price-wrapper .price-section-desc, .expander .price-section-desc {
     display: block;
     position: relative;
     font-weight: normal;
@@ -7336,8 +7336,15 @@ input {
     font-size: 14px;
     font-family: "helveticaneuecyrregular";
     pointer-events: none; }
-  .price-wrapper .price-section {
+  .price-wrapper .price-section, .expander .price-section {
     background: rgba(243, 233, 212, 0.7); }
+
+.section-with-links {
+  background: rgba(243, 233, 212, 0.7); }
+  .section-with-links > li:not(:last-child) {
+    border-bottom: 1px solid rgba(164, 0, 0, 0.25); }
+    .section-with-links > li:not(:last-child):first-child {
+      border-top: 1px solid rgba(164, 0, 0, 0.25); }
 
 .price-item > ul > li.price-item-section:first-child {
   border-top: 1px solid rgba(164, 0, 0, 0.25); }

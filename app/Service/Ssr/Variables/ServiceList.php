@@ -18,6 +18,7 @@ class ServiceList extends SsrVariable {
             'page' => $this->page,
             'items' => $items,
             'firstItem' => $firstItem,
+            'noIcons' => $this->page->no_icons,
             'options' => [
                 'showAllItems' => $firstItem === null,
                 'show' => 6,

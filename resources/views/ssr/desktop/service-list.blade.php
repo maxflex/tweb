@@ -36,11 +36,13 @@
         @foreach ($items as $index => $item)
             <div ng-hide='options.show <= {{ $index }}'>
                 @if ($item->link_url)
-                    <div class='pointer'>
-                        <a class='no-style-link' href='/{{ $item->link_url }}/'>
-                            <img src='{{ $item->photo_url }}'>
-                        </a>
-                    </div>
+                    @if (! $noIcons)
+                        <div class='pointer'>
+                            <a class='no-style-link' href='/{{ $item->link_url }}/'>
+                                <img src='{{ $item->photo_url }}'>
+                            </a>
+                        </div>
+                    @endif
                     <div>
                         <a class='no-style-link' href='/{{ $item->link_url }}/'>
                             <div class='header-3 pointer'>{{ $item->title }}</div>
@@ -51,9 +53,11 @@
                         </span>
                     </div>
                 @else
-                    <div>
-                        <img src='{{ $item->photo_url }}'>
-                    </div>
+                    @if (! $noIcons)
+                        <div>
+                            <img src='{{ $item->photo_url }}'>
+                        </div>
+                    @endif
                     <div>
                         <div class='header-3'>{{ $item->title }}</div>
                         <span>
