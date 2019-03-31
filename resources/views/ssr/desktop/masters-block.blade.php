@@ -25,7 +25,7 @@
                 </div>
             @endforeach
         </div>
-        <center class='more-button'>
+        <center class='more-button' style='margin: 50px 0 0'>
             <a class='no-style-link' href='/masters/'>
                 <button class="btn-border">показать ещё</button>
             </a>
