@@ -44,7 +44,7 @@
                         {{ $items[0]->first_name }} {{ $items[0]->middle_name }} {{ $items[0]->last_name }}
                     </a>
                 </b>
-                <span class="master-desc">>{{ $items[0]->description }} <a href='/masters/{{ $items[0]->id }}/'>Подробнее...</a></span>
+                <span class="master-desc">{{ $items[0]->description }} <a href='/masters/{{ $items[0]->id }}/'>Подробнее...</a></span>
             </div>
         </div>
     @endif
