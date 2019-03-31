@@ -7,7 +7,7 @@
             <gallery-item item='g' index='$index' service='GalleryService'></gallery-item>
         </div>
     </div>
-    <center ng-show='GalleryService.displayed < gallery.length' class='more-button'>
+    <center ng-show='GalleryService.displayed < gallery.length' class='more-button' style='margin: 35px 0 0'>
         <button class="btn-border" ng-click='GalleryService.displayed = GalleryService.displayed + 3'>показать ещё</button>
     </center>
 </div>
@@ -30,7 +30,7 @@
         @endforeach
     </div>
     @if (count($items) > 3)
-        <center class='more-button'>
+        <center class='more-button' style='margin: 35px 0 0'>
             <button class="btn-border">показать ещё</button>
         </center>
     @endif
