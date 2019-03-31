@@ -7255,8 +7255,7 @@ input {
   margin-left: -1.2em; }
   .vertical-slider > * {
     overflow-y: hidden;
-    overflow-x: scroll;
-    padding-bottom: 15px; }
+    overflow-x: scroll; }
     .vertical-slider > * > *:last-child {
       padding-right: 1.2em; }
     .vertical-slider > * > *:first-child {
@@ -7443,7 +7442,7 @@ input {
 .service-list__items_after-one-line {
   margin-top: 25px;
   padding-top: 25px;
-  border-top: 1px solid #c6c6c6; }
+  border-top: 1px solid #EEEEEE; }
 
 .video-duratoin {
   background: rgba(0, 0, 0, 0.7);
@@ -7696,6 +7695,41 @@ h1.padding-top, .padding-top.header-1 {
 .article-list p {
   margin: 0;
   padding: 0 0 .725em 0; }
+
+.menu-level-0 {
+  width: calc(100% - 15px);
+  position: relative; }
+
+.menu-level-1 {
+  left: 20px;
+  width: calc(100% - 35px);
+  position: relative; }
+
+.menu-level-2 {
+  left: 40px;
+  width: calc(100% - 55px);
+  position: relative; }
+
+.menu-level-3 {
+  left: 60px;
+  width: calc(100% - 75px);
+  position: relative; }
+
+.btn-border, .btn-border-gray {
+  min-width: 168px;
+  font-family: 'helveticaneuecyrbold'; }
+
+.btn, .btn-fill, .btn-border, .btn-border-gray, .btn-fill, .btn-border, .btn-border-gray, .btn-border-gray {
+  padding: 5px 12px 6px !important; }
+
+.service-list center {
+  margin: 14px 0px 30px;
+  width: 100%; }
+
+.block-separator {
+  border-bottom: 1px solid #EEEEEE; }
+  .block-separator_with-margins {
+    margin: 15px 0 35px; }
 
 .wrap {
   width: 600px;
@@ -8146,7 +8180,11 @@ h1.padding-top, .padding-top.header-1 {
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: justify;
-  justify-content: space-between; }
+  justify-content: space-between;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1; }
   .header-logo {
     display: block;
     background: url("../img/svg/logo.svg") no-repeat;
@@ -8729,7 +8767,7 @@ h1.padding-top, .padding-top.header-1 {
   font-size: 13px;
   text-decoration: none;
   font-family: "helveticaneuecyrmedium";
-  padding: 5px 12px 6px;
+  padding: 7px 12px 8px;
   border-radius: 24px;
   border: 0;
   position: relative; }

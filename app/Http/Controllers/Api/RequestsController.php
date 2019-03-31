@@ -20,14 +20,19 @@ class RequestsController extends Controller
         ]);
         Mail::send(new Order($request->all()));
 
-        
-        $roistat = $_COOKIE['roistat_visit'];
-        $formName = 'Расчет ремонта';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'http://bik.agency/mycrm/add.php?roistatID='.urlencode($roistat).'&formName='.urlencode($formName).'&domain=http://souz-pribor.ru'.'&formData[ФИО]='.urlencode($request->name).'&formData[Телефон]='.urlencode($request->phone));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $out = curl_exec($curl);
-        curl_close($curl);
+        try {
+            /**
+             * Это ваше дополнение выкидывает 500 Internal Server Error
+             */
+            $roistat = $_COOKIE['roistat_visit'];
+            $formName = 'Расчет ремонта';
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, 'http://bik.agency/mycrm/add.php?roistatID='.urlencode($roistat).'&formName='.urlencode($formName).'&domain=http://souz-pribor.ru'.'&formData[ФИО]='.urlencode($request->name).'&formData[Телефон]='.urlencode($request->phone));
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $out = curl_exec($curl);
+            curl_close($curl);
+        } catch (\Exception $e) {
 
+        }
     }
 }

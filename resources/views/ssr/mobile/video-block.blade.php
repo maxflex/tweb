@@ -1,5 +1,5 @@
 <div class='header-1'>{{ $title }}</div>
-<div class="vertical-slider info-section" style='height: 214px' ng-if='true' ng-init='options = {!! json_encode($options) !!}'>
+<div class="vertical-slider" ng-if='true' ng-init='options = {!! json_encode($options) !!}'>
     <div class="main-gallery-wrapper">
         @foreach ($items as $index => $item)
         <div class="gallery-item">
@@ -15,3 +15,4 @@
         @endforeach
     </div>
 </div>
+<div class='block-separator block-separator_with-margins'></div>

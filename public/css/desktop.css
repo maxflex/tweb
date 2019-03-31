@@ -3132,7 +3132,9 @@ a[href^="https://www.google.com/maps"] {
         .dropdown-content .main-menu .menu-col label:first-child {
           margin-top: 0; }
       .dropdown-content .main-menu .menu-col:not(:first-of-type) {
-        margin-left: 60px; }
+        margin-left: 30px;
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        padding-left: 30px; }
 
 .main-page .dropdown-content, .landingnew-page .dropdown-content {
   background-color: rgba(0, 0, 0, 0.6); }
@@ -3167,7 +3169,7 @@ a[href^="https://www.google.com/maps"] {
   line-height: 21px;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #c6c6c6; }
+  border-bottom: 1px solid #EEEEEE; }
   .student-review-last {
     padding-bottom: 0;
     margin-bottom: 0;
@@ -3417,6 +3419,9 @@ a[href^="https://www.google.com/maps"] {
 
 .service-list__item-description a {
   text-decoration: none; }
+  .service-list__item-description a:hover {
+    color: #E9967A;
+    text-decoration: underline; }
 
 .main-page h1, .main-page .header-1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3, .main-page .landingnew-page .common .header-3, .landingnew-page .common .main-page .header-3 {
   padding-top: 40px;
@@ -3425,7 +3430,7 @@ a[href^="https://www.google.com/maps"] {
 .full-page-masters {
   background-color: #e8e8e8;
   padding: 50px 0;
-  margin-top: 50px; }
+  margin-top: 40px; }
 
 .main-page-masters {
   display: -webkit-box;
@@ -4000,6 +4005,17 @@ a[href^="https://www.google.com/maps"] {
 
 .gallery-block-placeholder {
   min-height: 278px; }
+
+.section-block, .gallery-block, .video-block, .service-list {
+  border-bottom: 1px solid #EEEEEE;
+  padding-bottom: 38px; }
+
+.h1-top {
+  margin-top: 40px; }
+
+@media print {
+  header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
+    display: none !important; } }
 
 .wrap {
   width: 600px;
@@ -5585,6 +5601,10 @@ ol, ul {
 
 .more-button {
   margin: 35px 0 10px; }
+
+.btn-border {
+  min-width: 168px;
+  font-family: 'helveticaneuecyrbold'; }
 
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% {

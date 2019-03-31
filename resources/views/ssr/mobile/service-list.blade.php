@@ -3,16 +3,20 @@
     @if ($firstItem)
         <div class="service-list_one-line">
             @if ($firstItem->title)
-                <a class='no-style-link' href='/{{ $firstItem->link_url }}/'>
+                @if ($firstItem->link_url)
+                    <a class='no-style-link' href='/{{ $firstItem->link_url }}/'>
+                        <div class='header-3'>{{ $firstItem->title }}</div>
+                    </a>
+                @else
                     <div class='header-3'>{{ $firstItem->title }}</div>
-                </a>
+                @endif
             @endif
 
              <div style='margin-bottom: 15px'>
                 {!! $firstItem->description !!}
              </div>
 
-            <center style="margin: 14px 0 50px; width: 100%" ng-hide='options.showAllItems'>
+            <center ng-hide='options.showAllItems'>
                 <button class="btn-border" ng-click="options.showAllItems = true" style='margin-top: 15px'>
                     дополнительные услуги
                 </button>
@@ -46,7 +50,7 @@
             </div>
         @endforeach
         @if ($options['show'] < count($items))
-            <center style="margin: 14px 0 50px; width: 100%" ng-show='options.show < {{ count($items) }}'>
+            <center ng-show='options.show < {{ count($items) }}'>
                 <button class="btn-border" ng-click="options.show = options.show + 6">
                     {{ $firstItem ? 'дополнительные услуги' : 'показать ещё' }}
                 </button>
@@ -55,3 +59,4 @@
     </div>
 </div>
 
+<div class='block-separator block-separator_with-margins'></div>

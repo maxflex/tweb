@@ -1,9 +1,16 @@
+@if ($isFullPrice)
+    <h1 class='h1-top'>{{ $title }}</h1>
+@else
+    <div class='header-1'>{{ $title }}</div>
+@endif
+
 @if ($nobutton !== true)
-<div style='margin-bottom: 25px; color: #960000'>
-    <i class="fas fa-align-left" style='margin-right: 3px; font-size: 12px'></i>
-    <a href='/price/'>полный прайс лист</a>
+    <div style='margin-bottom: 25px; color: #960000'>
+        <i class="fas fa-align-left" style='margin-right: 3px; font-size: 12px'></i>
+        <a href='/price/'>полный прайс лист</a>
 </div>
 @endif
+
 <div class="info-section">
     <div class="price-wrapper">
         <div class="price-list">

@@ -3,11 +3,17 @@
     @if ($firstItem)
         <div class="service-list__items service-list__items_one-line">
             <div style='width: 100%; display: flex; align-items: center;'>
-                <div class='pointer'>
-                    <a class='no-style-link' href='/{{ $firstItem->link_url }}/'>
+                @if ($firstItem->link_url)
+                    <div class='pointer'>
+                        <a class='no-style-link' href='/{{ $firstItem->link_url }}/'>
+                            <img src='{{ $firstItem->photo_url }}'>
+                        </a>
+                    </div>
+                @else
+                    <div>
                         <img src='{{ $firstItem->photo_url }}'>
-                    </a>
-                </div>
+                    </div>
+                @endif
                 <div>
                     @if ($firstItem->title)
                         <a class='no-style-link' href='/{{ $firstItem->link_url }}/'>
@@ -29,22 +35,32 @@
     <div class="service-list__items {{ $firstItem ? 'service-list__items_after-one-line' : '' }}" ng-show='options.showAllItems'>
         @foreach ($items as $index => $item)
             <div ng-hide='options.show <= {{ $index }}'>
-                <div class='pointer'>
-                    <a class='no-style-link' href='/{{ $item->link_url }}/'>
-                        <img src='{{ $item->photo_url }}'>
-                    </a>
-                </div>
-                <div>
-                    <a class='no-style-link' href='/{{ $item->link_url }}/'>
-                        <div class='header-3 pointer'>{{ $item->title }}</div>
-                    </a>
-                    <span>
-                        <span class="service-list__item-description">{!! $item->description !!}</span>
-                        @if ($item->link_url)
+                @if ($item->link_url)
+                    <div class='pointer'>
+                        <a class='no-style-link' href='/{{ $item->link_url }}/'>
+                            <img src='{{ $item->photo_url }}'>
+                        </a>
+                    </div>
+                    <div>
+                        <a class='no-style-link' href='/{{ $item->link_url }}/'>
+                            <div class='header-3 pointer'>{{ $item->title }}</div>
+                        </a>
+                        <span>
+                            <span class="service-list__item-description">{!! $item->description !!}</span>
                             <a href='/{{ $item->link_url }}/' class="link-small">подробнее...</a>
-                        @endif
-                    </span>
-                </div>
+                        </span>
+                    </div>
+                @else
+                    <div>
+                        <img src='{{ $item->photo_url }}'>
+                    </div>
+                    <div>
+                        <div class='header-3'>{{ $item->title }}</div>
+                        <span>
+                            <span class="service-list__item-description">{!! $item->description !!}</span>
+                        </span>
+                    </div>
+                @endif
             </div>
         @endforeach
         @if ($options['show'] < count($items))

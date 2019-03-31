@@ -36,13 +36,13 @@ filesFromBowerFolder = (folder, files) => {
 
 elixir(mix => {
     mix
-        .browserSync({
-            port: 8105,
-            open: 'external',
-            host: 'tweb.localhost',
-            proxy: 'http://tweb.localhost:8104',
-            ghostMode: false
-        })
+        // .browserSync({
+        //     port: 8105,
+        //     open: 'external',
+        //     host: 'tweb.localhost',
+        //     proxy: 'http://tweb.localhost:8104',
+        //     ghostMode: false
+        // })
         .sass('desktop/desktop.scss')
         .sass('mobile/mobile.scss')
         .coffee(['resources/assets/coffee/*.coffee', 'resources/assets/coffee/*/*.coffee'], 'resources/assets/js')
