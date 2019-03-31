@@ -3424,7 +3424,7 @@ a[href^="https://www.google.com/maps"] {
     text-decoration: underline; }
 
 .main-page h1, .main-page .header-1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3, .main-page .landingnew-page .common .header-3, .landingnew-page .common .main-page .header-3 {
-  padding-top: 40px;
+  padding-top: 32px;
   margin-bottom: 10px; }
 
 .full-page-masters {
