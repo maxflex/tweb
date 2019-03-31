@@ -25,6 +25,11 @@
                 </div>
             @endforeach
         </div>
+        <center class='more-button'>
+            <a class='no-style-link' href='/masters/'>
+                <button class="btn-border">показать ещё</button>
+            </a>
+        </center>
     @else
         <div class="common main-page-masters masters-count-1">
             <div>
