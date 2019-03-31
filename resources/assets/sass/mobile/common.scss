@@ -862,7 +862,7 @@ input {
 }
 
    .equipment-item {
-        border-bottom: 1px solid #eee;
+        // border-bottom: 1px solid #eee;
        &.equipment-full {
             border-bottom: none;
            @extend .full-width;

@@ -7359,7 +7359,6 @@ input {
   margin-bottom: 10px; }
 
 .equipment-item {
-  border-bottom: 1px solid #eee;
   margin-bottom: 30px; }
   .equipment-item.equipment-full {
     border-bottom: none; }
