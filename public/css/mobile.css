@@ -7097,7 +7097,7 @@ input {
 .student-review {
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #c6c6c6; }
+  border-bottom: 1px solid #eee; }
   .student-review-last {
     margin-bottom: 0.938em;
     padding-bottom: 0;
@@ -7359,9 +7359,12 @@ input {
   margin-bottom: 10px; }
 
 .equipment-item {
+  border-bottom: 1px solid #eee;
   margin-bottom: 30px; }
-  .equipment-item.equipment-full img {
-    margin-bottom: 0 !important; }
+  .equipment-item.equipment-full {
+    border-bottom: none; }
+    .equipment-item.equipment-full img {
+      margin-bottom: 0 !important; }
   .equipment-item.black {
     color: white; }
     .equipment-item.black button {
@@ -7567,7 +7570,7 @@ h1.padding-top, .padding-top.header-1 {
 .banner-block {
   padding-bottom: 30px;
   margin-bottom: 40px;
-  border-bottom: 1px solid #c7c7c7;
+  border-bottom: 1px solid #eee;
   font-style: italic; }
 
 .banner-block .h1-top {

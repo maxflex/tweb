@@ -14,7 +14,9 @@ $(document).ready(function() {
         eventAction('mob-burger-open') 
 	})
 
-    bindToggle()
+    $('.equipment-item').last().css({'border-bottom': 'none'})
+    
+    // bindToggle()
 
 	// if (isMobile && isIphone4) $('body').addClass('iphone4fix');
 
