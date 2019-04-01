@@ -3467,7 +3467,9 @@ a[href^="https://www.google.com/maps"] {
       text-align: left; }
 
 .masters-all {
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  justify-content: flex-start; }
   .masters-all > div {
     margin: 0 !important;
     padding-bottom: 50px; }
@@ -5466,22 +5468,27 @@ ol, ul {
 .banner-block-full-width-wrapper {
   background: #f2f2f2;
   position: relative; }
-  .banner-block-full-width-wrapper_3 .lines .line {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    font-size: 17px;
-    margin-bottom: 14px; }
-    .banner-block-full-width-wrapper_3 .lines .line img {
-      height: 26px;
-      width: 26px;
-      margin-right: 6px; }
-    .banner-block-full-width-wrapper_3 .lines .line span {
-      text-align: left; }
-    .banner-block-full-width-wrapper_3 .lines .line:last-of-type {
-      margin-bottom: 0; }
-  .banner-block-full-width-wrapper_3 .banner-block {
+  .banner-block-full-width-wrapper .lines {
+    width: 490px;
+    float: right; }
+    .banner-block-full-width-wrapper .lines .line {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      font-size: 17px;
+      margin-bottom: 14px; }
+      .banner-block-full-width-wrapper .lines .line img {
+        height: 26px;
+        width: 26px;
+        margin-right: 6px; }
+      .banner-block-full-width-wrapper .lines .line span {
+        text-align: left; }
+      .banner-block-full-width-wrapper .lines .line:last-of-type {
+        margin-bottom: 0; }
+  .banner-block-full-width-wrapper .fa-check, .banner-block-full-width-wrapper .check-mark {
+    margin-right: 12px; }
+  .banner-block-full-width-wrapper .banner-block {
     margin-bottom: 50px !important; }
 
 .banner-block {

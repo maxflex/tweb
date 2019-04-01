@@ -22,7 +22,7 @@
             </div>
             @endforeach
         </div>
-        @if (! $all)
+        @if ($mainPage)
         <center class='more-button' style='margin: 40px 0 0'>
             <a class='no-style-link' href='/masters/'>
                 <button class="btn-border">смотреть всех</button>

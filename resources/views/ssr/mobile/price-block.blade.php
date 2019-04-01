@@ -7,7 +7,7 @@
 @if ($nobutton !== true)
     <div style='margin-bottom: 25px; color: #960000'>
         <i class="fas fa-align-left" style='margin-right: 3px; font-size: 12px'></i>
-        <a href='/price/'>полный прайс лист</a>
+        <a href='/price/'>полный прайс-лист</a>
 </div>
 @endif
 
@@ -25,6 +25,7 @@
             </ul>
         </div>
     </div>
+    @if (! $isFullPrice)
     <center class='more-button'>
         <a href='/order/' class="btn-fill btn-calc">
           <div class="flex-items">
@@ -33,8 +34,18 @@
           </div>
         </a>
     </center>
+    @endif
 </div>
 
-@if (! $isFullPrice)
+@if ($isFullPrice)
+    <style>
+        footer {
+            margin-top: 0 !important;
+        }
+        .info-section {
+            margin-bottom: 0;
+        }
+    </style>
+@else
     <div class='block-separator block-separator_with-margins'></div>
 @endif

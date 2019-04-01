@@ -25,11 +25,13 @@
                 </div>
             @endforeach
         </div>
+        @if ($mainPage)
         <center class='more-button' style='margin: 50px 0 0'>
             <a class='no-style-link' href='/masters/'>
                 <button class="btn-border">смотреть всех</button>
             </a>
         </center>
+        @endif
     @else
         <div class="common main-page-masters masters-count-1">
             <div>

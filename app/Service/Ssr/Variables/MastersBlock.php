@@ -10,6 +10,7 @@ class MastersBlock extends SsrVariable {
     public function parse()
     {
         $all = $this->args->ids === 'all';
+        $mainPage = $this->page->url === '/';
 
         if ($all) {
             $items = Master::with('photos')->get();
@@ -31,6 +32,7 @@ class MastersBlock extends SsrVariable {
             'desc' => @$this->args->desc,
             'all' => $all,
             'items' => $items,
+            'mainPage' => $mainPage,
         ]);
     }
 }

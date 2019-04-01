@@ -956,6 +956,7 @@ p.last {
 
 .masters-all {
     flex-wrap: wrap;
+    justify-content: flex-start;
     & > div {
         margin: 0 !important;
         padding-bottom: 50px;

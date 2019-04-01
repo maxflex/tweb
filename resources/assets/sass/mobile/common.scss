@@ -1327,6 +1327,27 @@ $uploaded-photo-preview-width: 32%;
     }
 }
 
+#menu-overlay {
+    & .expander {
+        margin-bottom: 1.2em;
+    }
+}
+
+.first-level-links {
+    background: #f6f0e0;
+    & ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        & li {
+            height: 52px;
+            border-bottom: 1px solid rgba(164, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
 // .main-gallery-wrapper {
 //     border-bottom: 1px solid $separator-grey;
 //     margin-bottom: 20px;
