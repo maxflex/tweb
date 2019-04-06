@@ -838,19 +838,15 @@ input {
     }
 }
 
-.section-with-links {
-    background: rgba(243, 233, 212, 0.7);
-    & > li:not(:last-child) {
-        &:first-child {
-            border-top: 1px solid rgba(164, 0, 0, 0.25);    
+
+.expander {
+    & .expander__item {
+        & > ul:not(.only-links) {
+            border-bottom: none;
         }
-        border-bottom: 1px solid rgba(164, 0, 0, 0.25);
     }
 }
 
-.price-item > ul > li.price-item-section:first-child {
-    border-top: 1px solid rgba(#a40000, .25);
-}
 
 .main-page-masters {
     & img {
@@ -1346,6 +1342,13 @@ $uploaded-photo-preview-width: 32%;
             align-items: center;
         }
     }
+}
+
+.menu-link-mobile {
+    background: #f6f0e0;
+    height: 52px;
+    align-items: center;
+    display: flex;
 }
 
 // .main-gallery-wrapper {
