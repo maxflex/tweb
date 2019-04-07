@@ -1,6 +1,8 @@
 .header {
   padding: 0 0 19px 0;
   z-index: 12;
+  position: sticky;
+  top: 0;
   &-inner {
     position: relative;
     width: $screen-width;

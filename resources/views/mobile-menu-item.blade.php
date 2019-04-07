@@ -5,7 +5,7 @@
 @else
 <li>
     <div class='price-item {{ $level === 0 ? 'price-item-root' : 'price-item-section' }}'>
-        <div class="price-line price-section" onclick="togglePrice(event)">
+        <div class="price-line price-section" onclick="togglePrice(event, true)">
             <span class="price-line-title menu-level-{{ $level }}">{{ $item->title }}</span>
             <span class="price-section-desc menu-level-{{ $level }}">{{ $item->extra }}</span>
             <img src="/img/svg/pricelist-arrow.svg">

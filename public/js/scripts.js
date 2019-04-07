@@ -21044,6 +21044,71 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Master', function($resource) {
+    return $resource(apiPath('masters'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('masters', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
+
+}).call(this);
+
+(function() {
   angular.module('App').value('AvgScores', {
     '1-11-1': 46.3,
     '2-11': 51.2,
@@ -21157,71 +21222,6 @@ return PhotoSwipeUI_Default;
       11: 'geo'
     }
   });
-
-}).call(this);
-
-(function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Master', function($resource) {
-    return $resource(apiPath('masters'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('masters', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
-      }
-    });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
-  });
-
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
-
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
-      }
-    };
-  };
-
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
-      }
-    };
-  };
 
 }).call(this);
 
@@ -21764,11 +21764,18 @@ function fileChange(event) {
 }
 
 
-function togglePrice(event) {
+function togglePrice(event, scroll) {
     // console.log('togglePrice', event)
+    // scrollTo = $(event.target).offset().top - 66
     target = $(event.target).hasClass('price-line') ? $(event.target) : $(event.target).closest('.price-line')
     target.toggleClass('active')
     ul = target.parent().children('ul')
+    if (scroll === true && !ul.is(':visible')) {
+        event.target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        // $('#modal-menu').animate({
+        //     scrollTop: scrollTo
+        // }, 250)
+    }
     ul.slideToggle(250)
 }
 

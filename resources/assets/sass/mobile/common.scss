@@ -77,7 +77,6 @@ p {
 a {
   color: $main-link-color;
   text-decoration: underline;
-
   &:hover {
     text-decoration: none;
   }
@@ -822,6 +821,13 @@ input {
     & .price-item-root {
         & > ul {
             border-bottom: none !important;
+           & > .price-item-section:last-child {
+               & > .price-item:last-child {
+                   & > ul ul {
+                        border-bottom: none !important;
+                   }
+               }
+           }
         }
     }
     & .price-section-desc {
@@ -1147,6 +1153,7 @@ $uploaded-photo-preview-width: 32%;
     font-weight: 800;
     text-align: left;
     font-size: 1.9em;
+    line-height: 1em;
   }
 
   .gallery-photo-master-info .master-photo img {
@@ -1355,3 +1362,17 @@ $uploaded-photo-preview-width: 32%;
 //     border-bottom: 1px solid $separator-grey;
 //     margin-bottom: 20px;
 // }
+
+#modal-menu {
+    padding-bottom: 40px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    & .modal-content {
+        overflow-y: initial;
+    }
+    & .modal-button {
+        z-index: 1;
+        position: sticky;
+        top: 0;
+    }
+}

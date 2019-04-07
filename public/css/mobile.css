@@ -7328,6 +7328,8 @@ input {
         top: -2px; }
   .price-wrapper .price-item-root > ul, .expander .price-item-root > ul {
     border-bottom: none !important; }
+    .price-wrapper .price-item-root > ul > .price-item-section:last-child > .price-item:last-child > ul ul, .expander .price-item-root > ul > .price-item-section:last-child > .price-item:last-child > ul ul {
+      border-bottom: none !important; }
   .price-wrapper .price-section-desc, .expander .price-section-desc {
     display: block;
     position: relative;
@@ -7599,7 +7601,8 @@ h1.padding-top, .padding-top.header-1 {
 .banner-block h1, .banner-block .header-1 {
   font-weight: 800;
   text-align: left;
-  font-size: 1.9em; }
+  font-size: 1.9em;
+  line-height: 1em; }
 
 .gallery-photo-master-info .master-photo img {
   height: 60px;
@@ -7757,6 +7760,18 @@ h1.padding-top, .padding-top.header-1 {
   align-items: center;
   display: -webkit-box;
   display: flex; }
+
+#modal-menu {
+  padding-bottom: 40px;
+  overflow-x: hidden;
+  overflow-y: scroll; }
+  #modal-menu .modal-content {
+    overflow-y: initial; }
+  #modal-menu .modal-button {
+    z-index: 1;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0; }
 
 .wrap {
   width: 600px;

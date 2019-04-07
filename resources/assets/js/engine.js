@@ -238,11 +238,18 @@ function fileChange(event) {
 }
 
 
-function togglePrice(event) {
+function togglePrice(event, scroll) {
     // console.log('togglePrice', event)
+    // scrollTo = $(event.target).offset().top - 66
     target = $(event.target).hasClass('price-line') ? $(event.target) : $(event.target).closest('.price-line')
     target.toggleClass('active')
     ul = target.parent().children('ul')
+    if (scroll === true && !ul.is(':visible')) {
+        event.target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        // $('#modal-menu').animate({
+        //     scrollTop: scrollTo
+        // }, 250)
+    }
     ul.slideToggle(250)
 }
 
