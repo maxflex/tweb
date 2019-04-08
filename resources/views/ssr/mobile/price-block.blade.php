@@ -1,7 +1,7 @@
 @if ($isFullPrice)
-    <h1 class='h1-top'>{{ $title }}</h1>
+    <h1 class='h1-top'>Прайс-лист</h1>
 @else
-    <div class='header-1'>{{ $title }}</div>
+    <div class='header-1'>Прайс-лист</div>
 @endif
 
 @if ($nobutton !== true)
@@ -13,7 +13,7 @@
 
 <div class="info-section">
     <div class="price-wrapper">
-        <div class="price-list">
+        <div class="price-list price-list-count-{{ count($items) }}">
             <ul style='border-bottom: none'>
                 @foreach ($items as $index => $item)
                 <li @if (count($items) !== $index - 1) class='price-item-last' @endif>

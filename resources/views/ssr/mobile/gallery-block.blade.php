@@ -29,9 +29,9 @@
 </div>
 
 @else
-<center style='color: #818181'>
+<div style='color: #818181; margin: 30px 0 55px'>
     фотографий отсутстуют
-</center>
+</div>
 @endif
 
 <div class='block-separator block-separator_with-margins'></div>

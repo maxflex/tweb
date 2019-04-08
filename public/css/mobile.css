@@ -7326,10 +7326,12 @@ input {
       position: relative; }
       .price-wrapper .price-list .fa.fa-caret-down, .price-wrapper .price-list .fa-caret-down.check-mark, .price-wrapper .expander__item .fa.fa-caret-down, .price-wrapper .expander__item .fa-caret-down.check-mark, .expander .price-list .fa.fa-caret-down, .expander .price-list .fa-caret-down.check-mark, .expander .expander__item .fa.fa-caret-down, .expander .expander__item .fa-caret-down.check-mark {
         top: -2px; }
-  .price-wrapper .price-item-root > ul, .expander .price-item-root > ul {
-    border-bottom: none !important; }
-    .price-wrapper .price-item-root > ul > .price-item-section:last-child > .price-item:last-child > ul ul, .expander .price-item-root > ul > .price-item-section:last-child > .price-item:last-child > ul ul {
+    .price-wrapper .price-list > ul > li:not(:last-child) ul, .price-wrapper .expander__item > ul > li:not(:last-child) ul, .expander .price-list > ul > li:not(:last-child) ul, .expander .expander__item > ul > li:not(:last-child) ul {
       border-bottom: none !important; }
+      .price-wrapper .price-list > ul > li:not(:last-child) ul > li.price-item-position:last-child, .price-wrapper .expander__item > ul > li:not(:last-child) ul > li.price-item-position:last-child, .expander .price-list > ul > li:not(:last-child) ul > li.price-item-position:last-child, .expander .expander__item > ul > li:not(:last-child) ul > li.price-item-position:last-child {
+        border-bottom: 1px solid rgba(164, 0, 0, 0.25); }
+  .price-wrapper .price-item-root > ul > .price-item-section:last-child > .price-item:last-child > ul ul, .expander .price-item-root > ul > .price-item-section:last-child > .price-item:last-child > ul ul {
+    border-bottom: none !important; }
   .price-wrapper .price-section-desc, .expander .price-section-desc {
     display: block;
     position: relative;
@@ -7340,6 +7342,9 @@ input {
     pointer-events: none; }
   .price-wrapper .price-section, .expander .price-section {
     background: rgba(243, 233, 212, 0.7); }
+
+.price-list-count-1 .price-item-root > ul {
+  border-bottom: none !important; }
 
 .expander .expander__item > ul:not(.only-links) {
   border-bottom: none; }

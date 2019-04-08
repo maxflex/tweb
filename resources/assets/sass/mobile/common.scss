@@ -817,10 +817,22 @@ input {
                 top: -2px;
             }
         }
+
+        & > ul > li {
+            &:not(:last-child) {
+                & ul {
+                    border-bottom: none !important;
+                    // background: yellowgreen;
+                    & > li.price-item-position:last-child {
+                        border-bottom: 1px solid rgba(#a40000, .25);
+                    }
+                }
+            }
+        }
     }
     & .price-item-root {
         & > ul {
-            border-bottom: none !important;
+            // border-bottom: none !important;
            & > .price-item-section:last-child {
                & > .price-item:last-child {
                    & > ul ul {
@@ -844,6 +856,12 @@ input {
     }
 }
 
+
+.price-list-count-1 {
+    & .price-item-root > ul {
+        border-bottom: none !important;
+    }
+}
 
 .expander {
     & .expander__item {

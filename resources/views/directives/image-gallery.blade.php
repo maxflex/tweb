@@ -46,7 +46,7 @@
                                     Мастер-исполнитель
                                 </div>
                                 <div>
-                                    @{{ image.master.first_name }} @{{ image.master.last_name }} @{{ image.master.middle_name }}
+                                    @{{ image.master.last_name }} @{{ image.master.first_name }} @{{ image.master.middle_name }}
                                 </div>
                             </div>
                             <div class="gallery-components">
