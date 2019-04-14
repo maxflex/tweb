@@ -2,9 +2,26 @@ angular.module 'App'
     .service 'VideoService', ($timeout) ->
         window.players = {}
 
+        # desktop
+        window.player = {}
+
         this.init = ->
-            window.onYouTubeIframeAPIReady = -> initVideos()
+            if isMobile
+                window.onYouTubeIframeAPIReady = -> initVideos()
+            else
+                initVideoDesktop()
         
+        initVideoDesktop = ->
+            window.onYouTubeIframeAPIReady = -> 
+                window.player = new YT.Player('youtube-video', {})
+                window.player.addEventListener "onStateChange", (state) ->
+                    if state.data == YT.PlayerState.PLAYING
+                        setTimeout ->
+                            $('.fullscreen-loading-black').css('display', 'none')
+                        , 500
+
+            window.onCloseModal = -> player.stopVideo()
+
         initVideos = ->
             return if not YT.Player
             $('.youtube-video').each (i, e) ->

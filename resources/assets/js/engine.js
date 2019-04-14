@@ -64,7 +64,7 @@ function closeModal() {
         if (typeof(onCloseModal) == 'function') {
             onCloseModal()
         }
-    }, 300)
+    }, isMobile ? 300 : 0)
 }
 
 function openModal(id) {
@@ -78,6 +78,12 @@ function openModal(id) {
     if (typeof(onOpenModal) == 'function') {
         onOpenModal(id)
     }
+}
+
+function openVideo(videoId) {
+    window.player.loadVideoById(videoId)
+    window.player.playVideo()
+    openModal('video')
 }
 
 // Автовоспроизведение видео с открытием модального окна

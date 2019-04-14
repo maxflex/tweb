@@ -4,63 +4,65 @@ angular
         bindArguments($scope, arguments)
 
         $scope.galleryLoaded = false
+        $scope.GalleryService2 = _.clone(GalleryService)
 
-        $scope.initGallery = (ids, tags, folders) ->
+        $scope.initGallery = (ids, tags, folders, isFirst = true) ->
             $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
             .then (response) ->
-                $scope.gallery = response.data
+                $scope.gallery = response.data if isFirst
+                $scope.gallery2 = response.data if not isFirst
+
                 if $scope.init_gallery_service then GalleryService.init($scope.gallery)
                 $scope.galleryLoaded = true
-
 
         $timeout ->
             PriceExpander.expand(if isMobile then 15 else 30) 
             VideoService.init() 
             initGmap()
 
-        $scope.openPhotoSwipe = (index) ->
-            $scope.items = []
-            $scope.gallery.forEach (g) ->
-                $scope.items.push
-                    src: g.url
-                    msrc: g.url
-                    w: 2200
-                    h: 1100
-                    title: g.name
-                    master: g.master
-                    components: g.components
-                    total_price: g.total_price
-                    days_to_complete: g.days_to_complete
+        # $scope.openPhotoSwipe = (index) ->
+        #     $scope.items = []
+        #     $scope.gallery.forEach (g) ->
+        #         $scope.items.push
+        #             src: g.url
+        #             msrc: g.url
+        #             w: 2200
+        #             h: 1100
+        #             title: g.name
+        #             master: g.master
+        #             components: g.components
+        #             total_price: g.total_price
+        #             days_to_complete: g.days_to_complete
 
-            pswpElement = document.querySelectorAll('.pswp')[0]
+        #     pswpElement = document.querySelectorAll('.pswp')[0]
 
-            options =
-                getThumbBoundsFn: (index) ->
-                    thumbnail = document.getElementById("p-#{index}")
-                    pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-                    rect = thumbnail.getBoundingClientRect()
-                    return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
-                history: false
-                focus: false
-                index: parseInt(index)
-                tapToToggleControls: false
-                captionEl: false
-                arrowEl: true
-                animateTransitions: true
-                closeOnVerticalDrag: false
-                closeOnScroll: false
-                # modal:false
+        #     options =
+        #         getThumbBoundsFn: (index) ->
+        #             thumbnail = document.getElementById("p-#{index}")
+        #             pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+        #             rect = thumbnail.getBoundingClientRect()
+        #             return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+        #         history: false
+        #         focus: false
+        #         index: parseInt(index)
+        #         tapToToggleControls: false
+        #         captionEl: false
+        #         arrowEl: true
+        #         animateTransitions: true
+        #         closeOnVerticalDrag: false
+        #         closeOnScroll: false
+        #         # modal:false
 
-            $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options)
-            $scope.PhotoSwipe.init()
-            $scope.PhotoSwipe.listen 'preventDragEvent', (e, isDown, preventObj) -> preventObj.prevent = true
-            # $scope.PhotoSwipe.listen 'preventDragEvent', (e, isDown, preventObj) ->
-            #     e = $(e.target)
-            #     # console.log(e)
-            #     if e.hasClass('.pswp__button')
-            #         preventObj.prevent = true
-            #     else
-            #         preventObj.prevent = false
+        #     $scope.PhotoSwipe = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, $scope.items, options)
+        #     $scope.PhotoSwipe.init()
+        #     $scope.PhotoSwipe.listen 'preventDragEvent', (e, isDown, preventObj) -> preventObj.prevent = true
+        #     # $scope.PhotoSwipe.listen 'preventDragEvent', (e, isDown, preventObj) ->
+        #     #     e = $(e.target)
+        #     #     # console.log(e)
+        #     #     if e.hasClass('.pswp__button')
+        #     #         preventObj.prevent = true
+        #     #     else
+        #     #         preventObj.prevent = false
 
         initGmap = ->
             $scope.map = new google.maps.Map(document.getElementById("map"), {

@@ -19,11 +19,11 @@
 </div>
 <div class='gallery-main hidden'>
     @foreach ($items as $item)
-        <div class='gallery-main__item'>
-            <img src='{{ $item->url }}'>
-            <div>
-                {{ $item->name }}
-            </div>
+    <div class='gallery-main__item'>
+        <img src='{{ $item->url }}'>
+        <div>
+            {{ $item->name }}
         </div>
+    </div>
     @endforeach
 </div>
