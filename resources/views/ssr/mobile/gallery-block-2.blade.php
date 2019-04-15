@@ -3,7 +3,7 @@
 @if (count($items) > 0)
 <div class="vertical-slider gallery-block-photos" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}', false)" ng-show='galleryLoaded'>
     <div class="main-gallery-wrapper">
-        <div ng-repeat="g in gallery" class="gallery-item">
+        <div ng-repeat="g in gallery2" class="gallery-item">
            <gallery-item item='g' index='$index' service='GalleryService2'></gallery-item>
         </div>
     </div>
