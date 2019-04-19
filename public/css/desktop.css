@@ -4549,7 +4549,6 @@ a[href^="https://www.google.com/maps"] {
     line-height: 21px; }
 
 .header {
-  display: none;
   padding: 0 0 19px 0;
   z-index: 12;
   position: -webkit-sticky;
