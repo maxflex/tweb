@@ -1685,6 +1685,39 @@ $uploaded-photo-preview-width: 150px;
     }
 }
 
+.youtube-video-info {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    &__channel-logo {
+        background: white;
+        height: 40px;
+        width: 40px;
+        background-image: url(/img/youtube-channel-logo.jpg);
+        background-size: cover;
+        background-position: center center;
+        border-radius: 50%;
+    }
+    &__title {
+        max-width: 100%;
+        padding-left: 8px;
+        padding-top: 2px;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        vertical-align: top;
+        font-size: 18px;
+        flex: 1;
+        text-shadow: 0 0 2px rgba(0,0,0,.5);
+        color: white;
+    }
+}
+
+
 .ytp-large-play-button {
     position: absolute;
     left: 50%;

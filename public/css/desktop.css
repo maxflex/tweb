@@ -4029,6 +4029,37 @@ a[href^="https://www.google.com/maps"] {
     fill: #ea3223;
     fill-opacity: 1; }
 
+.youtube-video-info {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center; }
+  .youtube-video-info__channel-logo {
+    background: white;
+    height: 40px;
+    width: 40px;
+    background-image: url(/img/youtube-channel-logo.jpg);
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%; }
+  .youtube-video-info__title {
+    max-width: 100%;
+    padding-left: 8px;
+    padding-top: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    font-size: 18px;
+    -webkit-box-flex: 1;
+    flex: 1;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    color: white; }
+
 .ytp-large-play-button {
   position: absolute;
   left: 50%;
@@ -4518,6 +4549,7 @@ a[href^="https://www.google.com/maps"] {
     line-height: 21px; }
 
 .header {
+  display: none;
   padding: 0 0 19px 0;
   z-index: 12;
   position: -webkit-sticky;

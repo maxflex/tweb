@@ -18,7 +18,7 @@ class Master extends Service\Model
     public function getDescriptionShortAttribute()
     {
         $description = $this->attributes['description'];
-        if (count($description) > 150) {
+        if (strlen($description) > 150) {
             return mb_strimwidth($description, 0, 150) . '...';
         }
         return $description;

@@ -6,7 +6,12 @@
             <div style='position: relative'>
                 <iframe id='youtube-video-{{ $item->id }}' width="288" height="144" data-id="{{ $item->id }}" class='youtube-video'
                         src="https://www.youtube.com/embed/{{ $item->code }}?enablejsapi=1&showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
-                <span id='video-duration-{{ $item->id }}' class="video-duratoin"></span>
+
+                @if ($item->duration)
+                <span class="video-duratoin">
+                    {{ $item->duration }}
+                </span>
+                @endif
             </div>
             <div>
                 <b>{{ $item->title }}</b>
