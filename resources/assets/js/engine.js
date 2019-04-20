@@ -2,6 +2,7 @@ var scope = null
 var player = null
 var isMobile = false
 var modal_inited = false
+var scrollPosition = false
 
 // window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
@@ -81,6 +82,7 @@ function openModal(id) {
 }
 
 function openVideo(videoId) {
+    window.scrollPosition = document.querySelector('html').scrollTop
     window.player.loadVideoById(videoId)
     window.player.playVideo()
     openModal('video')

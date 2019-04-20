@@ -38,54 +38,6 @@
                             </div>
                         </div>
 
-                        <div class="gallery-components">
-                            <div ng-show="image.component_1">
-                                <span>@{{ image.component_1 }}</span> –
-                                <span>@{{ image.price_1 | number }} руб.</span>
-                            </div>
-                            <div ng-show="image.component_2">
-                                <span>@{{ image.component_2 }}</span> –
-                                <span>@{{ image.price_2 | number }} руб.</span>
-                            </div>
-                            <div ng-show="image.component_3">
-                                <span>@{{ image.component_3 }}</span> –
-                                <span>@{{ image.price_3 | number }} руб.</span>
-                            </div>
-                            <div ng-show="image.component_4">
-                                <span>@{{ image.component_4 }}</span> –
-                                <span>@{{ image.price_4 | number }} руб.</span>
-                            </div>
-                            <div ng-show="image.component_5">
-                                <span>@{{ image.component_5 }}</span> –
-                                <span>@{{ image.price_5 | number }} руб.</span>
-                            </div>
-                            <div ng-show="image.component_6">
-                                <span>@{{ image.component_6 }}</span> –
-                                <span>@{{ image.price_6 | number }} руб.</span>
-                            </div>
-                            <div class="gallery-component-sum" ng-if="image.total_price">
-                                <span>Итого:</span>
-                                <span>@{{ image.total_price | number }} руб.</span>
-                            </div>
-                            <div ng-if="image.days_to_complete">
-                                <span>Срок выполнения:</span>
-                                <span class="gallery-days-to-complete"><plural count="image.days_to_complete" type='day'></plural></span>
-                            </div>
-                        </div>
-
-                        <div class="master-photo" ng-if="image.master">
-                            <div>
-                                <img ng-src="@{{image.master.photo_url}}" />
-                            </div>
-                            <div style='flex-direction: column'>
-                                <div class="master-name">
-                                    Мастер-исполнитель
-                                </div>
-                                <div>
-                                    @{{ image.master.last_name }} @{{ image.master.first_name }} @{{ image.master.middle_name }}
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

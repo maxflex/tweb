@@ -29,59 +29,12 @@
 
                     <div class="gallery-photo-master-info" style='position: relative'>
                         <div ng-show="!imgLoading" class="galleria-images img-anim-@{{imgAnim}} img-move-dir-@{{_imgMoveDirection}}">
-                            <img ng-click="methods.next()" class="galleria-image" ng-show="!imgLoading" ng-right-click ng-repeat="image in images track by image.id" ng-if="_activeImg == image" ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
+                            <img style='margin: 0 auto; max-width: 80%' ng-click="methods.next()" class="galleria-image" ng-show="!imgLoading" ng-right-click ng-repeat="image in images track by image.id" ng-if="_activeImg == image" ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
+                            <b class="image-gallery-2-title" ng-repeat="image in images track by image.id"  ng-if="_activeImg == image">@{{ image.name }}</b>
                         </div>
                         <div class="gallery-flow-control gallery-close">
                             <div ng-click="methods.close()" class="gallery-flow-control-arrow">
                                 <img src="/img/svg/cross.svg" />
-                            </div>
-                        </div>
-                        <div class="gallery-master-info" ng-repeat="image in images track by image.id" ng-if="_activeImg == image">
-                            <div>
-                                <b>@{{ image.name }}</b>
-                            </div>
-                            <div class="master-photo" ng-if="image.master">
-                                <img ng-src="@{{image.master.photo_url}}" />
-                                <div>
-                                    Мастер-исполнитель
-                                </div>
-                                <div>
-                                    @{{ image.master.last_name }} @{{ image.master.first_name }} @{{ image.master.middle_name }}
-                                </div>
-                            </div>
-                            <div class="gallery-components">
-                                <div ng-show="image.component_1">
-                                    <span>@{{ image.component_1 }}</span>
-                                    <span>@{{ image.price_1 | number }} руб.</span>
-                                </div>
-                                <div ng-show="image.component_2">
-                                    <span>@{{ image.component_2 }}</span>
-                                    <span>@{{ image.price_2 | number }} руб.</span>
-                                </div>
-                                <div ng-show="image.component_3">
-                                    <span>@{{ image.component_3 }}</span>
-                                    <span>@{{ image.price_3 | number }} руб.</span>
-                                </div>
-                                <div ng-show="image.component_4">
-                                    <span>@{{ image.component_4 }}</span>
-                                    <span>@{{ image.price_4 | number }} руб.</span>
-                                </div>
-                                <div ng-show="image.component_5">
-                                    <span>@{{ image.component_5 }}</span>
-                                    <span>@{{ image.price_5 | number }} руб.</span>
-                                </div>
-                                <div ng-show="image.component_6">
-                                    <span>@{{ image.component_6 }}</span>
-                                    <span>@{{ image.price_6 | number }} руб.</span>
-                                </div>
-                                <div class="gallery-component-sum">
-                                    <span>итого</span>
-                                    <span>@{{ image.total_price | number }} руб.</span>
-                                </div>
-                                <div>
-                                    <span>время выполнения</span>
-                                    <span class="gallery-days-to-complete"><plural count="image.days_to_complete" type='day'></plural></span>
-                                </div>
                             </div>
                         </div>
                     </div>

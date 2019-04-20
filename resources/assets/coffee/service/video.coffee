@@ -12,6 +12,7 @@ angular.module 'App'
                 initVideoDesktop()
         
         initVideoDesktop = ->
+            # https://support.google.com/youtube/answer/72689?visit_id=636913801587207568-3915841945&rd=1
             window.onYouTubeIframeAPIReady = -> 
                 window.player = new YT.Player('youtube-video', {})
                 window.player.addEventListener "onStateChange", (state) ->
@@ -20,7 +21,9 @@ angular.module 'App'
                             $('.fullscreen-loading-black').css('display', 'none')
                         , 500
 
-            window.onCloseModal = -> player.stopVideo()
+            window.onCloseModal = -> 
+                document.querySelector('html').scrollTop = window.scrollPosition
+                player.stopVideo()
 
         initVideos = ->
             return if not YT.Player
@@ -31,12 +34,12 @@ angular.module 'App'
                 player = new YT.Player "youtube-video-#{id}",
                     playerVars:
                         rel: 0
-                    events:
-                        onReady: (p) ->
-                            $("#video-duration-#{id}").html(getVideoDuration(p.target.getDuration()))
-                            # console.log('video duration', id, p.target.getDuration())
-                            # video.duration = p.target.getDuration()
-                            $timeout -> scope.$apply()
+                    # events:
+                    #     onReady: (p) ->
+                    #         $("#video-duration-#{id}").html(getVideoDuration(p.target.getDuration()))
+                    #         console.log('video duration', id, p.target.getDuration())
+                    #         video.duration = p.target.getDuration()
+                    #         $timeout -> scope.$apply()
                 window.players[id] = player
                 window.players[id].addEventListener 'onStateChange', (state) ->
                     requestFullScreen.bind(iframe)()
@@ -45,10 +48,10 @@ angular.module 'App'
                 return null
 
         # длительность видео
-        getVideoDuration = (duration) -> 
-            if duration
-                format = if duration >= 60 then 'm:ss' else 'ss'
-                moment.utc(duration * 1000).format(format)
+        # getVideoDuration = (duration) -> 
+        #     if duration
+        #         format = if duration >= 60 then 'm:ss' else 'ss'
+        #         moment.utc(duration * 1000).format(format)
 
         # остановить воспроизведение всех проигрывателей
         # except_id – кроме

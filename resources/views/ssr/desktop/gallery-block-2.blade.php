@@ -10,7 +10,8 @@
         <button class="btn-border" ng-click='GalleryService2.displayed = GalleryService2.displayed + 3'>показать ещё</button>
     </center>
 </div>
-<ng-image-gallery images="gallery" thumbnails='false' methods='GalleryService2.ctrl' bg-close='true'></ng-image-gallery>
+
+<ng-image-gallery-2 images="gallery2" thumbnails='false' methods='GalleryService2.ctrl' bg-close='true'></ng-image-gallery-2>
 
 <div class='gallery-block gallery-block-photos gallery-block-placeholder' ng-if='!galleryLoaded'>
      <div class="main-gallery-wrapper">

@@ -1,7 +1,7 @@
 (function() {
   var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileUpload', 'angular-toArrayFilter', 'thatisuday.ng-image-gallery', 'ngSanitize']).config([
+  angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileUpload', 'angular-toArrayFilter', 'thatisuday.ng-image-gallery', 'thatisuday.ng-image-gallery-2', 'ngSanitize']).config([
     'ngImageGalleryOptsProvider', function(ngImageGalleryOptsProvider) {
       return ngImageGalleryOptsProvider.setOpts({
         bubbles: true,
@@ -1341,7 +1341,7 @@
 
 (function() {
   angular.module('App').service('VideoService', function($timeout) {
-    var getVideoDuration, initVideoDesktop, initVideos, stopPlaying;
+    var initVideoDesktop, initVideos, stopPlaying;
     window.players = {};
     window.player = {};
     this.init = function() {
@@ -1365,6 +1365,7 @@
         });
       };
       return window.onCloseModal = function() {
+        document.querySelector('html').scrollTop = window.scrollPosition;
         return player.stopVideo();
       };
     };
@@ -1380,14 +1381,6 @@
         player = new YT.Player("youtube-video-" + id, {
           playerVars: {
             rel: 0
-          },
-          events: {
-            onReady: function(p) {
-              $("#video-duration-" + id).html(getVideoDuration(p.target.getDuration()));
-              return $timeout(function() {
-                return scope.$apply();
-              });
-            }
           }
         });
         window.players[id] = player;
@@ -1399,13 +1392,6 @@
         });
         return null;
       });
-    };
-    getVideoDuration = function(duration) {
-      var format;
-      if (duration) {
-        format = duration >= 60 ? 'm:ss' : 'ss';
-        return moment.utc(duration * 1000).format(format);
-      }
     };
     stopPlaying = function(except_id) {
       return $.each(window.players, function(e, p) {

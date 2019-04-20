@@ -13,13 +13,13 @@ class GalleryBlock extends SsrVariable {
         return view($this->getViewName(), [
             'items' => $this->getItems(),
             'args' => $this->args,
-            'tags' => $this->page->tags,
+            'tags' => @$this->page->tags,
         ]);
     }
 
     private function getItems()
     {
-        if (! @$this->args->ids && $this->page->url === 'masters/:id') {
+        if (! @$this->args->ids && @$this->page->url === 'masters/:id') {
             return [];
         }
         return Gallery::getItems(@$this->args->ids, @$this->args->folders, @$this->args->tags)->take(9)->get();

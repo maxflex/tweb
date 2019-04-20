@@ -25,6 +25,7 @@
             preg_match_all('#\\' . static::interpolate('((?>[^\[\]]+)|(?R))*\\') . '#U', $html, $matches);
             $vars = $matches[0];
             foreach ($vars as $var) {
+                dump($var);
                 $var = trim($var, static::interpolate());
                 $ssrParser = new SsrParser($var, $page);
                 if ($ssrParser->exists()) {
@@ -42,7 +43,6 @@
                 }
             }
             // preg_match_all('#\\' . static::interpolate('[\S]+\\', self::START_VAR_CALC, self::END_VAR_CALC) . '#', $html, $matches);
-
             // compile functions after values & vars
             preg_match_all('#\\' . static::interpolate('[\S]+\\') . '#', $html, $matches);
             $vars = $matches[0];
@@ -85,6 +85,7 @@
                 foreach($values as $value) {
                     // разбиваем a=1
                     list($var_name, $var_val) = explode('=', $value);
+
                     // если $var_val – это переменная
                     if (@$var_val[0] == self::START_VAR) {
                         // заменяем на значение переменной, если таковая найдена

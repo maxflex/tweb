@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<ng-image-gallery images="gallery" thumbnails='false' methods='GalleryService2.ctrl' bg-close='true' img-anim="fadeup"></ng-image-gallery>
+<ng-image-gallery-2 images="gallery2" thumbnails='false' methods='GalleryService2.ctrl' bg-close='true' img-anim="fadeup"></ng-image-gallery-2>
 
 <div class="vertical-slider gallery-block-photos" ng-if='!galleryLoaded'>
     <div class="main-gallery-wrapper">

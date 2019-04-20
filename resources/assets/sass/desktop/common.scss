@@ -1747,6 +1747,19 @@ $uploaded-photo-preview-width: 150px;
     outline: 0
 }
 
+.image-gallery-2-title {
+    width: 100%;
+    font-size: 22px;
+    text-align: center;
+    bottom: -44px;
+    color: white;
+    position: absolute;
+}
+
+.gallery-flow-control {
+    width: calc(100% - 30px);
+}
+
 @media print { 
    header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
        display: none !important;
