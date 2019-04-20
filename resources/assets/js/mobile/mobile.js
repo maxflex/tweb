@@ -12,6 +12,7 @@ $(document).ready(function() {
 	$('.header-menu-button').click(function() {
         openModal('menu')
         // close all expanded menus
+        $('#modal-menu').scrollTop(0)
         $('#menu-overlay .price-item-root ul').attr('style', '')
         eventAction('mob-burger-open') 
 	})
