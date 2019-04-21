@@ -20096,6 +20096,13 @@ return PhotoSwipeUI_Default;
       });
     }
   ]).config([
+    'ngImageGalleryOpts2Provider', function(ngImageGalleryOpts2Provider) {
+      return ngImageGalleryOpts2Provider.setOpts({
+        bubbles: true,
+        bubbleSize: 165
+      });
+    }
+  ]).config([
     '$compileProvider', function($compileProvider) {
       return $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|sip):/);
     }
@@ -20740,71 +20747,6 @@ return PhotoSwipeUI_Default;
       });
     };
   });
-
-}).call(this);
-
-(function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Master', function($resource) {
-    return $resource(apiPath('masters'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('masters', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
-      }
-    });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
-  });
-
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
-
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
-      }
-    };
-  };
-
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
-      }
-    };
-  };
 
 }).call(this);
 
@@ -21486,6 +21428,71 @@ return PhotoSwipeUI_Default;
     };
     return this;
   });
+
+}).call(this);
+
+(function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Master', function($resource) {
+    return $resource(apiPath('masters'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('masters', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
 
 }).call(this);
 
@@ -23977,6 +23984,13 @@ addMarker = function(map, latLng) {
                        var bubbleMargin = minMargin + extraMargin;
                        var finalBubbleSpace = bubbleMargin + bubbleSize;
 
+                       console.log('autoFitBubbles 1', {
+                            scrollerWidth: scrollerWidth,
+                            bubbleSpace: bubbleSpace,
+                            bubbleSize: bubbleSize, 
+                            minMargin: minMargin,
+                        })
+                        
                        scope._bubblesInView = bubblesInView;
                        scope._finalBubbleSpace = finalBubbleSpace;
                        scope._bubbleMargin = '0 ' + (bubbleMargin/2) + 'px';
@@ -24009,6 +24023,7 @@ addMarker = function(map, latLng) {
            link: function (scope, element, attributes){
 
                var indexCalc = function(){
+                    console.log('indexCalc 1', scope._activeImageIndex, scope._bubblesInView, scope.images.length)
                    var jump_width = 175
                    var coeff = scope._activeImageIndex - (Math.round(scope._bubblesInView / 2) - 1)
                    var max_coeff = scope.images.length - scope._bubblesInView

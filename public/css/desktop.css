@@ -4089,7 +4089,7 @@ a[href^="https://www.google.com/maps"] {
   width: 100%;
   font-size: 16px;
   text-align: center;
-  bottom: -18px;
+  bottom: -16px;
   color: white;
   position: absolute; }
 
@@ -5990,6 +5990,9 @@ ol, ul {
   padding: 15px;
   box-sizing: border-box; }
 
+.ng-image-gallery-1 {
+  width: calc(100% - 380px) !important; }
+
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-content .galleria .galleria-images {
   position: relative;
   width: 100%;
@@ -6395,7 +6398,7 @@ ol, ul {
   position: relative; }
 
 .gallery-master-info {
-  min-width: 380px;
+  width: 380px;
   color: white;
   padding: 25px;
   padding-top: 0;

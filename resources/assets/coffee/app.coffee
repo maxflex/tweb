@@ -7,6 +7,13 @@ angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileU
                 bubbleSize      :   165
     ]
     .config [
+        'ngImageGalleryOpts2Provider',
+        (ngImageGalleryOpts2Provider) ->
+            ngImageGalleryOpts2Provider.setOpts
+                bubbles         :   true
+                bubbleSize      :   165
+    ]
+    .config [
         '$compileProvider'
         ($compileProvider) ->
             $compileProvider.aHrefSanitizationWhitelist /^\s*(https?|ftp|mailto|chrome-extension|sip):/

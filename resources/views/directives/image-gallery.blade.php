@@ -28,7 +28,7 @@
                 <div class="galleria">
 
                     <div class="gallery-photo-master-info" style='position: relative'>
-                        <div ng-show="!imgLoading" class="galleria-images img-anim-@{{imgAnim}} img-move-dir-@{{_imgMoveDirection}}">
+                        <div ng-show="!imgLoading" class="galleria-images ng-image-gallery-1 img-anim-@{{imgAnim}} img-move-dir-@{{_imgMoveDirection}}">
                             <img ng-click="methods.next()" class="galleria-image" ng-show="!imgLoading" ng-right-click ng-repeat="image in images track by image.id" ng-if="_activeImg == image" ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
                         </div>
                         <div class="gallery-flow-control gallery-close">

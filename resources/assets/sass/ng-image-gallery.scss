@@ -270,6 +270,10 @@ $gallery-common-indent: 60px;
         padding: 15px;
         box-sizing: border-box;
       }
+      
+      .ng-image-gallery-1 {
+        width: calc(100% - 380px) !important;
+      }
         .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-content .galleria .galleria-images {
           position: relative;
           width: 100%;
@@ -684,7 +688,7 @@ $gallery-common-indent: 60px;
 }
 
 .gallery-master-info {
-    min-width: 380px;
+    width: 380px;
     color: white;
     padding: 25px;
     padding-top: 0;

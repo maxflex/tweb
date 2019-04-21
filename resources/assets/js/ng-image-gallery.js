@@ -97,6 +97,13 @@
                        var bubbleMargin = minMargin + extraMargin;
                        var finalBubbleSpace = bubbleMargin + bubbleSize;
 
+                       console.log('autoFitBubbles 1', {
+                            scrollerWidth: scrollerWidth,
+                            bubbleSpace: bubbleSpace,
+                            bubbleSize: bubbleSize, 
+                            minMargin: minMargin,
+                        })
+                        
                        scope._bubblesInView = bubblesInView;
                        scope._finalBubbleSpace = finalBubbleSpace;
                        scope._bubbleMargin = '0 ' + (bubbleMargin/2) + 'px';
@@ -129,6 +136,7 @@
            link: function (scope, element, attributes){
 
                var indexCalc = function(){
+                    console.log('indexCalc 1', scope._activeImageIndex, scope._bubblesInView, scope.images.length)
                    var jump_width = 175
                    var coeff = scope._activeImageIndex - (Math.round(scope._bubblesInView / 2) - 1)
                    var max_coeff = scope.images.length - scope._bubblesInView
