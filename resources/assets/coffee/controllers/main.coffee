@@ -11,8 +11,6 @@ angular
             .then (response) ->
                 $scope.gallery = response.data if isFirst
                 $scope.gallery2 = response.data if not isFirst
-
-                if $scope.init_gallery_service then GalleryService.init($scope.gallery)
                 $scope.galleryLoaded = true
 
         $timeout ->

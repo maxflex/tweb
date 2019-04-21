@@ -4087,14 +4087,17 @@ a[href^="https://www.google.com/maps"] {
 
 .image-gallery-2-title {
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
-  bottom: -38px;
+  bottom: -24px;
   color: white;
   position: absolute; }
 
 .gallery-flow-control {
   width: calc(100% - 30px); }
+
+.price-item.price-item-root > ul > .price-item-position:last-child .price-line {
+  border-bottom: none; }
 
 @media print {
   header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
@@ -6398,7 +6401,9 @@ ol, ul {
   padding-top: 0;
   box-sizing: border-box;
   line-height: 20px;
-  overflow: hidden; }
+  overflow: hidden;
+  position: absolute;
+  right: 0; }
   .gallery-master-info .master-photo img {
     height: 90px;
     width: 90px;
@@ -6471,7 +6476,8 @@ ol, ul {
 .gallery-close {
   position: absolute;
   right: 0;
-  text-align: right; }
+  text-align: right;
+  z-index: 2; }
   .gallery-close > div {
     text-align: center;
     margin: 0 !important;

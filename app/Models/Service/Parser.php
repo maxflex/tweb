@@ -78,6 +78,13 @@
 
             // если переменная нашлась
             if ($html !== null) {
+                 // КОСТЫЛЬ СПЕЦИАЛЬНО ДЛЯ ADDRESS-PAGE
+                 if ($values[0] === 'address-page') {
+                    $newHtml = $html->getOriginal('html');
+                    list($var_name, $var_val) = explode('=', $values[1]);
+                    $newHtml = str_replace('{' . $var_name . '}', $var_val, $newHtml);
+                    $html->html = $newHtml;
+                }
                 $html = $html->html;
                 // убираем название переменной из массива
                 array_shift($values);
