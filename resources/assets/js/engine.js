@@ -82,11 +82,33 @@ function openModal(id) {
 }
 
 function openVideo(videoId) {
+    if (typeof(window.player) !== 'object' || Object.keys(window.player).length === 0) {
+        initVideosDesktop()
+    }
     window.scrollPosition = document.querySelector('html').scrollTop
     window.player.loadVideoById(videoId)
     window.player.playVideo()
     openModal('video')
 }
+
+function initVideosDesktop() {
+    if (!YT.Player) {
+        return
+    }
+  window.player = new YT.Player('youtube-video', {});
+  window.player.addEventListener("onStateChange", function(state) {
+    if (state.data === YT.PlayerState.PLAYING) {
+      return setTimeout(function() {
+        return $('.fullscreen-loading-black').css('display', 'none');
+      }, 500);
+    }
+  });
+
+  window.onCloseModal = function() {
+    document.querySelector('html').scrollTop = window.scrollPosition;
+    return player.stopVideo();
+  };
+};
 
 // Автовоспроизведение видео с открытием модального окна
 function initYoutube() {

@@ -6,25 +6,9 @@ angular.module 'App'
         window.player = {}
 
         this.init = ->
-            if isMobile
-                window.onYouTubeIframeAPIReady = -> initVideos()
-            else
-                initVideoDesktop()
+            window.onYouTubeIframeAPIReady = -> if isMobile then initVideos() else initVideosDesktop()
         
-        initVideoDesktop = ->
-            # https://support.google.com/youtube/answer/72689?visit_id=636913801587207568-3915841945&rd=1
-            window.onYouTubeIframeAPIReady = -> 
-                window.player = new YT.Player('youtube-video', {})
-                window.player.addEventListener "onStateChange", (state) ->
-                    if state.data == YT.PlayerState.PLAYING
-                        setTimeout ->
-                            $('.fullscreen-loading-black').css('display', 'none')
-                        , 500
-
-            window.onCloseModal = -> 
-                document.querySelector('html').scrollTop = window.scrollPosition
-                player.stopVideo()
-
+       
         initVideos = ->
             return if not YT.Player
             $('.youtube-video').each (i, e) ->
