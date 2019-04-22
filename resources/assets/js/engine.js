@@ -8,12 +8,13 @@ var scrollPosition = false
 // window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
 window.onYouTubeIframeAPIReady = function() {
-    console.log('onYouTubeIframeAPIReady')
-    if (isMobile) {
-        initVideosMobile();
-     } else {
-        initVideosDesktop();
-     }
+    $(document).ready(function() {
+        if (isMobile) {
+            initVideosMobile();
+        } else {
+            initVideosDesktop();
+        }
+    })
 }
 
 $(document).ready(function() {
