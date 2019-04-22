@@ -7,15 +7,15 @@ var scrollPosition = false
 
 // window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
-$(document).ready(function() {
-    window.onYouTubeIframeAPIReady = function() {
-        if (isMobile) {
-            initVideosMobile();
-         } else {
-            initVideosDesktop();
-         }
-    }
+window.onYouTubeIframeAPIReady = function() {
+    if (isMobile) {
+        initVideosMobile();
+     } else {
+        initVideosDesktop();
+     }
+}
 
+$(document).ready(function() {
     //Custom select
     var $cs = $('.custom-select').customSelect();
 
