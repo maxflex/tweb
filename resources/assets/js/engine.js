@@ -1,5 +1,6 @@
 var scope = null
-var player = null
+var player = {}
+var players = {}
 var isMobile = false
 var modal_inited = false
 var scrollPosition = false
@@ -7,6 +8,14 @@ var scrollPosition = false
 // window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
 $(document).ready(function() {
+    window.onYouTubeIframeAPIReady = function() {
+        if (isMobile) {
+            initVideosMobile();
+         } else {
+            initVideosDesktop();
+         }
+    }
+
     //Custom select
     var $cs = $('.custom-select').customSelect();
 
@@ -110,25 +119,39 @@ function initVideosDesktop() {
   };
 };
 
-// Автовоспроизведение видео с открытием модального окна
-function initYoutube() {
-    console.log('hia')
-    window.onYouTubeIframeAPIReady = function() {
-        console.log('hia2')
-        window.player = new YT.Player('youtube-video', {})
-        // player.addEventListener("onStateChange", function(state){
-        //     if (state.data == YT.PlayerState.PLAYING) {
-        //         setTimeout(function() {
-        //             $('.fullscreen-loading-black').css('display', 'none')
-        //         }, 500)
-        //     }
-        // })
+function initVideosMobile() {
+    if (!YT.Player) {
+      return;
     }
+    return $('.youtube-video').each(function(i, e) {
+      var id, iframe, player, requestFullScreen;
+      id = $(e).data('id');
+      iframe = document.getElementById("youtube-video-" + id);
+      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+      player = new YT.Player("youtube-video-" + id, {
+        playerVars: {
+          rel: 0
+        }
+      });
+      window.players[id] = player;
+      window.players[id].addEventListener('onStateChange', function(state) {
+        requestFullScreen.bind(iframe)();
+        if (state.data === YT.PlayerState.PLAYING) {
+          return stopPlaying(state.target.a.id);
+        }
+      });
+      return null;
+    });
+  };
 
-    // window.onCloseModal = function() {
-    //     player.stopVideo()
-    // }
-}
+
+  function stopPlaying(except_id) {
+    return $.each(window.players, function(e, p) {
+      if (p.getPlayerState && p.getPlayerState() === 1 && p.a.id !== except_id) {
+        return p.stopVideo();
+      }
+    });
+  };
 
 /**
  * Биндит аргументы контроллера ангуляра в $scope

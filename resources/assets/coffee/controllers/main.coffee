@@ -1,6 +1,6 @@
 angular
     .module 'App'
-    .controller 'main', ($scope, $timeout, $http, GalleryService, VideoService) ->
+    .controller 'main', ($scope, $timeout, $http, GalleryService) ->
         bindArguments($scope, arguments)
 
         $scope.galleryLoaded = false
@@ -15,7 +15,6 @@ angular
 
         $timeout ->
             PriceExpander.expand(if isMobile then 15 else 30) 
-            VideoService.init() 
             initGmap()
 
         # $scope.openPhotoSwipe = (index) ->

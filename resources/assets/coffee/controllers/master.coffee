@@ -1,9 +1,7 @@
 angular
     .module 'App'
-    .controller 'master', ($scope, $timeout, $http, Master, GalleryService, VideoService) ->
+    .controller 'master', ($scope, $timeout, $http, Master, GalleryService) ->
         bindArguments($scope, arguments)
-
-        VideoService.init()
 
         $scope.reviews_block = false
         $scope.gallery = []
