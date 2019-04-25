@@ -1,14 +1,15 @@
 .header {
-  background: $main-color-light;
-  padding: 1.429em 1.357em 1.429em 1.357em;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 1;
-  
+  &-items {
+    background: $main-color-light;
+    padding: 1.429em 1.357em 1.429em 1.357em;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &-logo {
     display: block;
     background: url('../img/svg/logo.svg') no-repeat;

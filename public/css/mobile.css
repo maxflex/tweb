@@ -8219,19 +8219,20 @@ h1.padding-top, .padding-top.header-1 {
 
 /* Components */
 .header {
-  background: #f3e9d4;
-  padding: 1.429em 1.357em 1.429em 1.357em;
-  position: relative;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1; }
+  .header-items {
+    background: #f3e9d4;
+    padding: 1.429em 1.357em 1.429em 1.357em;
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between; }
   .header-logo {
     display: block;
     background: url("../img/svg/logo.svg") no-repeat;
