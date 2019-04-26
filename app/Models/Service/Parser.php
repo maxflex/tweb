@@ -79,7 +79,7 @@
             // если переменная нашлась
             if ($html !== null) {
                  // КОСТЫЛЬ СПЕЦИАЛЬНО ДЛЯ ADDRESS-PAGE
-                 if ($values[0] === 'address-page') {
+                 if (in_array($values[0], ['address-page', 'address-page-mobile'])) {
                     $newHtml = $html->getOriginal('html');
                     list($var_name, $var_val) = explode('=', $values[1]);
                     $newHtml = str_replace('{' . $var_name . '}', $var_val, $newHtml);
