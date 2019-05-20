@@ -3,7 +3,7 @@
     <div class="video-wrapper">
         @foreach ($items as $index => $item)
             <div class="gallery-item" ng-hide='options.show <= {{ $index }}' onclick="openVideo('{{ $item->code }}')">
-                <div class='video-item' style="background-image: url(https://img.youtube.com/vi/{{ $item->code }}/sddefault.jpg)">
+                <div class='video-item' style="background-image: url(https://talisman.ams3.cdn.digitaloceanspaces.com/img/video/{{ $item->id }}.jpg)">
                     <div class="youtube-video-info">
                         <div class='youtube-video-info__channel-logo'></div>
                         <div class='youtube-video-info__title'>

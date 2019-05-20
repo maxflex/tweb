@@ -141,8 +141,6 @@ return [
     */
 
     'providers' => [
-        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
-
         /*
          * Laravel Framework Service Providers...
          */
