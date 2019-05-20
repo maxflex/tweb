@@ -1673,10 +1673,13 @@ $uploaded-photo-preview-width: 150px;
 
 .video-item {
     height: 144px;
-    background-size: cover;
-    background-position: center center;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
+    & img {
+        position: relative;
+        top: -10px;
+    }
     &:hover {
         & .ytp-large-play-button-bg {
             fill: #ea3223;

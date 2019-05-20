@@ -4021,10 +4021,12 @@ a[href^="https://www.google.com/maps"] {
 
 .video-item {
   height: 144px;
-  background-size: cover;
-  background-position: center center;
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  overflow: hidden; }
+  .video-item img {
+    position: relative;
+    top: -10px; }
   .video-item:hover .ytp-large-play-button-bg {
     fill: #ea3223;
     fill-opacity: 1; }
