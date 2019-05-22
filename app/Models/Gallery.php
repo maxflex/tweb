@@ -44,7 +44,7 @@ class Gallery extends Model
 
     public function getUrlAttribute()
     {
-        return config('app.crm-url') . 'img/gallery/' . $this->id . '.webp';
+        return config('app.crm-url') . 'img/gallery/' . $this->id . '.jpg';
     }
 
     public function getComponentsAttribute()
