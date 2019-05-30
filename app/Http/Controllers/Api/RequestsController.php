@@ -21,16 +21,18 @@ class RequestsController extends Controller
         Mail::send(new Order($request->all()));
 
         try {
-            /**
-             * Это ваше дополнение выкидывает 500 Internal Server Error
-             */
-            $roistat = $_COOKIE['roistat_visit'];
-            $formName = 'Расчет ремонта';
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'http://bik.agency/mycrm/add.php?roistatID='.urlencode($roistat).'&formName='.urlencode($formName).'&domain=http://souz-pribor.ru'.'&formData[ФИО]='.urlencode($request->name).'&formData[Телефон]='.urlencode($request->phone));
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            $out = curl_exec($curl);
-            curl_close($curl);
+            /* новая версия отправки заявок в ройстат */
+            $roistatData = array(
+                    'roistat' => isset($_COOKIE['roistat_visit']) ? $_COOKIE['roistat_visit'] : null,
+                    'key'     => 'MTcxOTM2OjEwMzc2MTo4MjY0YjI0MDA3M2NjM2EzMzVmMjQ2NWNkMWMwNGY2Mw==', 
+                    'title'   => 'Новая сделка {visit}',
+                    'name'    => $request->name . ' {visit}',
+                    'phone'   => $request->phone,
+                    'fields'  => array(
+                        'message' => $request->comment
+                    ), 
+                );
+            $response = file_get_contents("https://cloud.roistat.com/api/proxy/1.0/leads/add?" . http_build_query($roistatData));
         } catch (\Exception $e) {
 
         }
