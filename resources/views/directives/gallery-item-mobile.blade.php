@@ -1,5 +1,5 @@
 <div>
-    <img id="p-@{{ index }}" ng-click="service.open(index)" ng-src='@{{ item.url }}'  class="gallery-photo">
+    <img id="p-@{{ index }}" ng-click="service.open(index)" ng-src='@{{ item.thumb }}'  class="gallery-photo">
 </div>
 <div>
     <b>
