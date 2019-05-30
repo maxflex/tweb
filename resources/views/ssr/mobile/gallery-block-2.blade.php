@@ -16,7 +16,7 @@
         @foreach ($items as $index => $item)
             <div class="gallery-item">
                 <div>
-                    <img src='{{ $item->url }}'  class="gallery-photo">
+                    <img src='{{ $item->thumb }}'  class="gallery-photo">
                 </div>
                 <div>
                     <b>

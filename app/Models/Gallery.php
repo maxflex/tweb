@@ -16,7 +16,7 @@ class Gallery extends Model
         'before_and_after' => 'boolean',
     ];
 
-    protected $appends = ['url', 'total_price', 'components'];
+    protected $appends = ['url', 'thumb', 'total_price', 'components'];
 
     // public function taggs()
     // {
@@ -44,7 +44,12 @@ class Gallery extends Model
 
     public function getUrlAttribute()
     {
-        return config('app.crm-url') . 'img/gallery/' . $this->id . '.jpg';
+        return config('app.crm-url') . 'img/gallery/' . $this->id . '.webp';
+    }
+
+    public function getThumbAttribute()
+    {
+        return config('app.crm-url') . 'img/gallery/' . $this->id . '_thumb.webp';
     }
 
     public function getComponentsAttribute()

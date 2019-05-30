@@ -18,7 +18,7 @@
         @foreach ($items as $index => $item)
             <div class='gallery-item' @if ($index >= 3) style='display: none' @endif >
                 <div>
-                    <img src='{{ $item->url }}' class="gallery-photo pointer">
+                    <img src='{{ $item->thumb }}' class="gallery-photo pointer">
                 </div>
                 <div>
                     <div class="entity-header header-3">
