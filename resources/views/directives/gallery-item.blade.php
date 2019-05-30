@@ -1,5 +1,5 @@
 <div>
-    <img ng-click="service.open(index)" ng-src='@{{ item.url }}' class="gallery-photo pointer">
+    <img ng-click="service.open(index)" ng-src='@{{ item.thumb }}' class="gallery-photo pointer">
 </div>
 <div>
     <div class="entity-header header-3">
