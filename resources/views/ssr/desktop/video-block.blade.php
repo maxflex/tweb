@@ -4,7 +4,7 @@
         @foreach ($items as $index => $item)
             <div class="gallery-item" ng-hide='options.show <= {{ $index }}' onclick="openVideo('{{ $item->code }}')">
                 <div class='video-item'>
-                    <img src='https://talisman.ams3.cdn.digitaloceanspaces.com/img/video/{{ $item->id }}.jpg' />
+                    <img src='{{ $item->url }}' />
                     <div class="youtube-video-info">
                         <div class='youtube-video-info__channel-logo'></div>
                         <div class='youtube-video-info__title'>
