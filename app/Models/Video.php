@@ -14,4 +14,9 @@ class Video extends Model
         }
         return $title;
     }
+
+    public function getUrlAttribute()
+    {
+        return config('app.crm-url') . 'img/video/' . $this->id . '.jpg';
+    }
 }
