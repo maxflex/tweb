@@ -9,9 +9,11 @@ angular
         $scope.initGallery = (ids, tags, folders, isFirst = true) ->
             $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
             .then (response) ->
-                $scope.gallery = response.data if isFirst
-                $scope.gallery2 = response.data if not isFirst
-                $scope.galleryLoaded = true
+                $timeout ->
+                    $scope.gallery = response.data if isFirst
+                    $scope.gallery2 = response.data if not isFirst
+                    $scope.galleryLoaded = true
+                , 1000
 
         $timeout ->
             PriceExpander.expand(if isMobile then 15 else 30) 
