@@ -46,18 +46,18 @@ class ConvertImages extends Command
             list($fileName, $fileExt) = explode('.', $file);
             $source = public_path() . '/img/background/' . $file;
 
-            $destination = public_path() . '/img/webp/background/' . $fileName . '.webp';
-            WebPConvert::convert($source, $destination);
+            // $destination = public_path() . '/img/webp/background/' . $fileName . '.webp';
+            // WebPConvert::convert($source, $destination);
 
 
             $thumb = public_path() . '/img/background/' . $fileName . '_small.' . $fileExt;
-            $image
-                ->fromFile($source)
-                ->resize(800, null)
-                ->toFile($thumb , 'image/jpeg', 90);
+            // $image
+            //     ->fromFile($source)
+            //     ->resize(800, null)
+            //     ->toFile($thumb , 'image/jpeg', 90);
 
-            $destination = public_path() . '/img/background/' . $fileName . '_small.' . $fileExt;
-            WebPConvert::convert($source, $destination);
+            $destination = public_path() . '/img/webp/background/' . $fileName . '_small.webp';
+            WebPConvert::convert($thumb, $destination);
 
             $bar->advance();
         }
