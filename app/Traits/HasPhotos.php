@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Photo;
+use App\Models\Master;
 
 trait HasPhotos
 {
@@ -14,7 +15,11 @@ trait HasPhotos
     public function getPhotoUrlAttribute()
     {
         if (count($this->photos)) {
-            return config('app.crm-url') . 'photos/small/' . $this->photos[0]->id . '.jpg';
+            if (static::class === Master::class) {
+                return config('app.crm-url') . 'photos/small/' . $this->photos[0]->id . '.jpg';
+            } else {
+                return config('app.crm-url') . 'photos/cropped/' . $this->photos[0]->cropped;
+            }
         } else {
             return '/img/icons/nocropped.png';
         }
