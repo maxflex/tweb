@@ -43,6 +43,9 @@ class ConvertImages extends Command
         $image = new \claviska\SimpleImage();
 
         foreach($files as $file) {
+	        if ($file !== 'PRB8.jpg') {
+		        continue;
+	        }
             list($fileName, $fileExt) = explode('.', $file);
             $source = public_path() . '/img/background/' . $file;
 
@@ -51,12 +54,12 @@ class ConvertImages extends Command
 
 
             $thumb = public_path() . '/img/background/' . $fileName . '_small.' . $fileExt;
-            // $image
-            //     ->fromFile($source)
-            //     ->resize(800, null)
-            //     ->toFile($thumb , 'image/jpeg', 90);
+            $image
+                ->fromFile($source)
+                ->resize(1400, null)
+                ->toFile($thumb , 'image/jpeg', 90);
 
-            $destination = public_path() . '/img/webp/background/' . $fileName . '_small.webp';
+            $destination = public_path() . '/img/webp/background/' . $fileName . '_medium.webp';
             WebPConvert::convert($thumb, $destination);
 
             $bar->advance();

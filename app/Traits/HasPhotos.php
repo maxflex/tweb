@@ -15,11 +15,7 @@ trait HasPhotos
     public function getPhotoUrlAttribute()
     {
         if (count($this->photos)) {
-            if (static::class === Master::class) {
-                return config('app.crm-url') . 'photos/small/' . $this->photos[0]->id . '.jpg';
-            } else {
-                return config('app.crm-url') . 'photos/cropped/' . $this->photos[0]->cropped;
-            }
+            return config('app.crm-url') . 'photos/small/' . $this->photos[0]->id . '.jpg';
         } else {
             return '/img/icons/nocropped.png';
         }

@@ -44,12 +44,12 @@ class Gallery extends Model
 
     public function getUrlAttribute()
     {
-        return config('app.crm-url') . 'img/gallery/' . $this->id . '.webp';
+        return config('app.crm-url') . 'img/gallery/' . $this->id . '.jpg';
     }
 
     public function getThumbAttribute()
     {
-        return config('app.crm-url') . 'img/gallery/' . $this->id . '_thumb.webp';
+        return config('app.crm-url') . 'img/gallery/' . $this->id . '_thumb.jpg';
     }
 
     public function getComponentsAttribute()
