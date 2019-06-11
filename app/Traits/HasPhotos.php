@@ -25,13 +25,4 @@ trait HasPhotos
             return '/img/icons/nocropped.png';
         }
     }
-
-    public function getPhotoUrlAttribute()
-    {
-        if (count($this->photos)) {
-            return config('app.crm-url') . 'photos/small/' . $this->photos[0]->id . '.jpg';
-        } else {
-            return '/img/icons/nocropped.png';
-        }
-    }
 }
