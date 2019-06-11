@@ -34,7 +34,7 @@
     {{-- OTHER ITEMS --}}
     <div class="service-list__items {{ $firstItem ? 'service-list__items_after-one-line' : '' }}" ng-show='options.showAllItems'>
         @foreach ($items as $index => $item)
-            <div ng-hide='options.show <= {{ $index }}'>
+            <div ng-hide='options.show <= {{ $index }}' @if($index >= 6) class='ng-hide' @endif>
                 @if ($item->link_url)
                     @if (! $noIcons)
                         <div class='pointer'>
