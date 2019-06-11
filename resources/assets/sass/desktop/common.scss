@@ -1780,6 +1780,10 @@ $uploaded-photo-preview-width: 150px;
     border-bottom: none;
 }
 
+.ng-hide:not(.ng-hide-animate) {
+    display: none !important;
+}
+
 @media print { 
    header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
        display: none !important;
