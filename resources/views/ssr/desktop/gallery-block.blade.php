@@ -14,7 +14,7 @@
     </div>
     <ng-image-gallery images="gallery" thumbnails='false' methods='GalleryService.ctrl' bg-close='true'></ng-image-gallery>
 
-    <div class='gallery-block gallery-block-photos' ng-if="!galleryLoaded">
+    <div class='gallery-block gallery-block-photos' style='display: none' ng-if="!galleryLoaded">
         <div class="main-gallery-wrapper">
             @foreach ($items as $index => $item)
                 <div class='gallery-item' @if ($index >= 3) style='display: none' @endif >
