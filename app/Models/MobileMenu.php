@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MobileMenu extends Model
 {
     public $timestamps = false;
-    protected $table = 'mobile_menu';
+    protected $table = 'menu';
     protected $with = ['children'];
 
     public function parent()

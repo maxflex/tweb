@@ -8,6 +8,8 @@ class MobileMenuSection extends Model
 {
     protected $with = ['items'];
 
+    protected $table = 'menu_sections';
+
     public $timestamps = false;
 
     public function items()
