@@ -3,10 +3,11 @@
 @if (count($items) > 0)
 <div class="vertical-slider gallery-block-photos" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}')" ng-show='galleryLoaded'>
     <div class="main-gallery-wrapper">
-        <div ng-repeat="g in gallery" class="gallery-item">
+        <div ng-repeat="g in gallery.slice(0, GalleryService.displayed) track by $index" class="gallery-item">
            <gallery-item item='g' index='$index' service='GalleryService'></gallery-item>
         </div>
     </div>
+    <span ng-click='GalleryService.displayed = GalleryService.displayed + 10' id="clickshow" style='display: none;'>показать ещё</span>
 </div>
 
 <ng-image-gallery images="gallery" thumbnails='false' methods='GalleryService.ctrl' bg-close='true' img-anim="fadeup"></ng-image-gallery>
