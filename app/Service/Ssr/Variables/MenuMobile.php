@@ -16,6 +16,8 @@ class MenuMobile extends SsrVariable {
 
     private function getItems()
     {
-        return MobileMenuSection::orderBy('position', 'asc')->get();
+        return MobileMenuSection::where('type', 'mobile')
+            ->orderBy('position', 'asc')
+            ->get();
     }
 }
