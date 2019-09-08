@@ -6,7 +6,7 @@ use App\Service\Ssr\SsrVariable;
 // use App\Models\MobileMenu;
 use App\Models\MobileMenuSection;
 
-class MenuMobile extends SsrVariable {
+class Menu extends SsrVariable {
     public function parse()
     {
         return view($this->getViewName(), [
@@ -16,7 +16,7 @@ class MenuMobile extends SsrVariable {
 
     private function getItems()
     {
-        return MobileMenuSection::where('type', 'mobile')
+        return MobileMenuSection::where('type', $this->args->type)
             ->orderBy('position', 'asc')
             ->get();
     }
