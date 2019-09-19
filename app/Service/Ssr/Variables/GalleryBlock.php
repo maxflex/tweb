@@ -9,7 +9,7 @@ use App\Models\Gallery;
 class GalleryBlock extends SsrVariable {
     public function parse()
     {
-        // dd([@$this->args->ids, @$this->args->folders, @$this->args->tags]);
+        //dd([@$this->args->ids, @$this->args->folders, @$this->page->tags]);
         return view($this->getViewName(), [
             'items' => $this->getItems(),
             'args' => $this->args,
@@ -22,6 +22,6 @@ class GalleryBlock extends SsrVariable {
         if (! @$this->args->ids && @$this->page->url === 'masters/:id') {
             return [];
         }
-        return Gallery::getItems(@$this->args->ids, @$this->args->folders, @$this->args->tags)->take(9)->get();
+        return Gallery::getItems(@$this->args->ids, @$this->args->folders, @$this->page->tags)->take(9)->get();
     }
 }
