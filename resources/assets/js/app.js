@@ -311,71 +311,6 @@
 }).call(this);
 
 (function() {
-  window.PriceExpander = (function() {
-    PriceExpander.prototype.base_class = '.price-list:visible';
-
-    PriceExpander.prototype.li_class = 'li';
-
-    function PriceExpander(n) {
-      this.n = n;
-    }
-
-    PriceExpander.prototype._expand = function(level) {
-      var expanded, i, j, ref, selector;
-      if (level == null) {
-        level = 1;
-      }
-      selector = [this.base_class];
-      for (i = j = 0, ref = level - 1; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
-        selector.push(this.li_class);
-      }
-      selector = selector.join(' ');
-      expanded = false;
-      $(selector).each((function(_this) {
-        return function(i, e) {
-          if (expanded) {
-            return;
-          }
-          e = $(e).children().children('.price-section');
-          if (e.length > 0) {
-            console.log('clicking on ', e);
-            console.log('selector', selector);
-            console.log("Length: ", _this.getLength(), _this.isExpanded(), expanded);
-            if (!e.parent().children('ul').is(':visible')) {
-              e.click();
-              if (_this.isExpanded()) {
-                expanded = true;
-              }
-            }
-          }
-        };
-      })(this));
-      if (!expanded && level < 5) {
-        return this._expand(level + 1);
-      }
-    };
-
-    PriceExpander.prototype.getLength = function() {
-      return $([this.base_class, this.li_class].join(' ')).length;
-    };
-
-    PriceExpander.prototype.isExpanded = function() {
-      return this.getLength() > this.n;
-    };
-
-    PriceExpander.expand = function(n) {
-      var expander;
-      expander = new PriceExpander(n);
-      return expander._expand();
-    };
-
-    return PriceExpander;
-
-  })();
-
-}).call(this);
-
-(function() {
   angular.module('App').value('AvgScores', {
     '1-11-1': 46.3,
     '2-11': 51.2,
@@ -493,288 +428,67 @@
 }).call(this);
 
 (function() {
-  angular.module('App').controller('Gallery', function($scope, $timeout, StreamService) {
-    bindArguments($scope, arguments);
-    angular.element(document).ready(function() {
-      $scope.all_photos = [];
-      return _.each($scope.groups, function(group) {
-        return $scope.all_photos = $scope.all_photos.concat(group.photo);
-      });
-    });
-    $scope.openPhoto = function(photo_id) {
-      StreamService.run('photogallery', "open_" + photo_id);
-      return $scope.gallery.open($scope.getFlatIndex(photo_id));
-    };
-    return $scope.getFlatIndex = function(photo_id) {
-      return _.findIndex($scope.all_photos, {
-        id: photo_id
-      });
-    };
-  });
+  window.PriceExpander = (function() {
+    PriceExpander.prototype.base_class = '.price-list:visible';
 
-}).call(this);
+    PriceExpander.prototype.li_class = 'li';
 
-(function() {
-  angular.module('App').controller('main', function($scope, $timeout, $http, GalleryService) {
-    var initGmap;
-    bindArguments($scope, arguments);
-    $scope.galleryLoaded = false;
-    $scope.GalleryService2 = _.clone(GalleryService);
-    $scope.initGallery = function(ids, tags, folders, isFirst) {
-      if (isFirst == null) {
-        isFirst = true;
-      }
-      return $http.post('/api/gallery/init', {
-        ids: ids,
-        tags: tags,
-        folders: folders
-      }).then(function(response) {
-        if (isFirst) {
-          $scope.gallery = response.data;
-        }
-        if (!isFirst) {
-          $scope.gallery2 = response.data;
-        }
-        return $scope.galleryLoaded = true;
-      });
-    };
-    $timeout(function() {
-      PriceExpander.expand(isMobile ? 15 : 30);
-      return initGmap();
-    });
-    return initGmap = function() {
-      var markers;
-      $scope.map = new google.maps.Map(document.getElementById("map"), {
-        scrollwheel: false,
-        disableDefaultUI: true,
-        clickableLabels: false,
-        clickableIcons: false,
-        zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_CENTER
-        },
-        scaleControl: false
-      });
-      $scope.bounds = new google.maps.LatLngBounds;
-      markers = [newMarker(new google.maps.LatLng(55.717295, 37.595088), $scope.map), newMarker(new google.maps.LatLng(55.781302, 37.516045), $scope.map), newMarker(new google.maps.LatLng(55.776532, 37.614473), $scope.map)];
-      markers.forEach(function(marker) {
-        var marker_location;
-        marker_location = new google.maps.LatLng(marker.lat, marker.lng);
-        return $scope.bounds.extend(marker_location);
-      });
-      $scope.map.fitBounds($scope.bounds);
-      $scope.map.panToBounds($scope.bounds);
-      if (isMobile) {
-        return window.onOpenModal = function() {
-          google.maps.event.trigger($scope.map, 'resize');
-          $scope.map.fitBounds($scope.bounds);
-          return $scope.map.panToBounds($scope.bounds);
-        };
-      }
-    };
-  });
+    function PriceExpander(n) {
+      this.n = n;
+    }
 
-}).call(this);
-
-(function() {
-  angular.module('App').controller('master', function($scope, $timeout, $http, Master, GalleryService) {
-    bindArguments($scope, arguments);
-    $scope.reviews_block = false;
-    $scope.gallery = [];
-    $scope.galleryLoaded = false;
-    $scope.initGallery = function(ids, tags, folders) {
-      if (ids) {
-        return $http.post('/api/gallery/init', {
-          ids: ids,
-          tags: tags,
-          folders: folders
-        }).then(function(response) {
-          $scope.gallery = response.data;
-          return $scope.galleryLoaded = true;
-        });
+    PriceExpander.prototype._expand = function(level) {
+      var expanded, i, j, ref, selector;
+      if (level == null) {
+        level = 1;
       }
-    };
-    $scope.toggleShow = function(master, prop, iteraction_type, index) {
-      if (index == null) {
-        index = null;
+      selector = [this.base_class];
+      for (i = j = 0, ref = level - 1; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+        selector.push(this.li_class);
       }
-      if (master[prop]) {
-        return $timeout(function() {
-          return master[prop] = false;
-        }, $scope.mobile ? 400 : 0);
-      } else {
-        return master[prop] = true;
-      }
-    };
-    return $scope.popup = function(id, master, fn, index) {
-      if (master == null) {
-        master = null;
-      }
-      if (fn == null) {
-        fn = null;
-      }
-      if (index == null) {
-        index = null;
-      }
-      openModal(id);
-      if (master !== null) {
-        $scope.popup_master = master;
-      }
-      if (fn !== null) {
-        return $timeout(function() {
-          return $scope[fn](master, index);
-        });
-      }
-    };
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').controller('masters', function($scope) {
-    return bindArguments($scope, arguments);
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').controller('order', function($scope, $timeout, $http, Grades, Subjects, Request, StreamService) {
-    bindArguments($scope, arguments);
-    $timeout(function() {
-      $scope.order = {
-        photos: []
-      };
-      $scope.popups = {};
-      $scope.agreement = true;
-      $scope.max_photos = 5;
-      $('body').on('drop dragover', function(e) {
-        e.preventDefault();
-        return false;
-      });
-      return $('#fileupload').fileupload({
-        maxFileSize: 5000000,
-        send: function(e, data) {
-          if (data.files[0].size > 5242880) {
-            $scope.upload_error = 'максимальный объём файла – 5 Мб';
-            $scope.$apply();
-            return false;
+      selector = selector.join(' ');
+      expanded = false;
+      $(selector).each((function(_this) {
+        return function(i, e) {
+          if (expanded) {
+            return;
           }
-          $scope.upload_error = null;
-          $scope.order.photos.push(null);
-          return $scope.$apply();
-        },
-        progress: function(e, data) {
-          $scope.uploaded_percentage = Math.round(data.loaded / data.total * 100);
-          return $scope.$apply();
-        },
-        done: (function(_this) {
-          return function(i, response) {
-            if (response.result.hasOwnProperty('error')) {
-              $scope.order.photos.splice(-1);
-              $scope.upload_error = response.result.error;
-              eventAction('stat-order-error', response.result.error);
-            } else {
-              $scope.order.photos[$scope.order.photos.length - 1] = response.result;
-              eventAction('stat-file-attach', $scope.order.photos.length);
+          e = $(e).children().children('.price-section');
+          if (e.length > 0) {
+            console.log('clicking on ', e);
+            console.log('selector', selector);
+            console.log("Length: ", _this.getLength(), _this.isExpanded(), expanded);
+            if (!e.parent().children('ul').is(':visible')) {
+              e.click();
+              if (_this.isExpanded()) {
+                expanded = true;
+              }
             }
-            return $scope.$apply();
-          };
-        })(this)
-      });
-    });
-    $scope.photoUploading = function() {
-      return $scope.order.photos[$scope.order.photos.length - 1] === null;
-    };
-    $scope.filterPopup = function(popup) {
-      return $scope.popups[popup] = true;
-    };
-    $scope.select = function(field, value) {
-      $scope.order[field] = value;
-      return $scope.popups = {};
-    };
-    $scope.photosAllowed = function() {
-      return $scope.max_photos - $scope.order.photos.length;
-    };
-    $scope.fileChange = function(event) {
-      return console.log(event);
-    };
-    return $scope.request = function() {
-      $scope.sending = true;
-      $scope.errors = {};
-      return Request.save($scope.order, function() {
-        $scope.sending = false;
-        $scope.sent = true;
-        eventAction('stat-order');
-        return $('body').animate({
-          scrollTop: $('.header').offset().top
-        });
-      }, function(response) {
-        var errors_string;
-        $scope.sending = false;
-        errors_string = [];
-        angular.forEach(response.data, function(errors, field) {
-          var input, selector;
-          $scope.errors[field] = errors;
-          errors_string.push((field + ": ") + errors.join(', '));
-          selector = "[ng-model$='" + field + "']";
-          $('html,body').animate({
-            scrollTop: $("input" + selector + ", textarea" + selector).first().offset().top
-          }, 0);
-          input = $("input" + selector + ", textarea" + selector);
-          input.focus();
-          if (isMobile) {
-            return input.notify(errors[0], notify_options);
           }
-        });
-        return eventAction('stat-order-error', errors_string.join(' | '));
-      });
+        };
+      })(this));
+      if (!expanded && level < 5) {
+        return this._expand(level + 1);
+      }
     };
-  });
 
-}).call(this);
-
-(function() {
-  angular.module('App').controller('other', function($scope) {
-    return bindArguments($scope, arguments);
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').controller('price', function($scope) {
-    return bindArguments($scope, arguments);
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').constant('REVIEWS_PER_PAGE', 5).controller('reviews', function($scope, $timeout, $http, Subjects, StreamService) {
-    var search;
-    bindArguments($scope, arguments);
-    $timeout(function() {
-      $scope.reviews = [];
-      $scope.page = 1;
-      $scope.has_more_pages = true;
-      return search();
-    });
-    $scope.popup = function(index) {
-      return $scope.show_review = index;
+    PriceExpander.prototype.getLength = function() {
+      return $([this.base_class, this.li_class].join(' ')).length;
     };
-    $scope.nextPage = function() {
-      StreamService.run('all_reviews', 'more');
-      $scope.page++;
-      return search();
+
+    PriceExpander.prototype.isExpanded = function() {
+      return this.getLength() > this.n;
     };
-    return search = function() {
-      $scope.searching = true;
-      return $http.get('/api/reviews/bypage?page=' + $scope.page).then(function(response) {
-        console.log(response);
-        $scope.searching = false;
-        $scope.reviews = $scope.reviews.concat(response.data.reviews);
-        return $scope.has_more_pages = response.data.has_more_pages;
-      });
+
+    PriceExpander.expand = function(n) {
+      var expander;
+      expander = new PriceExpander(n);
+      return expander._expand();
     };
-  });
+
+    return PriceExpander;
+
+  })();
 
 }).call(this);
 
@@ -1040,67 +754,288 @@
 }).call(this);
 
 (function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Master', function($resource) {
-    return $resource(apiPath('masters'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('masters', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
-      }
+  angular.module('App').controller('Gallery', function($scope, $timeout, StreamService) {
+    bindArguments($scope, arguments);
+    angular.element(document).ready(function() {
+      $scope.all_photos = [];
+      return _.each($scope.groups, function(group) {
+        return $scope.all_photos = $scope.all_photos.concat(group.photo);
+      });
     });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
+    $scope.openPhoto = function(photo_id) {
+      StreamService.run('photogallery', "open_" + photo_id);
+      return $scope.gallery.open($scope.getFlatIndex(photo_id));
+    };
+    return $scope.getFlatIndex = function(photo_id) {
+      return _.findIndex($scope.all_photos, {
+        id: photo_id
+      });
+    };
   });
 
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
+}).call(this);
 
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
+(function() {
+  angular.module('App').controller('main', function($scope, $timeout, $http, GalleryService) {
+    var initGmap;
+    bindArguments($scope, arguments);
+    $scope.galleryLoaded = false;
+    $scope.GalleryService2 = _.clone(GalleryService);
+    $scope.initGallery = function(ids, tags, folders, isFirst) {
+      if (isFirst == null) {
+        isFirst = true;
+      }
+      return $http.post('/api/gallery/init', {
+        ids: ids,
+        tags: tags,
+        folders: folders
+      }).then(function(response) {
+        if (isFirst) {
+          $scope.gallery = response.data;
+        }
+        if (!isFirst) {
+          $scope.gallery2 = response.data;
+        }
+        return $scope.galleryLoaded = true;
+      });
+    };
+    $timeout(function() {
+      PriceExpander.expand(isMobile ? 15 : 30);
+      return initGmap();
+    });
+    return initGmap = function() {
+      var markers;
+      $scope.map = new google.maps.Map(document.getElementById("map"), {
+        scrollwheel: false,
+        disableDefaultUI: true,
+        clickableLabels: false,
+        clickableIcons: false,
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        },
+        scaleControl: false
+      });
+      $scope.bounds = new google.maps.LatLngBounds;
+      markers = [newMarker(new google.maps.LatLng(55.717295, 37.595088), $scope.map), newMarker(new google.maps.LatLng(55.781302, 37.516045), $scope.map)];
+      markers.forEach(function(marker) {
+        var marker_location;
+        marker_location = new google.maps.LatLng(marker.lat, marker.lng);
+        return $scope.bounds.extend(marker_location);
+      });
+      $scope.map.fitBounds($scope.bounds);
+      $scope.map.panToBounds($scope.bounds);
+      if (isMobile) {
+        return window.onOpenModal = function() {
+          google.maps.event.trigger($scope.map, 'resize');
+          $scope.map.fitBounds($scope.bounds);
+          return $scope.map.panToBounds($scope.bounds);
+        };
       }
     };
-  };
+  });
 
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
+}).call(this);
+
+(function() {
+  angular.module('App').controller('master', function($scope, $timeout, $http, Master, GalleryService) {
+    bindArguments($scope, arguments);
+    $scope.reviews_block = false;
+    $scope.gallery = [];
+    $scope.galleryLoaded = false;
+    $scope.initGallery = function(ids, tags, folders) {
+      if (ids) {
+        return $http.post('/api/gallery/init', {
+          ids: ids,
+          tags: tags,
+          folders: folders
+        }).then(function(response) {
+          $scope.gallery = response.data;
+          return $scope.galleryLoaded = true;
+        });
       }
     };
-  };
+    $scope.toggleShow = function(master, prop, iteraction_type, index) {
+      if (index == null) {
+        index = null;
+      }
+      if (master[prop]) {
+        return $timeout(function() {
+          return master[prop] = false;
+        }, $scope.mobile ? 400 : 0);
+      } else {
+        return master[prop] = true;
+      }
+    };
+    return $scope.popup = function(id, master, fn, index) {
+      if (master == null) {
+        master = null;
+      }
+      if (fn == null) {
+        fn = null;
+      }
+      if (index == null) {
+        index = null;
+      }
+      openModal(id);
+      if (master !== null) {
+        $scope.popup_master = master;
+      }
+      if (fn !== null) {
+        return $timeout(function() {
+          return $scope[fn](master, index);
+        });
+      }
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').controller('masters', function($scope) {
+    return bindArguments($scope, arguments);
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').controller('order', function($scope, $timeout, $http, Grades, Subjects, Request, StreamService) {
+    bindArguments($scope, arguments);
+    $timeout(function() {
+      $scope.order = {
+        photos: []
+      };
+      $scope.popups = {};
+      $scope.agreement = true;
+      $scope.max_photos = 5;
+      $('body').on('drop dragover', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      return $('#fileupload').fileupload({
+        maxFileSize: 5000000,
+        send: function(e, data) {
+          if (data.files[0].size > 5242880) {
+            $scope.upload_error = 'максимальный объём файла – 5 Мб';
+            $scope.$apply();
+            return false;
+          }
+          $scope.upload_error = null;
+          $scope.order.photos.push(null);
+          return $scope.$apply();
+        },
+        progress: function(e, data) {
+          $scope.uploaded_percentage = Math.round(data.loaded / data.total * 100);
+          return $scope.$apply();
+        },
+        done: (function(_this) {
+          return function(i, response) {
+            if (response.result.hasOwnProperty('error')) {
+              $scope.order.photos.splice(-1);
+              $scope.upload_error = response.result.error;
+              eventAction('stat-order-error', response.result.error);
+            } else {
+              $scope.order.photos[$scope.order.photos.length - 1] = response.result;
+              eventAction('stat-file-attach', $scope.order.photos.length);
+            }
+            return $scope.$apply();
+          };
+        })(this)
+      });
+    });
+    $scope.photoUploading = function() {
+      return $scope.order.photos[$scope.order.photos.length - 1] === null;
+    };
+    $scope.filterPopup = function(popup) {
+      return $scope.popups[popup] = true;
+    };
+    $scope.select = function(field, value) {
+      $scope.order[field] = value;
+      return $scope.popups = {};
+    };
+    $scope.photosAllowed = function() {
+      return $scope.max_photos - $scope.order.photos.length;
+    };
+    $scope.fileChange = function(event) {
+      return console.log(event);
+    };
+    return $scope.request = function() {
+      $scope.sending = true;
+      $scope.errors = {};
+      return Request.save($scope.order, function() {
+        $scope.sending = false;
+        $scope.sent = true;
+        eventAction('stat-order');
+        return $('body').animate({
+          scrollTop: $('.header').offset().top
+        });
+      }, function(response) {
+        var errors_string;
+        $scope.sending = false;
+        errors_string = [];
+        angular.forEach(response.data, function(errors, field) {
+          var input, selector;
+          $scope.errors[field] = errors;
+          errors_string.push((field + ": ") + errors.join(', '));
+          selector = "[ng-model$='" + field + "']";
+          $('html,body').animate({
+            scrollTop: $("input" + selector + ", textarea" + selector).first().offset().top
+          }, 0);
+          input = $("input" + selector + ", textarea" + selector);
+          input.focus();
+          if (isMobile) {
+            return input.notify(errors[0], notify_options);
+          }
+        });
+        return eventAction('stat-order-error', errors_string.join(' | '));
+      });
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').controller('other', function($scope) {
+    return bindArguments($scope, arguments);
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').controller('price', function($scope) {
+    return bindArguments($scope, arguments);
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').constant('REVIEWS_PER_PAGE', 5).controller('reviews', function($scope, $timeout, $http, Subjects, StreamService) {
+    var search;
+    bindArguments($scope, arguments);
+    $timeout(function() {
+      $scope.reviews = [];
+      $scope.page = 1;
+      $scope.has_more_pages = true;
+      return search();
+    });
+    $scope.popup = function(index) {
+      return $scope.show_review = index;
+    };
+    $scope.nextPage = function() {
+      StreamService.run('all_reviews', 'more');
+      $scope.page++;
+      return search();
+    };
+    return search = function() {
+      $scope.searching = true;
+      return $http.get('/api/reviews/bypage?page=' + $scope.page).then(function(response) {
+        console.log(response);
+        $scope.searching = false;
+        $scope.reviews = $scope.reviews.concat(response.data.reviews);
+        return $scope.has_more_pages = response.data.has_more_pages;
+      });
+    };
+  });
 
 }).call(this);
 
@@ -1338,6 +1273,71 @@
     };
     return this;
   });
+
+}).call(this);
+
+(function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Master', function($resource) {
+    return $resource(apiPath('masters'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('masters', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
 
 }).call(this);
 
