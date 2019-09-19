@@ -439,7 +439,7 @@
         scaleControl: false
       });
       $scope.bounds = new google.maps.LatLngBounds;
-      markers = [newMarker(new google.maps.LatLng(55.717295, 37.595088), $scope.map), newMarker(new google.maps.LatLng(55.781302, 37.516045), $scope.map), newMarker(new google.maps.LatLng(55.7764563, 37.6137761), $scope.map)];
+      markers = [newMarker(new google.maps.LatLng(55.717295, 37.595088), $scope.map), newMarker(new google.maps.LatLng(55.781302, 37.516045), $scope.map), newMarker(new google.maps.LatLng(55.776497, 37.614389), $scope.map)];
       markers.forEach(function(marker) {
         var marker_location;
         marker_location = new google.maps.LatLng(marker.lat, marker.lng);
