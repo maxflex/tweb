@@ -4164,6 +4164,11 @@ a[href^="https://www.google.com/maps"] {
 .ng-hide:not(.ng-hide-animate) {
   display: none !important; }
 
+.menu-metros {
+  margin-bottom: 16px; }
+  .menu-metros .metro-circle {
+    border: 1px solid rgba(255, 255, 255, 0.5); }
+
 @media print {
   header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
     display: none !important; } }

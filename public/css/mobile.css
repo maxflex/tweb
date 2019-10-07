@@ -7804,6 +7804,13 @@ h1.padding-top, .padding-top.header-1 {
   align-items: center;
   display: -webkit-box;
   display: flex; }
+  .menu-link-mobile--with-metro {
+    height: initial;
+    padding: 12px 20px; }
+    .menu-link-mobile--with-metro a {
+      left: 0; }
+    .menu-link-mobile--with-metro .menu-metros {
+      padding-top: 6px; }
 
 #modal-menu {
   padding-bottom: 40px;

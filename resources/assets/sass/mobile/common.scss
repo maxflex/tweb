@@ -1363,6 +1363,18 @@ $uploaded-photo-preview-width: 32%;
     height: 52px;
     align-items: center;
     display: flex;
+
+    &--with-metro {
+        height: initial;
+        padding: 12px 20px;
+        & a {
+            left: 0;
+        }
+
+        & .menu-metros {
+            padding-top: 6px;
+        }
+    }
 }
 
 // .main-gallery-wrapper {

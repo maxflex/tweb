@@ -1,7 +1,62 @@
 @if ($item->is_link)
-<li class='menu-link-mobile'>
-    <a class='menu-level-{{ $level + 1 }}' href='{{ $item->extra }}'>{{ $item->title }}</a>
-</li>
+    @if(!in_array($item->id, [868, 869, 870]))
+    <li class='menu-link-mobile'>
+        <a class='menu-level-{{ $level + 1 }}' href='{{ $item->extra }}'>{{ $item->title }}</a>
+    </li>
+    @else
+    <li class='menu-link-mobile menu-link-mobile--with-metro'>
+        <div>
+            <a class='menu-level-{{ $level + 1 }}' href='{{ $item->extra }}'>{{ $item->title }}</a>
+
+            @if($item->id === 868)
+            <div class='menu-metros'>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-5'></span>
+                    <span>Октябрьская</span>
+                </div>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-6'></span>
+                    <span>Ленинский проспект</span>
+                </div>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-6'></span>
+                    <span>Шаболовская</span>
+                </div>
+            </div>
+            @endif
+
+            @if($item->id === 869)
+            <div class='menu-metros'>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-7'></span>
+                    <span>Полежаевская</span>
+                </div>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-8'></span>
+                    <span>Хорошевская</span>
+                </div>
+            </div>
+            @endif
+
+            @if($item->id === 870)
+            <div class='menu-metros'>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-10'></span>
+                    <span>Достоевская</span>
+                </div>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-9'></span>
+                    <span>Цветной бульвар</span>
+                </div>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-5'></span>
+                    <span>Новослободская</span>
+                </div>
+            </div>
+            @endif
+        </div>
+    </li>
+    @endif
 @else
 <li>
     <div class='price-item {{ $level === 0 ? 'price-item-root' : 'price-item-section' }}'>

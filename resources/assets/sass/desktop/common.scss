@@ -1784,6 +1784,13 @@ $uploaded-photo-preview-width: 150px;
     display: none !important;
 }
 
+.menu-metros {
+    margin-bottom: 16px;
+    & .metro-circle {
+        border: 1px solid rgba(white, .5);
+    }
+}
+
 @media print { 
    header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
        display: none !important;
