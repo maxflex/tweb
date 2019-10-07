@@ -662,123 +662,6 @@
 }).call(this);
 
 (function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
-  });
-
-}).call(this);
-
-(function() {
   var apiPath, countable, updatable;
 
   angular.module('App').factory('Master', function($resource) {
@@ -840,243 +723,6 @@
       }
     };
   };
-
-}).call(this);
-
-(function() {
-  angular.module('App').service('GalleryService', function() {
-    var DIRECTION, animation_in_progress, el, scroll_left;
-    this.displayed = 3;
-    el = null;
-    scroll_left = null;
-    DIRECTION = {
-      next: 1,
-      prev: 0
-    };
-    animation_in_progress = false;
-    this.open = function(index) {
-      return this.ctrl.open(index);
-    };
-    this.init = function(gallery) {
-      this.gallery = gallery;
-      this.gallery.push(gallery[0]);
-      this.gallery.unshift(gallery[gallery.length - 2]);
-      el = $('.main-gallery-block');
-      this.screen_width = $('.main-gallery-block .gallery-item').first().outerWidth();
-      return this.setActive(1);
-    };
-    this.next = function() {
-      if (animation_in_progress) {
-        return;
-      }
-      this.rotateControl(DIRECTION.next);
-      return this.setActive(this.active + 1);
-    };
-    this.prev = function() {
-      if (animation_in_progress) {
-        return;
-      }
-      this.rotateControl(DIRECTION.prev);
-      return this.setActive(this.active - 1);
-    };
-    this.setActive = function(index) {
-      this.active = index;
-      return this.scroll();
-    };
-    this.rotateControl = function(direction) {
-      if (this.active === 1 && direction === DIRECTION.prev) {
-        this.active = this.gallery.length - 1;
-        this.scroll(0);
-      }
-      if (this.active === this.gallery.length - 2 && direction === DIRECTION.next) {
-        this.active = 0;
-        return this.scroll(0);
-      }
-    };
-    this.scroll = function(animation_speed) {
-      if (animation_speed == null) {
-        animation_speed = 500;
-      }
-      animation_in_progress = true;
-      return el.stop().animate({
-        scrollLeft: this.screen_width * this.active + this.screen_width - (($(window).width() - this.screen_width) / 2)
-      }, animation_speed, function() {
-        return animation_in_progress = false;
-      });
-    };
-    return this;
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').service('PhoneService', function() {
-    var isFull;
-    this.checkForm = function(element) {
-      var phone_element, phone_number;
-      phone_element = $(element).find('.phone-field');
-      if (!isFull(phone_element.val())) {
-        phone_element.focus().notify('номер телефона не заполнен полностью', notify_options);
-        return false;
-      }
-      phone_number = phone_element.val().match(/\d/g).join('');
-      if (phone_number[1] !== '4' && phone_number[1] !== '9') {
-        phone_element.focus().notify('номер должен начинаться с 9 или 4', notify_options);
-        return false;
-      }
-      return true;
-    };
-    isFull = function(number) {
-      if (number === void 0 || number === "") {
-        return false;
-      }
-      return !number.match(/_/);
-    };
-    return this;
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').service('StreamService', function($http, $timeout, Stream) {
-    this.identifySource = function(tutor) {
-      if (tutor == null) {
-        tutor = void 0;
-      }
-      if (tutor !== void 0 && tutor.is_similar) {
-        return 'similar';
-      }
-      if (RegExp(/^\/[\d]+$/).test(window.location.pathname)) {
-        return 'tutor';
-      }
-      if (window.location.pathname === '/request') {
-        return 'help';
-      }
-      if (window.location.pathname === '/') {
-        return 'main';
-      }
-      return 'serp';
-    };
-    this.generateEventString = function(params) {
-      var parts, search;
-      search = $.cookie('search');
-      if (search !== void 0) {
-        $.each(JSON.parse(search), function(key, value) {
-          return params[key] = value;
-        });
-      }
-      parts = [];
-      $.each(params, function(key, value) {
-        var where;
-        switch (key) {
-          case 'sort':
-            switch (parseInt(value)) {
-              case 2:
-                value = 'maxprice';
-                break;
-              case 3:
-                value = 'minprice';
-                break;
-              case 4:
-                value = 'rating';
-                break;
-              case 5:
-                value = 'bymetro';
-                break;
-              default:
-                value = 'pop';
-            }
-            break;
-          case 'place':
-            switch (parseInt(params.place)) {
-              case 1:
-                where = 'tutor';
-                break;
-              case 2:
-                where = 'client';
-                break;
-              default:
-                where = 'any';
-            }
-        }
-        if ((key === 'action' || key === 'type' || key === 'google_id' || key === 'yandex_id' || key === 'id' || key === 'hidden_filter') || !value) {
-          return;
-        }
-        return parts.push(key + '=' + value);
-      });
-      return parts.join('_');
-    };
-    this.updateCookie = function(params) {
-      if (this.cookie === void 0) {
-        this.cookie = {};
-      }
-      $.each(params, (function(_this) {
-        return function(key, value) {
-          return _this.cookie[key] = value;
-        };
-      })(this));
-      return $.cookie('stream', JSON.stringify(this.cookie), {
-        expires: 365,
-        path: '/'
-      });
-    };
-    this.initCookie = function() {
-      if ($.cookie('stream') !== void 0) {
-        return this.cookie = JSON.parse($.cookie('stream'));
-      } else {
-        return this.updateCookie({
-          step: 0,
-          search: 0
-        });
-      }
-    };
-    this.run = function(action, type, additional) {
-      if (additional == null) {
-        additional = {};
-      }
-      if (this.cookie === void 0) {
-        this.initCookie();
-      }
-      if (!this.initialized) {
-        return $timeout((function(_this) {
-          return function() {
-            return _this._run(action, type, additional);
-          };
-        })(this), 1000);
-      } else {
-        return this._run(action, type, additional);
-      }
-    };
-    this._run = function(action, type, additional) {
-      var params;
-      if (additional == null) {
-        additional = {};
-      }
-      this.updateCookie({
-        step: this.cookie.step + 1
-      });
-      params = {
-        action: action,
-        type: type,
-        step: this.cookie.step,
-        mobile: typeof isMobile === 'undefined' ? '0' : '1'
-      };
-      $.each(additional, (function(_this) {
-        return function(key, value) {
-          return params[key] = value;
-        };
-      })(this));
-      if (action !== 'page') {
-        dataLayerPush({
-          event: 'configuration',
-          eventCategory: action,
-          eventAction: type
-        });
-      }
-      return Stream.save(params).$promise;
-    };
-    return this;
-  });
 
 }).call(this);
 
@@ -1338,6 +984,360 @@
 
 (function() {
 
+
+}).call(this);
+
+(function() {
+  angular.module('App').service('GalleryService', function() {
+    var DIRECTION, animation_in_progress, el, scroll_left;
+    this.displayed = 3;
+    el = null;
+    scroll_left = null;
+    DIRECTION = {
+      next: 1,
+      prev: 0
+    };
+    animation_in_progress = false;
+    this.open = function(index) {
+      return this.ctrl.open(index);
+    };
+    this.init = function(gallery) {
+      this.gallery = gallery;
+      this.gallery.push(gallery[0]);
+      this.gallery.unshift(gallery[gallery.length - 2]);
+      el = $('.main-gallery-block');
+      this.screen_width = $('.main-gallery-block .gallery-item').first().outerWidth();
+      return this.setActive(1);
+    };
+    this.next = function() {
+      if (animation_in_progress) {
+        return;
+      }
+      this.rotateControl(DIRECTION.next);
+      return this.setActive(this.active + 1);
+    };
+    this.prev = function() {
+      if (animation_in_progress) {
+        return;
+      }
+      this.rotateControl(DIRECTION.prev);
+      return this.setActive(this.active - 1);
+    };
+    this.setActive = function(index) {
+      this.active = index;
+      return this.scroll();
+    };
+    this.rotateControl = function(direction) {
+      if (this.active === 1 && direction === DIRECTION.prev) {
+        this.active = this.gallery.length - 1;
+        this.scroll(0);
+      }
+      if (this.active === this.gallery.length - 2 && direction === DIRECTION.next) {
+        this.active = 0;
+        return this.scroll(0);
+      }
+    };
+    this.scroll = function(animation_speed) {
+      if (animation_speed == null) {
+        animation_speed = 500;
+      }
+      animation_in_progress = true;
+      return el.stop().animate({
+        scrollLeft: this.screen_width * this.active + this.screen_width - (($(window).width() - this.screen_width) / 2)
+      }, animation_speed, function() {
+        return animation_in_progress = false;
+      });
+    };
+    return this;
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').service('PhoneService', function() {
+    var isFull;
+    this.checkForm = function(element) {
+      var phone_element, phone_number;
+      phone_element = $(element).find('.phone-field');
+      if (!isFull(phone_element.val())) {
+        phone_element.focus().notify('номер телефона не заполнен полностью', notify_options);
+        return false;
+      }
+      phone_number = phone_element.val().match(/\d/g).join('');
+      if (phone_number[1] !== '4' && phone_number[1] !== '9') {
+        phone_element.focus().notify('номер должен начинаться с 9 или 4', notify_options);
+        return false;
+      }
+      return true;
+    };
+    isFull = function(number) {
+      if (number === void 0 || number === "") {
+        return false;
+      }
+      return !number.match(/_/);
+    };
+    return this;
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').service('StreamService', function($http, $timeout, Stream) {
+    this.identifySource = function(tutor) {
+      if (tutor == null) {
+        tutor = void 0;
+      }
+      if (tutor !== void 0 && tutor.is_similar) {
+        return 'similar';
+      }
+      if (RegExp(/^\/[\d]+$/).test(window.location.pathname)) {
+        return 'tutor';
+      }
+      if (window.location.pathname === '/request') {
+        return 'help';
+      }
+      if (window.location.pathname === '/') {
+        return 'main';
+      }
+      return 'serp';
+    };
+    this.generateEventString = function(params) {
+      var parts, search;
+      search = $.cookie('search');
+      if (search !== void 0) {
+        $.each(JSON.parse(search), function(key, value) {
+          return params[key] = value;
+        });
+      }
+      parts = [];
+      $.each(params, function(key, value) {
+        var where;
+        switch (key) {
+          case 'sort':
+            switch (parseInt(value)) {
+              case 2:
+                value = 'maxprice';
+                break;
+              case 3:
+                value = 'minprice';
+                break;
+              case 4:
+                value = 'rating';
+                break;
+              case 5:
+                value = 'bymetro';
+                break;
+              default:
+                value = 'pop';
+            }
+            break;
+          case 'place':
+            switch (parseInt(params.place)) {
+              case 1:
+                where = 'tutor';
+                break;
+              case 2:
+                where = 'client';
+                break;
+              default:
+                where = 'any';
+            }
+        }
+        if ((key === 'action' || key === 'type' || key === 'google_id' || key === 'yandex_id' || key === 'id' || key === 'hidden_filter') || !value) {
+          return;
+        }
+        return parts.push(key + '=' + value);
+      });
+      return parts.join('_');
+    };
+    this.updateCookie = function(params) {
+      if (this.cookie === void 0) {
+        this.cookie = {};
+      }
+      $.each(params, (function(_this) {
+        return function(key, value) {
+          return _this.cookie[key] = value;
+        };
+      })(this));
+      return $.cookie('stream', JSON.stringify(this.cookie), {
+        expires: 365,
+        path: '/'
+      });
+    };
+    this.initCookie = function() {
+      if ($.cookie('stream') !== void 0) {
+        return this.cookie = JSON.parse($.cookie('stream'));
+      } else {
+        return this.updateCookie({
+          step: 0,
+          search: 0
+        });
+      }
+    };
+    this.run = function(action, type, additional) {
+      if (additional == null) {
+        additional = {};
+      }
+      if (this.cookie === void 0) {
+        this.initCookie();
+      }
+      if (!this.initialized) {
+        return $timeout((function(_this) {
+          return function() {
+            return _this._run(action, type, additional);
+          };
+        })(this), 1000);
+      } else {
+        return this._run(action, type, additional);
+      }
+    };
+    this._run = function(action, type, additional) {
+      var params;
+      if (additional == null) {
+        additional = {};
+      }
+      this.updateCookie({
+        step: this.cookie.step + 1
+      });
+      params = {
+        action: action,
+        type: type,
+        step: this.cookie.step,
+        mobile: typeof isMobile === 'undefined' ? '0' : '1'
+      };
+      $.each(additional, (function(_this) {
+        return function(key, value) {
+          return params[key] = value;
+        };
+      })(this));
+      if (action !== 'page') {
+        dataLayerPush({
+          event: 'configuration',
+          eventCategory: action,
+          eventAction: type
+        });
+      }
+      return Stream.save(params).$promise;
+    };
+    return this;
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
+  });
 
 }).call(this);
 
