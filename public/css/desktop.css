@@ -4168,7 +4168,7 @@ a[href^="https://www.google.com/maps"] {
   margin-bottom: 16px;
   font-size: 12px; }
   .menu-metros .metro-circle {
-    border: 1px solid rgba(255, 255, 255, 0.5); }
+    border: 1px solid white; }
 
 @media print {
   header, footer, .gallery-item, .h1-top, .address-page-gallery, .footer-links {
