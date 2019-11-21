@@ -70,6 +70,10 @@
                                 <span>Цветной бульвар</span>
                             </div>
                             <div class='flex-items-center'>
+                                <span class='metro-circle line-9'></span>
+                                <span>Менделеевская</span>
+                            </div>
+                            <div class='flex-items-center'>
                                 <span class='metro-circle line-5'></span>
                                 <span>Новослободская</span>
                             </div>
