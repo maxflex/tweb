@@ -19,4 +19,13 @@ class MobileMenu extends Model
     {
         return $this->hasMany(self::class, 'menu_id')->orderBy('position', 'asc');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::addGlobalScope('exclude-hidden', function ($query) {
+            $query->where('is_hidden', 0);
+        });
+    }
 }

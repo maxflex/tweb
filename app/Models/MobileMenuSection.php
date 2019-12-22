@@ -21,4 +21,13 @@ class MobileMenuSection extends Model
     {
         return $this->items()->where('is_link', 0)->count() === 0;
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::addGlobalScope('exclude-hidden', function ($query) {
+            $query->where('is_hidden', 0);
+        });
+    }
 }

@@ -83,13 +83,22 @@ class PriceSection extends Model
 
      public static function getSubsectionIds($section_id)
      {
-         $ids = self::where('price_section_id', $section_id)->pluck('id')->all();
+        $ids = self::where('price_section_id', $section_id)->pluck('id')->all();
 
-         $subsection_ids = [];
-         foreach($ids as $id) {
-             $subsection_ids = array_merge($subsection_ids, self::getSubsectionIds($id));
-         }
+        $subsection_ids = [];
+        foreach($ids as $id) {
+            $subsection_ids = array_merge($subsection_ids, self::getSubsectionIds($id));
+        }
 
-         return array_merge($ids, $subsection_ids);
-     }
+        return array_merge($ids, $subsection_ids);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::addGlobalScope('exclude-hidden', function ($query) {
+            $query->where('is_hidden', 0);
+        });
+    }
 }

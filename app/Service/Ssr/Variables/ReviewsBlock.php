@@ -26,7 +26,7 @@ class ReviewsBlock extends SsrVariable {
     private function getItems()
     {
         if (! $this->args->ids && ! $this->args->folders) {
-            $final_query = (new TagsFilterDecorator(Review::with('master')))->withTags(isset($this->args->tags) ? $this->args->tags : '')->orderBy('folder_id', 'asc')->orderByPosition();
+            $final_query = (new TagsFilterDecorator(Review::with('master')))->withTags(isset($this->args->tags) ? $this->args->tags : $this->page->tags)->orderBy('folder_id', 'asc')->orderByPosition();
         } else {
             $ids = array_filter(explode(',', $this->args->ids));
 
