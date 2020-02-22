@@ -8,6 +8,10 @@ class AddressDirections extends SsrVariable
 {
     public function parse()
     {
+        if (!$this->page->items()->exists()) {
+            return '';
+        }
+
         $firstItem = null;
         $items = $this->page->items->all();
 
