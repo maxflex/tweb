@@ -4,7 +4,7 @@ namespace App\Service\Ssr\Variables;
 
 use App\Service\Ssr\SsrVariable;
 
-class ServiceList extends SsrVariable
+class AddressDirections extends SsrVariable
 {
     public function parse()
     {
@@ -16,14 +16,7 @@ class ServiceList extends SsrVariable
         }
 
         return view($this->getViewName(), [
-            'page' => $this->page,
-            'items' => $items,
             'firstItem' => $firstItem,
-            'noIcons' => $this->page->no_icons,
-            'options' => [
-                'showAllItems' => $firstItem === null,
-                'show' => 6,
-            ],
         ]);
     }
 }
