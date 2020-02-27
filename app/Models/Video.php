@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasFolders;
 use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
+    use HasFolders;
+
     public function getTitleShortAttribute()
     {
         $title = $this->attributes['title'];

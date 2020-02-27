@@ -1,4 +1,6 @@
+@if($title)
 <div class='header-1'>{{ $title }}</div>
+@endif
 <div class="video-block" ng-if='true' ng-init='options = {!! json_encode($options) !!}'>
     <div class="video-wrapper">
         @foreach ($items as $index => $item)

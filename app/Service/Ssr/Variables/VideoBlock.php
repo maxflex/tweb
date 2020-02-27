@@ -6,7 +6,8 @@ use App\Service\Ssr\SsrVariable;
 use App\Models\Video;
 use DB;
 
-class VideoBlock extends SsrVariable {
+class VideoBlock extends SsrVariable
+{
     public function parse()
     {
         $ids = array_filter(explode(',', $this->args->ids));

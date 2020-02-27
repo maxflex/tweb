@@ -1,4 +1,6 @@
+@if($args->title)
 <div class='header-1'>{{ $args->title }}</div>
+@endif
 
 @if (count($items) > 0)
 <div class='relative gallery-block-placeholder'>

@@ -2,7 +2,8 @@
 
 namespace App\Service\Ssr;
 
-abstract class SsrVariable {
+abstract class SsrVariable
+{
     const VIEWS_FOLDER = 'ssr.';
 
     protected $variableName;
@@ -18,7 +19,7 @@ abstract class SsrVariable {
 
     public function getViewName()
     {
-        return self::VIEWS_FOLDER . (isMobile() ? 'mobile.' : 'desktop.') . $this->variableName ;
+        return self::VIEWS_FOLDER . (isMobile() ? 'mobile.' : 'desktop.') . $this->variableName;
     }
 
     abstract public function parse();
