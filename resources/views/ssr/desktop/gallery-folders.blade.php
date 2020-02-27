@@ -39,7 +39,7 @@
                         {{ $folder->folder_count }} папок{{ $folder->item_count > 0 ? ',' : ''}}
                     @endif
                     @if($folder->item_count > 0)
-                        {{ $folder->item_count }} видео
+                        {{ $folder->item_count }} фото
                     @endif
                     @if($folder->folder_count === 0 && $folder->item_count === 0)
                         <span class="text-gray">пусто</span>
