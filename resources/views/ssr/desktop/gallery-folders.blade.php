@@ -22,7 +22,7 @@
         <tbody>
             @foreach($folders as $folder)
             <tr>
-                <td width="500">
+                <td width="456">
                     <div class="flex-items">
                         <i class="fa fa-folder color-blue" aria-hidden="true" style="margin-right: 8px"></i>
                         @if($folder->folder_count === 0 && $folder->item_count === 0)

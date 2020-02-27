@@ -3879,10 +3879,11 @@ a[href^="https://www.google.com/maps"] {
   align-items: center; }
 
 .folders-table {
-  width: 100%; }
+  width: 100%;
+  margin-top: 10px; }
   .folders-table td {
     border-top: none;
-    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
     padding: 8px;
     line-height: 1.42857143; }
   .folders-table_has-level tbody td:first-child {
