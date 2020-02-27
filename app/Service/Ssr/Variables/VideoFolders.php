@@ -30,6 +30,10 @@ class VideoFolders extends SsrVariable
         $videoBlock = new VideoBlock('video-block', $this->page, (object) [
             'ids' => $videoIds->implode(','),
             'title' => '',
+            'options' => [
+                'show' => 9,
+                'showBy' => 9
+            ]
         ]);
 
         return view($this->getViewName(), compact(
