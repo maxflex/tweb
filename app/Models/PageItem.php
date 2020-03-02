@@ -21,13 +21,13 @@ class PageItem extends Model
 
     public function getLinkUrlAttribute()
     {
-        if ($this->href_page_id) {
+        if (is_numeric($this->href_page_id)) {
             $query = Page::whereId($this->href_page_id);
             if ($query->exists()) {
                 return $query->value('url');
             }
         }
-        return null;
+        return $this->href_page_id ? $this->href_page_id : null;
     }
 
     // 500 limit
@@ -35,14 +35,14 @@ class PageItem extends Model
     public function getDescriptionAttribute($value)
     {
         preg_match_all('#\[link\|([\d]+)\|([\w\s]+)\]#um', $value, $m);
-        foreach($m[0] as $i => $to_be_replaced) {
+        foreach ($m[0] as $i => $to_be_replaced) {
             $url = Page::getUrl($m[1][$i]);
             $value = str_replace($to_be_replaced, "<a href=\"/{$url}/\">{$m[2][$i]}</a>", $value);
         }
         if ($this->position == 0 && $this->is_one_line) {
             if (strpos($value, "\n") !== false) {
                 $value = explode("\n", $value);
-                $value = array_map(function($a) {
+                $value = array_map(function ($a) {
                     return '<div><img src="/img/svg/right-chevron.svg" />' . $a . '</div>';
                 }, $value);
                 $value = implode('', $value);
