@@ -23,7 +23,11 @@ class VideoFolders extends SsrVariable
         } else {
             $currentFolder = null;
             $breadcrumbs = [];
-            $folders = Folder::where('class', Video::class)->whereNull('folder_id')->get();
+            $folders = Folder::query()
+                ->orderByPosition()
+                ->where('class', Video::class)
+                ->whereNull('folder_id')
+                ->get();
             $videoIds = Video::whereNull('folder_id')->orderByPosition()->pluck('id');
         }
         // dd($breadcrumbs, $folders, $videoIds);

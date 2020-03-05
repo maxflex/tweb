@@ -11,7 +11,7 @@ class VideoBlock extends SsrVariable
     public function parse()
     {
         $ids = array_filter(explode(',', $this->args->ids));
-        $query = Video::whereIn('id', $ids);
+        $query = Video::whereIn('id', $ids)->orderByPosition();
         if (count($ids)) {
             $query->orderBy(DB::raw('FIELD(id, ' . implode(',', $ids) . ')'));
         }
