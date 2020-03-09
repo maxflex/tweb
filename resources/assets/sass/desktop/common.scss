@@ -508,6 +508,10 @@ p.last {
   left: 0;
   color: white;
   padding: 10px 15px;
+  &.right {
+    right: 0;
+    left: auto;
+  }
   & a {
     padding: 6px 0 !important;
     height: auto !important;

@@ -5,7 +5,7 @@
         <a href='{{ $item->extra }}'>{{ $item->title }}</a>
     @else
         <a>{{ $item->title }}</a>
-        <div class="dropdown-content">
+        <div class="dropdown-content {{ $item->id === 26 ? 'right' : '' }}">
             <div class="main-menu">
                 @if(count($item->items[0]->children) > 0)
                     @foreach($item->items as $item)

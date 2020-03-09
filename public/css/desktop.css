@@ -3181,6 +3181,9 @@ a[href^="https://www.google.com/maps"] {
   left: 0;
   color: white;
   padding: 10px 15px; }
+  .dropdown-content.right {
+    right: 0;
+    left: auto; }
   .dropdown-content a {
     padding: 6px 0 !important;
     height: auto !important; }
