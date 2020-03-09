@@ -7824,6 +7824,9 @@ h1.padding-top, .padding-top.header-1 {
     position: sticky;
     top: 0; }
 
+.photo-page .block-separator {
+  display: none !important; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }
