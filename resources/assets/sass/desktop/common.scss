@@ -1844,6 +1844,13 @@ $uploaded-photo-preview-width: 150px;
   }
 }
 
+.photo-page {
+  & .service-list,
+  & .gallery-block-photos {
+    border-bottom: none !important;
+  }
+}
+
 @media print {
   header,
   footer,

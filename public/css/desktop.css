@@ -4213,6 +4213,10 @@ a[href^="https://www.google.com/maps"] {
   .menu-metros .metro-circle {
     border: 1px solid white; }
 
+.photo-page .service-list,
+.photo-page .gallery-block-photos {
+  border-bottom: none !important; }
+
 @media print {
   header,
   footer,
