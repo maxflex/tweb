@@ -41,12 +41,12 @@
             @if($item->id === 870)
             <div class='menu-metros'>
                 <div class='flex-items-center'>
-                    <span class='metro-circle line-10'></span>
-                    <span>Достоевская</span>
-                </div>
-                <div class='flex-items-center'>
                     <span class='metro-circle line-9'></span>
                     <span>Цветной бульвар</span>
+                </div>
+                <div class='flex-items-center'>
+                    <span class='metro-circle line-10'></span>
+                    <span>Достоевская</span>
                 </div>
                 <div class='flex-items-center'>
                     <span class='metro-circle line-9'></span>
