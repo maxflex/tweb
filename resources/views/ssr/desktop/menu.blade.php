@@ -11,14 +11,25 @@
                     @foreach($item->items as $item)
                     <div class="menu-col">
                         <div class="menu-header">
+                            @if($item->is_link)
                             <a href="{{ $item->extra }}">
                                 {{ $item->title }}
                             </a>
+                            @else
+                            <span class="menu-header">
+                                {{ $item->title }}
+                            </span>
+                            @endif
                         </div>
                         @foreach($item->children as $item)
                         <a href="{{ $item->extra }}">
                             {{ $item->title }}
                         </a>
+                        @if($item->desc)
+                        <span class="menu-desc">
+                            {{ $item->desc }}
+                        </span>
+                        @endif
                         @endforeach
                     </div>
                     @endforeach
@@ -62,12 +73,12 @@
                         @if($item->id === 867)
                         <div class='menu-metros'>
                             <div class='flex-items-center'>
-                                <span class='metro-circle line-10'></span>
-                                <span>Достоевская</span>
-                            </div>
-                            <div class='flex-items-center'>
                                 <span class='metro-circle line-9'></span>
                                 <span>Цветной бульвар</span>
+                            </div>
+                            <div class='flex-items-center'>
+                                <span class='metro-circle line-10'></span>
+                                <span>Достоевская</span>
                             </div>
                             <div class='flex-items-center'>
                                 <span class='metro-circle line-9'></span>
