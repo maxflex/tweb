@@ -166,14 +166,6 @@ class Parser
                         $replacement = $query->get();
                     }
                     break;
-                case 'header-message':
-                    $header = trim(Settings::get('header'));
-                    if ($header) {
-                        $replacement = "<div class='header-message'>{$header}</div>";
-                    } else {
-                        $replacement = '';
-                    }
-                    break;
                 case 'equipment':
                     $ids = explode(',', $args[0]);
                     $query = Equipment::with('photos');

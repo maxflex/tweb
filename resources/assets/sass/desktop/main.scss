@@ -395,9 +395,15 @@ ul {
 
 .header-message {
   text-align: center;
-  background: $main-color;
+  background: #ce171f;
   color: white;
-  padding: 6px 0;
+  padding: 8px 0;
+  line-height: 18px;
+  &__first-line {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
 }
 
 @media only screen and (max-width: 1000px) {

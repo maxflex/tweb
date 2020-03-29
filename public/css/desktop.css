@@ -5673,9 +5673,14 @@ ul {
 
 .header-message {
   text-align: center;
-  background: #ae4037;
+  background: #ce171f;
   color: white;
-  padding: 6px 0; }
+  padding: 8px 0;
+  line-height: 18px; }
+  .header-message__first-line {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold; }
 
 @media only screen and (max-width: 1000px) {
   .full-width-wrapper:not(.banner-block), .equipment-item.full > div:not(.banner-block):first-child, .equipment-item-full .equipment-image:not(.banner-block), .equipment-item-full .equipment-additional-block:not(.banner-block) {
