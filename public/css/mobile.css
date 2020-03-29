@@ -7724,7 +7724,7 @@ h1.padding-top, .padding-top.header-1 {
   text-align: center;
   background: #ce171f;
   color: white;
-  padding: 8px 0;
+  padding: 8px 12px;
   line-height: 18px; }
   .header-message__first-line {
     font-size: 16px;
