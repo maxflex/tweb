@@ -248,7 +248,8 @@ textarea {
 
 a[href^="http://maps.google.com/maps"],
 a[href^="https://maps.google.com/maps"],
-a[href^="https://www.google.com/maps"] {
+a[href^="https://www.google.com/maps"]
+{
   display: none !important;
 }
 
@@ -1852,6 +1853,15 @@ $uploaded-photo-preview-width: 150px;
   & .service-list,
   & .gallery-block-photos {
     border-bottom: none !important;
+  }
+}
+
+.address-page-gallery {
+  & .address-gallery-remove {
+    display: none !important;
+  }
+  & .gallery-preview-header {
+    font-size: 12px;
   }
 }
 

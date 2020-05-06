@@ -24,9 +24,13 @@
                         <img src='{{ $item->thumb }}' class="gallery-photo pointer">
                     </div>
                     <div>
-                        <div class="entity-header header-3">
-                            {{ $item->name }} – {{ $item->days_to_complete }} дней
-                            <a class="link-small pointer" href='#'>подробнее...</a>
+                        <div class="entity-header header-3 gallery-preview-header">
+                            {{ $item->name }}
+                            <span class="address-gallery-remove">
+                                –
+                                {{ $item->days_to_complete }} дней
+                                <a class="link-small pointer" href='#'>подробнее...</a>
+                            </span>
                         </div>
                     </div>
                 </div>

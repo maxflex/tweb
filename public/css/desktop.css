@@ -2695,7 +2695,7 @@ th {
   position: relative;
   width: 250px;
   height: 62px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 10px;
   line-height: 16px;
   background: #e8e8e8;
@@ -2703,12 +2703,12 @@ th {
   border-radius: 6px;
   margin-left: -121px;
   margin-top: -138px;
-  box-shadow: 5px 5px 19px 0px #A3A3A3;
-  opacity: .95;
+  box-shadow: 5px 5px 19px 0px #a3a3a3;
+  opacity: 0.95;
   font-family: "helveticaneuecyrlight"; }
 
 .speech-bubble:after {
-  content: '';
+  content: "";
   position: absolute;
   border-style: solid;
   border-width: 15px 10px 0;
@@ -2776,13 +2776,26 @@ mark {
   .metro-circle.line-12 {
     background-color: #b0cccb; }
   .metro-circle.line-13 {
-    background-color: #E2A6A6; }
+    background-color: #e2a6a6; }
 
 .flex-items-center {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
   align-items: center; }
+
+.service-list__item-description .fas,
+.service-list_one-line .fas {
+  background: #3678e6;
+  color: white;
+  padding: 4px 0;
+  border-radius: 4px;
+  width: 22px;
+  text-align: center; }
+
+.service-list .service-list__items_one-line .service-list__item-description,
+.service-list_one-line > div {
+  line-height: 26px; }
 
 html,
 body {
@@ -4219,6 +4232,12 @@ a[href^="https://www.google.com/maps"] {
 .photo-page .service-list,
 .photo-page .gallery-block-photos {
   border-bottom: none !important; }
+
+.address-page-gallery .address-gallery-remove {
+  display: none !important; }
+
+.address-page-gallery .gallery-preview-header {
+  font-size: 12px; }
 
 @media print {
   header,
