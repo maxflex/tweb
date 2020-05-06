@@ -50,6 +50,7 @@ class PageItem extends Model
             $value = str_replace("[walk]", '<i class="fas fa-walking"></i>', $value);
             $value = str_replace("[car]", '<i class="fas fa-car"></i>', $value);
             $value = str_replace("[bus]", '<i class="fas fa-bus"></i>', $value);
+            $value = preg_replace("#\[line-(\d+)\]#", '<span class="metro-circle line-$1"></span>', $value);
             return $value;
         }
         return $value;

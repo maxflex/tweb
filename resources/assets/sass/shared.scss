@@ -219,6 +219,10 @@ $line-13: #e2a6a6;
     width: 22px;
     text-align: center;
   }
+  & .metro-circle {
+    margin: 0 0 0 2px !important;
+    top: 0px !important;
+  }
 }
 
 .service-list .service-list__items_one-line .service-list__item-description,
