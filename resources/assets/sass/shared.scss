@@ -227,5 +227,11 @@ $line-13: #e2a6a6;
 
 .service-list .service-list__items_one-line .service-list__item-description,
 .service-list_one-line > div {
-  line-height: 26px;
+  line-height: 22px;
+  & > div {
+    white-space: break-spaces;
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
 }
