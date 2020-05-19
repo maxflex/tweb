@@ -6,13 +6,14 @@ angular
         $scope.galleryLoaded = false
         $scope.GalleryService2 = _.clone(GalleryService)
 
-        $scope.initGallery = (ids, tags, folders, isFirst = true) ->
+        $scope.initGallery = (ids, tags, folders, isFirst = true, initGallery = false) ->
             $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
             .then (response) ->
                 # $timeout ->
                 $scope.gallery = response.data if isFirst
                 $scope.gallery2 = response.data if not isFirst
                 $scope.galleryLoaded = true
+                GalleryService.init(response.data) if initGallery
                 # , 3000
 
         $timeout ->

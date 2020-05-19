@@ -6,6 +6,7 @@ angular.module 'App'
         scroll_left  = null
         DIRECTION = {next: 1, prev: 0}
         animation_in_progress = false
+        @initialized = false
 
         @open = (index) ->
             @ctrl.open(index)
@@ -45,8 +46,10 @@ angular.module 'App'
 
         @scroll = (animation_speed = 500)->
             animation_in_progress = true
+            speed = if @initialized then animation_speed else 100
             el.stop().animate
                 scrollLeft: @screen_width * @active + @screen_width - (($(window).width() - @screen_width) / 2)
-            , animation_speed, -> animation_in_progress = false
+            , speed, -> animation_in_progress = false
+            @initialized = true
 
         @
