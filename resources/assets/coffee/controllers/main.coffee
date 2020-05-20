@@ -13,7 +13,11 @@ angular
                 $scope.gallery = response.data if isFirst
                 $scope.gallery2 = response.data if not isFirst
                 $scope.galleryLoaded = true
-                GalleryService.init(_.clone($scope.gallery)) if initGallery
+                if initGallery
+                    GalleryService.init(_.clone($scope.gallery)) 
+                    $timeout ->
+                        $scope.$apply()
+                    , 1000
                 # , 3000
 
         $timeout ->

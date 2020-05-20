@@ -10,7 +10,7 @@
     <div class="full-width-wrapper main-gallery-block" ng-class="{'invisible': !galleryLoaded}" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}', true, true)">
         <div class="main-gallery-wrapper">
             <div class="gallery-item invisible">-</div>
-            <div ng-repeat="g in gallery track by $index" class="gallery-item" ng-class="{'active pointer': GalleryService.active == $index}">
+            <div ng-repeat="g in GalleryService.gallery track by $index" class="gallery-item" ng-class="{'active pointer': GalleryService.active == $index}">
                 <gallery-item-main
                     ng-click="$index === GalleryService.active ? GalleryService.open($index) : null"
                     item='g'

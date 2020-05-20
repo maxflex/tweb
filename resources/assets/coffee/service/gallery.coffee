@@ -28,7 +28,6 @@ angular.module 'App'
 
         @prev = ->
             return if animation_in_progress
-            return if @active is 1
             @rotateControl(DIRECTION.prev)
             @setActive(@active - 1)
 
