@@ -1,10 +1,10 @@
 <div style='position: relative; min-height: 582px' >
     <div class="full-width-wrapper main-gallery-arrows">
-        <div class="main-gallery-arrow left">
-            <img src="/img/svg/left-arrow.svg" ng-click="GalleryService.prev()">
+        <div class="main-gallery-arrow left" ng-click="GalleryService.prev()">
+            <img src="/img/svg/left-arrow.svg">
         </div>
-        <div class="main-gallery-arrow right">
-            <img src="/img/svg/right-arrow.svg" ng-click="GalleryService.next()">
+        <div class="main-gallery-arrow right" ng-click="GalleryService.next()">
+            <img src="/img/svg/right-arrow.svg">
         </div>
     </div>
     <div class="full-width-wrapper main-gallery-block" ng-class="{'invisible': !galleryLoaded}" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}', true, true)">

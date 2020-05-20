@@ -4717,7 +4717,7 @@ a[href^="https://www.google.com/maps"] {
 
 .header {
   padding: 0 0 19px 0;
-  z-index: 12;
+  z-index: 99;
   position: -webkit-sticky;
   position: sticky;
   top: 0; }
