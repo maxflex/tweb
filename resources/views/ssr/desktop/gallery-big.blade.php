@@ -34,4 +34,4 @@
         </div>
     </div> --}}
 </div>
-<ng-image-gallery images="gallery" thumbnails='false' methods='GalleryService.ctrl' bg-close='true'></ng-image-gallery>
+<ng-image-gallery-2 images="gallery" thumbnails='false' methods='GalleryService.ctrl' bg-close='true'></ng-image-gallery-2>
