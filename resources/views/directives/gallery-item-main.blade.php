@@ -1,7 +1,7 @@
 <div>
-    <img ng-src='@{{ item.url }}' class="gallery-photo pointer">
+    <img ng-src='@{{ item.url }}' class="gallery-photo">
 </div>
-<div class="gallery-header">
+<h2 style='text-align: center; padding-top: 6px'>
     @{{ item.name }}
-</div>
+</h2>
 
