@@ -3804,7 +3804,7 @@ a[href^="https://www.google.com/maps"] {
       -webkit-box-flex: 0;
       flex: 0 0 960px;
       padding: 0 20px;
-      opacity: 0.4;
+      opacity: 0.3;
       -webkit-transition: opacity 0.5s linear;
       transition: opacity 0.5s linear; }
       .main-gallery-block .main-gallery-wrapper .gallery-item.active, .main-gallery-block .video-wrapper .gallery-item.active {

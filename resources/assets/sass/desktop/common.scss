@@ -1324,7 +1324,7 @@ p.last {
     & .gallery-item {
       flex: 0 0 $screen-width;
       padding: 0 20px;
-      opacity: 0.4;
+      opacity: 0.3;
       transition: opacity 0.5s linear;
       // z-index: -1;
       &.active {
