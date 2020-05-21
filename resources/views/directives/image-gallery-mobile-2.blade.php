@@ -16,7 +16,7 @@
                     <div class="gallery-photo-master-info gallery-mobile" style='position: relative' ng-repeat="image in images track by image.id" ng-if="_activeImg == image">
                         <div style="display: flex; height: 40px; align-items: center">
                             <b style='flex: 1'>@{{ image.name }}</b>
-                            <div class="gallery-flow-control gallery-close">
+                            <div class="gallery-flow-control gallery-close" style="position: initial">
                                 <div ng-click="methods.close()" class="gallery-flow-control-arrow" style="margin: 0 !important">
                                     <img src="/img/svg/cross.svg" />
                                 </div>
