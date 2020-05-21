@@ -287,7 +287,8 @@ a {
 
 a[href^="http://maps.google.com/maps"],
 a[href^="https://maps.google.com/maps"],
-a[href^="https://www.google.com/maps"] {
+a[href^="https://www.google.com/maps"]
+{
   display: none !important;
 }
 
@@ -1425,5 +1426,26 @@ $uploaded-photo-preview-width: 32%;
       padding: 1em 1.2em;
       background: rgba(243, 233, 212, 0.7);
     }
+  }
+}
+
+.gallery-mobile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100% !important;
+  & .galleria-bubbles-wrapper {
+    margin-bottom: 0;
+    & .galleria-bubbles {
+      white-space: nowrap !important;
+      & .galleria-bubble {
+      }
+    }
+  }
+  & .gallery-left-right {
+    position: absolute;
+    width: 100%;
+    margin: 15px 0 !important;
   }
 }

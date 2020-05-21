@@ -13,7 +13,7 @@
 
                 <div class="galleria">
 
-                    <div class="gallery-photo-master-info" style='position: relative' ng-repeat="image in images track by image.id" ng-if="_activeImg == image">
+                    <div class="gallery-photo-master-info gallery-mobile" style='position: relative' ng-repeat="image in images track by image.id" ng-if="_activeImg == image">
                         <div>
                             <b style='position: relative; top: 6px'>@{{ image.name }}</b>
                             <div class="gallery-flow-control gallery-close">
@@ -22,12 +22,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="!imgLoading" class="galleria-images img-anim-@{{imgAnim}} img-move-dir-@{{_imgMoveDirection}}">
-                            <img ng-click="methods.next()" class="galleria-image" ng-show="!imgLoading" ng-right-click  ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
-                        </div>
-
-                        <div class="gallery-bottom-controls">
-                            <div class="gallery-flow-control">
+                        <div class="galleria-images img-anim-@{{imgAnim}} img-move-dir-@{{_imgMoveDirection}}">
+                            <img class="galleria-image" ng-show="!imgLoading" ng-right-click  ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
+                            <div class="gallery-flow-control gallery-left-right">
                                 <div ng-click="methods.prev()" ng-hide="images.length == 1" class="gallery-flow-control-arrow">
                                     <img src="/img/svg/left-arrow.svg" />
                                 </div>
@@ -35,6 +32,13 @@
                                 <div ng-click="methods.next()" ng-hide="images.length == 1" class="gallery-flow-control-arrow">
                                     <img src="/img/svg/right-arrow.svg" />
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <div class="galleria-bubbles-wrapper" ng-if="bubbles && !imgBubbles" ng-hide="images.length == 1" bubble-auto-fit>
+                            <div class="galleria-bubbles" bubble-auto-scroll ng-style="{'margin-left': _bubblesContainerMarginLeft + 'px'}">
+                                <span class="galleria-bubble img-bubble" ng-click="_setActiveImg(image);" ng-repeat="image in images track by image.id" ng-class="{active : (_activeImg == image)}" show-image-async="@{{image.bubbleUrl || image.thumbUrl || image.url}}" async-kind="bubble"></span>
                             </div>
                         </div>
 
