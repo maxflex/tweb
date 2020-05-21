@@ -14,16 +14,16 @@
                 <div class="galleria">
 
                     <div class="gallery-photo-master-info gallery-mobile" style='position: relative' ng-repeat="image in images track by image.id" ng-if="_activeImg == image">
-                        <div>
-                            <b style='position: relative; top: 6px'>@{{ image.name }}</b>
+                        <div style="display: flex; height: 40px; align-items: center">
+                            <b style='flex: 1'>@{{ image.name }}</b>
                             <div class="gallery-flow-control gallery-close">
-                                <div ng-click="methods.close()" class="gallery-flow-control-arrow">
+                                <div ng-click="methods.close()" class="gallery-flow-control-arrow" style="margin: 0 !important">
                                     <img src="/img/svg/cross.svg" />
                                 </div>
                             </div>
                         </div>
                         <div class="galleria-images img-anim-@{{imgAnim}} img-move-dir-@{{_imgMoveDirection}}">
-                            <img class="galleria-image" ng-show="!imgLoading" ng-right-click  ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
+                            <img class="galleria-image" ng-right-click  ng-src="@{{image.url}}" ondragstart="return false;" ng-attr-alt="@{{image.alt || undefined}}"/>
                             <div class="gallery-flow-control gallery-left-right">
                                 <div ng-click="methods.prev()" ng-hide="images.length == 1" class="gallery-flow-control-arrow">
                                     <img src="/img/svg/left-arrow.svg" />
@@ -45,16 +45,6 @@
                     </div>
                 </div>
 
-            </div>
-
-            <div class="ng-image-gallery-loader" ng-show="imgLoading">
-                <div class="spinner">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    {{-- <div class="rect5"></div> --}}
-                </div>
             </div>
 
             <div class="ng-image-gallery-errorplaceholder" ng-show="imgError">
