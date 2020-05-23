@@ -10,6 +10,9 @@ class HeaderMessage extends SsrVariable
     public function parse()
     {
         $header = trim(Settings::get('header'));
+        if ($header === '') {
+            return;
+        }
         $lines = explode("\n", $header);
         $firstLine = null;
         if (count($lines) > 1) {
