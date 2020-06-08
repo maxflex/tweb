@@ -9,6 +9,11 @@ class AddressInfo extends SsrVariable
     public function parse()
     {
         $maps = [
+            'all' => [
+                'address' => 'Ленинский проспект 25',
+                'phone' => 'доб. 1',
+                'route' => 'https://yandex.ru/maps/-/CBBLqNGlGC',
+            ],
             'len' => [
                 'address' => 'Ленинский проспект 25',
                 'phone' => 'доб. 1',
