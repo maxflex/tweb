@@ -1,6 +1,5 @@
 // @import "../../bower/bootstrap-select/dist/css/bootstrap-select";
 // @import "../../bower/bootstrap/css/bootstrap";
-@import "../../bower/font-awesome/css/font-awesome.min";
 
 /* Common */
 @import "variable";
@@ -8,8 +7,7 @@
 @import "../fonts";
 @import "../shared";
 @import "common";
-@import "../radial-progress";  
-
+@import "../radial-progress";
 
 /* Components */
 @import "componentns/top-message";

@@ -1459,6 +1459,32 @@ p.last {
   align-items: center;
 }
 
+.address-info-block {
+  justify-content: space-between;
+  padding: 30px;
+  & > div {
+    // margin-top: 20px;
+    align-self: flex-start;
+    & > div {
+      margin-bottom: 16px;
+      & a {
+        text-decoration: none !important;
+        &:hover {
+          text-decoration: underline !important;
+          color: #e9967a;
+        }
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      & i {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
 .folders-table {
   width: 100%;
   margin-top: 10px;

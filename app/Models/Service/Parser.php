@@ -89,15 +89,18 @@ class Parser
             // КОСТЫЛЬ СПЕЦИАЛЬНО ДЛЯ ADDRESS-PAGE
             if (in_array($values[0], ['address-page', 'address-page-mobile'])) {
                 $newHtml = $html->getOriginal('html');
-                list($var_name, $var_val) = explode('=', $values[1]);
-                $newHtml = str_replace('{' . $var_name . '}', $var_val, $newHtml);
+                // 2 переменной в address-page
+                foreach ([1, 2] as $varIndex) {
+                    list($var_name, $var_val) = explode('=', $values[$varIndex]);
+                    $newHtml = str_replace('{' . $var_name . '}', $var_val, $newHtml);
+                }
                 $html->html = $newHtml;
             }
             $html = $html->html;
             // убираем название переменной из массива
             array_shift($values);
-
             foreach ($values as $value) {
+
                 // разбиваем a=1
                 list($var_name, $var_val) = explode('=', $value);
                 // если $var_val – это переменная
@@ -112,7 +115,6 @@ class Parser
                     static::replace($html, $var_name, $var_val, self::START_VAR_CALC, self::END_VAR_CALC);
                 }
             }
-
             return $html;
         } else {
             $var = array_shift($values);
