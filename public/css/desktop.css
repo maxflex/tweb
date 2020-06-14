@@ -1736,7 +1736,7 @@ a[href^="https://www.google.com/maps"] {
 
 .map-block-wrapper {
   margin-top: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.9);
+  border: 1px solid #c6c6c6;
   padding: 30px; }
   .map-block-wrapper h1, .map-block-wrapper .header-1, .map-block-wrapper .landingnew-page .common h3, .landingnew-page .common .map-block-wrapper h3, .map-block-wrapper .landingnew-page .common .header-3, .landingnew-page .common .map-block-wrapper .header-3 {
     font-size: 20px;
