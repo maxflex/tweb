@@ -1758,7 +1758,8 @@ a[href^="https://www.google.com/maps"] {
     font-size: 20px;
     font-family: "helveticaneuecyrmedium";
     padding-bottom: 0;
-    margin-bottom: 50px; }
+    margin-bottom: 50px;
+    margin-top: 0; }
 
 .print-block-link {
   -webkit-box-pack: end;

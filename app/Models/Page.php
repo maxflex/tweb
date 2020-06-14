@@ -34,12 +34,12 @@ class Page extends Model
 
     // also serp fields
     protected $casts = [
-       'id'         => 'int', // ID нужен, чтобы идентифицировать текущую страницу в search
-       'place'      => 'string',
-       'station_id' => 'string',
-       'subjects'   => 'string',
-       'sort'       => 'string',
-   ];
+        'id'         => 'int', // ID нужен, чтобы идентифицировать текущую страницу в search
+        'place'      => 'string',
+        'station_id' => 'string',
+        'subjects'   => 'string',
+        'sort'       => 'string',
+    ];
 
     public function items()
     {
@@ -50,10 +50,10 @@ class Page extends Model
     {
         if ($value) {
             $subjects = explode(',', $value);
-            foreach($subjects as $subject_id) {
+            foreach ($subjects as $subject_id) {
                 $return[$subject_id] = true;
             }
-            return (object)$return;
+            return (object) $return;
         } else {
             return emptyObject();
         }
@@ -61,7 +61,7 @@ class Page extends Model
 
     public function getSearchAttribute()
     {
-        foreach($this->casts as $field => $type) {
+        foreach ($this->casts as $field => $type) {
             $data[$field] = $this->{$field};
         }
         if ($this->hidden_filter) {
@@ -78,7 +78,7 @@ class Page extends Model
 
             // обрабатываем ссылки вида [370|тебя что-то не устраивает]
             $update_title = [];
-            foreach($seo_page_ids as $index => $seo_page_id) {
+            foreach ($seo_page_ids as $index => $seo_page_id) {
                 if ($seo_page_id[0] === '[') {
                     preg_match('/\[([\d]+)\|(.*)\]/', $seo_page_id, $m);
                     $seo_page_ids[$index] = $m[1];
@@ -88,7 +88,7 @@ class Page extends Model
 
             if (count($seo_page_ids)) {
                 $pages = Page::select('id', 'url', 'keyphrase')->whereIn('id', $seo_page_ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $seo_page_ids) . ')'))->get();
-                foreach($update_title as $page_id => $title) {
+                foreach ($update_title as $page_id => $title) {
                     $pages->where('id', $page_id)->first()->keyphrase = $title;
                 }
                 return view('seo.links')->with(compact('pages'));
@@ -105,7 +105,7 @@ class Page extends Model
 
             // обрабатываем ссылки вида [370|тебя что-то не устраивает]
             $update_title = [];
-            foreach($seo_page_ids as $index => $seo_page_id) {
+            foreach ($seo_page_ids as $index => $seo_page_id) {
                 if ($seo_page_id[0] === '[') {
                     preg_match('/\[([\d]+)\|(.*)\]/', $seo_page_id, $m);
                     $seo_page_ids[$index] = $m[1];
@@ -117,7 +117,7 @@ class Page extends Model
                 return $seo_page_ids;
                 $pages = Page::select('id', 'url', 'keyphrase')->whereIn('id', $seo_page_ids)->orderBy(DB::raw('FIELD(id, ' . implode(',', $seo_page_ids) . ')'))->get();
                 return $seo_page_ids;
-                foreach($update_title as $page_id => $title) {
+                foreach ($update_title as $page_id => $title) {
                     $pages->where('id', $page_id)->first()->keyphrase = $title;
                 }
                 return $pages;
@@ -196,7 +196,7 @@ class Page extends Model
     public static function getSubjectRoutes()
     {
         $subject_routes = [];
-        foreach(self::$subject_page_id as $subject_id => $page_id) {
+        foreach (self::$subject_page_id as $subject_id => $page_id) {
             // ссылки только к отдельным предметам
             if (strpos($subject_id, ',') === false) {
                 $subject_routes[$subject_id] = self::getUrl($page_id);
