@@ -1316,6 +1316,22 @@ a[href^="https://www.google.com/maps"] {
     color: #e9967a;
     text-decoration: underline; }
 
+.directions-icon {
+  width: 18px !important;
+  height: 18px !important;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat; }
+  .directions-icon_walk {
+    background-image: url(/img/icons/border/walk.png); }
+  .directions-icon_bus {
+    background-image: url(/img/icons/border/bus.png); }
+  .directions-icon_car {
+    background-image: url(/img/icons/border/car.png); }
+
 .main-page h1, .main-page .header-1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3, .main-page .landingnew-page .common .header-3, .landingnew-page .common .main-page .header-3 {
   padding-top: 32px;
   margin-bottom: 10px; }
@@ -1736,7 +1752,7 @@ a[href^="https://www.google.com/maps"] {
 
 .map-block-wrapper {
   margin-top: 50px;
-  border: 1px solid #c6c6c6;
+  border: 1px solid rgba(0, 0, 0, 0.9);
   padding: 30px; }
   .map-block-wrapper h1, .map-block-wrapper .header-1, .map-block-wrapper .landingnew-page .common h3, .landingnew-page .common .map-block-wrapper h3, .map-block-wrapper .landingnew-page .common .header-3, .landingnew-page .common .map-block-wrapper .header-3 {
     font-size: 20px;
@@ -1747,10 +1763,10 @@ a[href^="https://www.google.com/maps"] {
 .print-block-link {
   -webkit-box-pack: end;
   justify-content: flex-end;
-  width: 100%;
+  width: 99%;
   position: absolute;
   font-size: 12px;
-  margin-top: 30px;
+  margin-top: -20px;
   color: #acacac;
   display: -webkit-box;
   display: flex;

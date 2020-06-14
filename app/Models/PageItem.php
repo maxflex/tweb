@@ -47,9 +47,9 @@ class PageItem extends Model
                 }, $value);
                 $value = implode('', $value);
             }
-            $value = str_replace("[walk]", '<i class="fas fa-walking"></i>', $value);
-            $value = str_replace("[car]", '<i class="fas fa-car"></i>', $value);
-            $value = str_replace("[bus]", '<i class="fas fa-bus"></i>', $value);
+            $value = str_replace("[walk]", '<div class="directions-icon directions-icon_walk"></div>', $value);
+            $value = str_replace("[car]", '<div class="directions-icon directions-icon_car"></div>', $value);
+            $value = str_replace("[bus]", '<div class="directions-icon directions-icon_bus"></div>', $value);
             $value = preg_replace("#\[line-(\d+)\]#", '<span class="metro-circle line-$1"></span>', $value);
             return $value;
         }
