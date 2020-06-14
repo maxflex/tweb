@@ -1449,3 +1449,23 @@ $uploaded-photo-preview-width: 32%;
     margin: 15px 0 !important;
   }
 }
+
+.directions-icon {
+  width: 18px !important;
+  height: 18px !important;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  &_walk {
+    background-image: url(/img/icons/border/walk.png);
+  }
+  &_bus {
+    background-image: url(/img/icons/border/bus.png);
+  }
+  &_car {
+    background-image: url(/img/icons/border/car.png);
+  }
+}
