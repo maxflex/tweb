@@ -1461,7 +1461,7 @@ p.last {
 
 .address-info-block {
   justify-content: space-between;
-  padding: 30px;
+  // padding: 30px;
   & > div {
     // margin-top: 20px;
     align-self: flex-start;
@@ -1477,9 +1477,10 @@ p.last {
       &:last-child {
         margin-bottom: 0;
       }
-      & i {
+      & img {
         margin-right: 10px;
-        font-size: 18px;
+        width: 18px;
+        // height: 20px;
       }
     }
   }
@@ -1515,7 +1516,37 @@ p.last {
 
 .map-block-wrapper {
   margin-top: 50px;
-  border: 1px solid #c6c6c6;
+  // border: 1px solid #c6c6c6;
+  border: 1px solid rgba(black, 0.9);
+  padding: 30px;
+  & h1 {
+    font-size: 20px;
+    font-family: "helveticaneuecyrmedium";
+    padding-bottom: 0;
+    margin-bottom: 50px;
+  }
+}
+
+.print-block-link {
+  // text-align: right;
+  justify-content: flex-end;
+  width: 100%;
+  position: absolute;
+  font-size: 12px;
+  margin-top: 30px;
+  color: $text-grey-light;
+  display: flex;
+  align-items: center;
+  & a {
+    margin-left: 4px;
+    top: -1px;
+    position: relative;
+    color: $text-grey-light;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .map-block {
