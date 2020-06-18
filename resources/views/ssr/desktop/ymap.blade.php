@@ -4,6 +4,7 @@
     // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
     ymaps.ready(init);
     function init(){
+        var sizeDown = 0.25
         // Создание карты.
         var myMap = new ymaps.Map("map", {
             center: [{{ $latLng[$map] }}],
@@ -16,7 +17,9 @@
                 myMap.geoObjects.add(new ymaps.Placemark([{{ $latLng[$m] }}], {
                     balloonContent: `{!! view("balloon.{$m}") !!}`,
                 }, {
-                    preset: 'islands#redIcon',
+                    iconLayout: 'default#image',
+                    iconImageHref: '/img/maps/marker.png',
+                    iconImageSize: [191 * sizeDown, 207 * sizeDown],
                 }));
             @endforeach
     }
