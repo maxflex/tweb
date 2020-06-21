@@ -18,7 +18,7 @@
                     balloonContent: `{!! view("balloon.{$m}") !!}`,
                 }, {
                     iconLayout: 'default#image',
-                    iconImageHref: '/img/maps/marker.png',
+                    iconImageHref: '/img/maps/marker-{{ $m }}.png',
                     iconImageSize: [191 * sizeDown, 207 * sizeDown],
                 }));
             @endforeach

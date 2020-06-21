@@ -54,7 +54,7 @@
                 </div>
                 <div class="flex-items">
                     <img src="/img/icons/border/mail.png" />
-                    <a href="mail:info@atelier-talisman.ru">
+                    <a href="mailto:info@atelier-talisman.ru">
                         info@atelier-talisman.ru
                     </a>
                 </div>
