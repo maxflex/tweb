@@ -1947,12 +1947,21 @@ $uploaded-photo-preview-width: 150px;
 }
 
 @media print {
-  header,
-  footer,
-  .gallery-item,
-  .h1-top,
-  .address-page-gallery,
-  .footer-links {
+  .footer-links,
+  .footer,
+  .print-block-link,
+  .header {
     display: none !important;
+  }
+  & .main-page {
+    & > *:not(.show-on-print) {
+      display: none !important;
+    }
+  }
+  & .h1-top {
+    margin-top: 10px !important;
+  }
+  & .ymap {
+    margin-top: 40px !important;
   }
 }

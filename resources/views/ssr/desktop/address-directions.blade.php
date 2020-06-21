@@ -1,4 +1,4 @@
-<div class="service-list">
+<div class="service-list show-on-print">
     {{-- FIRST ITEM --}}
     @if ($firstItem)
         <div class="service-list__items service-list__items_one-line">

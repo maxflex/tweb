@@ -1,4 +1,4 @@
-<div id="map" style="width: 100%; height: 480px"></div>
+<div class="ymap show-on-print" id="map" style="width: 100%; height: 480px"></div>
 <script type="text/javascript">
     // Функция ymaps.ready() будет вызвана, когда
     // загрузятся все компоненты API, а также когда будет готово DOM-дерево.

@@ -2110,13 +2110,17 @@ a[href^="https://www.google.com/maps"] {
   display: none !important; }
 
 @media print {
-  header,
-  footer,
-  .gallery-item,
-  .h1-top,
-  .address-page-gallery,
-  .footer-links {
-    display: none !important; } }
+  .footer-links,
+  .footer,
+  .print-block-link,
+  .header {
+    display: none !important; }
+  .main-page > *:not(.show-on-print) {
+    display: none !important; }
+  .h1-top {
+    margin-top: 10px !important; }
+  .ymap {
+    margin-top: 40px !important; } }
 
 .wrap {
   width: 600px;
