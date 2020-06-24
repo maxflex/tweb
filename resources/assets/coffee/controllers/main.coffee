@@ -22,7 +22,7 @@ angular
 
         $timeout ->
             PriceExpander.expand(if isMobile then 15 else 30) 
-            initGmap()
+            # initGmap()
 
         # $scope.openPhotoSwipe = (index) ->
         #     $scope.items = []
@@ -68,40 +68,40 @@ angular
         #     #     else
         #     #         preventObj.prevent = false
 
-        initGmap = ->
-            $scope.map = new google.maps.Map(document.getElementById("map"), {
-                scrollwheel: false,
-                disableDefaultUI: true,
-                clickableLabels: false,
-                clickableIcons: false,
-                zoomControl: true,
-                zoomControlOptions: {position: google.maps.ControlPosition.RIGHT_CENTER},
-                scaleControl: false
-            })
+        # initGmap = ->
+        #     $scope.map = new google.maps.Map(document.getElementById("map"), {
+        #         scrollwheel: false,
+        #         disableDefaultUI: true,
+        #         clickableLabels: false,
+        #         clickableIcons: false,
+        #         zoomControl: true,
+        #         zoomControlOptions: {position: google.maps.ControlPosition.RIGHT_CENTER},
+        #         scaleControl: false
+        #     })
 
-            $scope.bounds = new (google.maps.LatLngBounds)
+        #     $scope.bounds = new (google.maps.LatLngBounds)
 
-            markers = [
-                newMarker(new google.maps.LatLng(55.717295, 37.595088), $scope.map),
-                newMarker(new google.maps.LatLng(55.781302,  37.516045), $scope.map),
-                newMarker(new google.maps.LatLng(55.776497, 37.614389), $scope.map),
-            ]
+        #     markers = [
+        #         newMarker(new google.maps.LatLng(55.717295, 37.595088), $scope.map),
+        #         newMarker(new google.maps.LatLng(55.781302,  37.516045), $scope.map),
+        #         newMarker(new google.maps.LatLng(55.776497, 37.614389), $scope.map),
+        #     ]
 
-            markers.forEach (marker) ->
-                marker_location = new google.maps.LatLng(marker.lat, marker.lng)
-                # closest_metro = marker.metros[0]
-                $scope.bounds.extend(marker_location)
+        #     markers.forEach (marker) ->
+        #         marker_location = new google.maps.LatLng(marker.lat, marker.lng)
+        #         # closest_metro = marker.metros[0]
+        #         $scope.bounds.extend(marker_location)
 
-            $scope.map.fitBounds $scope.bounds
-            $scope.map.panToBounds $scope.bounds
+        #     $scope.map.fitBounds $scope.bounds
+        #     $scope.map.panToBounds $scope.bounds
 
-            # if isMobile
-            #
-            # else
-            #     $scope.map.panBy(-200, 0)
+        #     # if isMobile
+        #     #
+        #     # else
+        #     #     $scope.map.panBy(-200, 0)
 
-            if (isMobile)
-                window.onOpenModal = ->
-                    google.maps.event.trigger($scope.map, 'resize')
-                    $scope.map.fitBounds $scope.bounds
-                    $scope.map.panToBounds $scope.bounds
+        #     if (isMobile)
+        #         window.onOpenModal = ->
+        #             google.maps.event.trigger($scope.map, 'resize')
+        #             $scope.map.fitBounds $scope.bounds
+        #             $scope.map.panToBounds $scope.bounds
