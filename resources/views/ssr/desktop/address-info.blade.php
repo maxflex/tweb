@@ -35,14 +35,14 @@
 
                 <div class="flex-items">
                     <div class="img" style="background-image: url(/img/icons/border/whatsapp.png)"></div>
-                    <a href="whatsapp://send?phone=+79057464481">
-                        +7 903 763 15 21
+                    <a href="whatsapp://send?phone=+{{ \App\Service\Phone::clean($info->mobile) }}">
+                        {{ $info->mobile }}
                     </a>
                 </div>
                 <div class="flex-items">
                     <div class="img" style="background-image: url(/img/icons/border/viber.png)"></div>
-                    <a href="viber://chat?number=+79057464481">
-                        +7 903 763 15 21
+                    <a href="viber://chat?number=+{{ \App\Service\Phone::clean($info->mobile) }}">
+                        {{ $info->mobile }}
                     </a>
                 </div>
             </div>

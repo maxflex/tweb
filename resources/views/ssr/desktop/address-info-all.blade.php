@@ -34,21 +34,15 @@
             </div>
         </div>
         <div class="flex-items">
-            <div
-                class="img"
-                style="background-image: url(/img/icons/border/whatsapp.png);"
-            ></div>
-            <a href="whatsapp://send?phone=+79057464481">
-                +7 903 763 15 21
+            <div class="img" style="background-image: url(/img/icons/border/whatsapp.png)"></div>
+            <a href="whatsapp://send?phone=+{{ \App\Service\Phone::clean($maps['len']['mobile']) }}">
+                {{ $maps['len']['mobile'] }}
             </a>
         </div>
         <div class="flex-items">
-            <div
-                class="img"
-                style="background-image: url(/img/icons/border/viber.png);"
-            ></div>
-            <a href="viber://chat?number=+79057464481">
-                +7 903 763 15 21
+            <div class="img" style="background-image: url(/img/icons/border/viber.png)"></div>
+            <a href="viber://chat?number=+{{ \App\Service\Phone::clean( $maps['len']['mobile'] ) }}">
+                {{ $maps['len']['mobile'] }}
             </a>
         </div>
         <div class="flex-items" style="margin-top: 35px;">
@@ -106,21 +100,15 @@
         </div>
 
         <div class="flex-items">
-            <div
-                class="img"
-                style="background-image: url(/img/icons/border/whatsapp.png);"
-            ></div>
-            <a href="whatsapp://send?phone=+79057464481">
-                +7 903 763 15 21
+            <div class="img" style="background-image: url(/img/icons/border/whatsapp.png)"></div>
+            <a href="whatsapp://send?phone=+{{ \App\Service\Phone::clean($maps['pol']['mobile']) }}">
+                {{ $maps['pol']['mobile'] }}
             </a>
         </div>
         <div class="flex-items">
-            <div
-                class="img"
-                style="background-image: url(/img/icons/border/viber.png);"
-            ></div>
-            <a href="viber://chat?number=+79057464481">
-                +7 903 763 15 21
+            <div class="img" style="background-image: url(/img/icons/border/viber.png)"></div>
+            <a href="viber://chat?number=+{{ \App\Service\Phone::clean( $maps['pol']['mobile'] ) }}">
+                {{ $maps['pol']['mobile'] }}
             </a>
         </div>
         <div class="flex-items" style="margin-top: 35px;">
@@ -180,22 +168,16 @@
             </div>
         </div>
 
-        <div class="flex-items">
-            <div
-                class="img"
-                style="background-image: url(/img/icons/border/whatsapp.png);"
-            ></div>
-            <a href="whatsapp://send?phone=+79057464481">
-                +7 903 763 15 21
+         <div class="flex-items">
+            <div class="img" style="background-image: url(/img/icons/border/whatsapp.png)"></div>
+            <a href="whatsapp://send?phone=+{{ \App\Service\Phone::clean($maps['delegat']['mobile']) }}">
+                {{ $maps['delegat']['mobile'] }}
             </a>
         </div>
         <div class="flex-items">
-            <div
-                class="img"
-                style="background-image: url(/img/icons/border/viber.png);"
-            ></div>
-            <a href="viber://chat?number=+79057464481">
-                +7 903 763 15 21
+            <div class="img" style="background-image: url(/img/icons/border/viber.png)"></div>
+            <a href="viber://chat?number=+{{ \App\Service\Phone::clean( $maps['delegat']['mobile'] ) }}">
+                {{ $maps['delegat']['mobile'] }}
             </a>
         </div>
         <div class="flex-items" style="margin-top: 35px;">
