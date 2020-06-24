@@ -22,7 +22,7 @@ class Ymap extends SsrVariable
             $zoom = 14;
         }
 
-        return view($this->getViewName(), [
+        return view($this->getViewName(true), [
             'map' => $map,
             'maps' => $maps,
             'zoom' => $zoom,

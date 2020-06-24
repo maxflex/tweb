@@ -17,9 +17,9 @@ abstract class SsrVariable
         $this->args = $args;
     }
 
-    public function getViewName()
+    public function getViewName($alwaysDesktop = false)
     {
-        return self::VIEWS_FOLDER . (isMobile() ? 'mobile.' : 'desktop.') . $this->variableName;
+        return self::VIEWS_FOLDER . ((isMobile() && !$alwaysDesktop) ? 'mobile.' : 'desktop.') . $this->variableName;
     }
 
     abstract public function parse();
