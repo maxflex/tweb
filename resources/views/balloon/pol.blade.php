@@ -174,7 +174,7 @@
             ><a
                 class="ymaps-2-1-74-islets_card__business-button"
                 target="_blank"
-                href="https://yandex.ru/maps/?ol=biz&amp;oid=1277592659&amp;ll=37.51604,55.781301998965574&amp;from=api-maps&amp;utm_source=api-maps"
+                href="https://yandex.ru/maps/org/1277592659"
                 ><ymaps class="ymaps-2-1-74-islets_card__business-button-text"
                     >Об организации</ymaps
                 ></a
