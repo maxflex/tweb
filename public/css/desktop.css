@@ -9946,4 +9946,7 @@ a.color-black {
   a.color-black:hover {
     color: black !important; }
 
+.ymaps-2-1-76-map-bg {
+  background-image: none !important; }
+
 /*# sourceMappingURL=desktop.css.map */

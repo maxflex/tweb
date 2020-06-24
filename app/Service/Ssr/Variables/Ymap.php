@@ -16,7 +16,7 @@ class Ymap extends SsrVariable
 
         if ($map === 'all') {
             $maps = ['len', 'pol', 'delegat'];
-            $zoom = 12;
+            $zoom = isMobile() ? 11 : 12;
         } else {
             $maps = [$map];
             $zoom = 14;
@@ -34,7 +34,7 @@ class Ymap extends SsrVariable
                 'len' => '55.717295, 37.595088',
                 'pol' => '55.781302, 37.516040',
                 'delegat' => '55.776432, 37.614464',
-                'all' => '55.7497, 37.6032',
+                'all' => isMobile() ? '55.7497, 37.5700' : '55.7497, 37.6032',
             ]
         ]);
     }
