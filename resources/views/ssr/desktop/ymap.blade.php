@@ -13,6 +13,29 @@
             zoom: {{ $zoom }},
             controls: ['zoomControl', 'rulerControl', 'trafficControl', 'geolocationControl'],
         });
+
+        @if($route->latLng)
+            // myMap.geoObjects.add(new ymaps.Placemark([{{ $route->latLng }}], {}, { preset: 'islands#redIcon' }));
+            var multiRoute = new ymaps.multiRouter.MultiRoute({
+                referencePoints: [
+                    [{{ $route->latLng }}],
+                    [{{ $latLng[$map] }}]
+                ],
+                params: {
+                    routingMode: "{{ $route->mode }}"
+                }
+            }, {
+                 wayPointFinishVisible:false,
+                // Внешний вид линии активного маршрута.
+                routeActiveStrokeWidth: 3,
+                routeActiveStrokeColor: "#ae4037",
+                routeStrokeStyle: "solid",
+                routeStrokeColor: "#ffffff00",
+                boundsAutoApply: true
+            });
+            myMap.geoObjects.add(multiRoute);
+        @endif
+
             @foreach($maps as $m)
                 myMap.geoObjects.add(new ymaps.Placemark([{{ $latLng[$m] }}], {
                     balloonContent: `{!! view("balloon.{$m}") !!}`,

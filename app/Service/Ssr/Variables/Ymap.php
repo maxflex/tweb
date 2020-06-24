@@ -2,12 +2,16 @@
 
 namespace App\Service\Ssr\Variables;
 
+use App\Models\Page;
 use App\Service\Ssr\SsrVariable;
+use Illuminate\Support\Facades\Request;
 
 class Ymap extends SsrVariable
 {
     public function parse()
     {
+        $page = Page::whereUrl(Request::path())->first();
+
         $map = $this->args->map;
 
         if ($map === 'all') {
@@ -22,6 +26,10 @@ class Ymap extends SsrVariable
             'map' => $map,
             'maps' => $maps,
             'zoom' => $zoom,
+            'route' => (object) [
+                'latLng' => $page->lat_lng,
+                'mode' => $page->routing_mode,
+            ],
             'latLng' => [
                 'len' => '55.717295, 37.595088',
                 'pol' => '55.781302, 37.516040',
