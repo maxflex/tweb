@@ -39,6 +39,7 @@
             @foreach($maps as $m)
                 myMap.geoObjects.add(new ymaps.Placemark([{{ $latLng[$m] }}], {
                     balloonContent: `{!! view("balloon.{$m}") !!}`,
+                    balloonPanelMaxMapArea: 0,
                 }, {
                     iconLayout: 'default#image',
                     iconImageHref: '/img/maps/marker.png',
