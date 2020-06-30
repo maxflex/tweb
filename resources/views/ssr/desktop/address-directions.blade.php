@@ -1,4 +1,4 @@
-<div class="service-list show-on-print">
+<div class="service-list show-on-print relative">
     {{-- FIRST ITEM --}}
     @if ($firstItem)
         <div class="service-list__items service-list__items_one-line">
@@ -14,6 +14,10 @@
                     </span>
                 </div>
             </div>
+
         </div>
     @endif
+    <div class="address-qr" @if($url === 'address') style='top: -35px' @endif>
+        <img src="/img/qr/{{ $url }}.gif" />
+    </div>
 </div>

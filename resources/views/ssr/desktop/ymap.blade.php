@@ -1,4 +1,19 @@
-<div class="ymap show-on-print" id="map" style="width: 100%; height: 480px"></div>
+<div class="ymap-container show-on-print" style="width: 100%; height: 480px" ng-init="panorama = false">
+    @if($panoramaLink)
+    <div class="plag-map--button" ng-click="panorama = !panorama">
+        <span ng-if="panorama">
+            <i class="fas fa-map-marker-alt"></i>
+            Карта
+        </span>
+        <span ng-if="!panorama">
+            <i class="fas fa-male"></i>
+            Панорама
+        </span>
+    </div>
+    <iframe ng-show="panorama" src="{{ $panoramaLink }}" frameborder="0" style="width: 100%; height: 100%" allowfullscreen="true"></iframe>
+    @endif
+    <div class="ymap" id="map" ng-show="!panorama"></div>
+</div>
 <script type="text/javascript">
     // Функция ymaps.ready() будет вызвана, когда
     // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
@@ -11,7 +26,7 @@
             // Уровень масштабирования. Допустимые значения:
             // от 0 (весь мир) до 19.
             zoom: {{ $zoom }},
-            controls: ['zoomControl', 'rulerControl', 'trafficControl', 'geolocationControl'],
+            controls: ['zoomControl', 'rulerControl', 'geolocationControl'],
         });
 
         @if($route->latLng)

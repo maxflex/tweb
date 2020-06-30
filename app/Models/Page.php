@@ -46,6 +46,14 @@ class Page extends Model
         return $this->hasMany(PageItem::class)->orderBy('position');
     }
 
+    public function getPanoramaLinkAttribute($value)
+    {
+        if (!$value) {
+            return null;
+        }
+        return str_replace('maps', 'map-widget/v1', $value);
+    }
+
     public function getSubjectsAttribute($value)
     {
         if ($value) {

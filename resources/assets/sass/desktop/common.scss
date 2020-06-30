@@ -1946,6 +1946,14 @@ $uploaded-photo-preview-width: 150px;
   }
 }
 
+.address-qr {
+  display: inline-block;
+  position: absolute;
+  right: -30px;
+  top: -15px;
+  transform: scale(0.7);
+}
+
 @media print {
   .footer-links,
   .footer,

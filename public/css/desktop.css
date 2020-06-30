@@ -602,6 +602,21 @@ mark {
     .service-list_one-line > div > div:not(:last-child) {
       margin-bottom: 6px; }
 
+.plag-map--button {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  font-size: 14px;
+  box-shadow: 1px 1px 9px -2px rgba(51, 51, 51, 0.5);
+  color: #4a4a4a;
+  border-radius: 4px;
+  padding: 12px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  margin-top: 10px; }
+  .plag-map--button i {
+    margin-right: 3px; }
+
 html,
 body {
   height: 100%;
@@ -2108,6 +2123,14 @@ a[href^="https://www.google.com/maps"] {
 
 .address-page-gallery .address-gallery-remove {
   display: none !important; }
+
+.address-qr {
+  display: inline-block;
+  position: absolute;
+  right: -30px;
+  top: -15px;
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7); }
 
 @media print {
   .footer-links,

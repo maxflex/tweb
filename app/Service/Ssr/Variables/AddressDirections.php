@@ -20,6 +20,7 @@ class AddressDirections extends SsrVariable
         }
 
         return view($this->getViewName(), [
+            'url' => $this->page->url,
             'firstItem' => $firstItem,
         ]);
     }

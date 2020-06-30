@@ -19,13 +19,14 @@ class Ymap extends SsrVariable
             $zoom = isMobile() ? 11 : 12;
         } else {
             $maps = [$map];
-            $zoom = 14;
+            $zoom = 13;
         }
 
         return view($this->getViewName(true), [
             'map' => $map,
             'maps' => $maps,
             'zoom' => $zoom,
+            'panoramaLink' => $page->panorama_link,
             'route' => (object) [
                 'latLng' => $page->lat_lng,
                 'mode' => $page->routing_mode,
