@@ -34,11 +34,6 @@ class PageItem extends Model
 
     public function getDescriptionAttribute($value)
     {
-        preg_match_all('#\[link\|([\d]+)\|(.*)\]#Um', $value, $m);
-        foreach ($m[0] as $i => $to_be_replaced) {
-            $url = Page::getUrl($m[1][$i]);
-            $value = str_replace($to_be_replaced, "<a href=\"/{$url}/\">{$m[2][$i]}</a>", $value);
-        }
         if ($this->position == 0 && $this->is_one_line) {
             if (strpos($value, "\n") !== false) {
                 $value = explode("\n", $value);
@@ -52,7 +47,11 @@ class PageItem extends Model
             $value = str_replace("[bus]", '<div class="directions-icon directions-icon_bus"></div>', $value);
             $value = preg_replace("#\[route\|(.*)\|(.*)\]#U", '<div class="directions-icon directions-icon_route"></div><a href="$1" target="_blank">$2</a>', $value);
             $value = preg_replace("#\[line-(\d+)\]#", '<span class="metro-circle line-$1"></span>', $value);
-            return $value;
+        }
+        preg_match_all('#\[link\|([\d]+)\|(.*)\]#Um', $value, $m);
+        foreach ($m[0] as $i => $to_be_replaced) {
+            $url = Page::getUrl($m[1][$i]);
+            $value = str_replace($to_be_replaced, "<a href=\"/{$url}/\">{$m[2][$i]}</a>", $value);
         }
         return $value;
     }
