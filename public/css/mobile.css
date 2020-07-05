@@ -7982,6 +7982,9 @@ h1.padding-top, .padding-top.header-1 {
     background-image: url(/img/icons/border/bus.png); }
   .directions-icon_car {
     background-image: url(/img/icons/border/car.png); }
+  .directions-icon_route {
+    margin-right: 5px;
+    background-image: url(/img/icons/border/route.png); }
 
 .wrap {
   width: 600px;
