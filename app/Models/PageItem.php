@@ -34,7 +34,7 @@ class PageItem extends Model
 
     public function getDescriptionAttribute($value)
     {
-        preg_match_all('#\[link\|([\d]+)\|([\w\s]+)\]#um', $value, $m);
+        preg_match_all('#\[link\|([\d]+)\|(.*)\]#Um', $value, $m);
         foreach ($m[0] as $i => $to_be_replaced) {
             $url = Page::getUrl($m[1][$i]);
             $value = str_replace($to_be_replaced, "<a href=\"/{$url}/\">{$m[2][$i]}</a>", $value);
