@@ -1775,10 +1775,11 @@ a[href^="https://www.google.com/maps"] {
 .map-block-wrapper {
   margin-top: 50px;
   border: 1px solid rgba(0, 0, 0, 0.9);
-  padding: 30px; }
+  padding: 30px;
+  font-family: "helveticaneuecyrmedium"; }
   .map-block-wrapper h1, .map-block-wrapper .header-1, .map-block-wrapper .landingnew-page .common h3, .landingnew-page .common .map-block-wrapper h3, .map-block-wrapper .landingnew-page .common .header-3, .landingnew-page .common .map-block-wrapper .header-3 {
-    font-size: 20px;
     font-family: "helveticaneuecyrmedium";
+    font-size: 20px;
     padding-bottom: 0;
     margin-bottom: 50px;
     margin-top: 0; }
