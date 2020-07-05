@@ -2,25 +2,29 @@
 
 namespace App\Service\Ssr\Variables;
 
+use App\Models\Page;
 use App\Service\Ssr\SsrVariable;
+use Illuminate\Support\Facades\Request;
 
 class AddressDirections extends SsrVariable
 {
     public function parse()
     {
-        if (!$this->page->items()->exists()) {
+        $page = Page::whereUrl(Request::path())->first();
+
+        if (!$page->items()->exists()) {
             return '';
         }
 
         $firstItem = null;
-        $items = $this->page->items->all();
+        $items = $page->items->all();
 
         if ($items[0]->is_one_line) {
             $firstItem = array_shift($items);
         }
 
         return view($this->getViewName(), [
-            'url' => $this->page->url,
+            'map' => $this->args->map,
             'firstItem' => $firstItem,
         ]);
     }

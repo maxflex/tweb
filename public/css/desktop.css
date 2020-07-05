@@ -1346,6 +1346,9 @@ a[href^="https://www.google.com/maps"] {
     background-image: url(/img/icons/border/bus.png); }
   .directions-icon_car {
     background-image: url(/img/icons/border/car.png); }
+  .directions-icon_route {
+    margin-right: 5px;
+    background-image: url(/img/icons/border/route.png); }
 
 .main-page h1, .main-page .header-1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3, .main-page .landingnew-page .common .header-3, .landingnew-page .common .main-page .header-3 {
   padding-top: 32px;
@@ -2129,8 +2132,11 @@ a[href^="https://www.google.com/maps"] {
   position: absolute;
   right: -30px;
   top: -15px;
-  -webkit-transform: scale(0.7);
-  transform: scale(0.7); }
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8); }
+  .address-qr > div {
+    font-size: 13px;
+    text-align: center; }
 
 @media print {
   .footer-links,

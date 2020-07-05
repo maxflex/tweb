@@ -17,7 +17,10 @@
 
         </div>
     @endif
-    <div class="address-qr" @if($url === 'address') style='top: -35px' @endif>
-        <img src="/img/qr/{{ $url }}.gif" />
+    <div class="address-qr" @if($map === 'all') style='top: -35px' @endif>
+        <img src="/img/qr/{{ $map }}.gif" />
+        <div>
+            QR-код этой страницы
+        </div>
     </div>
 </div>

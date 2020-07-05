@@ -943,6 +943,10 @@ p.last {
   &_car {
     background-image: url(/img/icons/border/car.png);
   }
+  &_route {
+    margin-right: 5px;
+    background-image: url(/img/icons/border/route.png);
+  }
 }
 
 .main-page {
@@ -1951,7 +1955,11 @@ $uploaded-photo-preview-width: 150px;
   position: absolute;
   right: -30px;
   top: -15px;
-  transform: scale(0.7);
+  transform: scale(0.8);
+  & > div {
+    font-size: 13px;
+    text-align: center;
+  }
 }
 
 @media print {
