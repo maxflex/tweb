@@ -50,7 +50,7 @@ class PageItem extends Model
             $value = str_replace("[walk]", '<div class="directions-icon directions-icon_walk"></div>', $value);
             $value = str_replace("[car]", '<div class="directions-icon directions-icon_car"></div>', $value);
             $value = str_replace("[bus]", '<div class="directions-icon directions-icon_bus"></div>', $value);
-            $value = preg_replace("#\[route\|(.*)\|(.*)\]#", '<div class="directions-icon directions-icon_route"></div><a href="$1" target="_blank">$2</a>', $value);
+            $value = preg_replace("#\[route\|(.*)\|(.*)\]#U", '<div class="directions-icon directions-icon_route"></div><a href="$1" target="_blank">$2</a>', $value);
             $value = preg_replace("#\[line-(\d+)\]#", '<span class="metro-circle line-$1"></span>', $value);
             return $value;
         }
