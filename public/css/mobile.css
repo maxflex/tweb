@@ -7985,6 +7985,10 @@ h1.padding-top, .padding-top.header-1 {
   .directions-icon_route {
     margin-right: 5px;
     background-image: url(/img/icons/border/route.png); }
+  .directions-icon_house {
+    background-image: url(/img/icons/border/house.png); }
+  .directions-icon_house1 {
+    background-image: url(/img/icons/border/house1.png); }
 
 .wrap {
   width: 600px;
