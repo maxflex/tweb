@@ -378,9 +378,14 @@ function printDiv(id_div) {
 }
 
 function toggleFooterLinks() {
-  $(".address-footer-links > a").toggleClass("hidden");
-  $(".address-footer-links .btn-border").html(
-    footerLinksExpanded ? "показать ещё" : "свернуть"
-  );
+  var links = $(".footer-links > a.to-toggle");
+  var button = $(".footer-links .btn-border");
+  if (footerLinksExpanded === true) {
+    links.addClass("hidden");
+    button.html("показать ещё");
+  } else {
+    links.removeClass("hidden");
+    button.html("свернуть");
+  }
   footerLinksExpanded = !footerLinksExpanded;
 }
