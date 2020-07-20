@@ -41,6 +41,10 @@
                         </a>
 
                         @if($item->id === 865)
+                        <div class='menu-addr'>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ $maps['len']['address'] }}
+                        </div>
                         <div class='menu-metros'>
                             <div class='flex-items-center'>
                                 <span class='metro-circle line-5'></span>
@@ -58,6 +62,10 @@
                         @endif
 
                         @if($item->id === 866)
+                        <div class='menu-addr'>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ $maps['pol']['address'] }}
+                        </div>
                         <div class='menu-metros'>
                             <div class='flex-items-center'>
                                 <span class='metro-circle line-7'></span>
@@ -71,6 +79,10 @@
                         @endif
 
                         @if($item->id === 867)
+                        <div class='menu-addr'>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ $maps['delegat']['address'] }}
+                        </div>
                         <div class='menu-metros'>
                             <div class='flex-items-center'>
                                 <span class='metro-circle line-9'></span>

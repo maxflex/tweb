@@ -1944,6 +1944,16 @@ $uploaded-photo-preview-width: 150px;
   }
 }
 
+.menu-addr {
+  font-size: 12px;
+  margin: 5px 0 8px;
+  color: #ecdede;
+  & i {
+    font-size: 14px;
+    padding: 0 2px 0 1px;
+  }
+}
+
 .photo-page {
   & .service-list,
   & .gallery-block-photos {

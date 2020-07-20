@@ -2125,6 +2125,14 @@ a[href^="https://www.google.com/maps"] {
   .menu-metros .metro-circle {
     border: 1px solid white; }
 
+.menu-addr {
+  font-size: 12px;
+  margin: 5px 0 8px;
+  color: #ecdede; }
+  .menu-addr i {
+    font-size: 14px;
+    padding: 0 2px 0 1px; }
+
 .photo-page .service-list,
 .photo-page .gallery-block-photos {
   border-bottom: none !important; }
