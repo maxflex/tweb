@@ -20726,6 +20726,71 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Master', function($resource) {
+    return $resource(apiPath('masters'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('masters', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
+
+}).call(this);
+
+(function() {
   angular.module('App').value('AvgScores', {
     '1-11-1': 46.3,
     '2-11': 51.2,
@@ -20843,67 +20908,243 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Master', function($resource) {
-    return $resource(apiPath('masters'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('masters', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
+  angular.module('App').service('GalleryService', function() {
+    var DIRECTION, animation_in_progress, el, scroll_left;
+    this.displayed = 3;
+    el = null;
+    scroll_left = null;
+    DIRECTION = {
+      next: 1,
+      prev: 0
+    };
+    animation_in_progress = false;
+    this.initialized = false;
+    this.open = function(index) {
+      return this.ctrl.open(index);
+    };
+    this.init = function(gallery) {
+      this.gallery = gallery;
+      this.gallery.push(gallery[0]);
+      this.gallery.unshift(gallery[gallery.length - 2]);
+      el = $('.main-gallery-block');
+      this.screen_width = $('.main-gallery-block .gallery-item').first().outerWidth();
+      return this.setActive(1);
+    };
+    this.next = function() {
+      if (animation_in_progress) {
+        return;
       }
-    });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
+      this.rotateControl(DIRECTION.next);
+      return this.setActive(this.active + 1);
+    };
+    this.prev = function() {
+      if (animation_in_progress) {
+        return;
+      }
+      this.rotateControl(DIRECTION.prev);
+      return this.setActive(this.active - 1);
+    };
+    this.setActive = function(index) {
+      this.active = index;
+      return this.scroll();
+    };
+    this.rotateControl = function(direction) {
+      if (this.active === 1 && direction === DIRECTION.prev) {
+        this.active = this.gallery.length - 1;
+        this.scroll(0);
+      }
+      if (this.active === this.gallery.length - 2 && direction === DIRECTION.next) {
+        this.active = 0;
+        return this.scroll(0);
+      }
+    };
+    this.scroll = function(animation_speed) {
+      var speed;
+      if (animation_speed == null) {
+        animation_speed = 500;
+      }
+      animation_in_progress = true;
+      speed = this.initialized ? animation_speed : 100;
+      el.stop().animate({
+        scrollLeft: this.screen_width * this.active + this.screen_width - (($(window).width() - this.screen_width) / 2)
+      }, speed, function() {
+        return animation_in_progress = false;
+      });
+      return this.initialized = true;
+    };
+    return this;
   });
 
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
+}).call(this);
 
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
+(function() {
+  angular.module('App').service('PhoneService', function() {
+    var isFull;
+    this.checkForm = function(element) {
+      var phone_element, phone_number;
+      phone_element = $(element).find('.phone-field');
+      if (!isFull(phone_element.val())) {
+        phone_element.focus().notify('номер телефона не заполнен полностью', notify_options);
+        return false;
+      }
+      phone_number = phone_element.val().match(/\d/g).join('');
+      if (phone_number[1] !== '4' && phone_number[1] !== '9') {
+        phone_element.focus().notify('номер должен начинаться с 9 или 4', notify_options);
+        return false;
+      }
+      return true;
+    };
+    isFull = function(number) {
+      if (number === void 0 || number === "") {
+        return false;
+      }
+      return !number.match(/_/);
+    };
+    return this;
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').service('StreamService', function($http, $timeout, Stream) {
+    this.identifySource = function(tutor) {
+      if (tutor == null) {
+        tutor = void 0;
+      }
+      if (tutor !== void 0 && tutor.is_similar) {
+        return 'similar';
+      }
+      if (RegExp(/^\/[\d]+$/).test(window.location.pathname)) {
+        return 'tutor';
+      }
+      if (window.location.pathname === '/request') {
+        return 'help';
+      }
+      if (window.location.pathname === '/') {
+        return 'main';
+      }
+      return 'serp';
+    };
+    this.generateEventString = function(params) {
+      var parts, search;
+      search = $.cookie('search');
+      if (search !== void 0) {
+        $.each(JSON.parse(search), function(key, value) {
+          return params[key] = value;
+        });
+      }
+      parts = [];
+      $.each(params, function(key, value) {
+        var where;
+        switch (key) {
+          case 'sort':
+            switch (parseInt(value)) {
+              case 2:
+                value = 'maxprice';
+                break;
+              case 3:
+                value = 'minprice';
+                break;
+              case 4:
+                value = 'rating';
+                break;
+              case 5:
+                value = 'bymetro';
+                break;
+              default:
+                value = 'pop';
+            }
+            break;
+          case 'place':
+            switch (parseInt(params.place)) {
+              case 1:
+                where = 'tutor';
+                break;
+              case 2:
+                where = 'client';
+                break;
+              default:
+                where = 'any';
+            }
+        }
+        if ((key === 'action' || key === 'type' || key === 'google_id' || key === 'yandex_id' || key === 'id' || key === 'hidden_filter') || !value) {
+          return;
+        }
+        return parts.push(key + '=' + value);
+      });
+      return parts.join('_');
+    };
+    this.updateCookie = function(params) {
+      if (this.cookie === void 0) {
+        this.cookie = {};
+      }
+      $.each(params, (function(_this) {
+        return function(key, value) {
+          return _this.cookie[key] = value;
+        };
+      })(this));
+      return $.cookie('stream', JSON.stringify(this.cookie), {
+        expires: 365,
+        path: '/'
+      });
+    };
+    this.initCookie = function() {
+      if ($.cookie('stream') !== void 0) {
+        return this.cookie = JSON.parse($.cookie('stream'));
+      } else {
+        return this.updateCookie({
+          step: 0,
+          search: 0
+        });
       }
     };
-  };
-
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
+    this.run = function(action, type, additional) {
+      if (additional == null) {
+        additional = {};
+      }
+      if (this.cookie === void 0) {
+        this.initCookie();
+      }
+      if (!this.initialized) {
+        return $timeout((function(_this) {
+          return function() {
+            return _this._run(action, type, additional);
+          };
+        })(this), 1000);
+      } else {
+        return this._run(action, type, additional);
       }
     };
-  };
+    this._run = function(action, type, additional) {
+      var params;
+      if (additional == null) {
+        additional = {};
+      }
+      this.updateCookie({
+        step: this.cookie.step + 1
+      });
+      params = {
+        action: action,
+        type: type,
+        step: this.cookie.step,
+        mobile: typeof isMobile === 'undefined' ? '0' : '1'
+      };
+      $.each(additional, (function(_this) {
+        return function(key, value) {
+          return params[key] = value;
+        };
+      })(this));
+      if (action !== 'page') {
+        dataLayerPush({
+          event: 'configuration',
+          eventCategory: action,
+          eventAction: type
+        });
+      }
+      return Stream.save(params).$promise;
+    };
+    return this;
+  });
 
 }).call(this);
 
@@ -21168,557 +21409,348 @@ return PhotoSwipeUI_Default;
 
 }).call(this);
 
-(function() {
-  angular.module('App').service('GalleryService', function() {
-    var DIRECTION, animation_in_progress, el, scroll_left;
-    this.displayed = 3;
-    el = null;
-    scroll_left = null;
-    DIRECTION = {
-      next: 1,
-      prev: 0
-    };
-    animation_in_progress = false;
-    this.initialized = false;
-    this.open = function(index) {
-      return this.ctrl.open(index);
-    };
-    this.init = function(gallery) {
-      this.gallery = gallery;
-      this.gallery.push(gallery[0]);
-      this.gallery.unshift(gallery[gallery.length - 2]);
-      el = $('.main-gallery-block');
-      this.screen_width = $('.main-gallery-block .gallery-item').first().outerWidth();
-      return this.setActive(1);
-    };
-    this.next = function() {
-      if (animation_in_progress) {
-        return;
-      }
-      this.rotateControl(DIRECTION.next);
-      return this.setActive(this.active + 1);
-    };
-    this.prev = function() {
-      if (animation_in_progress) {
-        return;
-      }
-      this.rotateControl(DIRECTION.prev);
-      return this.setActive(this.active - 1);
-    };
-    this.setActive = function(index) {
-      this.active = index;
-      return this.scroll();
-    };
-    this.rotateControl = function(direction) {
-      if (this.active === 1 && direction === DIRECTION.prev) {
-        this.active = this.gallery.length - 1;
-        this.scroll(0);
-      }
-      if (this.active === this.gallery.length - 2 && direction === DIRECTION.next) {
-        this.active = 0;
-        return this.scroll(0);
-      }
-    };
-    this.scroll = function(animation_speed) {
-      var speed;
-      if (animation_speed == null) {
-        animation_speed = 500;
-      }
-      animation_in_progress = true;
-      speed = this.initialized ? animation_speed : 100;
-      el.stop().animate({
-        scrollLeft: this.screen_width * this.active + this.screen_width - (($(window).width() - this.screen_width) / 2)
-      }, speed, function() {
-        return animation_in_progress = false;
-      });
-      return this.initialized = true;
-    };
-    return this;
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').service('PhoneService', function() {
-    var isFull;
-    this.checkForm = function(element) {
-      var phone_element, phone_number;
-      phone_element = $(element).find('.phone-field');
-      if (!isFull(phone_element.val())) {
-        phone_element.focus().notify('номер телефона не заполнен полностью', notify_options);
-        return false;
-      }
-      phone_number = phone_element.val().match(/\d/g).join('');
-      if (phone_number[1] !== '4' && phone_number[1] !== '9') {
-        phone_element.focus().notify('номер должен начинаться с 9 или 4', notify_options);
-        return false;
-      }
-      return true;
-    };
-    isFull = function(number) {
-      if (number === void 0 || number === "") {
-        return false;
-      }
-      return !number.match(/_/);
-    };
-    return this;
-  });
-
-}).call(this);
-
-(function() {
-  angular.module('App').service('StreamService', function($http, $timeout, Stream) {
-    this.identifySource = function(tutor) {
-      if (tutor == null) {
-        tutor = void 0;
-      }
-      if (tutor !== void 0 && tutor.is_similar) {
-        return 'similar';
-      }
-      if (RegExp(/^\/[\d]+$/).test(window.location.pathname)) {
-        return 'tutor';
-      }
-      if (window.location.pathname === '/request') {
-        return 'help';
-      }
-      if (window.location.pathname === '/') {
-        return 'main';
-      }
-      return 'serp';
-    };
-    this.generateEventString = function(params) {
-      var parts, search;
-      search = $.cookie('search');
-      if (search !== void 0) {
-        $.each(JSON.parse(search), function(key, value) {
-          return params[key] = value;
-        });
-      }
-      parts = [];
-      $.each(params, function(key, value) {
-        var where;
-        switch (key) {
-          case 'sort':
-            switch (parseInt(value)) {
-              case 2:
-                value = 'maxprice';
-                break;
-              case 3:
-                value = 'minprice';
-                break;
-              case 4:
-                value = 'rating';
-                break;
-              case 5:
-                value = 'bymetro';
-                break;
-              default:
-                value = 'pop';
-            }
-            break;
-          case 'place':
-            switch (parseInt(params.place)) {
-              case 1:
-                where = 'tutor';
-                break;
-              case 2:
-                where = 'client';
-                break;
-              default:
-                where = 'any';
-            }
-        }
-        if ((key === 'action' || key === 'type' || key === 'google_id' || key === 'yandex_id' || key === 'id' || key === 'hidden_filter') || !value) {
-          return;
-        }
-        return parts.push(key + '=' + value);
-      });
-      return parts.join('_');
-    };
-    this.updateCookie = function(params) {
-      if (this.cookie === void 0) {
-        this.cookie = {};
-      }
-      $.each(params, (function(_this) {
-        return function(key, value) {
-          return _this.cookie[key] = value;
-        };
-      })(this));
-      return $.cookie('stream', JSON.stringify(this.cookie), {
-        expires: 365,
-        path: '/'
-      });
-    };
-    this.initCookie = function() {
-      if ($.cookie('stream') !== void 0) {
-        return this.cookie = JSON.parse($.cookie('stream'));
-      } else {
-        return this.updateCookie({
-          step: 0,
-          search: 0
-        });
-      }
-    };
-    this.run = function(action, type, additional) {
-      if (additional == null) {
-        additional = {};
-      }
-      if (this.cookie === void 0) {
-        this.initCookie();
-      }
-      if (!this.initialized) {
-        return $timeout((function(_this) {
-          return function() {
-            return _this._run(action, type, additional);
-          };
-        })(this), 1000);
-      } else {
-        return this._run(action, type, additional);
-      }
-    };
-    this._run = function(action, type, additional) {
-      var params;
-      if (additional == null) {
-        additional = {};
-      }
-      this.updateCookie({
-        step: this.cookie.step + 1
-      });
-      params = {
-        action: action,
-        type: type,
-        step: this.cookie.step,
-        mobile: typeof isMobile === 'undefined' ? '0' : '1'
-      };
-      $.each(additional, (function(_this) {
-        return function(key, value) {
-          return params[key] = value;
-        };
-      })(this));
-      if (action !== 'page') {
-        dataLayerPush({
-          event: 'configuration',
-          eventCategory: action,
-          eventAction: type
-        });
-      }
-      return Stream.save(params).$promise;
-    };
-    return this;
-  });
-
-}).call(this);
-
 //# sourceMappingURL=app.js.map
 
-var scope = null
-var player = {}
-var players = {}
-var isMobile = false
-var modal_inited = false
-var scrollPosition = false
+var scope = null;
+var player = {};
+var players = {};
+var isMobile = false;
+var modal_inited = false;
+var scrollPosition = false;
+var footerLinksExpanded = false;
 
 // window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
-window.onYouTubeIframeAPIReady = function() {
-    $(document).ready(function() {
-        if (isMobile) {
-            initVideosMobile();
-        } else {
-            initVideosDesktop();
-        }
-    })
-}
+window.onYouTubeIframeAPIReady = function () {
+  $(document).ready(function () {
+    if (isMobile) {
+      initVideosMobile();
+    } else {
+      initVideosDesktop();
+    }
+  });
+};
 
-$(document).ready(function() {
-    //Custom select
-    var $cs = $('.custom-select').customSelect();
+$(document).ready(function () {
+  //Custom select
+  var $cs = $(".custom-select").customSelect();
 
-    $('.questions-item-title').click(function() {
-        $(this)
-            .parent()
-            .children('.questions-item-answer')
-            .toggle();
-    });
+  $(".questions-item-title").click(function () {
+    $(this).parent().children(".questions-item-answer").toggle();
+  });
 
-    $(document).on('keyup', function(event) {
-        if (event.keyCode == 27) {
-            closeModal()
-        }
-    })
+  $(document).on("keyup", function (event) {
+    if (event.keyCode == 27) {
+      closeModal();
+    }
+  });
 
-    //
-    // close modal on «back» button
-    //
-    $(window).on('hashchange', function() {
-        if(window.location.hash != "#modal") {
-            closeModal()
-        }
-    });
+  //
+  // close modal on «back» button
+  //
+  $(window).on("hashchange", function () {
+    if (window.location.hash != "#modal") {
+      closeModal();
+    }
+  });
 
-    angular.element(document).ready(function() {
-		setTimeout(function() {
-			scope = angular.element('[ng-app=App]').scope()
-		}, 50)
-	})
+  angular.element(document).ready(function () {
+    setTimeout(function () {
+      scope = angular.element("[ng-app=App]").scope();
+    }, 50);
+  });
 
-    // каждый раз, когда открывается любоая страница
-    // отправляем стрим landing
-    // $.post('/api/stream', {
-    //     action: 'page',
-    //     href: window.location.href,
-    //     google_id: googleClientId(),
-    //     yandex_id:
-    // })
-    // setTimeout(function() {
-    //     scope.StreamService.run('page', null, {href: window.location.href})
-    // }, 500)
-})
+  // каждый раз, когда открывается любоая страница
+  // отправляем стрим landing
+  // $.post('/api/stream', {
+  //     action: 'page',
+  //     href: window.location.href,
+  //     google_id: googleClientId(),
+  //     yandex_id:
+  // })
+  // setTimeout(function() {
+  //     scope.StreamService.run('page', null, {href: window.location.href})
+  // }, 500)
+});
 
 function closeModal() {
-    $('.modal.active').removeClass('modal-animate-open').addClass('modal-animate-close')
-    // if(window.location.hash == "#modal") {
-    //     window.history.back()
-    // }
-    setTimeout(function() {
-        $('.modal').removeClass('active')
-        $('body').removeClass()
-    	// $("body").addClass('open-modal-' + active_modal); active_modal = false
-        $('.container').off('touchmove');
-        // @todo: почему-то эта строчка ломает повторное воспроизведение видео
-        if (typeof(onCloseModal) == 'function') {
-            onCloseModal()
-        }
-    }, isMobile ? 300 : 0)
+  $(".modal.active")
+    .removeClass("modal-animate-open")
+    .addClass("modal-animate-close");
+  // if(window.location.hash == "#modal") {
+  //     window.history.back()
+  // }
+  setTimeout(
+    function () {
+      $(".modal").removeClass("active");
+      $("body").removeClass();
+      // $("body").addClass('open-modal-' + active_modal); active_modal = false
+      $(".container").off("touchmove");
+      // @todo: почему-то эта строчка ломает повторное воспроизведение видео
+      if (typeof onCloseModal == "function") {
+        onCloseModal();
+      }
+    },
+    isMobile ? 300 : 0
+  );
 }
 
 function openModal(id) {
-    modal = $(".modal#modal-" + id)
-    modal.removeClass('modal-animate-close').addClass('active').addClass('modal-animate-open')
-    $('#menu-overlay').height('95%').scrollTop(); // iphone5-safari fix
-    $("body").addClass('modal-open open-modal-' + id);
-    // active_modal = id
-    $('.container').on('touchmove', function(e){e.preventDefault();});
-    // window.location.hash = '#modal'
-    if (typeof(onOpenModal) == 'function') {
-        onOpenModal(id)
-    }
+  modal = $(".modal#modal-" + id);
+  modal
+    .removeClass("modal-animate-close")
+    .addClass("active")
+    .addClass("modal-animate-open");
+  $("#menu-overlay").height("95%").scrollTop(); // iphone5-safari fix
+  $("body").addClass("modal-open open-modal-" + id);
+  // active_modal = id
+  $(".container").on("touchmove", function (e) {
+    e.preventDefault();
+  });
+  // window.location.hash = '#modal'
+  if (typeof onOpenModal == "function") {
+    onOpenModal(id);
+  }
 }
 
 function openVideo(videoId) {
-    if (typeof(window.player) !== 'object' || Object.keys(window.player).length === 0) {
-        initVideosDesktop()
-    }
-    window.scrollPosition = document.querySelector('html').scrollTop
-    window.player.loadVideoById(videoId)
-    window.player.playVideo()
-    openModal('video')
+  if (
+    typeof window.player !== "object" ||
+    Object.keys(window.player).length === 0
+  ) {
+    initVideosDesktop();
+  }
+  window.scrollPosition = document.querySelector("html").scrollTop;
+  window.player.loadVideoById(videoId);
+  window.player.playVideo();
+  openModal("video");
 }
 
 function initVideosDesktop() {
-    if (!YT.Player) {
-        return
-    }
-  window.player = new YT.Player('youtube-video', {});
-  window.player.addEventListener("onStateChange", function(state) {
+  if (!YT.Player) {
+    return;
+  }
+  window.player = new YT.Player("youtube-video", {});
+  window.player.addEventListener("onStateChange", function (state) {
     if (state.data === YT.PlayerState.PLAYING) {
-      return setTimeout(function() {
-        return $('.fullscreen-loading-black').css('display', 'none');
+      return setTimeout(function () {
+        return $(".fullscreen-loading-black").css("display", "none");
       }, 500);
     }
   });
 
-  window.onCloseModal = function() {
-    document.querySelector('html').scrollTop = window.scrollPosition;
+  window.onCloseModal = function () {
+    document.querySelector("html").scrollTop = window.scrollPosition;
     return player.stopVideo();
   };
-};
+}
 
 function initVideosMobile() {
-    if (!YT.Player) {
-      return;
-    }
-    return $('.youtube-video').each(function(i, e) {
-      var id, iframe, player, requestFullScreen;
-      id = $(e).data('id');
-      iframe = document.getElementById("youtube-video-" + id);
-      requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-      player = new YT.Player("youtube-video-" + id, {
-        playerVars: {
-          rel: 0
-        }
-      });
-      window.players[id] = player;
-      window.players[id].addEventListener('onStateChange', function(state) {
-        requestFullScreen.bind(iframe)();
-        if (state.data === YT.PlayerState.PLAYING) {
-          return stopPlaying(state.target.a.id);
-        }
-      });
-      return null;
+  if (!YT.Player) {
+    return;
+  }
+  return $(".youtube-video").each(function (i, e) {
+    var id, iframe, player, requestFullScreen;
+    id = $(e).data("id");
+    iframe = document.getElementById("youtube-video-" + id);
+    requestFullScreen =
+      iframe.requestFullScreen ||
+      iframe.mozRequestFullScreen ||
+      iframe.webkitRequestFullScreen;
+    player = new YT.Player("youtube-video-" + id, {
+      playerVars: {
+        rel: 0,
+      },
     });
-  };
-
-
-  function stopPlaying(except_id) {
-    return $.each(window.players, function(e, p) {
-      if (p.getPlayerState && p.getPlayerState() === 1 && p.a.id !== except_id) {
-        return p.stopVideo();
+    window.players[id] = player;
+    window.players[id].addEventListener("onStateChange", function (state) {
+      requestFullScreen.bind(iframe)();
+      if (state.data === YT.PlayerState.PLAYING) {
+        return stopPlaying(state.target.a.id);
       }
     });
-  };
+    return null;
+  });
+}
+
+function stopPlaying(except_id) {
+  return $.each(window.players, function (e, p) {
+    if (p.getPlayerState && p.getPlayerState() === 1 && p.a.id !== except_id) {
+      return p.stopVideo();
+    }
+  });
+}
 
 /**
  * Биндит аргументы контроллера ангуляра в $scope
  */
 function bindArguments(scope, arguments) {
-	function_arguments = getArguments(arguments.callee)
+  function_arguments = getArguments(arguments.callee);
 
-	for (i = 1; i < arguments.length; i++) {
-		function_name = function_arguments[i]
-		if (function_name[0] === '$') {
-			continue
-		}
-		scope[function_name] = arguments[i]
-	}
+  for (i = 1; i < arguments.length; i++) {
+    function_name = function_arguments[i];
+    if (function_name[0] === "$") {
+      continue;
+    }
+    scope[function_name] = arguments[i];
+  }
 }
 /**
  * Получить аргументы функции в виде строки
  * @link: http://stackoverflow.com/a/9924463/2274406
  */
-var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
+var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm;
 var ARGUMENT_NAMES = /([^\s,]+)/g;
 function getArguments(func) {
-  var fnStr = func.toString().replace(STRIP_COMMENTS, '');
-  var result = fnStr.slice(fnStr.indexOf('(')+1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
-  if(result === null)
-     result = [];
+  var fnStr = func.toString().replace(STRIP_COMMENTS, "");
+  var result = fnStr
+    .slice(fnStr.indexOf("(") + 1, fnStr.indexOf(")"))
+    .match(ARGUMENT_NAMES);
+  if (result === null) result = [];
   return result;
 }
 
 function googleClientId() {
-    return null;
-    //return ga.getAll()[0].get('clientId')
+  return null;
+  //return ga.getAll()[0].get('clientId')
 }
 
 window.notify_options = {
-    hideAnimation: 'fadeOut',
-    showDuration: 0,
-    hideDuration: 400,
-    autoHideDelay: 3000
-}
+  hideAnimation: "fadeOut",
+  showDuration: 0,
+  hideDuration: 400,
+  autoHideDelay: 3000,
+};
 
 function dataLayerPush(object) {
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push(object)
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(object);
 }
 
-function keyCount (object) {
-    return _.keys(object).length;
+function keyCount(object) {
+  return _.keys(object).length;
 }
 
 function streamLink(url, action, type, additional) {
-    if (url === null) {
-        scope.StreamService.run(action, type, additional)
-        return
-    }
-    if (additional === undefined) {
-        additional = {}
-    }
-    // в tel: тоже не подставлять
-    if (url[0] != '/' && url.indexOf('tel') === -1 && url.indexOf('http') === -1) {
-        url = '/' + url
-    }
+  if (url === null) {
+    scope.StreamService.run(action, type, additional);
+    return;
+  }
+  if (additional === undefined) {
+    additional = {};
+  }
+  // в tel: тоже не подставлять
+  if (
+    url[0] != "/" &&
+    url.indexOf("tel") === -1 &&
+    url.indexOf("http") === -1
+  ) {
+    url = "/" + url;
+  }
 
-    if (url.indexOf('http') === -1 && url.indexOf('tel') === -1) {
-        scope.StreamService.run(action, type, additional).then(function(data) {
-            window.location = url
-        })
+  if (url.indexOf("http") === -1 && url.indexOf("tel") === -1) {
+    scope.StreamService.run(action, type, additional).then(function (data) {
+      window.location = url;
+    });
+  } else {
+    scope.StreamService.run(action, type, additional);
+    if (url.indexOf("tel") === -1) {
+      window.open(url, "_blank");
     } else {
-        scope.StreamService.run(action, type, additional)
-        if (url.indexOf('tel') === -1) {
-            window.open(url, '_blank')
-        } else {
-            window.location = url
-        }
+      window.location = url;
     }
+  }
 }
 
 function eventAction(category, action) {
-  eventUrl(null, category, action)
+  eventUrl(null, category, action);
 }
 
 function prefixEvent(eventName) {
-  return isMobile ? 'mob-' + eventName : 'stat-' + eventName
+  return isMobile ? "mob-" + eventName : "stat-" + eventName;
 }
 
 function eventUrl(url, category, action) {
   params = {
-    event: 'user-event',
+    event: "user-event",
     eventCategory: category,
     eventAction: action || null,
-  }
-  dataLayerPush(params)
+  };
+  dataLayerPush(params);
   // return
   if (url !== null) {
-    special_links = ['whatsapp', 'viber', 'maps', 'yandexnavi', 'tel']
-    is_special_link = false
-    special_links.forEach(function(link) {
+    special_links = ["whatsapp", "viber", "maps", "yandexnavi", "tel"];
+    is_special_link = false;
+    special_links.forEach(function (link) {
       if (url.indexOf(link) === 0) {
-        is_special_link = true
+        is_special_link = true;
       }
-    })
+    });
 
     if (is_special_link) {
-      window.location = url
+      window.location = url;
     } else {
-      window.location = '/' + url
+      window.location = "/" + url;
     }
   }
 }
 
 function openChat() {
-    $('#intergramRoot > div > div').first().click()
+  $("#intergramRoot > div > div").first().click();
 }
 
 function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
 function pluralize(number, titles) {
-    cases = [2, 0, 1, 1, 1, 2];
-    return number + ' ' + titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+  cases = [2, 0, 1, 1, 1, 2];
+  return (
+    number +
+    " " +
+    titles[
+      number % 100 > 4 && number % 100 < 20
+        ? 2
+        : cases[number % 10 < 5 ? number % 10 : 5]
+    ]
+  );
 }
 
 function addStyleString(str) {
-    var node = document.createElement('style');
-    node.innerHTML = str;
-    document.body.appendChild(node);
+  var node = document.createElement("style");
+  node.innerHTML = str;
+  document.body.appendChild(node);
 }
 
 function fileChange(event) {
-    if (event.target.files[0].size > 5242880) {
-        return false
-    }
-    setTimeout(function() {
-        $('.uploaded-photo-box').last().css('background-image', "url('" + URL.createObjectURL(event.target.files[0]) + "')")
-    }, 100)
+  if (event.target.files[0].size > 5242880) {
+    return false;
+  }
+  setTimeout(function () {
+    $(".uploaded-photo-box")
+      .last()
+      .css(
+        "background-image",
+        "url('" + URL.createObjectURL(event.target.files[0]) + "')"
+      );
+  }, 100);
 }
 
-
 function togglePrice(event, scroll) {
-    // console.log('togglePrice', event)
-    // scrollTo = $(event.target).offset().top - 66
-    target = $(event.target).hasClass('price-line') ? $(event.target) : $(event.target).closest('.price-line')
-    target.toggleClass('active')
-    ul = target.parent().children('ul')
-    if (scroll === true && !ul.is(':visible')) {
-        event.target.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        // $('#modal-menu').animate({
-        //     scrollTop: scrollTo
-        // }, 250)
-    }
-    ul.slideToggle(250)
+  // console.log('togglePrice', event)
+  // scrollTo = $(event.target).offset().top - 66
+  target = $(event.target).hasClass("price-line")
+    ? $(event.target)
+    : $(event.target).closest(".price-line");
+  target.toggleClass("active");
+  ul = target.parent().children("ul");
+  if (scroll === true && !ul.is(":visible")) {
+    event.target.scrollIntoView({ behavior: "smooth", block: "center" });
+    // $('#modal-menu').animate({
+    //     scrollTop: scrollTo
+    // }, 250)
+  }
+  ul.slideToggle(250);
 }
 
 /**
@@ -21726,31 +21758,44 @@ function togglePrice(event, scroll) {
  *
  */
 function printDiv(id_div) {
-    var contents = document.getElementById(id_div).innerHTML;
-    var frame1 = document.createElement('iframe');
-    frame1.name = "frame1";
-    frame1.style.position = "absolute";
-    frame1.style.top = "-1000000px";
+  var contents = document.getElementById(id_div).innerHTML;
+  var frame1 = document.createElement("iframe");
+  frame1.name = "frame1";
+  frame1.style.position = "absolute";
+  frame1.style.top = "-1000000px";
 
-    document.body.appendChild(frame1);
-    var frameDoc = frame1.contentWindow ? frame1.contentWindow : frame1.contentDocument.document ? frame1.contentDocument.document : frame1.contentDocument;
-    frameDoc.document.open();
-    frameDoc.document.write('<html><head><title>Ателье «Талисман»</title>');
-    frameDoc.document.write("<style type='text/css'>\
+  document.body.appendChild(frame1);
+  var frameDoc = frame1.contentWindow
+    ? frame1.contentWindow
+    : frame1.contentDocument.document
+    ? frame1.contentDocument.document
+    : frame1.contentDocument;
+  frameDoc.document.open();
+  frameDoc.document.write("<html><head><title>Ателье «Талисман»</title>");
+  frameDoc.document.write(
+    "<style type='text/css'>\
     	h4 {text-align: center}\
     	p {text-indent: 50px; margin: 0}\
 	  </style>"
-	);
-    frameDoc.document.write('</head><body>');
-    frameDoc.document.write(contents);
-    frameDoc.document.write('</body></html>');
-    frameDoc.document.close();
-    setTimeout(function () {
-        window.frames["frame1"].focus();
-        window.frames["frame1"].print();
-        document.body.removeChild(frame1);
-    }, 500);
-    return false;
+  );
+  frameDoc.document.write("</head><body>");
+  frameDoc.document.write(contents);
+  frameDoc.document.write("</body></html>");
+  frameDoc.document.close();
+  setTimeout(function () {
+    window.frames["frame1"].focus();
+    window.frames["frame1"].print();
+    document.body.removeChild(frame1);
+  }, 500);
+  return false;
+}
+
+function toggleFooterLinks() {
+  $(".address-footer-links > a").toggleClass("hidden");
+  $(".address-footer-links .btn-border").html(
+    footerLinksExpanded ? "показать ещё" : "свернуть"
+  );
+  footerLinksExpanded = !footerLinksExpanded;
 }
 
 /*
