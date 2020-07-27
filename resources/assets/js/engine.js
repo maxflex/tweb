@@ -389,3 +389,15 @@ function toggleFooterLinks() {
   }
   footerLinksExpanded = !footerLinksExpanded;
 }
+
+function previewGallery(id) {
+  $(".gallery-preview").css("display", "flex");
+  $("#gallery-preview").attr(
+    "src",
+    "https://cms.atelier-talisman.ru/img/gallery/" + id + ".jpg"
+  );
+}
+
+function closeGalleryPreview() {
+  $(".gallery-preview").hide();
+}

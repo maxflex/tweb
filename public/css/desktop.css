@@ -1350,9 +1350,8 @@ a[href^="https://www.google.com/maps"] {
     margin-right: 5px;
     background-image: url(/img/icons/border/route.png); }
   .directions-icon_house {
-    background-image: url(/img/icons/border/house.png); }
-  .directions-icon_house1 {
-    background-image: url(/img/icons/border/house1.png); }
+    background-image: url(/img/icons/border/house.png);
+    width: 40px !important; }
 
 .main-page h1, .main-page .header-1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3, .main-page .landingnew-page .common .header-3, .landingnew-page .common .main-page .header-3 {
   padding-top: 32px;
@@ -2028,6 +2027,15 @@ a[href^="https://www.google.com/maps"] {
 
 .h1-top {
   margin-top: 40px; }
+  .h1-top_addr h1, .h1-top_addr .header-1, .h1-top_addr .landingnew-page .common h3, .landingnew-page .common .h1-top_addr h3, .h1-top_addr .landingnew-page .common .header-3, .landingnew-page .common .h1-top_addr .header-3 {
+    margin: 0 !important;
+    padding: 0 !important; }
+  .h1-top__addr {
+    color: #ae4037;
+    text-align: center;
+    margin: 20px 0 40px;
+    font-size: 20px;
+    font-weight: bold; }
 
 .price-page .price-wrapper {
   border-bottom: none !important;
@@ -2150,6 +2158,29 @@ a[href^="https://www.google.com/maps"] {
   .address-qr > div {
     font-size: 13px;
     text-align: center; }
+
+.gallery-preview {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background: #383838;
+  z-index: 99;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  display: none; }
+  .gallery-preview .gallery-close {
+    top: 0;
+    padding: 20px; }
+  .gallery-preview img {
+    max-width: 80%; }
 
 @media print {
   .footer-links,

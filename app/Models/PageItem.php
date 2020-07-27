@@ -46,8 +46,8 @@ class PageItem extends Model
             $value = str_replace("[car]", '<div class="directions-icon directions-icon_car"></div>', $value);
             $value = str_replace("[bus]", '<div class="directions-icon directions-icon_bus"></div>', $value);
             $value = str_replace("[house]", '<div class="directions-icon directions-icon_house"></div>', $value);
-            $value = str_replace("[house1]", '<div class="directions-icon directions-icon_house1"></div>', $value);
             $value = preg_replace("#\[route\|(.*)\|(.*)\]#U", '<div class="directions-icon directions-icon_route"></div><a href="$1" target="_blank">$2</a>', $value);
+            $value = preg_replace("#\[photo\|(.*)\|(.*)\]#U", '<a class="pointer" onclick="previewGallery($1)">$2</a>', $value);
             $value = preg_replace("#\[line-(\d+)\]#", '<span class="metro-circle line-$1"></span>', $value);
         }
         preg_match_all('#\[link\|([\d]+)\|(.*)\]#Um', $value, $m);

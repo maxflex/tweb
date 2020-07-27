@@ -15,6 +15,8 @@ class Page extends Model
 {
     use SoftDeletes, HasTags;
 
+    const ADDRESS_FOLDER_IDS = [711, 752, 753, 754];
+
     protected $dates = ['deleted_at'];
 
     // Соответствия между разделами и ID предмета
@@ -44,6 +46,14 @@ class Page extends Model
     public function items()
     {
         return $this->hasMany(PageItem::class)->orderBy('position');
+    }
+
+    /**
+     * Page is in /address folder
+     */
+    public function getIsInAddressFolderAttribute()
+    {
+        return in_array($this->folder_id, self::ADDRESS_FOLDER_IDS);
     }
 
     public function getPanoramaLinkAttribute($value)
@@ -99,7 +109,10 @@ class Page extends Model
                 foreach ($update_title as $page_id => $title) {
                     $pages->where('id', $page_id)->first()->keyphrase = $title;
                 }
-                return view('seo.links')->with(compact('pages'));
+                return view('seo.links')->with([
+                    'pages' => $pages,
+                    'isInAddressFolder' => $this->is_in_address_folder,
+                ]);
             }
         }
         return '';
@@ -153,6 +166,25 @@ class Page extends Model
 
     public function getH1Attribute($value)
     {
+        // Ленинский
+        if ($this->is_in_address_folder) {
+            $h1 = "<div class='h1-top h1-top_addr show-on-print'>";
+            $h1 .= "<h1>{$value}</h1>";
+            switch ($this->folder_id) {
+                case 752:
+                    $map = 'len';
+                    break;
+                case 753:
+                    $map = 'pol';
+                    break;
+                default:
+                    $map = 'delegat';
+            }
+            $mapInfo = getMapInfo($map);
+            $h1 .= "<div class='h1-top__addr'>Адрес ателье: {$mapInfo['address']}</div>";
+            $h1 .= "</div>";
+            return $h1;
+        }
         if ($value) {
             return "<h1 class='h1-top show-on-print'>{$value}</h1>";
         }

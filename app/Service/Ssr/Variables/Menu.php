@@ -12,7 +12,7 @@ class Menu extends SsrVariable
     {
         return view($this->getViewName(), [
             'items' => $this->getItems(),
-            'maps' => AddressInfo::MAPS,
+            'maps' => getMapInfo(),
         ]);
     }
 

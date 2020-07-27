@@ -7,7 +7,7 @@ class AddressInfoAll extends AddressInfo
     public function parse()
     {
         return view($this->getViewName(), [
-            'maps' => self::MAPS,
+            'maps' => getMapInfo(),
         ]);
     }
 }

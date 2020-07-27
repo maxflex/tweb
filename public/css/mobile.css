@@ -7986,9 +7986,41 @@ h1.padding-top, .padding-top.header-1 {
     margin-right: 5px;
     background-image: url(/img/icons/border/route.png); }
   .directions-icon_house {
+    width: 40px !important;
     background-image: url(/img/icons/border/house.png); }
-  .directions-icon_house1 {
-    background-image: url(/img/icons/border/house1.png); }
+
+.h1-top {
+  margin-top: 40px; }
+  .h1-top_addr h1, .h1-top_addr .header-1 {
+    margin: 0 !important;
+    padding: 0 !important; }
+  .h1-top__addr {
+    color: #ae4037;
+    margin: 20px 0 40px;
+    font-size: 20px;
+    font-weight: bold; }
+
+.gallery-preview {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background: #383838;
+  z-index: 99;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  box-sizing: border-box;
+  display: none; }
+  .gallery-preview .gallery-close {
+    top: 0;
+    padding: 10px; }
+  .gallery-preview img {
+    max-width: 100%; }
 
 .wrap {
   width: 600px;
