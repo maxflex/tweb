@@ -166,8 +166,16 @@ class Page extends Model
 
     public function getH1Attribute($value)
     {
-        // Ленинский
+        if ($value) {
+            return "<h1 class='h1-top show-on-print'>{$value}</h1>";
+        }
+        return ' ';
+    }
+
+    public function getH1AddressAttribute()
+    {
         if ($this->is_in_address_folder) {
+            $value = $this->attributes['h1'];
             $h1 = "<div class='h1-top h1-top_addr show-on-print'>";
             $h1 .= "<h1>{$value}</h1>";
             switch ($this->folder_id) {
@@ -184,9 +192,6 @@ class Page extends Model
             $h1 .= "<div class='h1-top__addr'>Адрес ателье: {$mapInfo['address']}</div>";
             $h1 .= "</div>";
             return $h1;
-        }
-        if ($value) {
-            return "<h1 class='h1-top show-on-print'>{$value}</h1>";
         }
         return ' ';
     }
