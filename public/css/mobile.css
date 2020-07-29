@@ -7986,7 +7986,7 @@ h1.padding-top, .padding-top.header-1 {
     margin-right: 5px;
     background-image: url(/img/icons/border/route.png); }
   .directions-icon_house {
-    width: 40px !important;
+    width: 72px !important;
     background-image: url(/img/icons/border/house.png); }
 
 .h1-top {
@@ -7998,7 +7998,8 @@ h1.padding-top, .padding-top.header-1 {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
     .h1-top_addr h1, .h1-top_addr .header-1 {
       margin: 0 !important;
-      padding: 0 !important; }
+      padding: 0 !important;
+      line-height: 22px; }
   .h1-top__addr {
     color: #ae4037;
     font-size: 18px;

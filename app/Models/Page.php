@@ -176,6 +176,11 @@ class Page extends Model
     {
         if ($this->is_in_address_folder) {
             $value = $this->attributes['h1'];
+
+            if (isMobile()) {
+                $value = 'Ателье "Талисман"<br />' . mb_strimwidth($value, 18, strlen($value));
+            }
+
             $h1 = "<div class='h1-top h1-top_addr show-on-print'>";
             $h1 .= "<h1>{$value}</h1>";
             switch ($this->folder_id) {
