@@ -1495,6 +1495,9 @@ $uploaded-photo-preview-width: 32%;
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
+    & i {
+      margin-right: 2px;
+    }
   }
 }
 

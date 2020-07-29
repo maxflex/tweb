@@ -8004,6 +8004,8 @@ h1.padding-top, .padding-top.header-1 {
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px; }
+    .h1-top__addr i {
+      margin-right: 2px; }
 
 .gallery-preview {
   position: fixed;

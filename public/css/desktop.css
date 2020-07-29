@@ -2036,6 +2036,8 @@ a[href^="https://www.google.com/maps"] {
     margin: 5px 0 40px;
     font-size: 20px;
     font-weight: bold; }
+    .h1-top__addr i {
+      margin-right: 2px; }
 
 .price-page .price-wrapper {
   border-bottom: none !important;
