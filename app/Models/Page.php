@@ -189,7 +189,7 @@ class Page extends Model
                     $map = 'delegat';
             }
             $mapInfo = getMapInfo($map);
-            $h1 .= "<div class='h1-top__addr'>Адрес ателье: {$mapInfo['address']}</div>";
+            $h1 .= "<div class='h1-top__addr'><i class='fas fa-map-marker-alt'></i> {$mapInfo['address']}</div>";
             $h1 .= "</div>";
             return $h1;
         }

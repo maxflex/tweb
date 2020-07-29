@@ -1480,6 +1480,10 @@ $uploaded-photo-preview-width: 32%;
 .h1-top {
   margin-top: 40px;
   &_addr {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(black, 0.1);
     & h1 {
       margin: 0 !important;
       padding: 0 !important;
@@ -1487,9 +1491,10 @@ $uploaded-photo-preview-width: 32%;
   }
   &__addr {
     color: $main-color;
-    margin: 20px 0 40px;
-    font-size: 20px;
+    // margin: 20px 0 40px;
+    font-size: 18px;
     font-weight: bold;
+    margin-top: 10px;
   }
 }
 
