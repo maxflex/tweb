@@ -1352,6 +1352,12 @@ a[href^="https://www.google.com/maps"] {
   .directions-icon_house {
     background-image: url(/img/icons/border/house.png);
     width: 72px !important; }
+  .directions-icon_house3 {
+    width: 72px !important;
+    background-image: url(/img/icons/border/house3.png); }
+  .directions-icon_house4 {
+    width: 72px !important;
+    background-image: url(/img/icons/border/house4.png); }
 
 .main-page h1, .main-page .header-1, .main-page .landingnew-page .common h3, .landingnew-page .common .main-page h3, .main-page .landingnew-page .common .header-3, .landingnew-page .common .main-page .header-3 {
   padding-top: 32px;
