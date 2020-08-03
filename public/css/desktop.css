@@ -617,6 +617,12 @@ mark {
   .plag-map--button i {
     margin-right: 3px; }
 
+.flex-items {
+  display: -webkit-box !important;
+  display: flex !important;
+  -webkit-box-align: center;
+  align-items: center; }
+
 html,
 body {
   height: 100%;
@@ -1735,12 +1741,6 @@ a[href^="https://www.google.com/maps"] {
 
 .entity-header {
   margin-top: 8px; }
-
-.flex-items {
-  display: -webkit-box !important;
-  display: flex !important;
-  -webkit-box-align: center;
-  align-items: center; }
 
 .address-info-block {
   -webkit-box-pack: justify;

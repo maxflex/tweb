@@ -1,4 +1,4 @@
-<div class="ymap-container show-on-print" style="width: 100%; height: 480px" ng-init="panorama = false">
+<div class="ymap-container show-on-print" style="width: 100%; @if(!isMobile()) height: 480px @endif" ng-init="panorama = false">
     @if($panoramaLink)
     <div class="plag-map--button" ng-click="panorama = !panorama">
         <span ng-if="panorama">

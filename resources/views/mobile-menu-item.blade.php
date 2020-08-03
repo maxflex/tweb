@@ -9,6 +9,10 @@
             <a class='menu-level-{{ $level + 1 }}' href='{{ $item->extra }}'>{{ $item->title }}</a>
 
             @if($item->id === 868)
+            <div class='menu-addr'>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ $maps['len']['address'] }}
+            </div>
             <div class='menu-metros'>
                 <div class='flex-items-center'>
                     <span class='metro-circle line-5'></span>
@@ -26,6 +30,10 @@
             @endif
 
             @if($item->id === 869)
+            <div class='menu-addr'>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ $maps['pol']['address'] }}
+            </div>
             <div class='menu-metros'>
                 <div class='flex-items-center'>
                     <span class='metro-circle line-7'></span>
@@ -39,6 +47,10 @@
             @endif
 
             @if($item->id === 870)
+            <div class='menu-addr'>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ $maps['delegat']['address'] }}
+            </div>
             <div class='menu-metros'>
                 <div class='flex-items-center'>
                     <span class='metro-circle line-9'></span>
