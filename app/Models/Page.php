@@ -15,7 +15,7 @@ class Page extends Model
 {
     use SoftDeletes, HasTags;
 
-    const ADDRESS_FOLDER_IDS = [711, 752, 753, 754];
+    const ADDRESS_FOLDER_IDS = [711, 752, 753, 754, 756, 757, 758];
 
     protected $dates = ['deleted_at'];
 

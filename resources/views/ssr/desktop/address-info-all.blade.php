@@ -63,6 +63,19 @@
                 Instagram
             </a>
         </div>
+        <div class="address-info-gallery">
+            <a href="{{ $maps['len']['gallery']['link'] }}">
+                <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['len']['gallery']['id'] }}.jpg" />
+            </a>
+            <div>
+                <a href="{{ $maps['len']['gallery']['link'] }}">
+                    {{ $maps['len']['gallery']['h1'] }}
+                </a>
+            </div>
+            <span>
+                {{ $maps['len']['gallery']['text'] }}
+            </span>
+        </div>
     </div>
     <div>
         <div class="header-3">
@@ -132,6 +145,20 @@
                 Youtube
             </a>
         </div>
+
+        <div class="address-info-gallery">
+            <a href="{{ $maps['pol']['gallery']['link'] }}">
+                <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['pol']['gallery']['id'] }}.jpg" />
+            </a>
+            <div>
+                <a href="{{ $maps['pol']['gallery']['link'] }}">
+                    {{ $maps['pol']['gallery']['h1'] }}
+                </a>
+            </div>
+            <span>
+                {{ $maps['pol']['gallery']['text'] }}
+            </span>
+        </div>
     </div>
     <div>
         <div class="header-3">
@@ -197,6 +224,19 @@
             <a href="https://vk.com/atelier_talisman" target="_blank">
                 ВК
             </a>
+        </div>
+        <div class="address-info-gallery">
+           <a href="{{ $maps['delegat']['gallery']['link'] }}">
+                <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['delegat']['gallery']['id'] }}.jpg" />
+            </a>
+            <div>
+                <a href="{{ $maps['delegat']['gallery']['link'] }}">
+                    {{ $maps['delegat']['gallery']['h1'] }}
+                </a>
+            </div>
+            <span>
+                {{ $maps['delegat']['gallery']['text'] }}
+            </span>
         </div>
     </div>
 </div>

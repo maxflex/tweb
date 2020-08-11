@@ -1,4 +1,4 @@
-<div class="ymap-container show-on-print" style="width: 100%; @if(!isMobile()) height: 480px @endif" ng-init="panorama = false">
+<div class="ymap-container show-on-print" style="width: 100%; height: @if(isMobile()) 250px @else 480px @endif" ng-init="panorama = false">
     @if($panoramaLink)
     <div class="plag-map--button" ng-click="panorama = !panorama">
         <span ng-if="panorama">
@@ -10,7 +10,7 @@
             Панорама
         </span>
     </div>
-    <iframe ng-show="panorama" src="{{ $panoramaLink }}" frameborder="0" style="width: 100%; height: 100%" allowfullscreen="true"></iframe>
+    <iframe id="panorama" ng-show="panorama" src="{{ $panoramaLink }}" frameborder="0" style="width: 100%; height: 100%" allowfullscreen="true"></iframe>
     @endif
     <div class="ymap" id="map" ng-show="!panorama"></div>
 </div>
