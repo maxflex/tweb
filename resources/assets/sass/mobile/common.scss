@@ -36,6 +36,12 @@ body {
   }
 }
 
+.address-page-gallery {
+  .block-separator {
+    display: none !important;
+  }
+}
+
 .common {
   padding: $common-indent $common-indent 0;
 }
