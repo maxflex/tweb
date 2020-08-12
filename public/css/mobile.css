@@ -8092,16 +8092,6 @@ h1.padding-top, .padding-top.header-1 {
   .address-info-gallery a {
     display: inline-block;
     color: #a40000; }
-    .address-info-gallery a > div {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: -webkit-linear-gradient(rgba(0, 0, 0, 0.9) 10%, transparent);
-      background: linear-gradient(rgba(0, 0, 0, 0.9) 10%, transparent);
-      color: white;
-      padding: 10px;
-      height: 60%; }
 
 .wrap {
   width: 600px;

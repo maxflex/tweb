@@ -130,18 +130,16 @@
             <div class="address-info-gallery">
                 <a href="{{ $info->gallery['link'] }}">
                     <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $info->gallery['id'] }}.jpg" />
-                    <div>
-                        <div style="font-size: 16px; margin-bottom: 3px; color: #f4ecc8">
-                            <b>
-                                {{ $info->gallery['h1'] }}
-                            </b>
-                        </div>
-                        <span>
-                            {{ $info->gallery['text'] }}
-                        </span>
-                    </div>
-                </a>
 
+                </a>
+                <div style="margin-top: 5px; font-family: 'helveticaneuecyrbold'">
+                    <a href="{{ $info->gallery['link'] }}">
+                        {{ $info->gallery['h1'] }}
+                    </a>
+                </div>
+                <span>
+                    {{ $info->gallery['text'] }}
+                </span>
             </div>
         </div>
     </div>

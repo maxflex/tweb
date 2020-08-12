@@ -1600,15 +1600,15 @@ $uploaded-photo-preview-width: 32%;
   & a {
     display: inline-block;
     color: #a40000;
-    & > div {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(rgba(black, 0.9) 10%, transparent);
-      color: white;
-      padding: 10px;
-      height: 60%;
-    }
   }
+  // & > div {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   background: linear-gradient(rgba(black, 0.9) 10%, transparent);
+  //   color: white;
+  //   padding: 10px;
+  //   height: 60%;
+  // }
 }
