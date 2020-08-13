@@ -1750,9 +1750,9 @@ a[href^="https://www.google.com/maps"] {
     .address-info-block > div > div {
       margin-bottom: 16px; }
       .address-info-block > div > div a {
-        text-decoration: none !important; }
+        text-decoration: none; }
         .address-info-block > div > div a:hover {
-          text-decoration: underline !important;
+          text-decoration: underline;
           color: #e9967a; }
       .address-info-block > div > div:last-child {
         margin-bottom: 0; }
@@ -2208,6 +2208,9 @@ a[href^="https://www.google.com/maps"] {
 
 .address-info-gallery span {
   font-family: "helveticaneuecyrregular"; }
+
+.address-info-gallery a {
+  text-decoration: underline !important; }
 
 @media print {
   .footer-links,

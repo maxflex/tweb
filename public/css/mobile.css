@@ -8073,9 +8073,9 @@ h1.padding-top, .padding-top.header-1 {
 .address-info-block > div {
   margin-bottom: 16px; }
   .address-info-block > div a {
-    text-decoration: none !important; }
+    text-decoration: none; }
     .address-info-block > div a:hover {
-      text-decoration: underline !important;
+      text-decoration: underline;
       color: #e9967a; }
   .address-info-block > div:last-child {
     margin-bottom: 0; }
@@ -8094,7 +8094,8 @@ h1.padding-top, .padding-top.header-1 {
     width: 100%; }
   .address-info-gallery a {
     display: inline-block;
-    color: #a40000; }
+    color: #a40000;
+    text-decoration: underline !important; }
 
 .wrap {
   width: 600px;

@@ -1499,9 +1499,9 @@ p.last {
     & > div {
       margin-bottom: 16px;
       & a {
-        text-decoration: none !important;
+        text-decoration: none;
         &:hover {
-          text-decoration: underline !important;
+          text-decoration: underline;
           color: #e9967a;
         }
       }
@@ -2037,6 +2037,9 @@ $uploaded-photo-preview-width: 150px;
   }
   & span {
     font-family: "helveticaneuecyrregular";
+  }
+  & a {
+    text-decoration: underline !important;
   }
 }
 
