@@ -632,6 +632,7 @@ span {
   line-height: 21px; }
 
 body {
+  overflow-anchor: none;
   overflow-x: hidden;
   font-family: "helveticaneuecyrregular";
   font-size: 14px; }

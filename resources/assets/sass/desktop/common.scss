@@ -9,6 +9,7 @@ span {
 }
 
 body {
+  overflow-anchor: none;
   overflow-x: hidden;
   font-family: $font-regular;
   font-size: $main-font-size;
