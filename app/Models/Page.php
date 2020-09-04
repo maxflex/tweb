@@ -185,9 +185,11 @@ class Page extends Model
             $h1 .= "<h1>{$value}</h1>";
             switch ($this->folder_id) {
                 case 752:
+                case 757:
                     $map = 'len';
                     break;
                 case 753:
+                case 758:
                     $map = 'pol';
                     break;
                 default:
