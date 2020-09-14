@@ -1619,3 +1619,27 @@ $uploaded-photo-preview-width: 32%;
   //   height: 60%;
   // }
 }
+
+.photos-row {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.photos-col {
+  padding: 0 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.photos-col img {
+  width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
