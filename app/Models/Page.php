@@ -175,28 +175,35 @@ class Page extends Model
     public function getH1AddressAttribute()
     {
         if ($this->is_in_address_folder) {
+            // main all addresses page (/address)
+            $isAllPage = $this->id === 371;
             $value = $this->attributes['h1'];
 
-            if (isMobile()) {
+            if (isMobile() && !$isAllPage) {
                 $value = 'Ателье "Талисман"<br />' . mb_strimwidth($value, 18, strlen($value));
             }
 
             $h1 = "<div class='h1-top h1-top_addr show-on-print'>";
             $h1 .= "<h1>{$value}</h1>";
-            switch ($this->folder_id) {
-                case 752:
-                case 757:
-                    $map = 'len';
-                    break;
-                case 753:
-                case 758:
-                    $map = 'pol';
-                    break;
-                default:
-                    $map = 'delegat';
+            // /address – all addresses
+            if ($isAllPage) {
+                $address = 'ЦАО, ЮАО, САО';
+            } else {
+                switch ($this->folder_id) {
+                    case 752:
+                    case 757:
+                        $map = 'len';
+                        break;
+                    case 753:
+                    case 758:
+                        $map = 'pol';
+                        break;
+                    default:
+                        $map = 'delegat';
+                }
+                $address = getMapInfo($map)['address'];
             }
-            $mapInfo = getMapInfo($map);
-            $h1 .= "<div class='h1-top__addr'><i class='fas fa-map-marker-alt'></i> {$mapInfo['address']}</div>";
+            $h1 .= "<div class='h1-top__addr'><i class='fas fa-map-marker-alt'></i> {$address}</div>";
             $h1 .= "</div>";
             return $h1;
         }

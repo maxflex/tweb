@@ -1,5 +1,5 @@
 @if ($item->is_link)
-    @if(!in_array($item->id, [868, 869, 870]))
+    @if(!in_array($item->id, [868, 869, 870, 963]))
     <li class='menu-link-mobile'>
         <a class='menu-level-{{ $level + 1 }}' href='{{ $item->extra }}'>{{ $item->title }}</a>
     </li>
@@ -8,24 +8,35 @@
         <div>
             <a class='menu-level-{{ $level + 1 }}' href='{{ $item->extra }}'>{{ $item->title }}</a>
 
-            @if($item->id === 868)
-            <div class='menu-addr'>
-                <i class="fas fa-map-marker-alt"></i>
-                {{ $maps['len']['address'] }}
+            @if($item->id === 963)
+                @foreach($maps as $map)
+                <div class='menu-addr'>
+                    <div class="fas fa-map-marker-alt"></div>
+                    {{ $map['address'] }}
+                </div>
+                @endforeach
+                <div class="menu-metros"></div>
+            @endif
+
+
+        @if($item->id === 868)
+        <div class='menu-addr'>
+            <i class="fas fa-map-marker-alt"></i>
+            {{ $maps['len']['address'] }}
+        </div>
+        <div class='menu-metros'>
+            <div class='flex-items-center'>
+                <span class='metro-circle line-5'></span>
+                <span>Октябрьская</span>
             </div>
-            <div class='menu-metros'>
-                <div class='flex-items-center'>
-                    <span class='metro-circle line-5'></span>
-                    <span>Октябрьская</span>
-                </div>
-                <div class='flex-items-center'>
-                    <span class='metro-circle line-6'></span>
-                    <span>Ленинский проспект</span>
-                </div>
-                <div class='flex-items-center'>
-                    <span class='metro-circle line-6'></span>
-                    <span>Шаболовская</span>
-                </div>
+            <div class='flex-items-center'>
+                <span class='metro-circle line-6'></span>
+                <span>Ленинский проспект</span>
+            </div>
+            <div class='flex-items-center'>
+                <span class='metro-circle line-6'></span>
+                <span>Шаболовская</span>
+            </div>
             </div>
             @endif
 

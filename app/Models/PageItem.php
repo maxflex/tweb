@@ -45,6 +45,7 @@ class PageItem extends Model
             $value = str_replace("[walk]", '<div class="directions-icon directions-icon_walk"></div>', $value);
             $value = str_replace("[car]", '<div class="directions-icon directions-icon_car"></div>', $value);
             $value = str_replace("[bus]", '<div class="directions-icon directions-icon_bus"></div>', $value);
+            $value = str_replace("[marker]", '<div class="directions-icon directions-icon_marker"></div>', $value);
             $value = str_replace("[house]", '<div class="directions-icon directions-icon_house"></div>', $value);
             $value = str_replace("[house3]", '<div class="directions-icon directions-icon_house3"></div>', $value);
             $value = str_replace("[house4]", '<div class="directions-icon directions-icon_house4"></div>', $value);

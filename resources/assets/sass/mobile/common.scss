@@ -1468,6 +1468,12 @@ $uploaded-photo-preview-width: 32%;
   &_walk {
     background-image: url(/img/icons/border/walk.png);
   }
+  &_marker {
+    background-image: url(/img/icons/border/marker.png);
+    margin-right: 3px;
+    top: 3px;
+    position: relative;
+  }
   &_bus {
     background-image: url(/img/icons/border/bus.png);
   }
@@ -1628,6 +1634,7 @@ $uploaded-photo-preview-width: 32%;
   display: flex;
   flex-wrap: wrap;
   margin: 0 -10px;
+  box-sizing: border-box;
 }
 
 .photos-col {
@@ -1636,10 +1643,12 @@ $uploaded-photo-preview-width: 32%;
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%;
+  box-sizing: border-box;
 }
 
 .photos-col img {
   width: 100%;
   min-height: 100%;
   object-fit: cover;
+  box-sizing: border-box;
 }

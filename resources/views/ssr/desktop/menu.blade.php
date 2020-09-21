@@ -40,6 +40,16 @@
                             {{ $item->title }}
                         </a>
 
+                        @if($item->id === 962)
+                            @foreach($maps as $map)
+                            <div class='menu-addr'>
+                                <div class="fas fa-map-marker-alt"></div>
+                                {{ $map['address'] }}
+                            </div>
+                            @endforeach
+                            <div class="menu-metros"></div>
+                        @endif
+
                         @if($item->id === 865)
                         <div class='menu-addr'>
                             <i class="fas fa-map-marker-alt"></i>
