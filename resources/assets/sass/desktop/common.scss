@@ -912,9 +912,11 @@ p.last {
   }
   &__item-description {
     & img {
-      height: 11px !important;
-      width: 11px !important;
-      margin-right: 6px !important;
+      &:not(.metro-svg) {
+        height: 11px !important;
+        width: 11px !important;
+        margin-right: 6px !important;
+      }
     }
     & a {
       text-decoration: none;
@@ -1967,6 +1969,11 @@ $uploaded-photo-preview-width: 150px;
   font-size: 12px;
   & .metro-circle {
     border: 1px solid rgba(white, 1);
+  }
+  & .metro-svg {
+    top: -2px !important;
+    margin-left: -2px;
+    padding: 0 4px 0 0 !important;
   }
 }
 

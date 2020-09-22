@@ -971,9 +971,11 @@ input {
 .service-list {
   &_one-line {
     & img {
-      height: 11px !important;
-      width: 11px !important;
-      margin-right: 6px !important;
+      &:not(.metro-svg) {
+        height: 11px !important;
+        width: 11px !important;
+        margin-right: 6px !important;
+      }
     }
   }
   &__items {
