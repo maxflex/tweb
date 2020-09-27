@@ -57,15 +57,15 @@
                         </div>
                         <div class='menu-metros'>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-5.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-5.svg" class='metro-svg'></img>
                                 <span>Октябрьская</span>
                             </div>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-6.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-6.svg" class='metro-svg'></img>
                                 <span>Ленинский проспект</span>
                             </div>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-6.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-6.svg" class='metro-svg'></img>
                                 <span>Шаболовская</span>
                             </div>
                         </div>
@@ -78,11 +78,11 @@
                         </div>
                         <div class='menu-metros'>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-7.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-7.svg" class='metro-svg'></img>
                                 <span>Полежаевская</span>
                             </div>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-8.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-8.svg" class='metro-svg'></img>
                                 <span>Хорошевская</span>
                             </div>
                         </div>
@@ -95,19 +95,19 @@
                         </div>
                         <div class='menu-metros'>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-9.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-9.svg" class='metro-svg'></img>
                                 <span>Цветной бульвар</span>
                             </div>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-10.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-10.svg" class='metro-svg'></img>
                                 <span>Достоевская</span>
                             </div>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-9.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-9.svg" class='metro-svg'></img>
                                 <span>Менделеевская</span>
                             </div>
                             <div class='flex-items-center'>
-                                <img src="/img/svg/metro/line-5.svg" class='metro-svg'></img>
+                                <img src="/img/svg/metro/stroke/line-5.svg" class='metro-svg'></img>
                                 <span>Новослободская</span>
                             </div>
                         </div>
