@@ -1398,6 +1398,14 @@ $uploaded-photo-preview-width: 32%;
   }
 }
 
+.menu-metros {
+  & .metro-svg {
+    top: -2px !important;
+    margin-left: -2px;
+    padding: 0 4px 0 0 !important;
+  }
+}
+
 // .main-gallery-wrapper {
 //     border-bottom: 1px solid $separator-grey;
 //     margin-bottom: 20px;
