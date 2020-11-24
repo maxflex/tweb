@@ -1662,3 +1662,11 @@ $uploaded-photo-preview-width: 32%;
   object-fit: cover;
   box-sizing: border-box;
 }
+
+.header-contacts-phone {
+  color: grey;
+  position: fixed;
+  white-space: nowrap;
+  right: 22px;
+  top: 72px;
+}

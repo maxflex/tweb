@@ -8141,6 +8141,13 @@ h1.padding-top, .padding-top.header-1 {
   object-fit: cover;
   box-sizing: border-box; }
 
+.header-contacts-phone {
+  color: grey;
+  position: fixed;
+  white-space: nowrap;
+  right: 22px;
+  top: 72px; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }
@@ -9296,12 +9303,12 @@ h1.padding-top, .padding-top.header-1 {
   background: #35a45b;
   border-radius: 100%;
   box-sizing: border-box;
-  width: 3.2em;
-  height: 3.2em;
-  padding: .6em;
+  width: 2.9em;
+  height: 2.9em;
+  padding: 0.6em;
   display: inline-block; }
   .button-phone:after {
-    content: '';
+    content: "";
     display: block;
     background: url("../img/icons/phone.svg") no-repeat 0 0.063em;
     width: 100%;
