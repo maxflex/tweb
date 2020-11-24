@@ -8593,7 +8593,7 @@ h1.padding-top, .padding-top.header-1 {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 1; }
+  z-index: 2; }
   .header-items {
     background: #f3e9d4;
     padding: 1.429em 1.357em 0 1.357em;
