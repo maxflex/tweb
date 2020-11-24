@@ -4,7 +4,7 @@
   z-index: 1;
   &-items {
     background: $main-color-light;
-    padding: 1.429em 1.357em 1.429em 1.357em;
+    padding: 1.429em 1.357em 0 1.357em;
     position: relative;
     display: flex;
     align-items: center;
@@ -12,7 +12,7 @@
   }
   &-logo {
     display: block;
-    background: url('../img/svg/logo.svg') no-repeat;
+    background: url("../img/svg/logo.svg") no-repeat;
     width: 10.7em;
     height: 3.5em;
     overflow: hidden;
@@ -21,12 +21,12 @@
   }
 
   &-controls {
-      display: flex;
-      align-items: center;
-      & a {
-          display: inherit;
-          margin-right: 1.6em;
-      }
+    display: flex;
+    align-items: center;
+    & a {
+      display: inherit;
+      margin-right: 1.6em;
+    }
   }
 
   &-menu-button {
@@ -34,7 +34,7 @@
     right: 1.357em;
     width: 1.6em;
     height: 1.6em;
-    background: url('../img/svg/burger.svg') no-repeat;
+    background: url("../img/svg/burger.svg") no-repeat;
     background-size: cover;
   }
 
@@ -56,17 +56,16 @@
     }
   }
 
-
   &-image {
     text-align: center;
     color: #fff;
-    font-family: 'helveticaneuecyrultralight';
+    font-family: "helveticaneuecyrultralight";
     padding: 3.5em 0 0 0;
     position: relative;
 
     &-container {
       font-size: 3em;
-      padding-bottom: 1.300em;
+      padding-bottom: 1.3em;
     }
 
     &-title {
@@ -76,7 +75,7 @@
 
   &__wrap-img {
     position: relative;
-    background: url('/img/background/main.jpeg') no-repeat 50% 0;
+    background: url("/img/background/main.jpeg") no-repeat 50% 0;
     background-size: cover;
     height: 36em;
 
@@ -89,7 +88,7 @@
     }
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -99,30 +98,30 @@
       background: rgba(0, 0, 0, 0.7);
     }
     &.university {
-        height: 19em;
-        &:before {
-            background-color: rgba(0, 0, 0, 0.4);
-        }
+      height: 19em;
+      &:before {
+        background-color: rgba(0, 0, 0, 0.4);
+      }
     }
   }
 }
 
 .header-main {
-    & .header-logo {
-      background-image: url("../img/svg/logo-white.svg");
+  & .header-logo {
+    background-image: url("../img/svg/logo-white.svg");
+  }
+  & .header-menu-button {
+    background-image: url("../img/svg/burger-white.svg");
+  }
+  & .header-image {
+    text-align: left;
+    padding: 1.429em 1.357em 1.429em 1.357em;
+    & p {
+      font-family: $font-light !important;
     }
-    & .header-menu-button {
-      background-image: url('../img/svg/burger-white.svg');
-    }
-    & .header-image {
-        text-align: left;
-        padding: 1.429em 1.357em 1.429em 1.357em;
-        & p {
-            font-family: $font-light !important;
-        }
-    }
-    & .header-image-container {
-        line-height: 48px;
-        padding-bottom: 20px;
-    }
+  }
+  & .header-image-container {
+    line-height: 48px;
+    padding-bottom: 20px;
+  }
 }

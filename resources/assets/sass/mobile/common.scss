@@ -1665,8 +1665,9 @@ $uploaded-photo-preview-width: 32%;
 
 .header-contacts-phone {
   color: grey;
-  position: fixed;
-  white-space: nowrap;
-  right: 22px;
-  top: 72px;
+  background: #f3e9d4;
+  text-align: right;
+  padding-right: 1.357em;
+  padding-bottom: 6px;
+  padding-top: 2px;
 }
