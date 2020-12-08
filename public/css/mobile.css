@@ -8141,6 +8141,14 @@ h1.padding-top, .padding-top.header-1 {
   object-fit: cover;
   box-sizing: border-box; }
 
+.header-contacts-phone {
+  color: grey;
+  background: #f3e9d4;
+  text-align: right;
+  padding-right: 1.357em;
+  padding-bottom: 6px;
+  padding-top: 2px; }
+
 .wrap {
   width: 600px;
   margin: 0 auto; }
@@ -8585,10 +8593,10 @@ h1.padding-top, .padding-top.header-1 {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 1; }
+  z-index: 2; }
   .header-items {
     background: #f3e9d4;
-    padding: 1.429em 1.357em 1.429em 1.357em;
+    padding: 1.429em 1.357em 0 1.357em;
     position: relative;
     display: -webkit-box;
     display: flex;
@@ -8634,12 +8642,12 @@ h1.padding-top, .padding-top.header-1 {
   .header-image {
     text-align: center;
     color: #fff;
-    font-family: 'helveticaneuecyrultralight';
+    font-family: "helveticaneuecyrultralight";
     padding: 3.5em 0 0 0;
     position: relative; }
     .header-image-container {
       font-size: 3em;
-      padding-bottom: 1.300em; }
+      padding-bottom: 1.3em; }
     .header-image-title {
       font-size: 2em; }
   .header__wrap-img {
@@ -8652,7 +8660,7 @@ h1.padding-top, .padding-top.header-1 {
     .header__wrap-img .header-title {
       background: rgba(0, 0, 0, 0.4); }
     .header__wrap-img:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -9296,12 +9304,12 @@ h1.padding-top, .padding-top.header-1 {
   background: #35a45b;
   border-radius: 100%;
   box-sizing: border-box;
-  width: 3.2em;
-  height: 3.2em;
-  padding: .6em;
+  width: 2.9em;
+  height: 2.9em;
+  padding: 0.6em;
   display: inline-block; }
   .button-phone:after {
-    content: '';
+    content: "";
     display: block;
     background: url("../img/icons/phone.svg") no-repeat 0 0.063em;
     width: 100%;
