@@ -10,7 +10,8 @@ class AddressDirections extends SsrVariable
 {
     public function parse()
     {
-        $page = Page::whereUrl(Request::path())->first();
+        $url =  Request::path();
+        $page = Page::whereUrl($url)->first();
 
         if (!$page->items()->exists()) {
             return '';
@@ -26,6 +27,7 @@ class AddressDirections extends SsrVariable
         return view($this->getViewName(), [
             'map' => $this->args->map,
             'firstItem' => $firstItem,
+            'url' => $url,
         ]);
     }
 }

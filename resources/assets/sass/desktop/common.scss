@@ -2011,11 +2011,17 @@ $uploaded-photo-preview-width: 150px;
   display: inline-block;
   position: absolute;
   right: -19px;
-  top: -19px;
+  top: -28px;
   transform: scale(0.8);
+  & img {
+    width: 148px;
+    height: 148px;
+  }
   & > div {
     font-size: 13px;
     text-align: center;
+    position: relative;
+    top: -10px;
   }
 }
 

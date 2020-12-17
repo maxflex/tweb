@@ -2188,12 +2188,17 @@ a[href^="https://www.google.com/maps"] {
   display: inline-block;
   position: absolute;
   right: -19px;
-  top: -19px;
+  top: -28px;
   -webkit-transform: scale(0.8);
   transform: scale(0.8); }
+  .address-qr img {
+    width: 148px;
+    height: 148px; }
   .address-qr > div {
     font-size: 13px;
-    text-align: center; }
+    text-align: center;
+    position: relative;
+    top: -10px; }
 
 .gallery-preview {
   position: fixed;
