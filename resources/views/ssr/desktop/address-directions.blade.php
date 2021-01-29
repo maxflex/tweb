@@ -17,8 +17,8 @@
 
         </div>
     @endif
-    <div class="address-qr" @if($map === 'all') style='top: -35px' @endif>
-        <img src="/img/qr/{{ $map }}.gif" />
+    <div class="address-qr">
+        <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{ config('app.url') . $url }}" />
         <div>
             QR-код этой страницы
         </div>
