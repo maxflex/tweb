@@ -18,7 +18,7 @@
                     <!--<a onclick="eventUrl('[link|376]', 'stat-count-price', 'banner')" class="btn-fill btn-calc">-->
                     <!--  <div class="flex-items">-->
                     <!--        <img src="/img/svg/calculator.svg">-->
-                    <!--        <span>расчитать стоимость моего ремонта</span>-->
+                    <!--        <span>рассчитать стоимость моего ремонта</span>-->
                     <!--  </div>-->
                     <!--</a>-->
                 </div>
