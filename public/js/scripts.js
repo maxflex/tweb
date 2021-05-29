@@ -20398,71 +20398,6 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  window.PriceExpander = (function() {
-    PriceExpander.prototype.base_class = '.price-list:visible';
-
-    PriceExpander.prototype.li_class = 'li';
-
-    function PriceExpander(n) {
-      this.n = n;
-    }
-
-    PriceExpander.prototype._expand = function(level) {
-      var expanded, i, j, ref, selector;
-      if (level == null) {
-        level = 1;
-      }
-      selector = [this.base_class];
-      for (i = j = 0, ref = level - 1; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
-        selector.push(this.li_class);
-      }
-      selector = selector.join(' ');
-      expanded = false;
-      $(selector).each((function(_this) {
-        return function(i, e) {
-          if (expanded) {
-            return;
-          }
-          e = $(e).children().children('.price-section');
-          if (e.length > 0) {
-            console.log('clicking on ', e);
-            console.log('selector', selector);
-            console.log("Length: ", _this.getLength(), _this.isExpanded(), expanded);
-            if (!e.parent().children('ul').is(':visible')) {
-              e.click();
-              if (_this.isExpanded()) {
-                expanded = true;
-              }
-            }
-          }
-        };
-      })(this));
-      if (!expanded && level < 5) {
-        return this._expand(level + 1);
-      }
-    };
-
-    PriceExpander.prototype.getLength = function() {
-      return $([this.base_class, this.li_class].join(' ')).length;
-    };
-
-    PriceExpander.prototype.isExpanded = function() {
-      return this.getLength() > this.n;
-    };
-
-    PriceExpander.expand = function(n) {
-      var expander;
-      expander = new PriceExpander(n);
-      return expander._expand();
-    };
-
-    return PriceExpander;
-
-  })();
-
-}).call(this);
-
-(function() {
   angular.module('App').value('AvgScores', {
     '1-11-1': 46.3,
     '2-11': 51.2,
@@ -20576,6 +20511,71 @@ return PhotoSwipeUI_Default;
       11: 'geo'
     }
   });
+
+}).call(this);
+
+(function() {
+  window.PriceExpander = (function() {
+    PriceExpander.prototype.base_class = '.price-list:visible';
+
+    PriceExpander.prototype.li_class = 'li';
+
+    function PriceExpander(n) {
+      this.n = n;
+    }
+
+    PriceExpander.prototype._expand = function(level) {
+      var expanded, i, j, ref, selector;
+      if (level == null) {
+        level = 1;
+      }
+      selector = [this.base_class];
+      for (i = j = 0, ref = level - 1; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+        selector.push(this.li_class);
+      }
+      selector = selector.join(' ');
+      expanded = false;
+      $(selector).each((function(_this) {
+        return function(i, e) {
+          if (expanded) {
+            return;
+          }
+          e = $(e).children().children('.price-section');
+          if (e.length > 0) {
+            console.log('clicking on ', e);
+            console.log('selector', selector);
+            console.log("Length: ", _this.getLength(), _this.isExpanded(), expanded);
+            if (!e.parent().children('ul').is(':visible')) {
+              e.click();
+              if (_this.isExpanded()) {
+                expanded = true;
+              }
+            }
+          }
+        };
+      })(this));
+      if (!expanded && level < 5) {
+        return this._expand(level + 1);
+      }
+    };
+
+    PriceExpander.prototype.getLength = function() {
+      return $([this.base_class, this.li_class].join(' ')).length;
+    };
+
+    PriceExpander.prototype.isExpanded = function() {
+      return this.getLength() > this.n;
+    };
+
+    PriceExpander.expand = function(n) {
+      var expander;
+      expander = new PriceExpander(n);
+      return expander._expand();
+    };
+
+    return PriceExpander;
+
+  })();
 
 }).call(this);
 
@@ -20843,71 +20843,6 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  var apiPath, countable, updatable;
-
-  angular.module('App').factory('Master', function($resource) {
-    return $resource(apiPath('masters'), {
-      id: '@id',
-      type: '@type'
-    }, {
-      search: {
-        method: 'POST',
-        url: apiPath('masters', 'search')
-      },
-      reviews: {
-        method: 'GET',
-        isArray: true,
-        url: apiPath('reviews')
-      }
-    });
-  }).factory('Request', function($resource) {
-    return $resource(apiPath('requests'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Cv', function($resource) {
-    return $resource(apiPath('cv'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PriceSection', function($resource) {
-    return $resource(apiPath('prices'), {
-      id: '@id'
-    }, updatable());
-  }).factory('PricePosition', function($resource) {
-    return $resource(apiPath('prices/positions'), {
-      id: '@id'
-    }, updatable());
-  }).factory('Stream', function($resource) {
-    return $resource(apiPath('stream'), {
-      id: '@id'
-    });
-  });
-
-  apiPath = function(entity, additional) {
-    if (additional == null) {
-      additional = '';
-    }
-    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
-  };
-
-  updatable = function() {
-    return {
-      update: {
-        method: 'PUT'
-      }
-    };
-  };
-
-  countable = function() {
-    return {
-      count: {
-        method: 'GET'
-      }
-    };
-  };
-
-}).call(this);
-
-(function() {
   angular.module('App').directive('academic', function() {
     return {
       restrict: 'E',
@@ -21165,6 +21100,71 @@ return PhotoSwipeUI_Default;
 
 (function() {
 
+
+}).call(this);
+
+(function() {
+  var apiPath, countable, updatable;
+
+  angular.module('App').factory('Master', function($resource) {
+    return $resource(apiPath('masters'), {
+      id: '@id',
+      type: '@type'
+    }, {
+      search: {
+        method: 'POST',
+        url: apiPath('masters', 'search')
+      },
+      reviews: {
+        method: 'GET',
+        isArray: true,
+        url: apiPath('reviews')
+      }
+    });
+  }).factory('Request', function($resource) {
+    return $resource(apiPath('requests'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Cv', function($resource) {
+    return $resource(apiPath('cv'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PriceSection', function($resource) {
+    return $resource(apiPath('prices'), {
+      id: '@id'
+    }, updatable());
+  }).factory('PricePosition', function($resource) {
+    return $resource(apiPath('prices/positions'), {
+      id: '@id'
+    }, updatable());
+  }).factory('Stream', function($resource) {
+    return $resource(apiPath('stream'), {
+      id: '@id'
+    });
+  });
+
+  apiPath = function(entity, additional) {
+    if (additional == null) {
+      additional = '';
+    }
+    return ("/api/" + entity + "/") + (additional ? additional + '/' : '') + ":id";
+  };
+
+  updatable = function() {
+    return {
+      update: {
+        method: 'PUT'
+      }
+    };
+  };
+
+  countable = function() {
+    return {
+      count: {
+        method: 'GET'
+      }
+    };
+  };
 
 }).call(this);
 
