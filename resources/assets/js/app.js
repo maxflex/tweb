@@ -311,123 +311,6 @@
 }).call(this);
 
 (function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
-  });
-
-}).call(this);
-
-(function() {
   window.PriceExpander = (function() {
     PriceExpander.prototype.base_class = '.price-list:visible';
 
@@ -515,10 +398,39 @@
 }).call(this);
 
 (function() {
-  angular.module('App').controller('main', function($scope, $timeout, $http, GalleryService) {
+  angular.module('App').controller('main', function($scope, $timeout, $http, GalleryService, DataService) {
     bindArguments($scope, arguments);
     $scope.galleryLoaded = false;
     $scope.GalleryService2 = _.clone(GalleryService);
+    $scope.review = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      onLoaded: function(data) {
+        $scope.review.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.review.items === void 0) {
+          return $scope.review.items = data.data;
+        } else {
+          return $scope.review.items = $scope.review.items.concat(data.data);
+        }
+      }
+    };
+    $scope.video = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      open: function(item) {
+        return window.openVideo(item.code);
+      },
+      onLoaded: function(data) {
+        $scope.video.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.video.items === void 0) {
+          return $scope.video.items = data.data;
+        } else {
+          return $scope.video.items = $scope.video.items.concat(data.data);
+        }
+      }
+    };
     $scope.initGallery = function(ids, tags, folders, isFirst, initGallery) {
       if (isFirst == null) {
         isFirst = true;
@@ -554,11 +466,27 @@
 }).call(this);
 
 (function() {
-  angular.module('App').controller('master', function($scope, $timeout, $http, Master, GalleryService) {
+  angular.module('App').controller('master', function($scope, $timeout, $http, Master, GalleryService, DataService) {
     bindArguments($scope, arguments);
     $scope.reviews_block = false;
     $scope.gallery = [];
     $scope.galleryLoaded = false;
+    $scope.video = {
+      hasMorePages: false,
+      items: void 0,
+      service: _.clone(DataService),
+      open: function(item) {
+        return window.openVideo(item.code);
+      },
+      onLoaded: function(data) {
+        $scope.video.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.video.items === void 0) {
+          return $scope.video.items = data.data;
+        } else {
+          return $scope.video.items = $scope.video.items.concat(data.data);
+        }
+      }
+    };
     $scope.initGallery = function(ids, tags, folders) {
       if (ids) {
         return $http.post('/api/gallery/init', {
@@ -751,6 +679,123 @@
         return $scope.has_more_pages = response.data.has_more_pages;
       });
     };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
   });
 
 }).call(this);
@@ -1078,6 +1123,34 @@
       }
     };
   };
+
+}).call(this);
+
+(function() {
+  angular.module('App').service('DataService', function($http) {
+    this.page = 2;
+    this.args = void 0;
+    this["class"] = void 0;
+    this.callback = void 0;
+    this.init = function(args, cls, callback) {
+      this.args = args;
+      this["class"] = cls;
+      return this.callback = callback;
+    };
+    this.loadMore = function() {
+      return $http.post('/api/get-data', {
+        "class": this["class"],
+        args: this.args,
+        page: this.page
+      }).then((function(_this) {
+        return function(response) {
+          _this.page += 1;
+          return _this.callback(response.data);
+        };
+      })(this));
+    };
+    return this;
+  });
 
 }).call(this);
 

@@ -1,10 +1,34 @@
 angular
     .module 'App'
-    .controller 'main', ($scope, $timeout, $http, GalleryService) ->
+    .controller 'main', ($scope, $timeout, $http, GalleryService, DataService) ->
         bindArguments($scope, arguments)
 
         $scope.galleryLoaded = false
         $scope.GalleryService2 = _.clone(GalleryService)
+
+
+        $scope.review = 
+            hasMorePages: true
+            items: undefined
+            service: _.clone(DataService)
+            onLoaded: (data) -> 
+                $scope.review.hasMorePages = data.current_page isnt data.last_page
+                if $scope.review.items is undefined
+                    $scope.review.items = data.data
+                else
+                    $scope.review.items = $scope.review.items.concat(data.data)
+        
+        $scope.video = 
+            hasMorePages: true
+            items: undefined
+            service: _.clone(DataService)
+            open: (item) -> window.openVideo(item.code)
+            onLoaded: (data) -> 
+                $scope.video.hasMorePages = data.current_page isnt data.last_page
+                if $scope.video.items is undefined
+                    $scope.video.items = data.data
+                else
+                    $scope.video.items = $scope.video.items.concat(data.data)
 
         $scope.initGallery = (ids, tags, folders, isFirst = true, initGallery = false) ->
             $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
@@ -19,6 +43,7 @@ angular
                         $scope.$apply()
                     , 1000
                 # , 3000
+        
 
         $timeout ->
             PriceExpander.expand(if isMobile then 15 else 30) 

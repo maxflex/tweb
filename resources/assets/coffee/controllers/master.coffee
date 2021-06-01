@@ -1,11 +1,23 @@
 angular
     .module 'App'
-    .controller 'master', ($scope, $timeout, $http, Master, GalleryService) ->
+    .controller 'master', ($scope, $timeout, $http, Master, GalleryService, DataService) ->
         bindArguments($scope, arguments)
 
         $scope.reviews_block = false
         $scope.gallery = []
         $scope.galleryLoaded = false
+
+        $scope.video = 
+            hasMorePages: false
+            items: undefined
+            service: _.clone(DataService)
+            open: (item) -> window.openVideo(item.code)
+            onLoaded: (data) -> 
+                $scope.video.hasMorePages = data.current_page isnt data.last_page
+                if $scope.video.items is undefined
+                    $scope.video.items = data.data
+                else
+                    $scope.video.items = $scope.video.items.concat(data.data)
         
         $scope.initGallery = (ids, tags, folders) ->
             if ids 

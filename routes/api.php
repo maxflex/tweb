@@ -7,6 +7,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::get('reviews/bypage', 'ReviewsController@bypage');
     Route::resource('reviews', 'ReviewsController');
     Route::post('gallery/init', 'GalleryController@init');
+    Route::post('get-data', 'DataController@get');
     Route::resource('gallery', 'GalleryController');
     Route::resource('stats', 'StatsController', ['only' => 'index']);
     // Route::post('cv/uploadPhoto', 'CvController@uploadPhoto');

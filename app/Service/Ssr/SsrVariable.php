@@ -10,7 +10,7 @@ abstract class SsrVariable
     protected $page;
     protected $args;
 
-    public function __construct($variableName, $page, $args = [])
+    public function __construct($variableName, $page, $args)
     {
         $this->variableName = $variableName;
         $this->page = $page;
