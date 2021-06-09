@@ -609,3 +609,52 @@ $line-height-small: 17px;
   min-width: 168px;
   font-family: "helveticaneuecyrbold";
 }
+
+.gallery-loading-backdrop {
+  background-color: #383838;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .spinner {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    font-size: 10px;
+    & > div {
+      background-color: #fff;
+      height: 100%;
+      width: 7px;
+      margin: 0 3px 0 0;
+      display: inline-block;
+      -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+      animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    }
+    .rect2 {
+      -webkit-animation-delay: -1.1s;
+      animation-delay: -1.1s;
+    }
+    .rect3 {
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
+    }
+
+    .rect4 {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+
+    .rect5 {
+      -webkit-animation-delay: -0.8s;
+      animation-delay: -0.8s;
+    }
+  }
+}

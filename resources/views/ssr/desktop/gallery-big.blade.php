@@ -7,12 +7,12 @@
             <img src="/img/svg/right-arrow.svg">
         </div>
     </div>
-    <div class="full-width-wrapper main-gallery-block" ng-class="{'invisible': !galleryLoaded}" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}', true, true)">
+    <div class="full-width-wrapper main-gallery-block" ng-class="{'invisible': galleryLoadingStatus !== 'loaded'}" ng-init="initGallery('{{ $args->ids }}', '{{ $args->tags }}', '{{ $args->folders }}', true)">
         <div class="main-gallery-wrapper">
-            <div class="gallery-item invisible">-</div>
+            <div class="gallery-item invisible">-</div>j
             <div ng-repeat="g in GalleryService.gallery track by $index" class="gallery-item" ng-class="{'active pointer': GalleryService.active == $index}">
                 <gallery-item-main
-                    ng-click="$index === GalleryService.active ? GalleryService.open($index - 1) : null"
+                    ng-click="$index === GalleryService.active ? galleryMethods.open($index - 1) : null"
                     item='g'
                 ></gallery-item-main>
             </div>
@@ -34,4 +34,4 @@
         </div>
     </div> --}}
 </div>
-<ng-image-gallery-2 images="gallery" thumbnails='false' methods='GalleryService.ctrl' bg-close='true'></ng-image-gallery-2>
+<ng-image-gallery-2 images="images" thumbnails='false' methods='galleryMethods' bg-close='true'></ng-image-gallery-2>

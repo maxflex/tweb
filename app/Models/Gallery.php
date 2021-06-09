@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Contracts\SsrParsable;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\{HasTags, HasPhotos, HasFolders};
 use App\Models\Decorators\TagsFilterDecorator;
 use DB;
 
-class Gallery extends Model
+class Gallery extends Model implements SsrParsable
 {
     use HasTags, HasPhotos, HasFolders;
 
@@ -36,7 +37,7 @@ class Gallery extends Model
     public function getTotalPriceAttribute()
     {
         $sum = 0;
-        foreach(range(1, 6) as $i) {
+        foreach (range(1, 6) as $i) {
             $sum += intval($this->attributes['price_' . $i]);
         }
         return $sum;
@@ -55,7 +56,7 @@ class Gallery extends Model
     public function getComponentsAttribute()
     {
         $components = [];
-        foreach(range(1, 6) as $component_index) {
+        foreach (range(1, 6) as $component_index) {
             if ($this->{"component_" . $component_index}) {
                 $components[] = [
                     'name' => $this->{"component_" . $component_index},
@@ -71,7 +72,7 @@ class Gallery extends Model
         /**
          * Если не указаны ID фото и ID папок, то автозаполнение по тегам
          */
-        if (! $gallery_ids && ! $folder_ids) {
+        if (!$gallery_ids && !$folder_ids) {
             return (new TagsFilterDecorator(Gallery::with('master')))->withTags($tags)->orderBy('folder_id', 'asc')->orderByPosition();
         } else {
             $gallery_ids = array_filter(explode(',', $gallery_ids));
@@ -81,13 +82,13 @@ class Gallery extends Model
 
                 // append all subfolders
                 $subfolder_ids = [];
-                foreach($folder_ids as $folder_id) {
+                foreach ($folder_ids as $folder_id) {
                     $subfolder_ids = array_merge($subfolder_ids, Folder::getSubfolderIds($folder_id));
                 }
                 $folder_ids = array_merge($folder_ids, $subfolder_ids);
 
                 $gallery_ids_from_folders = [];
-                foreach($folder_ids as $folder_id) {
+                foreach ($folder_ids as $folder_id) {
                     $gallery_ids_from_folders = array_merge($gallery_ids_from_folders, Gallery::where('folder_id', $folder_id)->orderByPosition()->pluck('id')->all());
                 }
 
@@ -101,5 +102,11 @@ class Gallery extends Model
 
             return $query;
         }
+    }
+
+
+    public static function getParseItems($args, $page = 1)
+    {
+        return Gallery::getItems(@$args->ids, @$args->folders, @$args->tags)->paginate(3, ['*'], 'page', $page);
     }
 }

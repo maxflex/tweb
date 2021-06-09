@@ -6005,13 +6005,17 @@ mark {
   align-items: center; }
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% {
+  0%,
+  40%,
+  100% {
     -webkit-transform: scaleY(0.4); }
   20% {
     -webkit-transform: scaleY(1); } }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% {
+  0%,
+  40%,
+  100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4); }
   20% {
@@ -6241,7 +6245,8 @@ mark {
   width: 25px;
   height: 25px; }
 
-.ng-image-gallery .next-wrapper, .ng-image-gallery .prev-wrapper {
+.ng-image-gallery .next-wrapper,
+.ng-image-gallery .prev-wrapper {
   z-index: 99999999;
   position: absolute;
   top: 50%;
@@ -6523,7 +6528,7 @@ mark {
   width: 165px !important;
   margin-right: 10px;
   height: 83px !important;
-  opacity: .2;
+  opacity: 0.2;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out; }
 
@@ -6554,7 +6559,7 @@ mark {
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-loader .spinner {
   -webkit-box-flex: 0;
   flex: none;
-  width: 50px;
+  width: 100px;
   height: 50px;
   text-align: center;
   font-size: 10px; }
@@ -6573,8 +6578,8 @@ mark {
   animation-delay: -1.1s; }
 
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-loader .spinner .rect3 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s; }
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s; }
 
 .ng-image-gallery .ng-image-gallery-modal .ng-image-gallery-loader .spinner .rect4 {
   -webkit-animation-delay: -0.9s;
@@ -6606,7 +6611,8 @@ mark {
 .ng-image-gallery.inline .ng-image-gallery-modal .ng-image-gallery-content .next {
   background-image: url(../img/icons/next-inline.svg); }
 
-.ng-image-gallery.inline .ng-image-gallery-modal .ng-image-gallery-content .prev, .ng-image-gallery.inline .ng-image-gallery-modal .ng-image-gallery-content .next {
+.ng-image-gallery.inline .ng-image-gallery-modal .ng-image-gallery-content .prev,
+.ng-image-gallery.inline .ng-image-gallery-modal .ng-image-gallery-content .next {
   margin-top: -15px;
   width: 30px;
   height: 30px; }
@@ -6662,10 +6668,10 @@ mark {
 .mobile-gallery .title {
   margin: 0;
   position: absolute;
-  bottom: calc(((100vh - (2*100vw / 3)) / 2) - 5em);
+  bottom: calc(((100vh - (2 * 100vw / 3)) / 2) - 5em);
   width: 100%; }
   .iphone4 .mobile-gallery .title {
-    bottom: calc(((100vh - (2*100vw / 3)) / 2) - 5em); }
+    bottom: calc(((100vh - (2 * 100vw / 3)) / 2) - 5em); }
   .mobile-gallery .title span {
     position: relative;
     z-index: 99;
@@ -6753,7 +6759,7 @@ mark {
   transition: background-color 0.15s ease-in-out; }
   .gallery-flow-control-arrow img {
     height: 20px;
-    opacity: .7; }
+    opacity: 0.7; }
   .gallery-flow-control-arrow:first-of-type {
     margin-right: 30px; }
   .gallery-flow-control-arrow:last-of-type {
@@ -7044,12 +7050,6 @@ a[href^="https://www.google.com/maps"] {
   height: 100%;
   z-index: 104; }
 
-#youtube-video {
-  z-index: 105;
-  width: 100%;
-  height: 100%;
-  position: absolute; }
-
 .faq-page ul {
   margin-bottom: 1.8em; }
 
@@ -7337,7 +7337,11 @@ input {
       width: 82vw; }
     .main-gallery-wrapper .gallery-item b {
       display: block;
-      margin: 3px 0 15px; }
+      margin: 3px 0 15px;
+      max-width: 82vw;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
 
 .info-section {
   margin-bottom: 2.5em; }
@@ -8148,6 +8152,82 @@ h1.padding-top, .padding-top.header-1 {
   padding-right: 1.357em;
   padding-bottom: 6px;
   padding-top: 2px; }
+
+#youtube-video {
+  pointer-events: none;
+  position: absolute;
+  left: calc(50% - 144px);
+  visibility: hidden; }
+
+.video-item {
+  height: 144px;
+  width: 288px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden; }
+  .video-item img {
+    position: relative;
+    top: -10px; }
+  .video-item:hover .ytp-large-play-button-bg {
+    fill: #ea3223;
+    fill-opacity: 1; }
+
+.youtube-video-info {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center; }
+  .youtube-video-info__channel-logo {
+    background: white;
+    height: 40px;
+    width: 40px;
+    background-image: url(/img/youtube-channel-logo.jpg);
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%; }
+  .youtube-video-info__title {
+    max-width: 100%;
+    padding-left: 8px;
+    padding-top: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    font-size: 18px;
+    -webkit-box-flex: 1;
+    flex: 1;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    color: white; }
+
+.ytp-large-play-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 68px;
+  height: 48px;
+  margin-left: -34px;
+  margin-top: -24px;
+  -webkit-transition: fill-opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
+  transition: fill-opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
+  z-index: 0; }
+
+.ytp-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  text-align: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  line-height: inherit; }
+
+.ytp-button:focus,
+.ytp-button {
+  outline: 0; }
 
 .wrap {
   width: 600px;

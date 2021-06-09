@@ -3,9 +3,8 @@ angular
     .controller 'main', ($scope, $timeout, $http, GalleryService, DataService) ->
         bindArguments($scope, arguments)
 
-        $scope.galleryLoaded = false
-        $scope.GalleryService2 = _.clone(GalleryService)
-
+        $scope.galleryMethods = undefined
+        $scope.galleryLoadingStatus = undefined
 
         $scope.review = 
             hasMorePages: true
@@ -29,22 +28,49 @@ angular
                     $scope.video.items = data.data
                 else
                     $scope.video.items = $scope.video.items.concat(data.data)
+        
+        $scope.gallery = 
+            hasMorePages: true
+            items: undefined
+            service: _.clone(DataService)
+            open: (index) ->
+                if $scope.galleryLoadingStatus is 'loaded'
+                    $scope.galleryMethods.open(index)
+                else
+                    $scope
+                        .initGallery($scope.gallery.service.args.ids, $scope.gallery.service.args.tags, $scope.gallery.service.args.folders)
+                        .then -> $scope.galleryMethods.open(index)
+            onLoaded: (data) -> 
+                $scope.gallery.hasMorePages = data.current_page isnt data.last_page
+                if $scope.gallery.items is undefined
+                    $scope.gallery.items = data.data
+                else
+                    $scope.gallery.items = $scope.gallery.items.concat(data.data)
 
-        $scope.initGallery = (ids, tags, folders, isFirst = true, initGallery = false) ->
+        $scope.initGallery = (ids, tags, folders, initGalleryBig = false) ->
+            $scope.galleryLoadingStatus = 'loading'
             $http.post '/api/gallery/init', {ids: ids, tags: tags, folders: folders}
             .then (response) ->
                 # $timeout ->
-                $scope.gallery = response.data if isFirst
-                $scope.gallery2 = response.data if not isFirst
-                $scope.galleryLoaded = true
-                if initGallery
-                    GalleryService.init(_.clone($scope.gallery)) 
+                $scope.images = response.data
+                $scope.galleryLoadingStatus = 'loaded'
+                if initGalleryBig
+                    GalleryService.init(_.clone($scope.images)) 
                     $timeout ->
                         $scope.$apply()
                     , 1000
                 # , 3000
         
+        $scope.firstLoadMoreInView = (obj) -> 
+            if obj.firstLoaded isnt true
+                console.log('first load')
+                obj.firstLoaded = true
+                obj.service.loadMore()
 
+        $scope.loadMoreInView = (obj, index, inView) -> 
+            if inView && (index + 1 is obj.items.length)
+                obj.service.loadMore()
+        
         $timeout ->
             PriceExpander.expand(if isMobile then 15 else 30) 
             # initGmap()

@@ -2,49 +2,52 @@
 <div class='header-1'>{{ $args->title }}</div>
 @endif
 
-@if (count($items) > 0)
-<div class='relative gallery-block-placeholder'>
-    <div class="gallery-block gallery-block-photos" ng-init="initGallery('{{ $args->ids }}', '{{ $tags }}', '{{ $args->folders }}')" ng-show='galleryLoaded'>
+@if ($data->total() > 0)
+<div class='relative gallery-block-placeholder' ng-init="gallery.service.init({{ json_encode($args) }}, 'gallery', gallery.onLoaded)">
+    <div class="gallery-block gallery-block-photos">
         <div class="main-gallery-wrapper">
-            <div ng-repeat="g in gallery.slice(0, GalleryService.displayed) track by $index" class="gallery-item">
-                <gallery-item item='g' index='$index' service='GalleryService'></gallery-item>
-            </div>
-        </div>
-        <center ng-show='GalleryService.displayed < gallery.length' class='more-button' style='margin: 35px 0 0'>
-            <button class="btn-border" ng-click='GalleryService.displayed = GalleryService.displayed + 3'>показать ещё</button>
-        </center>
-    </div>
-    <ng-image-gallery images="gallery" thumbnails='false' methods='GalleryService.ctrl' bg-close='true'></ng-image-gallery>
-
-    <div class='gallery-block gallery-block-photos' style='display: none' ng-if="!galleryLoaded">
-        <div class="main-gallery-wrapper">
-            @foreach ($items as $index => $item)
-                <div class='gallery-item' @if ($index >= 3) style='display: none' @endif >
-                    <div>
-                        <img src='{{ $item->thumb }}' class="gallery-photo pointer">
-                    </div>
-                    <div>
-                        <div class="entity-header header-3 gallery-preview-header">
-                            {{ $item->name }}
-                            <span class="address-gallery-remove">
-                                –
-                                {{ $item->days_to_complete }} дней
-                                <a class="link-small pointer" href='#'>подробнее...</a>
-                            </span>
-                        </div>
+            @foreach ($data->items() as $index => $item)
+            <div class='gallery-item'>
+                <div>
+                    <img ng-click="gallery.open({{ $index }})" src='{{ $item->thumb }}' class="gallery-photo pointer">
+                </div>
+                <div>
+                    <div class="entity-header header-3 gallery-preview-header">
+                        {{ $item->name }}
+                        <span class="address-gallery-remove">
+                            –
+                            {{ $item->days_to_complete }} дней
+                            <a class="link-small pointer" ng-click="gallery.open({{ $index }})">подробнее...</a>
+                        </span>
                     </div>
                 </div>
+            </div>
             @endforeach
+            <div ng-repeat="item in gallery.items track by $index" class="gallery-item">
+                <gallery-item item='item' ng-click='gallery.open($index + 3)'></gallery-item>
+            </div>
         </div>
-        @if (count($items) > 3)
-            <center class='more-button' style='margin: 35px 0 0'>
-                <button class="btn-border">показать ещё</button>
-            </center>
+        @if ($data->currentPage() !== $data->lastPage())
+        <center ng-if="gallery.hasMorePages" class='more-button' style='margin: 35px 0 0'>
+            <button class="btn-border"ng-click="gallery.service.loadMore()">показать ещё</button>
+        </center>
         @endif
     </div>
 </div>
+<ng-image-gallery images="images" thumbnails='false' methods='galleryMethods' bg-close='true'></ng-image-gallery>
+
+<div class="gallery-loading-backdrop ng-hide" ng-show="galleryLoadingStatus === 'loading'">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+
 @else
 <center style='color: #818181'>
-    фотографий отсутстуют
+    фотографии отсутстуют
 </center>
 @endif

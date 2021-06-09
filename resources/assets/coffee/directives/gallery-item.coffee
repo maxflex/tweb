@@ -3,7 +3,6 @@ angular.module 'App'
         restrict: 'E'
         scope:
             item: '='
-            service: '='
-            index: '='
+            open: '&'
         templateUrl: (elem, attrs) ->
             if isMobile then '/directives/gallery-item-mobile' else '/directives/gallery-item'

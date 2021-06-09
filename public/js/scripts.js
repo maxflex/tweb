@@ -10322,6 +10322,389 @@ $provide.value("$locale", {
 !function(a,b){"object"==typeof exports?module.exports=b(require("spin.js")):"function"==typeof define&&define.amd?define(["spin"],b):a.Ladda=b(a.Spinner)}(this,function(a){"use strict";function b(a){if("undefined"==typeof a)return void console.warn("Ladda button target must be defined.");if(/ladda-button/i.test(a.className)||(a.className+=" ladda-button"),a.hasAttribute("data-style")||a.setAttribute("data-style","expand-right"),!a.querySelector(".ladda-label")){var b=document.createElement("span");b.className="ladda-label",i(a,b)}var c,d=a.querySelector(".ladda-spinner");d||(d=document.createElement("span"),d.className="ladda-spinner"),a.appendChild(d);var e,f={start:function(){return c||(c=g(a)),a.setAttribute("disabled",""),a.setAttribute("data-loading",""),clearTimeout(e),c.spin(d),this.setProgress(0),this},startAfter:function(a){return clearTimeout(e),e=setTimeout(function(){f.start()},a),this},stop:function(){return a.removeAttribute("disabled"),a.removeAttribute("data-loading"),clearTimeout(e),c&&(e=setTimeout(function(){c.stop()},1e3)),this},toggle:function(){return this.isLoading()?this.stop():this.start(),this},setProgress:function(b){b=Math.max(Math.min(b,1),0);var c=a.querySelector(".ladda-progress");0===b&&c&&c.parentNode?c.parentNode.removeChild(c):(c||(c=document.createElement("div"),c.className="ladda-progress",a.appendChild(c)),c.style.width=(b||0)*a.offsetWidth+"px")},enable:function(){return this.stop(),this},disable:function(){return this.stop(),a.setAttribute("disabled",""),this},isLoading:function(){return a.hasAttribute("data-loading")},remove:function(){clearTimeout(e),a.removeAttribute("disabled",""),a.removeAttribute("data-loading",""),c&&(c.stop(),c=null);for(var b=0,d=j.length;d>b;b++)if(f===j[b]){j.splice(b,1);break}}};return j.push(f),f}function c(a,b){for(;a.parentNode&&a.tagName!==b;)a=a.parentNode;return b===a.tagName?a:void 0}function d(a){for(var b=["input","textarea","select"],c=[],d=0;d<b.length;d++)for(var e=a.getElementsByTagName(b[d]),f=0;f<e.length;f++)e[f].hasAttribute("required")&&c.push(e[f]);return c}function e(a,e){e=e||{};var f=[];"string"==typeof a?f=h(document.querySelectorAll(a)):"object"==typeof a&&"string"==typeof a.nodeName&&(f=[a]);for(var g=0,i=f.length;i>g;g++)!function(){var a=f[g];if("function"==typeof a.addEventListener){var h=b(a),i=-1;a.addEventListener("click",function(b){var f=!0,g=c(a,"FORM");if("undefined"!=typeof g)if("function"==typeof g.checkValidity)f=g.checkValidity();else for(var j=d(g),k=0;k<j.length;k++)""===j[k].value.replace(/^\s+|\s+$/g,"")&&(f=!1),"checkbox"!==j[k].type&&"radio"!==j[k].type||j[k].checked||(f=!1),"email"===j[k].type&&(f=/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(j[k].value));f&&(h.startAfter(1),"number"==typeof e.timeout&&(clearTimeout(i),i=setTimeout(h.stop,e.timeout)),"function"==typeof e.callback&&e.callback.apply(null,[h]))},!1)}}()}function f(){for(var a=0,b=j.length;b>a;a++)j[a].stop()}function g(b){var c,d,e=b.offsetHeight;0===e&&(e=parseFloat(window.getComputedStyle(b).height)),e>32&&(e*=.8),b.hasAttribute("data-spinner-size")&&(e=parseInt(b.getAttribute("data-spinner-size"),10)),b.hasAttribute("data-spinner-color")&&(c=b.getAttribute("data-spinner-color")),b.hasAttribute("data-spinner-lines")&&(d=parseInt(b.getAttribute("data-spinner-lines"),10));var f=.2*e,g=.6*f,h=7>f?2:3;return new a({color:c||"#fff",lines:d||12,radius:f,length:g,width:h,zIndex:"auto",top:"auto",left:"auto",className:""})}function h(a){for(var b=[],c=0;c<a.length;c++)b.push(a[c]);return b}function i(a,b){var c=document.createRange();c.selectNodeContents(a),c.surroundContents(b),a.appendChild(b)}var j=[];return{bind:e,create:b,stopAll:f}});
 /*! angular-ladda 0.4.3 */
 !function(e,n){"use strict";if("function"==typeof define&&define.amd)define(["angular","ladda"],n);else{if("undefined"==typeof module||"object"!=typeof module.exports)return n(e.angular,e.Ladda);module.exports=n(window.angular||require("angular"),require("ladda"))}}(this,function(e,n){"use strict";var t="angular-ladda";return e.module(t,[]).provider("ladda",function(){var n={style:"zoom-in"};return{setOption:function(t){e.extend(n,t)},$get:function(){return n}}}).directive("ladda",["ladda","$timeout",function(t,a){return{restrict:"A",priority:-1,link:function(r,i,d){a(function(){if(i.addClass("ladda-button"),e.isUndefined(i.attr("data-style"))&&i.attr("data-style",t.style||"zoom-in"),e.isUndefined(i.attr("data-spinner-size"))&&t.spinnerSize&&i.attr("data-spinner-size",t.spinnerSize),e.isUndefined(i.attr("data-spinner-color"))&&t.spinnerColor&&i.attr("data-spinner-color",t.spinnerColor),!i[0].querySelector(".ladda-label")){var a=document.createElement("span");a.className="ladda-label",e.element(a).append(i.contents()),i.append(a)}var o=n.create(i[0]);r.$watch(d.ladda,function(n){return n||e.isNumber(n)?(o.isLoading()||o.start(),void(e.isNumber(n)&&o.setProgress(n))):(o.stop(),void(d.ngDisabled&&i.attr("disabled",r.$eval(d.ngDisabled))))}),r.$on("$destroy",function(){o&&o.remove()})})}}}]),t});
+// # Angular-Inview
+// - Author: [Nicola Peduzzi](https://github.com/thenikso)
+// - Repository: https://github.com/thenikso/angular-inview
+// - Install with: `npm install angular-inview@beta`
+// - Version: **2.2.0**
+(function() {
+'use strict';
+
+// An [angular.js](https://angularjs.org) directive to evaluate an expression if
+// a DOM element is or not in the current visible browser viewport.
+// Use it in your AngularJS app by including the javascript and requireing it:
+//
+// `angular.module('myApp', ['angular-inview'])`
+var angularInviewModule = angular.module('angular-inview', [])
+
+// ## in-view directive
+//
+// ### Usage
+// ```html
+// <any in-view="{expression}" [in-view-options="{object}"]></any>
+// ```
+.directive('inView', ['$parse', inViewDirective])
+
+// ## in-view-container directive
+.directive('inViewContainer', inViewContainerDirective);
+
+// ## Implementation
+function inViewDirective ($parse) {
+  return {
+    // Evaluate the expression passet to the attribute `in-view` when the DOM
+    // element is visible in the viewport.
+    restrict: 'A',
+    require: '?^^inViewContainer',
+    link: function inViewDirectiveLink (scope, element, attrs, container) {
+      // in-view-options attribute can be specified with an object expression
+      // containing:
+      //   - `offset`: An array of values to offset the element position.
+      //     Offsets are expressed as arrays of 4 numbers [top, right, bottom, left].
+      //     Like CSS, you can also specify only 2 numbers [top/bottom, left/right].
+      //     Instead of numbers, some array elements can be a string with a percentage.
+      //     Positive numbers are offsets outside the element rectangle and
+      //     negative numbers are offsets to the inside.
+      //   - `viewportOffset`: Like the element offset but appied to the viewport.
+      //   - `generateDirection`: Indicate if the `direction` information should
+      //     be included in `$inviewInfo` (default false).
+      //   - `generateParts`: Indicate if the `parts` information should
+      //     be included in `$inviewInfo` (default false).
+      //   - `throttle`: Specify a number of milliseconds by which to limit the
+      //     number of incoming events.
+      var options = {};
+      if (attrs.inViewOptions) {
+        options = scope.$eval(attrs.inViewOptions);
+      }
+      if (options.offset) {
+        options.offset = normalizeOffset(options.offset);
+      }
+      if (options.viewportOffset) {
+        options.viewportOffset = normalizeOffset(options.viewportOffset);
+      }
+
+      // Build reactive chain from an initial event
+      var viewportEventSignal = signalSingle({ type: 'initial' })
+
+      // Merged with the window events
+      .merge(signalFromEvent(window, 'checkInView click ready wheel mousewheel DomMouseScroll MozMousePixelScroll resize scroll touchmove mouseup keydown'))
+
+      // Merge with container's events signal
+      if (container) {
+        viewportEventSignal = viewportEventSignal.merge(container.eventsSignal);
+      }
+
+      // Throttle if option specified
+      if (options.throttle) {
+        viewportEventSignal = viewportEventSignal.throttle(options.throttle);
+      }
+
+      // Map to viewport intersection and in-view informations
+      var inviewInfoSignal = viewportEventSignal
+
+      // Inview information structure contains:
+      //   - `inView`: a boolean value indicating if the element is
+      //     visible in the viewport;
+      //   - `changed`: a boolean value indicating if the inview status
+      //     changed after the last event;
+      //   - `event`: the event that initiated the in-view check;
+      .map(function(event) {
+        var viewportRect;
+        if (container) {
+          viewportRect = container.getViewportRect();
+          // TODO merge with actual window!
+        } else {
+          viewportRect = getViewportRect();
+        }
+        viewportRect = offsetRect(viewportRect, options.viewportOffset);
+        var elementRect = offsetRect(element[0].getBoundingClientRect(), options.offset);
+        var isVisible = !!(element[0].offsetWidth || element[0].offsetHeight || element[0].getClientRects().length);
+        var info = {
+          inView: isVisible && intersectRect(elementRect, viewportRect),
+          event: event,
+          element: element,
+          elementRect: elementRect,
+          viewportRect: viewportRect
+        };
+        // Add inview parts
+        if (options.generateParts && info.inView) {
+          info.parts = {};
+          info.parts.top = elementRect.top >= viewportRect.top;
+          info.parts.left = elementRect.left >= viewportRect.left;
+          info.parts.bottom = elementRect.bottom <= viewportRect.bottom;
+          info.parts.right = elementRect.right <= viewportRect.right;
+        }
+        return info;
+      })
+
+      // Add the changed information to the inview structure.
+      .scan({}, function (lastInfo, newInfo) {
+        // Add inview direction info
+        if (options.generateDirection && newInfo.inView && lastInfo.elementRect) {
+          newInfo.direction = {
+            horizontal: newInfo.elementRect.left - lastInfo.elementRect.left,
+            vertical: newInfo.elementRect.top - lastInfo.elementRect.top
+          };
+        }
+        // Calculate changed flag
+        newInfo.changed =
+          newInfo.inView !== lastInfo.inView ||
+          !angular.equals(newInfo.parts, lastInfo.parts) ||
+          !angular.equals(newInfo.direction, lastInfo.direction);
+        return newInfo;
+      })
+
+      // Filters only informations that should be forwarded to the callback
+      .filter(function (info) {
+        // Don't forward if no relevant infomation changed
+        if (!info.changed) {
+          return false;
+        }
+        // Don't forward if not initially in-view
+        if (info.event.type === 'initial' && !info.inView) {
+          return false;
+        }
+        return true;
+      });
+
+      // Execute in-view callback
+      var inViewExpression = $parse(attrs.inView);
+      var dispose = inviewInfoSignal.subscribe(function (info) {
+        scope.$applyAsync(function () {
+          inViewExpression(scope, {
+            '$inview': info.inView,
+            '$inviewInfo': info
+          });
+        });
+      });
+
+      // Dispose of reactive chain
+      scope.$on('$destroy', dispose);
+    }
+  }
+}
+
+function inViewContainerDirective () {
+  return {
+    restrict: 'A',
+    controller: ['$element', function ($element) {
+      this.element = $element;
+      this.eventsSignal = signalFromEvent($element, 'scroll');
+      this.getViewportRect = function () {
+        return $element[0].getBoundingClientRect();
+      };
+    }]
+  }
+}
+
+// ## Utilities
+
+function getViewportRect () {
+  var result = {
+    top: 0,
+    left: 0,
+    width: window.innerWidth,
+    right: window.innerWidth,
+    height: window.innerHeight,
+    bottom: window.innerHeight
+  };
+  if (result.height) {
+    return result;
+  }
+  var mode = document.compatMode;
+  if (mode === 'CSS1Compat') {
+    result.width = result.right = document.documentElement.clientWidth;
+    result.height = result.bottom = document.documentElement.clientHeight;
+  } else {
+    result.width = result.right = document.body.clientWidth;
+    result.height = result.bottom = document.body.clientHeight;
+  }
+  return result;
+}
+
+function intersectRect (r1, r2) {
+  return !(r2.left > r1.right ||
+           r2.right < r1.left ||
+           r2.top > r1.bottom ||
+           r2.bottom < r1.top);
+}
+
+function normalizeOffset (offset) {
+  if (!angular.isArray(offset)) {
+    return [offset, offset, offset, offset];
+  }
+  if (offset.length == 2) {
+    return offset.concat(offset);
+  }
+  else if (offset.length == 3) {
+    return offset.concat([offset[1]]);
+  }
+  return offset;
+}
+
+function offsetRect (rect, offset) {
+  if (!offset) {
+    return rect;
+  }
+  var offsetObject = {
+    top: isPercent(offset[0]) ? (parseFloat(offset[0]) * rect.height) : offset[0],
+    right: isPercent(offset[1]) ? (parseFloat(offset[1]) * rect.width) : offset[1],
+    bottom: isPercent(offset[2]) ? (parseFloat(offset[2]) * rect.height) : offset[2],
+    left: isPercent(offset[3]) ? (parseFloat(offset[3]) * rect.width) : offset[3]
+  };
+  // Note: ClientRect object does not allow its properties to be written to therefore a new object has to be created.
+  return {
+    top: rect.top - offsetObject.top,
+    left: rect.left - offsetObject.left,
+    bottom: rect.bottom + offsetObject.bottom,
+    right: rect.right + offsetObject.right,
+    height: rect.height + offsetObject.top + offsetObject.bottom,
+    width: rect.width + offsetObject.left + offsetObject.right
+  };
+}
+
+function isPercent (n) {
+  return angular.isString(n) && n.indexOf('%') > 0;
+}
+
+// ## QuickSignal FRP
+// A quick and dirty implementation of Rx to have a streamlined code in the
+// directives.
+
+// ### QuickSignal
+//
+// - `didSubscribeFunc`: a function receiving a `subscriber` as described below
+//
+// Usage:
+//     var mySignal = new QuickSignal(function(subscriber) { ... })
+function QuickSignal (didSubscribeFunc) {
+  this.didSubscribeFunc = didSubscribeFunc;
+}
+
+// Subscribe to a signal and consume the steam of data.
+//
+// Returns a function that can be called to stop the signal stream of data and
+// perform cleanup.
+//
+// A `subscriber` is a function that will be called when a new value arrives.
+// a `subscriber.$dispose` property can be set to a function to be called uppon
+// disposal. When setting the `$dispose` function, the previously set function
+// should be chained.
+QuickSignal.prototype.subscribe = function (subscriber) {
+  this.didSubscribeFunc(subscriber);
+  var dispose = function () {
+    if (subscriber.$dispose) {
+      subscriber.$dispose();
+      subscriber.$dispose = null;
+    }
+  }
+  return dispose;
+}
+
+QuickSignal.prototype.map = function (f) {
+  var s = this;
+  return new QuickSignal(function (subscriber) {
+    subscriber.$dispose = s.subscribe(function (nextValue) {
+      subscriber(f(nextValue));
+    });
+  });
+};
+
+QuickSignal.prototype.filter = function (f) {
+  var s = this;
+  return new QuickSignal(function (subscriber) {
+    subscriber.$dispose = s.subscribe(function (nextValue) {
+      if (f(nextValue)) {
+        subscriber(nextValue);
+      }
+    });
+  });
+};
+
+QuickSignal.prototype.scan = function (initial, scanFunc) {
+  var s = this;
+  return new QuickSignal(function (subscriber) {
+    var last = initial;
+    subscriber.$dispose = s.subscribe(function (nextValue) {
+      last = scanFunc(last, nextValue);
+      subscriber(last);
+    });
+  });
+}
+
+QuickSignal.prototype.merge = function (signal) {
+  return signalMerge(this, signal);
+};
+
+QuickSignal.prototype.throttle = function (threshhold) {
+  var s = this, last, deferTimer;
+  return new QuickSignal(function (subscriber) {
+    var chainDisposable = s.subscribe(function () {
+      var now = +new Date,
+          args = arguments;
+      if (last && now < last + threshhold) {
+        clearTimeout(deferTimer);
+        deferTimer = setTimeout(function () {
+          last = now;
+          subscriber.apply(null, args);
+        }, threshhold);
+      } else {
+        last = now;
+        subscriber.apply(null, args);
+      }
+    });
+    subscriber.$dispose = function () {
+      clearTimeout(deferTimer);
+      if (chainDisposable) chainDisposable();
+    };
+  });
+};
+
+function signalMerge () {
+  var signals = arguments;
+  return new QuickSignal(function (subscriber) {
+    var disposables = [];
+    for (var i = signals.length - 1; i >= 0; i--) {
+      disposables.push(signals[i].subscribe(function () {
+        subscriber.apply(null, arguments);
+      }));
+    }
+    subscriber.$dispose = function () {
+      for (var i = disposables.length - 1; i >= 0; i--) {
+        if (disposables[i]) disposables[i]();
+      }
+    }
+  });
+}
+
+// Returns a signal from DOM events of a target.
+function signalFromEvent (target, event) {
+  return new QuickSignal(function (subscriber) {
+    var handler = function (e) {
+      subscriber(e);
+    };
+    var el = angular.element(target);
+    el.on(event, handler);
+    subscriber.$dispose = function () {
+      el.off(event, handler);
+    };
+  });
+}
+
+function signalSingle (value) {
+  return new QuickSignal(function (subscriber) {
+    setTimeout(function() { subscriber(value); });
+  });
+}
+
+// Module loaders exports
+if (typeof define === 'function' && define.amd) {
+  define(['angular'], angularInviewModule);
+} else if (typeof module !== 'undefined' && module && module.exports) {
+  module.exports = angularInviewModule;
+}
+
+})();
+
 //! moment.js
 //! version : 2.18.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -20088,7 +20471,7 @@ return PhotoSwipeUI_Default;
 (function() {
   var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileUpload', 'angular-toArrayFilter', 'thatisuday.ng-image-gallery', 'thatisuday.ng-image-gallery-2', 'ngSanitize']).config([
+  angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileUpload', 'angular-toArrayFilter', 'thatisuday.ng-image-gallery', 'thatisuday.ng-image-gallery-2', 'ngSanitize', 'angular-inview']).config([
     'ngImageGalleryOptsProvider', function(ngImageGalleryOptsProvider) {
       return ngImageGalleryOptsProvider.setOpts({
         bubbles: true,
@@ -20487,8 +20870,8 @@ return PhotoSwipeUI_Default;
 (function() {
   angular.module('App').controller('main', function($scope, $timeout, $http, GalleryService, DataService) {
     bindArguments($scope, arguments);
-    $scope.galleryLoaded = false;
-    $scope.GalleryService2 = _.clone(GalleryService);
+    $scope.galleryMethods = void 0;
+    $scope.galleryLoadingStatus = void 0;
     $scope.review = {
       hasMorePages: true,
       items: void 0,
@@ -20518,32 +20901,59 @@ return PhotoSwipeUI_Default;
         }
       }
     };
-    $scope.initGallery = function(ids, tags, folders, isFirst, initGallery) {
-      if (isFirst == null) {
-        isFirst = true;
+    $scope.gallery = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      open: function(index) {
+        if ($scope.galleryLoadingStatus === 'loaded') {
+          return $scope.galleryMethods.open(index);
+        } else {
+          return $scope.initGallery($scope.gallery.service.args.ids, $scope.gallery.service.args.tags, $scope.gallery.service.args.folders).then(function() {
+            return $scope.galleryMethods.open(index);
+          });
+        }
+      },
+      onLoaded: function(data) {
+        $scope.gallery.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.gallery.items === void 0) {
+          return $scope.gallery.items = data.data;
+        } else {
+          return $scope.gallery.items = $scope.gallery.items.concat(data.data);
+        }
       }
-      if (initGallery == null) {
-        initGallery = false;
+    };
+    $scope.initGallery = function(ids, tags, folders, initGalleryBig) {
+      if (initGalleryBig == null) {
+        initGalleryBig = false;
       }
+      $scope.galleryLoadingStatus = 'loading';
       return $http.post('/api/gallery/init', {
         ids: ids,
         tags: tags,
         folders: folders
       }).then(function(response) {
-        if (isFirst) {
-          $scope.gallery = response.data;
-        }
-        if (!isFirst) {
-          $scope.gallery2 = response.data;
-        }
-        $scope.galleryLoaded = true;
-        if (initGallery) {
-          GalleryService.init(_.clone($scope.gallery));
+        $scope.images = response.data;
+        $scope.galleryLoadingStatus = 'loaded';
+        if (initGalleryBig) {
+          GalleryService.init(_.clone($scope.images));
           return $timeout(function() {
             return $scope.$apply();
           }, 1000);
         }
       });
+    };
+    $scope.firstLoadMoreInView = function(obj) {
+      if (obj.firstLoaded !== true) {
+        console.log('first load');
+        obj.firstLoaded = true;
+        return obj.service.loadMore();
+      }
+    };
+    $scope.loadMoreInView = function(obj, index, inView) {
+      if (inView && (index + 1 === obj.items.length)) {
+        return obj.service.loadMore();
+      }
     };
     return $timeout(function() {
       return PriceExpander.expand(isMobile ? 15 : 30);
@@ -20555,11 +20965,23 @@ return PhotoSwipeUI_Default;
 (function() {
   angular.module('App').controller('master', function($scope, $timeout, $http, Master, GalleryService, DataService) {
     bindArguments($scope, arguments);
-    $scope.reviews_block = false;
-    $scope.gallery = [];
-    $scope.galleryLoaded = false;
+    $scope.galleryMethods = void 0;
+    $scope.galleryLoadingStatus = void 0;
+    $scope.review = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      onLoaded: function(data) {
+        $scope.review.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.review.items === void 0) {
+          return $scope.review.items = data.data;
+        } else {
+          return $scope.review.items = $scope.review.items.concat(data.data);
+        }
+      }
+    };
     $scope.video = {
-      hasMorePages: false,
+      hasMorePages: true,
       items: void 0,
       service: _.clone(DataService),
       open: function(item) {
@@ -20574,29 +20996,47 @@ return PhotoSwipeUI_Default;
         }
       }
     };
-    $scope.initGallery = function(ids, tags, folders) {
-      if (ids) {
-        return $http.post('/api/gallery/init', {
-          ids: ids,
-          tags: tags,
-          folders: folders
-        }).then(function(response) {
-          $scope.gallery = response.data;
-          return $scope.galleryLoaded = true;
-        });
+    $scope.gallery = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      open: function(index) {
+        if ($scope.galleryLoadingStatus === 'loaded') {
+          return $scope.galleryMethods.open(index);
+        } else {
+          return $scope.initGallery($scope.gallery.service.args.ids, $scope.gallery.service.args.tags, $scope.gallery.service.args.folders).then(function() {
+            return $scope.galleryMethods.open(index);
+          });
+        }
+      },
+      onLoaded: function(data) {
+        $scope.gallery.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.gallery.items === void 0) {
+          return $scope.gallery.items = data.data;
+        } else {
+          return $scope.gallery.items = $scope.gallery.items.concat(data.data);
+        }
       }
     };
-    $scope.toggleShow = function(master, prop, iteraction_type, index) {
-      if (index == null) {
-        index = null;
+    $scope.initGallery = function(ids, tags, folders, initGalleryBig) {
+      if (initGalleryBig == null) {
+        initGalleryBig = false;
       }
-      if (master[prop]) {
-        return $timeout(function() {
-          return master[prop] = false;
-        }, $scope.mobile ? 400 : 0);
-      } else {
-        return master[prop] = true;
-      }
+      $scope.galleryLoadingStatus = 'loading';
+      return $http.post('/api/gallery/init', {
+        ids: ids,
+        tags: tags,
+        folders: folders
+      }).then(function(response) {
+        $scope.images = response.data;
+        $scope.galleryLoadingStatus = 'loaded';
+        if (initGalleryBig) {
+          GalleryService.init(_.clone($scope.images));
+          return $timeout(function() {
+            return $scope.$apply();
+          }, 1000);
+        }
+      });
     };
     return $scope.popup = function(id, master, fn, index) {
       if (master == null) {
@@ -20771,123 +21211,6 @@ return PhotoSwipeUI_Default;
 }).call(this);
 
 (function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
-  });
-
-}).call(this);
-
-(function() {
   angular.module('App').directive('academic', function() {
     return {
       restrict: 'E',
@@ -20977,8 +21300,7 @@ return PhotoSwipeUI_Default;
       restrict: 'E',
       scope: {
         item: '=',
-        service: '=',
-        index: '='
+        open: '&'
       },
       templateUrl: function(elem, attrs) {
         if (isMobile) {
@@ -21145,6 +21467,123 @@ return PhotoSwipeUI_Default;
 
 (function() {
 
+
+}).call(this);
+
+(function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
+  });
 
 }).call(this);
 
@@ -21491,6 +21930,7 @@ var isMobile = false;
 var modal_inited = false;
 var scrollPosition = false;
 var footerLinksExpanded = false;
+var iframe = null;
 
 // window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
@@ -21587,6 +22027,9 @@ function openModal(id) {
 }
 
 function openVideo(videoId) {
+  if (isMobile) {
+    return openVideoMobile(videoId)
+  }
   if (
     typeof window.player !== "object" ||
     Object.keys(window.player).length === 0
@@ -21597,6 +22040,14 @@ function openVideo(videoId) {
   window.player.loadVideoById(videoId);
   window.player.playVideo();
   openModal("video");
+}
+
+function openVideoMobile(videoId) {
+  window.player.loadVideoById(videoId);
+  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+  if (requestFullScreen) {
+    requestFullScreen.bind(iframe)();
+  }
 }
 
 function initVideosDesktop() {
@@ -21622,28 +22073,8 @@ function initVideosMobile() {
   if (!YT.Player) {
     return;
   }
-  return $(".youtube-video").each(function (i, e) {
-    var id, iframe, player, requestFullScreen;
-    id = $(e).data("id");
-    iframe = document.getElementById("youtube-video-" + id);
-    requestFullScreen =
-      iframe.requestFullScreen ||
-      iframe.mozRequestFullScreen ||
-      iframe.webkitRequestFullScreen;
-    player = new YT.Player("youtube-video-" + id, {
-      playerVars: {
-        rel: 0,
-      },
-    });
-    window.players[id] = player;
-    window.players[id].addEventListener("onStateChange", function (state) {
-      requestFullScreen.bind(iframe)();
-      if (state.data === YT.PlayerState.PLAYING) {
-        return stopPlaying(state.target.a.id);
-      }
-    });
-    return null;
-  });
+  window.player = new YT.Player("youtube-video", {});
+  iframe = document.getElementById("youtube-video");
 }
 
 function stopPlaying(except_id) {

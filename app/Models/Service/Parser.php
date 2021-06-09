@@ -298,6 +298,7 @@ class Parser
         static::replace($html, 'master-profile', $masterProfileVariable->parse());
 
         static::replace($title,  'master-name', implode(' ', [$master->last_name, $master->first_name, $master->middle_name]));
+        static::replace($html, 'current_master_review_ids', Review::where('master_id', $master->id)->pluck('id')->implode(','));
         static::replace($html, 'current_master_gallery_ids', Gallery::where('master_id', $master->id)->pluck('id')->implode(','));
         static::replace($html, 'current_master_video_ids', Video::where('master_id', $master->id)->pluck('id')->implode(','));
         $page->html = $html;

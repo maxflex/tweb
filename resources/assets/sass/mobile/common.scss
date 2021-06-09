@@ -309,19 +309,6 @@ a[href^="https://www.google.com/maps"]
   z-index: 104;
 }
 
-#youtube-video {
-  z-index: 105;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  // height: 1px;
-  // width: 1px;
-  // opacity: 0;
-  // position: fixed;
-  // left: 50%;
-  // top: 50%;
-}
-
 .faq-page {
   & ul {
     margin-bottom: 1.8em;
@@ -697,6 +684,10 @@ input {
     & b {
       display: block;
       margin: 3px 0 15px;
+      max-width: 82vw;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 }
@@ -1670,4 +1661,91 @@ $uploaded-photo-preview-width: 32%;
   padding-right: 1.357em;
   padding-bottom: 6px;
   padding-top: 2px;
+}
+
+#youtube-video {
+  pointer-events: none;
+  position: absolute;
+  left: calc(50% - 144px);
+  visibility: hidden;
+}
+
+.video-item {
+  height: 144px;
+  width: 288px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  & img {
+    position: relative;
+    top: -10px;
+  }
+  &:hover {
+    & .ytp-large-play-button-bg {
+      fill: #ea3223;
+      fill-opacity: 1;
+    }
+  }
+}
+
+.youtube-video-info {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  &__channel-logo {
+    background: white;
+    height: 40px;
+    width: 40px;
+    background-image: url(/img/youtube-channel-logo.jpg);
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+  }
+  &__title {
+    max-width: 100%;
+    padding-left: 8px;
+    padding-top: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    font-size: 18px;
+    flex: 1;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+}
+
+.ytp-large-play-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 68px;
+  height: 48px;
+  margin-left: -34px;
+  margin-top: -24px;
+  -moz-transition: fill-opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-transition: fill-opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
+  transition: fill-opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.ytp-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  text-align: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.ytp-button:focus,
+.ytp-button {
+  outline: 0;
 }

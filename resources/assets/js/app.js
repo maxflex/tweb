@@ -1,7 +1,7 @@
 (function() {
   var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileUpload', 'angular-toArrayFilter', 'thatisuday.ng-image-gallery', 'thatisuday.ng-image-gallery-2', 'ngSanitize']).config([
+  angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileUpload', 'angular-toArrayFilter', 'thatisuday.ng-image-gallery', 'thatisuday.ng-image-gallery-2', 'ngSanitize', 'angular-inview']).config([
     'ngImageGalleryOptsProvider', function(ngImageGalleryOptsProvider) {
       return ngImageGalleryOptsProvider.setOpts({
         bubbles: true,
@@ -400,8 +400,8 @@
 (function() {
   angular.module('App').controller('main', function($scope, $timeout, $http, GalleryService, DataService) {
     bindArguments($scope, arguments);
-    $scope.galleryLoaded = false;
-    $scope.GalleryService2 = _.clone(GalleryService);
+    $scope.galleryMethods = void 0;
+    $scope.galleryLoadingStatus = void 0;
     $scope.review = {
       hasMorePages: true,
       items: void 0,
@@ -431,32 +431,59 @@
         }
       }
     };
-    $scope.initGallery = function(ids, tags, folders, isFirst, initGallery) {
-      if (isFirst == null) {
-        isFirst = true;
+    $scope.gallery = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      open: function(index) {
+        if ($scope.galleryLoadingStatus === 'loaded') {
+          return $scope.galleryMethods.open(index);
+        } else {
+          return $scope.initGallery($scope.gallery.service.args.ids, $scope.gallery.service.args.tags, $scope.gallery.service.args.folders).then(function() {
+            return $scope.galleryMethods.open(index);
+          });
+        }
+      },
+      onLoaded: function(data) {
+        $scope.gallery.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.gallery.items === void 0) {
+          return $scope.gallery.items = data.data;
+        } else {
+          return $scope.gallery.items = $scope.gallery.items.concat(data.data);
+        }
       }
-      if (initGallery == null) {
-        initGallery = false;
+    };
+    $scope.initGallery = function(ids, tags, folders, initGalleryBig) {
+      if (initGalleryBig == null) {
+        initGalleryBig = false;
       }
+      $scope.galleryLoadingStatus = 'loading';
       return $http.post('/api/gallery/init', {
         ids: ids,
         tags: tags,
         folders: folders
       }).then(function(response) {
-        if (isFirst) {
-          $scope.gallery = response.data;
-        }
-        if (!isFirst) {
-          $scope.gallery2 = response.data;
-        }
-        $scope.galleryLoaded = true;
-        if (initGallery) {
-          GalleryService.init(_.clone($scope.gallery));
+        $scope.images = response.data;
+        $scope.galleryLoadingStatus = 'loaded';
+        if (initGalleryBig) {
+          GalleryService.init(_.clone($scope.images));
           return $timeout(function() {
             return $scope.$apply();
           }, 1000);
         }
       });
+    };
+    $scope.firstLoadMoreInView = function(obj) {
+      if (obj.firstLoaded !== true) {
+        console.log('first load');
+        obj.firstLoaded = true;
+        return obj.service.loadMore();
+      }
+    };
+    $scope.loadMoreInView = function(obj, index, inView) {
+      if (inView && (index + 1 === obj.items.length)) {
+        return obj.service.loadMore();
+      }
     };
     return $timeout(function() {
       return PriceExpander.expand(isMobile ? 15 : 30);
@@ -468,11 +495,23 @@
 (function() {
   angular.module('App').controller('master', function($scope, $timeout, $http, Master, GalleryService, DataService) {
     bindArguments($scope, arguments);
-    $scope.reviews_block = false;
-    $scope.gallery = [];
-    $scope.galleryLoaded = false;
+    $scope.galleryMethods = void 0;
+    $scope.galleryLoadingStatus = void 0;
+    $scope.review = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      onLoaded: function(data) {
+        $scope.review.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.review.items === void 0) {
+          return $scope.review.items = data.data;
+        } else {
+          return $scope.review.items = $scope.review.items.concat(data.data);
+        }
+      }
+    };
     $scope.video = {
-      hasMorePages: false,
+      hasMorePages: true,
       items: void 0,
       service: _.clone(DataService),
       open: function(item) {
@@ -487,29 +526,47 @@
         }
       }
     };
-    $scope.initGallery = function(ids, tags, folders) {
-      if (ids) {
-        return $http.post('/api/gallery/init', {
-          ids: ids,
-          tags: tags,
-          folders: folders
-        }).then(function(response) {
-          $scope.gallery = response.data;
-          return $scope.galleryLoaded = true;
-        });
+    $scope.gallery = {
+      hasMorePages: true,
+      items: void 0,
+      service: _.clone(DataService),
+      open: function(index) {
+        if ($scope.galleryLoadingStatus === 'loaded') {
+          return $scope.galleryMethods.open(index);
+        } else {
+          return $scope.initGallery($scope.gallery.service.args.ids, $scope.gallery.service.args.tags, $scope.gallery.service.args.folders).then(function() {
+            return $scope.galleryMethods.open(index);
+          });
+        }
+      },
+      onLoaded: function(data) {
+        $scope.gallery.hasMorePages = data.current_page !== data.last_page;
+        if ($scope.gallery.items === void 0) {
+          return $scope.gallery.items = data.data;
+        } else {
+          return $scope.gallery.items = $scope.gallery.items.concat(data.data);
+        }
       }
     };
-    $scope.toggleShow = function(master, prop, iteraction_type, index) {
-      if (index == null) {
-        index = null;
+    $scope.initGallery = function(ids, tags, folders, initGalleryBig) {
+      if (initGalleryBig == null) {
+        initGalleryBig = false;
       }
-      if (master[prop]) {
-        return $timeout(function() {
-          return master[prop] = false;
-        }, $scope.mobile ? 400 : 0);
-      } else {
-        return master[prop] = true;
-      }
+      $scope.galleryLoadingStatus = 'loading';
+      return $http.post('/api/gallery/init', {
+        ids: ids,
+        tags: tags,
+        folders: folders
+      }).then(function(response) {
+        $scope.images = response.data;
+        $scope.galleryLoadingStatus = 'loaded';
+        if (initGalleryBig) {
+          GalleryService.init(_.clone($scope.images));
+          return $timeout(function() {
+            return $scope.$apply();
+          }, 1000);
+        }
+      });
     };
     return $scope.popup = function(id, master, fn, index) {
       if (master == null) {
@@ -684,123 +741,6 @@
 }).call(this);
 
 (function() {
-  angular.module('App').value('AvgScores', {
-    '1-11-1': 46.3,
-    '2-11': 51.2,
-    '3-11': 56.1,
-    '4-11': 52.8,
-    '5-11': 53,
-    '6-11': 65.8,
-    '7-11': 56,
-    '8-11': 53.3,
-    '9-11': 48.1,
-    '10-11': 64.2,
-    '11-11': 53
-  }).value('Units', [
-    {
-      id: 1,
-      title: 'изделие'
-    }, {
-      id: 2,
-      title: 'штука'
-    }, {
-      id: 3,
-      title: 'сантиметр'
-    }, {
-      id: 4,
-      title: 'пара'
-    }, {
-      id: 5,
-      title: 'метр'
-    }, {
-      id: 6,
-      title: 'дм²'
-    }, {
-      id: 7,
-      title: 'см²'
-    }, {
-      id: 8,
-      title: 'мм²'
-    }, {
-      id: 9,
-      title: 'элемент'
-    }
-  ]).value('Grades', {
-    9: '9 класс',
-    10: '10 класс',
-    11: '11 класс'
-  }).value('Subjects', {
-    all: {
-      1: 'математика',
-      2: 'физика',
-      3: 'химия',
-      4: 'биология',
-      5: 'информатика',
-      6: 'русский',
-      7: 'литература',
-      8: 'обществознание',
-      9: 'история',
-      10: 'английский',
-      11: 'география'
-    },
-    full: {
-      1: 'Математика',
-      2: 'Физика',
-      3: 'Химия',
-      4: 'Биология',
-      5: 'Информатика',
-      6: 'Русский язык',
-      7: 'Литература',
-      8: 'Обществознание',
-      9: 'История',
-      10: 'Английский язык',
-      11: 'География'
-    },
-    dative: {
-      1: 'математике',
-      2: 'физике',
-      3: 'химии',
-      4: 'биологии',
-      5: 'информатике',
-      6: 'русскому языку',
-      7: 'литературе',
-      8: 'обществознанию',
-      9: 'истории',
-      10: 'английскому языку',
-      11: 'географии'
-    },
-    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
-    three_letters: {
-      1: 'МАТ',
-      2: 'ФИЗ',
-      3: 'ХИМ',
-      4: 'БИО',
-      5: 'ИНФ',
-      6: 'РУС',
-      7: 'ЛИТ',
-      8: 'ОБЩ',
-      9: 'ИСТ',
-      10: 'АНГ',
-      11: 'ГЕО'
-    },
-    short_eng: {
-      1: 'math',
-      2: 'phys',
-      3: 'chem',
-      4: 'bio',
-      5: 'inf',
-      6: 'rus',
-      7: 'lit',
-      8: 'soc',
-      9: 'his',
-      10: 'eng',
-      11: 'geo'
-    }
-  });
-
-}).call(this);
-
-(function() {
   angular.module('App').directive('academic', function() {
     return {
       restrict: 'E',
@@ -890,8 +830,7 @@
       restrict: 'E',
       scope: {
         item: '=',
-        service: '=',
-        index: '='
+        open: '&'
       },
       templateUrl: function(elem, attrs) {
         if (isMobile) {
@@ -1058,6 +997,123 @@
 
 (function() {
 
+
+}).call(this);
+
+(function() {
+  angular.module('App').value('AvgScores', {
+    '1-11-1': 46.3,
+    '2-11': 51.2,
+    '3-11': 56.1,
+    '4-11': 52.8,
+    '5-11': 53,
+    '6-11': 65.8,
+    '7-11': 56,
+    '8-11': 53.3,
+    '9-11': 48.1,
+    '10-11': 64.2,
+    '11-11': 53
+  }).value('Units', [
+    {
+      id: 1,
+      title: 'изделие'
+    }, {
+      id: 2,
+      title: 'штука'
+    }, {
+      id: 3,
+      title: 'сантиметр'
+    }, {
+      id: 4,
+      title: 'пара'
+    }, {
+      id: 5,
+      title: 'метр'
+    }, {
+      id: 6,
+      title: 'дм²'
+    }, {
+      id: 7,
+      title: 'см²'
+    }, {
+      id: 8,
+      title: 'мм²'
+    }, {
+      id: 9,
+      title: 'элемент'
+    }
+  ]).value('Grades', {
+    9: '9 класс',
+    10: '10 класс',
+    11: '11 класс'
+  }).value('Subjects', {
+    all: {
+      1: 'математика',
+      2: 'физика',
+      3: 'химия',
+      4: 'биология',
+      5: 'информатика',
+      6: 'русский',
+      7: 'литература',
+      8: 'обществознание',
+      9: 'история',
+      10: 'английский',
+      11: 'география'
+    },
+    full: {
+      1: 'Математика',
+      2: 'Физика',
+      3: 'Химия',
+      4: 'Биология',
+      5: 'Информатика',
+      6: 'Русский язык',
+      7: 'Литература',
+      8: 'Обществознание',
+      9: 'История',
+      10: 'Английский язык',
+      11: 'География'
+    },
+    dative: {
+      1: 'математике',
+      2: 'физике',
+      3: 'химии',
+      4: 'биологии',
+      5: 'информатике',
+      6: 'русскому языку',
+      7: 'литературе',
+      8: 'обществознанию',
+      9: 'истории',
+      10: 'английскому языку',
+      11: 'географии'
+    },
+    short: ['М', 'Ф', 'Р', 'Л', 'А', 'Ис', 'О', 'Х', 'Б', 'Ин', 'Г'],
+    three_letters: {
+      1: 'МАТ',
+      2: 'ФИЗ',
+      3: 'ХИМ',
+      4: 'БИО',
+      5: 'ИНФ',
+      6: 'РУС',
+      7: 'ЛИТ',
+      8: 'ОБЩ',
+      9: 'ИСТ',
+      10: 'АНГ',
+      11: 'ГЕО'
+    },
+    short_eng: {
+      1: 'math',
+      2: 'phys',
+      3: 'chem',
+      4: 'bio',
+      5: 'inf',
+      6: 'rus',
+      7: 'lit',
+      8: 'soc',
+      9: 'his',
+      10: 'eng',
+      11: 'geo'
+    }
+  });
 
 }).call(this);
 

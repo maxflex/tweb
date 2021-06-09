@@ -11,18 +11,17 @@ class GalleryBlock extends SsrVariable
     public function parse()
     {
         // dd([@$this->args->ids, @$this->args->folders, @$this->page->tags]);
-        return view($this->getViewName(), [
-            'items' => $this->getItems(),
-            'args' => $this->args,
-            'tags' => @$this->page->tags,
-        ]);
-    }
+        $this->args->tags = $this->page->tags;
 
-    private function getItems()
-    {
         if (!@$this->args->ids && @$this->page->url === 'masters/:id') {
-            return [];
+            $data = Gallery::whereId(-1)->paginate();
+        } else {
+            $data = Gallery::getParseItems($this->args);
         }
-        return Gallery::getItems(@$this->args->ids, @$this->args->folders, @$this->page->tags)->take(9)->get();
+
+        return view($this->getViewName(), [
+            'args' => $this->args,
+            'data' => $data,
+        ]);
     }
 }

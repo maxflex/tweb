@@ -5,6 +5,7 @@ var isMobile = false;
 var modal_inited = false;
 var scrollPosition = false;
 var footerLinksExpanded = false;
+var iframe = null;
 
 // window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
@@ -101,6 +102,9 @@ function openModal(id) {
 }
 
 function openVideo(videoId) {
+  if (isMobile) {
+    return openVideoMobile(videoId)
+  }
   if (
     typeof window.player !== "object" ||
     Object.keys(window.player).length === 0
@@ -111,6 +115,14 @@ function openVideo(videoId) {
   window.player.loadVideoById(videoId);
   window.player.playVideo();
   openModal("video");
+}
+
+function openVideoMobile(videoId) {
+  window.player.loadVideoById(videoId);
+  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+  if (requestFullScreen) {
+    requestFullScreen.bind(iframe)();
+  }
 }
 
 function initVideosDesktop() {
@@ -136,28 +148,8 @@ function initVideosMobile() {
   if (!YT.Player) {
     return;
   }
-  return $(".youtube-video").each(function (i, e) {
-    var id, iframe, player, requestFullScreen;
-    id = $(e).data("id");
-    iframe = document.getElementById("youtube-video-" + id);
-    requestFullScreen =
-      iframe.requestFullScreen ||
-      iframe.mozRequestFullScreen ||
-      iframe.webkitRequestFullScreen;
-    player = new YT.Player("youtube-video-" + id, {
-      playerVars: {
-        rel: 0,
-      },
-    });
-    window.players[id] = player;
-    window.players[id].addEventListener("onStateChange", function (state) {
-      requestFullScreen.bind(iframe)();
-      if (state.data === YT.PlayerState.PLAYING) {
-        return stopPlaying(state.target.a.id);
-      }
-    });
-    return null;
-  });
+  window.player = new YT.Player("youtube-video", {});
+  iframe = document.getElementById("youtube-video");
 }
 
 function stopPlaying(except_id) {
