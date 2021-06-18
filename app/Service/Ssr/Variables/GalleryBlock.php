@@ -11,7 +11,7 @@ class GalleryBlock extends SsrVariable
     public function parse()
     {
         // dd([@$this->args->ids, @$this->args->folders, @$this->page->tags]);
-        $this->args->tags = $this->page->tags;
+        $this->args->tags = @$this->page->tags;
 
         if (!@$this->args->ids && @$this->page->url === 'masters/:id') {
             $data = Gallery::whereId(-1)->paginate();
