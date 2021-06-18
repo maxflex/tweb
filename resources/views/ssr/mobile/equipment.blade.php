@@ -10,7 +10,7 @@
             </div>
         </div>
         <div>
-            <img src='{{ $item->photo_url }}' class="equipment-photo">
+            <img src='{{ $item->photo_url }}' loading="lazy" class="equipment-photo">
         </div>
     </div>
 @else
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="equipment-img-container">
-            <img src='{{ $item->photo_url }}' class="equipment-photo">
+            <img src='{{ $item->photo_url }}' loading="lazy" class="equipment-photo">
         </div>
     </div>
 @endif

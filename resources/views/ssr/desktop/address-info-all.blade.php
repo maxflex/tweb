@@ -65,7 +65,7 @@
         </div>
         <div class="address-info-gallery">
             <a href="{{ $maps['len']['gallery']['link'] }}">
-                <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['len']['gallery']['id'] }}.jpg" />
+                <img loading="lazy" src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['len']['gallery']['id'] }}.jpg" />
             </a>
             <div>
                 <a href="{{ $maps['len']['gallery']['link'] }}">
@@ -148,7 +148,7 @@
 
         <div class="address-info-gallery">
             <a href="{{ $maps['pol']['gallery']['link'] }}">
-                <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['pol']['gallery']['id'] }}.jpg" />
+                <img loading="lazy" src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['pol']['gallery']['id'] }}.jpg" />
             </a>
             <div>
                 <a href="{{ $maps['pol']['gallery']['link'] }}">
@@ -227,7 +227,7 @@
         </div>
         <div class="address-info-gallery">
            <a href="{{ $maps['delegat']['gallery']['link'] }}">
-                <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['delegat']['gallery']['id'] }}.jpg" />
+                <img loading="lazy" src="https://cms.atelier-talisman.ru/img/gallery/{{ $maps['delegat']['gallery']['id'] }}.jpg" />
             </a>
             <div>
                 <a href="{{ $maps['delegat']['gallery']['link'] }}">

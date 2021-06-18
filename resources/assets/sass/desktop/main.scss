@@ -104,36 +104,8 @@ body {
   border: 0 !important;
 }
 
-.bootstrap-select {
-  width: 100% !important;
-  outline: none !important;
-  & button {
-    outline: none !important;
-    height: 48px;
-    font-size: 14px;
-  }
-}
-
-.bootstrap-select button {
-  border-color: rgb(166, 166, 166) !important;
-  height: 42px;
-}
-
-.bootstrap-select > .dropdown-toggle.bs-placeholder {
-  // color: #4c4a40;
-  color: #757575;
-}
-
 .dropdown-toggle:focus {
   outline: none !important;
-}
-
-span.customSelect {
-  font-family: inherit;
-  background: transparent url(../img/svg/dropdown-gray.svg) no-repeat
-    calc(100% - 13px) 55%;
-  background-size: 14px;
-  box-sizing: border-box;
 }
 
 .form-errors {
@@ -251,10 +223,6 @@ ul {
       padding: 0;
     }
   }
-}
-
-.bootstrap-select.btn-group .dropdown-toggle .caret {
-  top: 40%;
 }
 
 .header-menu-item-order {

@@ -14,6 +14,7 @@
     @endif
     <div class="ymap" id="map" ng-show="!panorama"></div>
 </div>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=14c6eda6-c6b2-4435-a13c-14a9807f4d86&lang=ru_RU" type="text/javascript"></script>
 <script type="text/javascript">
     // Функция ymaps.ready() будет вызвана, когда
     // загрузятся все компоненты API, а также когда будет готово DOM-дерево.

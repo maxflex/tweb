@@ -1,7 +1,7 @@
 <div class="full-width-wrapper banner-block-full-width-wrapper banner-block-full-width-wrapper_3 {{ $args->align }}">
     <div class="common" style='position: relative'>
         <div class="full-width-wrapper banner-block {{ $args->align }}">
-            <div class="banner-block__image" ng-style="{'background-image': 'url({{ $args->img }})'}"></div>
+            <div class="banner-block__image" style="background-image: url({{ $args->img }})"></div>
             <div class="info">
                 <div class='info__items'>
                     <div>

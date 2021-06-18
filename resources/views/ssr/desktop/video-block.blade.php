@@ -7,7 +7,7 @@
         @foreach ($data->items() as $item)
             <div class="gallery-item" onclick="openVideo('{{ $item->code }}')">
                 <div class='video-item'>
-                    <img src='{{ $item->url }}' />
+                    <img loading="lazy" src='{{ $item->url }}' />
                     <div class="youtube-video-info">
                         <div class='youtube-video-info__channel-logo'></div>
                         <div class='youtube-video-info__title'>
@@ -62,6 +62,8 @@
 <div class="lightbox-background" onclick="closeModal()">
     <img src="/img/svg/cross-out.svg" class="close-cross">
 </div>
+
+<script type="text/javascript" src="https://www.youtube.com/iframe_api" defer></script>
 
 {{-- <iframe id='youtube-video-{{ $item->id }}' width="288" height="144" data-id="{{ $item->id }}" class='youtube-video'
     src="https://www.youtube.com/embed/{{ $item->code }}?enablejsapi=1&showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe> --}}

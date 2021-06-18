@@ -13,7 +13,7 @@
                 <div @if ($item === null) class='invisible' @endif>
                     <div>
                         <a class='no-style-link' href='/masters/{{ $item->id }}/'>
-                            <img src='{{ $item->photo_url }}' class="master-photo pointer">
+                            <img loading="lazy" src='{{ $item->photo_url }}' class="master-photo pointer">
                         </a>
                     </div>
                     <b class="pointer master-name">

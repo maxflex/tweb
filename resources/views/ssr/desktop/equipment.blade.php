@@ -1,7 +1,7 @@
 @if ($args->type === 'side')
     <div class="equipment-item {{ $args->align }}">
         <div>
-            <img src='{{ $item->photo_url }}' class="equipment-photo">
+            <img src='{{ $item->photo_url }}' loading="lazy" class="equipment-photo">
         </div>
         <div>
             <div>
@@ -21,7 +21,7 @@
         <div class="equipment-overlay"
             style="background: linear-gradient(to {{ $args->align === 'left' ? 'right' : 'left' }}, #{{ $item->color }} 33%, transparent 95%)"></div>
         <div class="equipment-image">
-            <img src='{{ $item->photo_url }}' class="equipment-photo">
+            <img src='{{ $item->photo_url }}' loading="lazy" class="equipment-photo">
         </div>
         <div class="equipment-text-block">
             <div>

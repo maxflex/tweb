@@ -147,21 +147,6 @@ angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileU
         $rootScope.deny = (ngModel, prop) ->
             ngModel[prop] = +(!ngModel[prop])
 
-        $rootScope.closestMetro = (markers) ->
-            closest_metro = markers[0].metros[0]
-            markers.forEach (marker) ->
-                marker.metros.forEach (metro) ->
-                    closest_metro = metro if metro.minutes < closest_metro.minutes
-            closest_metro.station.title
-
-        $rootScope.closestMetros = (markers) ->
-            closest_metros = []
-            markers.forEach (marker, index) ->
-                closest_metros[index] = marker.metros[0]
-                marker.metros.forEach (metro) ->
-                    closest_metros[index] = metro if metro.minutes < closest_metros[index].minutes
-            closest_metros
-
         # $rootScope.photoUrl = (object) ->
         #     if object and object.photos and object.photos.length
         #         "https://tcms.app:8103/photos/cropped/#{object.photos[0].cropped}"
@@ -172,47 +157,6 @@ angular.module("App", ['ngResource', 'ngAnimate', 'angular-ladda', 'angularFileU
             return tutor.last_name + ' ' + tutor.first_name + ' ' + tutor.middle_name
 
         $rootScope.objectLength = (obj) -> Object.keys(obj).length
-
-        $rootScope.shortenGrades = (tutor) ->
-            if tutor.grades.length <= 3
-                grades = _.clone tutor.grades
-                if (grades.length > 1)
-                    last_grade = grades.pop()
-                grade_string = grades.join ', '
-                grade_string += ' и ' + last_grade if last_grade
-                return grade_string + if last_grade then ' классы' else ' класс'
-            else
-                a = _.clone tutor.grades
-                return if a.length < 1
-                limit = a.length - 1
-                combo_end = -1
-                pairs = []
-                i = 0
-                while i <= limit
-                    combo_start = parseInt(a[i])
-                    if combo_start > 11
-                        i++
-                        combo_end = -1
-                        pairs.push combo_start
-                        continue
-
-                    if combo_start <= combo_end
-                        i++
-                        continue
-
-                    j = i
-                    while j <= limit
-                        combo_end = parseInt(a[j])
-                        # если уже начинает искать по студентам
-                        break if combo_end >= 11
-                        break if parseInt(a[j + 1]) - combo_end > 1
-                        j++
-                    if combo_start != combo_end
-                        pairs.push combo_start + '–' + combo_end + ' классы'
-                    else
-                        pairs.push combo_start + ' класс'
-                    i++
-                return pairs.join ', '
 
         $rootScope.countObj = (obj) ->
             Object.keys(obj).length

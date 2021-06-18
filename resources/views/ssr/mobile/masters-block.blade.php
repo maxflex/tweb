@@ -6,7 +6,7 @@
             <div>
                <div>
                     <a class='no-style-link' href='/masters/{{ $item->id }}/'>
-                        <img src='{{ $item->photo_url }}' class="master-photo">
+                        <img src='{{ $item->photo_url }}' loading="lazy" class="master-photo">
                     </a>
                 </div>
                 <div>

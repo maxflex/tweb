@@ -129,8 +129,7 @@
             </div>
             <div class="address-info-gallery">
                 <a href="{{ $info->gallery['link'] }}">
-                    <img src="https://cms.atelier-talisman.ru/img/gallery/{{ $info->gallery['id'] }}.jpg" />
-
+                    <img loading="lazy" src="https://cms.atelier-talisman.ru/img/gallery/{{ $info->gallery['id'] }}.jpg" />
                 </a>
                 <div style="margin-top: 5px; font-family: 'helveticaneuecyrbold'">
                     <a href="{{ $info->gallery['link'] }}">

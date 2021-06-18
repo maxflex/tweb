@@ -8,7 +8,7 @@
             @if($index === count($data->items()) - 1) in-view="firstLoadMoreInView(gallery)" @endif
         >
             <div>
-                <img src='{{ $item->thumb }}'  class="gallery-photo">
+                <img loading="lazy" src='{{ $item->thumb }}'  class="gallery-photo">
             </div>
             <div>
                 <b>

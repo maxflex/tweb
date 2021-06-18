@@ -9,7 +9,7 @@
             @foreach ($data->items() as $index => $item)
             <div class='gallery-item'>
                 <div>
-                    <img ng-click="gallery.open({{ $index }})" src='{{ $item->thumb }}' class="gallery-photo pointer">
+                    <img loading="lazy" ng-click="gallery.open({{ $index }})" src='{{ $item->thumb }}' class="gallery-photo pointer">
                 </div>
                 <div>
                     <div class="entity-header header-3 gallery-preview-header">

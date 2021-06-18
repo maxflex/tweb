@@ -20,13 +20,6 @@ window.onYouTubeIframeAPIReady = function () {
 };
 
 $(document).ready(function () {
-  //Custom select
-  var $cs = $(".custom-select").customSelect();
-
-  $(".questions-item-title").click(function () {
-    $(this).parent().children(".questions-item-answer").toggle();
-  });
-
   $(document).on("keyup", function (event) {
     if (event.keyCode == 27) {
       closeModal();

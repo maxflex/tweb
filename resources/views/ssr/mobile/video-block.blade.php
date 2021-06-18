@@ -10,7 +10,7 @@
             @if($index === count($data->items()) - 1) in-view="firstLoadMoreInView(video)" @endif
         >
             <div class='video-item'>
-                <img src='{{ $item->url }}' />
+                <img loading="lazy" src='{{ $item->url }}' />
                 <div class="youtube-video-info">
                     <div class='youtube-video-info__channel-logo'></div>
                     <div class='youtube-video-info__title'>
@@ -52,3 +52,6 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://www.youtube.com/iframe_api" defer></script>
+
