@@ -14,10 +14,15 @@
             </div>
             <div style='margin-top: 10px'>
                 <ul class="list-main">
-                    @if (count($master->reviews) > 0)
+                    @if ($master->reviews()->exists())
                     <li>
-                        <a class="popup-show" ng-click="popup('reviews', master, 'reviews', $index)"
-                            data-popup="popup__masters-reviews">отзывы</a> ({{ count($master->reviews) }})
+                        <a class="popup-show"
+                            ng-click="popup('reviews', master, 'reviews', $index)"
+                            data-popup="popup__masters-reviews"
+                        >
+                            отзывы
+                        </a>
+                        ({{ $master->reviews()->count() }})
                     </li>
                     @endif
                 </ul>
@@ -25,12 +30,3 @@
         </div>
     </div>
 </div>
-
-<!-- отзывы -->
-<div class='modal' id='modal-reviews'>
-    <div class='modal-button modal-button-top' onclick='closeModal()'></div>
-    <div class='modal-content'>
-        {!! $reviewsBlock !!}
-    </div>
-</div>
-<!-- /отзывы -->
