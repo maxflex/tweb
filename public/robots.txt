@@ -8,6 +8,11 @@ Disallow: /*.zip
 Disallow: /*.rar
 Disallow: /*.swf
 Disallow: /*.rtf
+Disallow: */?yhid=*
+Disallow: */?baobab_event_id=*
+Disallow: */?wprid=*
+Disallow: */?q=*
+Disallow: /*?
 Allow: /css/*.css
 Allow: /js/*.js
 Allow: /img/*.jpg
@@ -27,6 +32,11 @@ Disallow: /*.zip
 Disallow: /*.rar
 Disallow: /*.swf
 Disallow: /*.rtf
+Disallow: */?yhid=*
+Disallow: */?baobab_event_id=*
+Disallow: */?wprid=*
+Disallow: */?q=*
+Disallow: /*?
 Allow: /css/*.css
 Allow: /js/*.js
 Allow: /img/*.jpg
@@ -45,6 +55,11 @@ Disallow: /*.zip
 Disallow: /*.rar
 Disallow: /*.swf
 Disallow: /*.rtf
+Disallow: */?yhid=*
+Disallow: */?baobab_event_id=*
+Disallow: */?wprid=*
+Disallow: */?q=*
+Disallow: /*?
 Allow: /css/*.css
 Allow: /js/*.js
 Allow: /img/*.jpg
