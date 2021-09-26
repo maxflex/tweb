@@ -7425,8 +7425,9 @@ h1.padding-top, .padding-top.header-1 {
     background: url("../img/svg/cross-yt.svg") no-repeat;
     background-size: cover;
     position: absolute;
-    right: 10px;
-    top: 16px; }
+    right: 12px;
+    top: 16px;
+    background-color: black; }
 
 #youtube-video {
   width: 100vw;

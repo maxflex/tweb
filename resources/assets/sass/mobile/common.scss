@@ -1703,8 +1703,9 @@ $uploaded-photo-preview-width: 32%;
     background: url("../img/svg/cross-yt.svg") no-repeat;
     background-size: cover;
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 16px;
+    background-color: black;
   }
 }
 #youtube-video {
