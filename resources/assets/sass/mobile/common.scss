@@ -1698,20 +1698,19 @@ $uploaded-photo-preview-width: 32%;
   &:after {
     content: "";
     display: inline-block;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     background: url("../img/svg/cross-yt.svg") no-repeat;
     background-size: cover;
     position: absolute;
     right: 10px;
-    top: 10px;
-    opacity: 0.8px;
+    top: 16px;
   }
 }
 #youtube-video {
   width: 100vw;
   // height: 56.25vw;
-  height: 50vh;
+  height: 100vh;
 }
 
 .youtube-video-info {
