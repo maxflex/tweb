@@ -1,12 +1,8 @@
 <div class='header-1'>{{ $title }}</div>
 <div class="vertical-slider gallery-block-photo" ng-init="video.service.init({{ json_encode($args) }}, 'video', video.onLoaded)" style='margin-bottom: 20px'>
-    <iframe id='youtube-video' frameborder="0" allowfullscreen
-        height="144" width="288"
-        src='https://www.youtube.com/embed?enablejsapi=1&rel=0&amp;showinfo=0'>
-    </iframe>
     <div class="main-gallery-wrapper">
         @foreach ($data->items() as $index => $item)
-        <div class="gallery-item" onclick="openVideoMobile('{{ $item->code }}')"
+        <div class="gallery-item" onclick="openVideo('{{ $item->code }}')"
             @if($index === count($data->items()) - 1) in-view="firstLoadMoreInView(video)" @endif
         >
             <div class='video-item'>
@@ -53,5 +49,13 @@
     </div>
 </div>
 
-<script type="text/javascript" src="https://www.youtube.com/iframe_api" defer></script>
+<div class='youtube-modal' onclick="closeYoutubeModal()">
+    <iframe
+        id="youtube-video"
+        frameborder="0"
+        allowfullscreen
+        src='https://www.youtube.com/embed?enablejsapi=1&rel=0&amp;showinfo=0'
+    ></iframe>
+</div>
 
+<script type="text/javascript" src="https://www.youtube.com/iframe_api" defer></script>

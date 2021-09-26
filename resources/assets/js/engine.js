@@ -5,17 +5,10 @@ var isMobile = false;
 var modal_inited = false;
 var scrollPosition = false;
 var footerLinksExpanded = false;
-var iframe = null;
-
-// window.onYouTubeIframeAPIReady = function () { console.log('ready') }
 
 window.onYouTubeIframeAPIReady = function () {
   $(document).ready(function () {
-    if (isMobile) {
-      initVideosMobile();
-    } else {
-      initVideosDesktop();
-    }
+    initYTPlayer()
   });
 };
 
@@ -53,6 +46,13 @@ $(document).ready(function () {
   //     scope.StreamService.run('page', null, {href: window.location.href})
   // }, 500)
 });
+
+function closeYoutubeModal() {
+  $('.youtube-modal').hide()
+  $("body").removeClass()
+  $(".container").off("touchmove");
+  onCloseModal()
+}
 
 function closeModal() {
   $(".modal.active")
@@ -95,62 +95,35 @@ function openModal(id) {
 }
 
 function openVideo(videoId) {
-  if (isMobile) {
-    return openVideoMobile(videoId)
-  }
   if (
     typeof window.player !== "object" ||
     Object.keys(window.player).length === 0
   ) {
-    initVideosDesktop();
+    initYTPlayer();
   }
   window.scrollPosition = document.querySelector("html").scrollTop;
   window.player.loadVideoById(videoId);
-  window.player.playVideo();
-  openModal("video");
-}
-
-function openVideoMobile(videoId) {
-  window.player.loadVideoById(videoId);
-  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-  if (requestFullScreen) {
-    requestFullScreen.bind(iframe)();
+  if (isMobile) {
+    $('.youtube-modal').css('display', 'flex')
+    $("body").addClass("modal-open");
+    $(".container").on("touchmove", function (e) {
+      e.preventDefault();
+    });
+  } else {
+    openModal("video");
   }
+  window.player.playVideo();
 }
 
-function initVideosDesktop() {
+function initYTPlayer() {
   if (!YT.Player) {
     return;
   }
   window.player = new YT.Player("youtube-video", {});
-  window.player.addEventListener("onStateChange", function (state) {
-    if (state.data === YT.PlayerState.PLAYING) {
-      return setTimeout(function () {
-        return $(".fullscreen-loading-black").css("display", "none");
-      }, 500);
-    }
-  });
-
   window.onCloseModal = function () {
     document.querySelector("html").scrollTop = window.scrollPosition;
     return player.stopVideo();
   };
-}
-
-function initVideosMobile() {
-  if (!YT.Player) {
-    return;
-  }
-  window.player = new YT.Player("youtube-video", {});
-  iframe = document.getElementById("youtube-video");
-}
-
-function stopPlaying(except_id) {
-  return $.each(window.players, function (e, p) {
-    if (p.getPlayerState && p.getPlayerState() === 1 && p.a.id !== except_id) {
-      return p.stopVideo();
-    }
-  });
 }
 
 /**
