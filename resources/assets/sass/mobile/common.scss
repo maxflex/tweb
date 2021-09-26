@@ -1684,7 +1684,8 @@ $uploaded-photo-preview-width: 32%;
 
 .youtube-modal {
   position: fixed;
-  background: rgba(black, 0.9);
+  // background: rgba(black, 0.9);
+  background: black;
   top: 0;
   left: 0;
   width: 100%;
@@ -1709,7 +1710,8 @@ $uploaded-photo-preview-width: 32%;
 }
 #youtube-video {
   width: 100vw;
-  height: 56.25vw;
+  // height: 56.25vw;
+  height: 50vh;
 }
 
 .youtube-video-info {

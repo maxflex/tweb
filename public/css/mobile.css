@@ -7404,7 +7404,7 @@ h1.padding-top, .padding-top.header-1 {
 
 .youtube-modal {
   position: fixed;
-  background: rgba(0, 0, 0, 0.9);
+  background: black;
   top: 0;
   left: 0;
   width: 100%;
@@ -7431,7 +7431,7 @@ h1.padding-top, .padding-top.header-1 {
 
 #youtube-video {
   width: 100vw;
-  height: 56.25vw; }
+  height: 50vh; }
 
 .youtube-video-info {
   position: absolute;
