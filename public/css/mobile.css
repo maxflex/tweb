@@ -7430,7 +7430,7 @@ h1.padding-top, .padding-top.header-1 {
 
 #youtube-video {
   width: 100vw;
-  height: 100vh; }
+  height: 100%; }
 
 .youtube-video-info {
   position: absolute;
