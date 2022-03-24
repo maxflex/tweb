@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Shared\Model;
 use App\Models\Service\Parser;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Variable extends Model
 {
     use SoftDeletes;
-    
+
     protected $dates = ['deleted_at'];
 
     protected $attributes = [
@@ -38,7 +37,7 @@ class Variable extends Model
             $name .= '-mobile';
         }
         $html = self::findByName($name)->first()->html;
-        if (! $useful_block) {
+        if (!$useful_block) {
             Parser::replace($html, 'useful', '');
         }
         return $html;

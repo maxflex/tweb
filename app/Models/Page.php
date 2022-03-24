@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Shared\Model;
 use App\Models\Variable;
 use App\Models\Service\Parser;
 use App\Scopes\PageScope;
