@@ -12,3 +12,4 @@ Homestead.yaml
 .env
 Envoy.blade.php
 /.vscode
+.DS_Store

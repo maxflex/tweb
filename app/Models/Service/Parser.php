@@ -88,7 +88,7 @@ class Parser
         if ($html !== null) {
             // КОСТЫЛЬ СПЕЦИАЛЬНО ДЛЯ ADDRESS-PAGE
             if (in_array($values[0], ['address-page', 'address-page-mobile'])) {
-                $newHtml = $html->getOriginal('html');
+                $newHtml = $html->getClean('html');
                 // 2 переменной в address-page
                 foreach ([1, 2] as $varIndex) {
                     list($var_name, $var_val) = explode('=', $values[$varIndex]);
