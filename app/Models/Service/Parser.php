@@ -297,12 +297,16 @@ class Parser
         $masterProfileVariable = new \App\Service\Ssr\Variables\MasterProfile('master-profile', $page, (object) ['master' => $master]);
         static::replace($html, 'master-profile', $masterProfileVariable->parse());
 
-        static::replace($title,  'master-name', implode(' ', [$master->last_name, $master->first_name, $master->middle_name]));
+        static::replace($title,  'master-name', $master->full_name);
         static::replace($html, 'current_master_review_ids', Review::where('master_id', $master->id)->pluck('id')->implode(','));
         static::replace($html, 'current_master_gallery_ids', Gallery::where('master_id', $master->id)->pluck('id')->implode(','));
         static::replace($html, 'current_master_video_ids', Video::where('master_id', $master->id)->pluck('id')->implode(','));
         $page->html = $html;
         $page->title = $title;
+        $page->desc = implode(". ", [
+            $master->full_name,
+            $master->description
+        ]);
     }
 
     public static function interpolate($text = '', $start = null, $end = null)

@@ -50,7 +50,7 @@
         </tbody>
     </table>
 @else
-    <h1 class="h1-top">{{ $currentFolder === null ? 'Видео' : $currentFolder->name }}</h1>
+    <h1 class="h1-top">{{ $currentFolder === null ? 'Видео' : (ucfirst($currentFolder->name) . ": видео нашей работы") }}</h1>
     {!! $videoBlock->parse() !!}
 @endif
 

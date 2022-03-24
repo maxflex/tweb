@@ -14,6 +14,7 @@ class VideoFolders extends SsrVariable
         $request = app()->make(Request::class);
         if ($request->has('id')) {
             $currentFolder = Folder::find($request->id);
+            $this->addPageMeta($currentFolder);
             $breadcrumbs = $this->getBreadcrumbs($request->id);
             $folders = Folder::where('class', Video::class)
                 ->searchByFolder($request->id)
@@ -61,5 +62,21 @@ class VideoFolders extends SsrVariable
             }
         }
         return array_reverse($breadcrumbs);
+    }
+
+    private function addPageMeta($folder)
+    {
+        $this->page->title = implode(" | ", [
+            $folder->name,
+            $this->page->title
+        ]);
+        $this->page->keywords = implode(", ", [
+            $folder->name,
+            $this->page->keywords
+        ]);
+        $this->page->desc = implode(": ", [
+            $this->page->desc,
+            ucfirst($folder->name)
+        ]);
     }
 }

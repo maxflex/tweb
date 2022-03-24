@@ -23,4 +23,9 @@ class Master extends Service\Model
         }
         return $description;
     }
+
+    public function getFullNameAttribute()
+    {
+        return implode(' ', [$this->last_name, $this->first_name, $this->middle_name]);
+    }
 }

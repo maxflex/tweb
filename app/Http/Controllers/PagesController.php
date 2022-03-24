@@ -20,7 +20,7 @@ class PagesController extends Controller
     public function index($url)
     {
         $page = Page::whereUrl($url);
-        if (! $page->exists()) {
+        if (!$page->exists()) {
             $html = Page::withoutGlobalScopes()->whereUrl('404')->first()->html;
             $status = 404;
         } else {
@@ -52,7 +52,4 @@ class PagesController extends Controller
         $html = Page::whereUrl(Faq::URL)->first()->html;
         return view('pages.index')->with(compact('html'));
     }
-
-
-
 }
