@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\Variable;
 use App\Models\Master;
 
-URL::forceSchema('https');
 
 Route::post('upload', 'UploadController@original');
 

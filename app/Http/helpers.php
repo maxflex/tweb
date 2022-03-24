@@ -138,7 +138,7 @@ function userIdOrSystem()
     return \App\Models\User::loggedIn() ? \App\Models\User::fromSession()->id : 0;
 }
 
-function now($no_time = false)
+function noww($no_time = false)
 {
     return date('Y-m-d' . ($no_time ? '' : ' H:i:s'));
 }
@@ -367,5 +367,5 @@ function getMapInfo($map = null)
     if ($map === null) {
         return $info;
     }
-    return $info[$map];
+    return @$info[$map];
 }

@@ -19,7 +19,7 @@
 |
 */
 
-require __DIR__.'/../bootstrap/autoload.php';
+require __DIR__ . '/../bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -48,17 +48,16 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 */
 session_start();
 
-if (! isset($_SESSION['sent_ids'])) {
+if (!isset($_SESSION['sent_ids'])) {
     $_SESSION['sent_ids'] = [];
 }
 
-if (! isset($_COOKIE['source']))
-{
+if (!isset($_COOKIE['source'])) {
     $_COOKIE['source'] = array(
-        'referer' => isset($_SERVER['HTTP_REFERER'])? $_SERVER['HTTP_REFERER'] : '',
-        'url' => @$_SERVER['REDIRECT_URL'] . (isset($_SERVER['REDIRECT_QUERY_STRING'])? $_SERVER['REDIRECT_QUERY_STRING'] : '')
+        'referer' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '',
+        'url' => @$_SERVER['REDIRECT_URL'] . (isset($_SERVER['REDIRECT_QUERY_STRING']) ? $_SERVER['REDIRECT_QUERY_STRING'] : '')
     );
-    setcookie('source', serialize($_COOKIE['source']),time()+86400*90,'/');
+    setcookie('source', serialize($_COOKIE['source']), time() + 86400 * 90, '/');
 } else {
     $_COOKIE['source'] = unserialize($_COOKIE['source']);
 }

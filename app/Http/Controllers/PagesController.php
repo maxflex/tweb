@@ -17,7 +17,7 @@ class PagesController extends Controller
     /**
      * Все страницы (на самом деле это теперь только серп)
      */
-    public function index($url)
+    public function index($url = '/')
     {
         $page = Page::whereUrl($url);
         if (!$page->exists()) {

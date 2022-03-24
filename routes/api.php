@@ -1,5 +1,4 @@
 <?php
-URL::forceSchema('https');
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::post('masters/search', 'MastersController@search');
     Route::resource('requests', 'RequestsController', ['only' => 'store']);
