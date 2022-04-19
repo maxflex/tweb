@@ -13,3 +13,5 @@ Homestead.yaml
 Envoy.blade.php
 /.vscode
 .DS_Store
+/public/js
+/public/css
