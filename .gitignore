@@ -4,6 +4,8 @@
 /.idea
 /storage
 /resources/assets/bower
+/resources/assets/js/app.js
+/resources/assets/js/app.js.map
 /public/.htaccess
 /public/request-photos
 /public/img/webp
