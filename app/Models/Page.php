@@ -217,58 +217,14 @@ class Page extends Model
         return ' ';
     }
 
-    public function scopeWhereSubject($query, $subject_id)
+    public function getFullUrlAttribute()
     {
-        return $query->whereRaw("FIND_IN_SET($subject_id, subjects)");;
-    }
-
-    public function scopeFindByParams($query, $search)
-    {
-        @extract($search);
-
-        $query->where('subjects', implode(',', $subjects));
-        $query->where('place', setOrNull(@$place));
-        $query->where('sort', setOrNull(@$sort));
-        $query->where('station_id', setOrNull(@$station_id));
-        $query->where('id', '!=', $id);
-
-        return $query;
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope(new PageScope);
+        return trim(config('app.url') . $this->url, '/') . '/';
     }
 
     public static function getUrl($id)
     {
         return self::whereId($id)->value('url');
-    }
-
-    public static function getSubjectUrl($subject_eng)
-    {
-        return self::getUrl(Page::$subject_page_id[Factory::getSubjectId($subject_eng)]);
-    }
-
-    public static function getSubjectRoutes()
-    {
-        $subject_routes = [];
-        foreach (self::$subject_page_id as $subject_id => $page_id) {
-            // ссылки только к отдельным предметам
-            if (strpos($subject_id, ',') === false) {
-                $subject_routes[$subject_id] = self::getUrl($page_id);
-            }
-        }
-        return $subject_routes;
-    }
-
-    /**
-     * Главная страница серпа
-     */
-    public function isMainSerp()
-    {
-        return $this->id == 10;
     }
 
     public function getHtml()
@@ -277,5 +233,10 @@ class Page extends Model
             return Parser::getPostfixed($this->attributes['html'], $this);
         }
         return isMobile() ? $this->attributes['html_mobile'] : $this->attributes['html'];
+    }
+
+    public static function booted()
+    {
+        static::addGlobalScope(new PageScope);
     }
 }

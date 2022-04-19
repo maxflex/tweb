@@ -27,7 +27,7 @@ class AddressDirections extends SsrVariable
         return view($this->getViewName(), [
             'map' => $this->args->map,
             'firstItem' => $firstItem,
-            'url' => $url,
+            'fullUrl' => $page->full_url,
         ]);
     }
 }

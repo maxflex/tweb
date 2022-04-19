@@ -6,7 +6,7 @@
         <div class='footer-links'>
             @foreach($page->useful as $useful)
                 <div>
-                    <a href="{{ $useful->page->url }}">{{ $useful->text }}</a>
+                    <a href="{{ $useful->page->full_url }}">{{ $useful->text }}</a>
                 </div>
             @endforeach
         </div>
@@ -15,7 +15,7 @@
         <ul class='footer-menu'>
             @foreach($page->useful as $useful)
                 <li>
-                    <a href="{{ $useful->page->url }}">{{ $useful->text }}</a>
+                    <a href="{{ $useful->page->full_url }}">{{ $useful->text }}</a>
                 </li>
             @endforeach
         </ul>

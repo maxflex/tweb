@@ -1,6 +1,6 @@
 <div class="common footer-links" @if($isInAddressFolder) ng-init="seoLinksShow = 10" @endif>
     @foreach ($pages as $index => $page)
-        <a @if($isInAddressFolder) ng-hide="{{ $index }} > seoLinksShow" @endif href="/{{ $page->url }}">{{ $page->keyphrase }}</a>
+        <a @if($isInAddressFolder) ng-hide="{{ $index }} > seoLinksShow" @endif href="{{ $page->full_url }}">{{ $page->keyphrase }}</a>
     @endforeach
     @if(count($pages) > 11 && $isInAddressFolder)
     <center class="more-button" ng-hide="seoLinksShow >= {{ count($pages) }}">

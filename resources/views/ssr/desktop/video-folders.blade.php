@@ -8,7 +8,7 @@
             <tr>
                 <td colspan="2">
                     <div class="flex-items">
-                        <a href="/videos">
+                        <a href="/videos/">
                             <i class="fa fa-folder-open link-like-darken" aria-hidden="true" style="margin-right: 5px"></i>
                         </a>
                         @foreach($breadcrumbs as $index => $breadcrumb)
@@ -28,7 +28,7 @@
                         @if($folder->folder_count === 0 && $folder->item_count === 0)
                             {{ $folder->name }}
                         @else
-                        <a class="with-hover" href="/videos?id={{ $folder->id}}">
+                        <a class="with-hover" href="/videos/?id={{ $folder->id}}">
                             {{ $folder->name }}
                         </a>
                         @endif

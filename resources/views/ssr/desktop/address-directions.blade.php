@@ -18,7 +18,7 @@
         </div>
     @endif
     <div class="address-qr">
-        <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{ config('app.url') . $url }}" />
+        <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{ $fullUrl }}" />
         <div>
             QR-код этой страницы
         </div>

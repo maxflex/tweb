@@ -1,3 +1,5 @@
+Disallow: /mob
+
 User-agent: Yandex
 Disallow: /*.pdf
 Disallow: /*.xls

@@ -49,7 +49,7 @@
             <div>
                 <div class="flex-items">
                     <div class="img" style="background-image: url(/img/icons/border/globe.png)"></div>
-                    <a href="https://atelier-talisman.ru">
+                    <a href="https://www.atelier-talisman.ru/">
                         atelier-talisman.ru
                     </a>
                 </div>
