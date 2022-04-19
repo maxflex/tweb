@@ -4,5 +4,6 @@ angular.module 'App'
         scope:
             item: '='
             open: '&'
+            altt: '@'
         templateUrl: (elem, attrs) ->
             if isMobile then '/directives/gallery-item-mobile' else '/directives/gallery-item'

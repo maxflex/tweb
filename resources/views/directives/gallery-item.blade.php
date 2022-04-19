@@ -1,5 +1,5 @@
 <div>
-    <img ng-src='@{{ item.thumb }}' class="gallery-photo pointer">
+    <img ng-src='@{{ item.thumb }}' class="gallery-photo pointer" alt="@{{ altt }}">
 </div>
 <div>
     <div class="entity-header header-3 gallery-preview-header">

@@ -9,7 +9,7 @@
             @foreach ($data->items() as $index => $item)
             <div class='gallery-item'>
                 <div>
-                    <img loading="lazy" ng-click="gallery.open({{ $index }})" src='{{ $item->thumb }}' class="gallery-photo pointer">
+                    <img loading="lazy" ng-click="gallery.open({{ $index }})" src='{{ $item->thumb }}' class="gallery-photo pointer" alt="{{ $alt }} – photo{{$index + 1}}" />
                 </div>
                 <div>
                     <div class="entity-header header-3 gallery-preview-header">
@@ -24,7 +24,7 @@
             </div>
             @endforeach
             <div ng-repeat="item in gallery.items track by $index" class="gallery-item">
-                <gallery-item item='item' ng-click='gallery.open($index + 3)'></gallery-item>
+                <gallery-item item='item' ng-click='gallery.open($index + 3)' altt="{{ $alt }} – photo@{{$index + 4}}"></gallery-item>
             </div>
         </div>
         @if ($data->currentPage() !== $data->lastPage())

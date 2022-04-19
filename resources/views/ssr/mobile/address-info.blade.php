@@ -2,10 +2,10 @@
 <div class="full-width gray-full-width address-info-block-wrapper">
     <div class="common">
         <div class='h1-top h1-top_addr'>
-            <h1>
+            <h2>
                 Ателье "Талисман" <br />
                 {{ $info->h1 }}
-            </h1>
+            </h2>
         </div>
         <div class="address-info-block">
             <div class="flex-items">

@@ -8,7 +8,7 @@
             @if($index === count($data->items()) - 1) in-view="firstLoadMoreInView(gallery)" @endif
         >
             <div>
-                <img loading="lazy" src='{{ $item->thumb }}'  class="gallery-photo">
+                <img loading="lazy" src='{{ $item->thumb }}' alt="{{ $alt }} – photo{{$index + 1}}" class="gallery-photo" />
             </div>
             <div>
                 <b>
@@ -20,6 +20,7 @@
        <div ng-repeat="item in gallery.items track by $index" class="gallery-item" >
             <gallery-item item='item' ng-click='gallery.open($index + 3)'
                 in-view="loadMoreInView(gallery, $index, $inview)"
+                altt="{{ $alt }} – photo@{{$index + 4}}"
             ></gallery-item>
         </div>
     </div>

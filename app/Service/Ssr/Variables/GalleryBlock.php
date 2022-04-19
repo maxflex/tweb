@@ -19,9 +19,18 @@ class GalleryBlock extends SsrVariable
             $data = Gallery::getParseItems($this->args);
         }
 
+        if (@$this->page) {
+            $alt = $this->page->url === "/"
+                ? "Ремонт, ушив, перешив и утпеление одежды в Ателье Талисман. Фото до и после"
+                : ($this->page->getClean('h1') .  " до и после");
+        } else {
+            $alt = "";
+        }
+
         return view($this->getViewName(), [
             'args' => $this->args,
             'data' => $data,
+            'alt' => $alt,
         ]);
     }
 }
