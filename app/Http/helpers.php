@@ -117,7 +117,8 @@ function ngInit($array)
         // } else {
         // иначе кодируем объект в JSON
         // $var_value = htmlspecialchars(json_encode($var_value, JSON_NUMERIC_CHECK));
-        $var_value = htmlspecialchars(json_encode($var_value, JSON_FORCE_OBJECT));
+        // $var_value = htmlspecialchars(json_encode($var_value, JSON_FORCE_OBJECT));
+        $var_value = json_encode($var_value, JSON_FORCE_OBJECT);
         // }
         $return .= $var_name . " = " . $var_value . "; ";
     }

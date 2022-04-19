@@ -171,6 +171,11 @@ class Page extends Model
         return ' ';
     }
 
+    public function getH1CleanAttribute()
+    {
+        return $this->attributes['h1'];
+    }
+
     public function getH1AddressAttribute()
     {
         if ($this->is_in_address_folder) {
