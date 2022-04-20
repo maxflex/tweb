@@ -11,11 +11,11 @@ use App\Models\Photo;
 class UploadController extends Controller
 {
     const OK_FACTOR = 50;
-    const allowedMimeTypes = ['image/jpeg','image/jpg','image/png'];
+    const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png'];
 
     public function original(Request $request)
     {
-        if ($request->file('photo')->getClientSize() > 5242880) {
+        if ($request->file('photo')->getSize() > 5242880) {
             return response()->json(['error' => 'максимальный объём файла – 5 Мб']);
         }
         if ($request->file('photo')->getMimeType() != 'image/jpeg') {
