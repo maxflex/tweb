@@ -1,5 +1,3 @@
-Disallow: /mob
-
 User-agent: Yandex
 Disallow: /*.pdf
 Disallow: /*.xls
@@ -59,6 +57,7 @@ Disallow: */?yhid=*
 Disallow: */?baobab_event_id=*
 Disallow: */?wprid=*
 Disallow: */?q=*
+Disallow: /mob
 Allow: /css/*.css
 Allow: /js/*.js
 Allow: /img/*.jpg
