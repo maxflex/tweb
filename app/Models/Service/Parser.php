@@ -218,8 +218,8 @@ class Parser
                     $replacement = file_exists($folder . $args[0] . '.jpg') ? '/' . $folder . $args[0] . '.jpg' : '/img/university/' . (strpos($args[0], 'big') !== false ? 'big/' : '') . 'no-university.jpg';
                     break;
                 case 'link':
-                    // получить ссылку либо по [link|id_раздела] или по [link|math]
-                    $replacement = is_numeric($args[0]) ? Page::getUrl($args[0]) : Page::getSubjectUrl($args[0]);
+                    // получить ссылку по [link|id_раздела]
+                    $replacement = '/' . trim(Page::getUrl($args[0]), '/') . '/';
                     break;
                 case 'gallery':
                     $replacement = self::_parseGallery(...$args);

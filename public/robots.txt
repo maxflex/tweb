@@ -19,7 +19,7 @@ Allow: /img/*.jpeg
 Allow: /img/*.png
 Allow: /img/*.gif
 Allow: /img/*.JPG
-Clean-param: utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid&_openstat&from&roistat&roistat_referrer&roistat_pos /
+Clean-param: utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid&_openstat&from&roistat&roistat_referrer&roistat_pos&author&etext /
 
 User-agent: Googlebot
 Disallow: /*.pdf
