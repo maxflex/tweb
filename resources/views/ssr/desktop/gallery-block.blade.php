@@ -16,7 +16,7 @@
                         {{ $item->name }}
                         <span class="address-gallery-remove">
                             –
-                            {{ $item->days_to_complete }} дней
+                            {{ pluralize('день', 'дня', 'дней', $item->days_to_complete) }}
                             <a class="link-small pointer" ng-click="gallery.open({{ $index }})">подробнее...</a>
                         </span>
                     </div>

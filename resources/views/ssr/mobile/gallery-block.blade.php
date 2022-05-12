@@ -12,7 +12,7 @@
             </div>
             <div>
                 <b>
-                    {{ $item->name }} – {{ $item->days_to_complete }} дней
+                    {{ $item->name }} – {{ pluralize('день', 'дня', 'дней', $item->days_to_complete) }}
                 </b>
             </div>
         </div>

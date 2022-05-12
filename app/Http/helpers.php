@@ -180,10 +180,24 @@ function filterParams($a)
     });
 }
 
+/**
+ * Склоняем словоформу
+ * @author runcore
+ * @source https://habr.com/ru/post/53210/
+ */
+function morph($n, array $f1f2f5)
+{
+    $n = abs(intval($n)) % 100;
+    if ($n > 10 && $n < 20) return $f1f2f5[2];
+    $n = $n % 10;
+    if ($n > 1 && $n < 5) return $f1f2f5[1];
+    if ($n == 1) return $f1f2f5[0];
+    return $f1f2f5[2];
+}
+
 function pluralize($one, $few, $many, $n)
 {
-    $text = $n % 10 == 1 && $n % 100 != 11 ? $one : ($n % 10 >= 2 && $n % 10 <= 4 && ($n % 100 < 10 || $n % 100 >= 20) ? $few : $many);
-    return $n . ' ' . $text;
+    return $n . ' ' . morph($n, [$one, $few, $many]);
 }
 
 /**
