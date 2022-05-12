@@ -12,7 +12,7 @@
             </div>
             <div>
                 <b>
-                    {{ $item->name }} – {{ $item->day_to_complete }} дней
+                    {{ $item->name }} – {{ $item->days_to_complete }} дней
                 </b>
             </div>
         </div>
