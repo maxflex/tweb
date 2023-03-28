@@ -4,7 +4,7 @@
         <div class="common main-page-masters masters-count-{{ count($items) }} {{ $all ? 'masters-all' : '' }}">
             @if (! $all)
                 <div class="more-masters">
-                    <div class='header-2'>{{ $title }}</div>
+                    <div class='header-2'><h2 style="font-size: 28px; font-family: 'helveticaneuecyrregular';"> {{ $title }} </h2></div>
                     <div>{{ $desc }}</div>
                 </div>
             @endif

@@ -17,7 +17,7 @@
                 class="img"
                 style="background-image: url(/img/icons/border/route.png);"
             ></div>
-            <a href="{{ $maps['len']['route'] }}" target="_blank">
+            <a rel="nofollow" href="{{ $maps['len']['route'] }}" target="_blank">
                 Проложить маршрут
             </a>
         </div>
@@ -59,7 +59,7 @@
                 class="img"
                 style="background-image: url(/img/icons/border/instagram.png);"
             ></div>
-            <a href="https://instagram.com/atelier_talisman" target="_blank">
+            <a rel="nofollow" href="https://instagram.com/atelier_talisman" target="_blank">
                 Instagram
             </a>
         </div>
@@ -95,7 +95,7 @@
                 class="img"
                 style="background-image: url(/img/icons/border/route.png);"
             ></div>
-            <a href="{{ $maps['pol']['route'] }}" target="_blank">
+            <a rel="nofollow" href="{{ $maps['pol']['route'] }}" target="_blank">
                 Проложить маршрут
             </a>
         </div>
@@ -139,6 +139,7 @@
                 style="background-image: url(/img/icons/border/youtube.png);"
             ></div>
             <a
+                rel="nofollow"
                 href="https://www.youtube.com/channel/UCCIMu941ZNGNMhDwlaWHNSA"
                 target="_blank"
             >
@@ -178,7 +179,7 @@
                 class="img"
                 style="background-image: url(/img/icons/border/route.png);"
             ></div>
-            <a href="{{ $maps['delegat']['route'] }}" target="_blank">
+            <a rel="nofollow" href="{{ $maps['delegat']['route'] }}" target="_blank">
                 Проложить маршрут
             </a>
         </div>
@@ -221,7 +222,7 @@
                 class="img"
                 style="background-image: url(/img/icons/border/vk.png);"
             ></div>
-            <a href="https://vk.com/atelier_talisman" target="_blank">
+            <a rel="nofollow" href="https://vk.com/atelier_talisman" target="_blank">
                 ВК
             </a>
         </div>

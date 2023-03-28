@@ -21,6 +21,14 @@ Route::get('/mobile', function () {
     return redirect()->back();
 });
 
+Route::get('/coats-alteration/', function(){
+    return Redirect::to('/alter-coats', 301);
+});
+
+Route::get('/blouses-alteration/', function(){
+    return Redirect::to('/alter-blouses/', 301);
+});
+
 # Templates for angular directives
 Route::get('directives/{directive}', function ($directive) {
     return view("directives.{$directive}");

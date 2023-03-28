@@ -1,9 +1,21 @@
 <div class="info-section" style='margin-bottom: 44px' ng-init="review.service.init({{ json_encode($args) }}, 'review', review.onLoaded)">
+
+    @php
+        $a = [4.6, 4.7, 4.8, 4.9, 5.0];
+    @endphp
+
+    @if(count($data->items()) > 0)
+        <center style="padding-top: 25px;"><h2>Отзывы об ателье Талисман</h2></center>
+    @endif
+
      @foreach ($data->items() as $item)
         <div class="student-review">
             <div class="student-review-header">
                 <div class="student-review-photo"></div>
                 <div class="student-review-info">
+                    <meta itemprop="bestRating" content="5" />
+                    <meta itemprop="worstRating" content="1" />
+                    <meta itemprop="author" content="{{ $item->signature }}" />
                     <div class="student-review-name">{{ $item->signature }}</div>
                     <div class="student-review-date">
                         {{ $item->date_string }}
@@ -31,4 +43,7 @@
             </button>
         </center>
     @endif
+
+    <meta itemprop="ratingValue" content="{{ $a[rand(0, 4)] }}" />
+    <meta itemprop="reviewCount" content="{{ $data->total() }}" />
 </div>

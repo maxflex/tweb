@@ -4,16 +4,57 @@ namespace App\Service\Ssr\Variables;
 
 use App\Service\Ssr\SsrVariable;
 use App\Models\{PriceSection, PricePosition};
+use Illuminate\Support\Facades\Log;
 
 class PriceBlock extends SsrVariable {
+
     public function parse()
     {
         $isFullPrice = $this->page->url === 'price';
+
+        $prices = [];
+        $maxPrice = 0;
+        $lowPrice = 0;
+        $offerCount = 0;
+
+
+        $items = $this->getItems();
+
+        foreach ($items as $models){
+            if (isset($models['items'])) {
+                foreach ($models['items'] as $model) {
+                    if (isset($model['items'])) {
+                        foreach ($model['items'] as $item) {
+                            if (isset($item['model']['price'])){
+
+                                $price = str_replace(' ', '', $item['model']['price']);
+                                $price = (int)$price;
+
+                                if ($price > 0)
+                                    $prices[] = $price;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!empty($prices)){
+            $maxPrice = max($prices);
+            $lowPrice = min($prices);
+            $offerCount = count($prices);
+        }
+
+        Log::debug($prices);
+
         return view($this->getViewName(), [
             'title' => $this->args->title,
-            'items' => $this->getItems(),
+            'items' => $items,
             'nobutton' => isset($this->args->nobutton),
             'isFullPrice' => $isFullPrice,
+            'maxPrice' => $maxPrice,
+            'lowPrice' => $lowPrice,
+            'offerCount' => $offerCount
         ]);
     }
 

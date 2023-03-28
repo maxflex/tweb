@@ -49,6 +49,7 @@ class PricesController extends Controller
                 $items[] = $section->getItem($request->tags, $allowed_ids);
             }
         }
+
         return $items;
     }
 }

@@ -69,7 +69,7 @@
             <div>
                 <div class="flex-items">
                     <div class="img" style="background-image: url(/img/icons/border/instagram.png)"></div>
-                    <a href="https://instagram.com/atelier_talisman" target="_blank">
+                    <a rel="nofollow" href="https://instagram.com/atelier_talisman" target="_blank">
                         Instagram
                     </a>
                 </div>

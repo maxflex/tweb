@@ -2,7 +2,7 @@
     <h1 class='h1-top'>Прайс-лист</h1>
 @else
 <div class='header-1'>
-    Прайс-лист
+    <h2 style="font-size: 28px; font-family: 'helveticaneuecyrregular';">Прайс-лист</h2>
 
     @if ($nobutton !== true)
 	    <center style='margin: 15px 0 0'>
@@ -21,8 +21,9 @@
 </div>
 @endif
 
+
 <div class="price-wrapper">
-    <div class="price-list">
+    <div class="price-list" itemprop="offers" itemscope itemtype="//schema.org/AggregateOffer">
         <ul>
             @foreach ($items as $item)
                 <li>
@@ -32,5 +33,10 @@
                 </li>
             @endforeach
         </ul>
+        <meta itemprop="lowPrice" content="{{ $lowPrice  }}" />
+        <meta itemprop="highPrice" content="{{ $maxPrice  }}" />
+        <meta itemprop="offerCount" content="{{ $offerCount  }}" />
+        <meta itemprop="priceCurrency" content="рублей"/>
     </div>
+
 </div>

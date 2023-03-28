@@ -12,6 +12,7 @@ Disallow: */?yhid=*
 Disallow: */?baobab_event_id=*
 Disallow: */?wprid=*
 Disallow: */?q=*
+Disallow: /*?
 Allow: /css/*.css
 Allow: /js/*.js
 Allow: /img/*.jpg
@@ -35,6 +36,7 @@ Disallow: */?yhid=*
 Disallow: */?baobab_event_id=*
 Disallow: */?wprid=*
 Disallow: */?q=*
+Disallow: /*?
 Allow: /css/*.css
 Allow: /js/*.js
 Allow: /img/*.jpg
@@ -58,6 +60,7 @@ Disallow: */?baobab_event_id=*
 Disallow: */?wprid=*
 Disallow: */?q=*
 Disallow: /mob
+Disallow: /*?
 Allow: /css/*.css
 Allow: /js/*.js
 Allow: /img/*.jpg

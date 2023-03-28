@@ -1,3 +1,5 @@
+
+
 <div class="price-line price-{{ $item['is_section'] ? 'section' : 'position' }} {{ (isset($item['items']) && count($item['items']) > 0) ? 'pointer' : '' }}"
     onclick='togglePrice(event)'>
     <span class="price-line-title">{{ $item['model']['name'] }}</span>
@@ -31,3 +33,8 @@
         @endforeach
     </ul>
 @endif
+
+
+
+
+

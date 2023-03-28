@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Decorators\TagsFilterDecorator;
+use Illuminate\Support\Facades\Log;
 
 class PriceSection extends Model
 {

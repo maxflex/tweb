@@ -11,6 +11,7 @@ use App\Models\Page;
 use App\Models\Variable;
 use App\Models\Master;
 use App\Models\Service\Parser;
+use Illuminate\Support\Facades\Log;
 
 class PagesController extends Controller
 {
@@ -37,6 +38,9 @@ class PagesController extends Controller
     {
         if (Master::whereId($id)->exists()) {
             $page = Page::whereUrl(Master::URL . '/:id')->first();
+
+            $page->url = 'masters/' . $id;
+
             Parser::compileMaster($id, $page);
             $status = 200;
         } else {

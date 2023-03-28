@@ -1,7 +1,7 @@
 @if ($isFullPrice)
     <h1 class='h1-top'>Прайс-лист</h1>
 @else
-    <div class='header-1'>Прайс-лист</div>
+    <div class='header-1'><h2 style="font-size: 28px; font-family: 'helveticaneuecyrregular';">Прайс-лист</h2></div>
 @endif
 
 @if ($nobutton !== true)
