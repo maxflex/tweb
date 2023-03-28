@@ -75,7 +75,7 @@
                 </div>
                 <div class="flex-items">
                     <div class="img" style="background-image: url(/img/icons/border/vk.png)"></div>
-                    <a href="https://vk.com/atelier_talisman" target="_blank">
+                    <a href="https://vk.com/atelier.talisman" target="_blank">
                         ВК
                     </a>
                 </div>
