@@ -34,7 +34,7 @@ class Review extends Model implements SsrParsable
     public static function getParseItems($args, $page = 1)
     {
         if (!$args->ids && !$args->folders) {
-            $final_query = (new TagsFilterDecorator(Review::with('master')))->withTags($args->tags)->orderBy('folder_id', 'asc')->orderByPosition();
+            $final_query = (new TagsFilterDecorator(Review::with('master')))->withTags($args->tags)->orderBy('folder_id', 'asc')->orderBy('date', 'desc');
         } else {
             $ids = array_filter(explode(',', $args->ids));
 
@@ -50,7 +50,7 @@ class Review extends Model implements SsrParsable
 
                 $ids_from_folders = [];
                 foreach ($folder_ids as $folder_id) {
-                    $ids_from_folders = array_merge($ids_from_folders, Review::where('folder_id', $folder_id)->orderByPosition()->pluck('id')->all());
+                    $ids_from_folders = array_merge($ids_from_folders, Review::where('folder_id', $folder_id)->orderBy('date', 'desc')->pluck('id')->all());
                 }
 
                 $ids = array_merge($ids_from_folders, $ids);
