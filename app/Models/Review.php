@@ -34,7 +34,7 @@ class Review extends Model implements SsrParsable
     public static function getParseItems($args, $page = 1)
     {
         if (!$args->ids && !$args->folders) {
-            $final_query = (new TagsFilterDecorator(Review::with('master')))->withTags($args->tags)->orderBy('folder_id', 'asc')->orderBy('date', 'desc');
+            $final_query = (new TagsFilterDecorator(Review::with('master')))->withTags($args->tags)->orderBy('date', 'desc');
         } else {
             $ids = array_filter(explode(',', $args->ids));
 
