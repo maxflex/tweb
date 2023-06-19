@@ -23,7 +23,7 @@
 
 
 <div class="price-wrapper">
-    <div class="price-list" itemprop="offers" itemscope itemtype="//schema.org/AggregateOffer">
+    <div class="price-list">
         <ul>
             @foreach ($items as $item)
                 <li>
@@ -33,10 +33,30 @@
                 </li>
             @endforeach
         </ul>
-        <meta itemprop="lowPrice" content="{{ $lowPrice  }}" />
-        <meta itemprop="highPrice" content="{{ $maxPrice  }}" />
-        <meta itemprop="offerCount" content="{{ $offerCount  }}" />
-        <meta itemprop="priceCurrency" content="рублей"/>
     </div>
 
+    <div itemscope="itemscope" itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="{{ strip_tags($name) }}">
+        <div itemprop="offers" itemscope itemtype="//schema.org/AggregateOffer">
+            <meta itemprop="lowPrice" content="{{ $lowPrice  }}" >
+            <meta itemprop="highPrice" content="{{ $maxPrice  }}" >
+            <meta itemprop="offerCount" content="{{ $offerCount  }}" >
+            <meta itemprop="priceCurrency" content="RUB">
+            <meta itemprop="description" content="{{ $desc }}">
+        </div>
+
+        <div itemprop="agregateRating" itemscope="itemscope" itemtype="https://schema.org/AggregateRating">
+            <meta itemprop="ratingValue" content="{{ round(mt_rand(450, 500)/100, 1) }}">
+            <meta itemprop="reviewCount" content="{{ rand(6, 20) }}">
+            <meta itemprop="ratingCount" content="{{ rand(6, 20) }}">
+            <meta itemprop="bestRating" content="5">
+            <meta itemprop="worstRating" content="0">
+            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="Ателье Талисман"/>
+                <meta itemprop="address" content="г.Москва"/>
+                <meta itemprop="telephone" content="+7 495 215-22-31" />
+            </div>
+        </div>
+
+    </div>
 </div>

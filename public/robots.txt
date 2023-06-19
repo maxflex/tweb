@@ -20,6 +20,7 @@ Allow: /img/*.jpeg
 Allow: /img/*.png
 Allow: /img/*.gif
 Allow: /img/*.JPG
+Disallow: /jobs/
 Clean-param: utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid&_openstat&from&roistat&roistat_referrer&roistat_pos&author&etext /
 
 User-agent: Googlebot
@@ -44,6 +45,7 @@ Allow: /img/*.jpeg
 Allow: /img/*.png
 Allow: /img/*.gif
 Allow: /img/*.JPG
+Disallow: /jobs/
 
 User-agent: *
 Disallow: /*.pdf
@@ -73,5 +75,6 @@ Disallow: *clid=
 Disallow: *openstat
 Disallow: *from
 Disallow: /*roistat
+Disallow: /jobs/
 
 Sitemap: https://www.atelier-talisman.ru/sitemap.xml

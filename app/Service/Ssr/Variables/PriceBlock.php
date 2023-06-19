@@ -45,7 +45,7 @@ class PriceBlock extends SsrVariable {
             $offerCount = count($prices);
         }
 
-        Log::debug($prices);
+        //Log::info(print_r($this->page, true));
 
         return view($this->getViewName(), [
             'title' => $this->args->title,
@@ -54,7 +54,9 @@ class PriceBlock extends SsrVariable {
             'isFullPrice' => $isFullPrice,
             'maxPrice' => $maxPrice,
             'lowPrice' => $lowPrice,
-            'offerCount' => $offerCount
+            'offerCount' => $offerCount,
+            'name' => $this->page->h1,
+            'desc' => $this->page->desc
         ]);
     }
 
