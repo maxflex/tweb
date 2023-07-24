@@ -27,7 +27,7 @@ class Review extends Model implements SsrParsable
     public function getDateStringAttribute()
     {
         $date = $this->attributes['date'];
-        return date('j ', strtotime($date)) . Months::SHORT[date('n', strtotime($date))] . date(' Y', strtotime($date));
+        return date('j ', strtotime($date)) . Months::FULL[date('n', strtotime($date))] . date(' Y', strtotime($date));
     }
 
 
@@ -55,11 +55,7 @@ class Review extends Model implements SsrParsable
 
                 $ids = array_merge($ids_from_folders, $ids);
             }
-
-            $final_query = Review::with('master')->whereIn('id', $ids);
-            if (count($ids)) {
-                $final_query->orderBy(\DB::raw('FIELD(id, ' . implode(',', $ids) . ')'));
-            }
+            $final_query = Review::with('master')->whereIn('id', $ids)->orderBy('date', 'desc');
         }
 
         if (isset($args->firstThree)) {
