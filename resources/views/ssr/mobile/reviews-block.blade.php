@@ -5,7 +5,7 @@
     @endphp
 
     @if(count($data->items()) > 0)
-        <center style="padding-top: 25px;"><h2>Отзывы об ателье Талисман</h2></center>
+        <center style="margin: 10px 0 30px"><h2>Отзывы об ателье Талисман</h2></center>
     @endif
 
      @foreach ($data->items() as $item)
