@@ -61,6 +61,16 @@ angular
                     , 1000
                 # , 3000
         
+        $scope.firstLoadMoreInView = (obj) -> 
+            if obj.firstLoaded isnt true
+                console.log('first load')
+                obj.firstLoaded = true
+                obj.service.loadMore()
+
+        $scope.loadMoreInView = (obj, index, inView) -> 
+            if inView && (index + 1 is obj.items.length)
+                obj.service.loadMore()
+        
 
         #
         # MOBILE
