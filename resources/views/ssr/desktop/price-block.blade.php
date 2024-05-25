@@ -1,8 +1,8 @@
 @if ($isFullPrice)
-    <h1 class='h1-top'>Прайс-лист</h1>
+    <h1 class='h1-top'>{{ $title }}</h1>
 @else
 <div class='header-1'>
-    <h2 style="font-size: 28px; font-family: 'helveticaneuecyrregular';">Прайс-лист</h2>
+    <h2 style="font-size: 28px; font-family: 'helveticaneuecyrregular';">{{ $title }}</h2>
 
     @if ($nobutton !== true)
 	    <center style='margin: 15px 0 0'>

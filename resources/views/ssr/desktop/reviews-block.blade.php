@@ -13,7 +13,14 @@
             <div class="student-review">
                 <meta itemprop="bestRating" content="5" />
                 <meta itemprop="worstRating" content="1" />
+                <meta itemprop="ratingValue" content="{{ $a[rand(0, 4)] }}" />
+                <meta itemprop="ratingCount" content="1" />
                 <meta itemprop="author" content="{{ $item->signature }}" />
+                <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+                    <meta itemprop="name" content="Ателье Талисман"/>
+                    <meta itemprop="address" content="г.Москва"/>
+                    <meta itemprop="telephone" content="+7 495 215-22-31" />
+                </div>
                 <div class="student-review-photo"></div>
                 <div class="student-review-text">
                     <div class="student-review-name">{{ $item->signature }}</div>

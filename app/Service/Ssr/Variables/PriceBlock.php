@@ -45,8 +45,6 @@ class PriceBlock extends SsrVariable {
             $offerCount = count($prices);
         }
 
-        //Log::info(print_r($this->page, true));
-
         return view($this->getViewName(), [
             'title' => $this->args->title,
             'items' => $items,
@@ -72,10 +70,13 @@ class PriceBlock extends SsrVariable {
         if (@$this->args->folders) {
             // append all subfolders
             $subfolder_ids = [];
-            foreach($this->args->folders as $folder_id) {
+            $folderIDs = explode(',', $this->args->folders);
+
+            foreach($folderIDs as $folder_id) {
                 $subfolder_ids = array_merge($subfolder_ids, PriceSection::getSubsectionIds($folder_id));
             }
-            $folder_ids = array_merge($this->args->folders, $subfolder_ids);
+
+            $folder_ids = array_merge($folderIDs, $subfolder_ids);
 
             foreach($folder_ids as $folder_id) {
                 $allowed_ids = array_merge($allowed_ids, PricePosition::where('price_section_id', $folder_id)->orderBy('position')->pluck('id')->all());
@@ -84,7 +85,8 @@ class PriceBlock extends SsrVariable {
 
         // Допустимые ID
         if (@$this->args->ids) {
-            $allowed_ids = array_merge($allowed_ids, $this->args->ids);
+            $IDs = explode(',', @$this->args->ids);
+            $allowed_ids = array_merge($allowed_ids, $IDs);
         }
 
         $allowed_ids = array_unique($allowed_ids);

@@ -1,4 +1,4 @@
-<div class='header-1'> <h2 style="font-size: 28px; font-family: 'helveticaneuecyrregular';"> {{ $args->title }} </h2> </div>
+<div class='header-1'> <h2 style="font-size: 28px; font-family: 'helveticaneuecyrregular';"> Фотографии работ: до и после </h2> </div>
 
 @if ($data->total() > 0)
 <div class="vertical-slider gallery-block-photos" ng-init="gallery.service.init({{ json_encode($args) }}, 'gallery', gallery.onLoaded)">
